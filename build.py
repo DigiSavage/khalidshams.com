@@ -42,6 +42,14 @@ class Post:
     body_html: str = field(default="", init=False)
 
     @property
+    def image(self) -> "Path | None":
+        img = ROOT / "content" / "images" / f"{self.slug}.png"
+        return img if img.exists() else None
+    @property
+    def image_url(self) -> str:
+        return f"{SITE}/images/{self.slug}.png" if self.image else f"{SITE}/og.png"
+
+    @property
     def url(self) -> str: return f"/writing/{self.slug}/"
     @property
     def abs_url(self) -> str: return SITE + self.url
@@ -117,9 +125,10 @@ def fill(s: str, **kw) -> str:
     return s
 
 
-def page(body: str, *, title: str, description: str, canonical: str, og_type="website") -> str:
+def page(body: str, *, title: str, description: str, canonical: str, og_type="website", og_image=None) -> str:
     return fill(tpl("base.html"), BODY=body, TITLE=html.escape(title, quote=True),
-                DESCRIPTION=html.escape(description, quote=True), CANONICAL=canonical, OG_TYPE=og_type)
+                DESCRIPTION=html.escape(description, quote=True), CANONICAL=canonical, OG_TYPE=og_type,
+                OG_IMAGE=og_image or f"{SITE}/og.png")
 
 
 def esc(s: str) -> str: return html.escape(s, quote=True)
@@ -132,6 +141,9 @@ def build():
     static = ROOT / "static"
     if static.exists():
         shutil.copytree(static, DIST, dirs_exist_ok=True)
+    images = ROOT / "content" / "images"
+    if images.exists():
+        shutil.copytree(images, DIST / "images", dirs_exist_ok=True)
 
     posts = load_posts()
     live = visible(posts)
@@ -142,12 +154,14 @@ def build():
         p.body_html = render_md(p)
         li = (f'<a href="{esc(p.linkedin_url)}" target="_blank" rel="noopener">Discuss on LinkedIn →</a>'
               if p.linkedin_url else "")
+        fig = (f'<figure class="card"><img src="/images/{p.slug}.png" alt="{esc(p.title)}" width="1200" height="1200" loading="lazy"></figure>'
+               if p.image else "")
         body = fill(tpl("post.html"), MASTHEAD=masthead, FOOTER=footer, TITLE=esc(p.title),
-                    DATE_LONG=p.date_long, TAG=esc(p.tag_label), CONTENT=p.body_html, LINKEDIN_LINK=li)
+                    DATE_LONG=p.date_long, TAG=esc(p.tag_label), CONTENT=p.body_html, LINKEDIN_LINK=li, FIGURE=fig)
         out = DIST / "writing" / p.slug / "index.html"
         out.parent.mkdir(parents=True, exist_ok=True)
-        out.write_text(page(body, title=f"{p.title} — Khalid Shams", description=p.summary or p.title,
-                            canonical=p.abs_url, og_type="article"), encoding="utf-8")
+        out.write_text(page(body, title=f"{p.title} · Khalid Shams", description=p.summary or p.title,
+                            canonical=p.abs_url, og_type="article", og_image=p.image_url), encoding="utf-8")
 
     # ---- home
     if live:
@@ -162,8 +176,8 @@ def build():
     else:
         writing = '<p class="empty">First notes land here on September 15, 2026.</p>'
     home = fill(tpl("home.html"), WRITING=writing)
-    (DIST / "index.html").write_text(page(home, title="Khalid Shams — Principal Solutions Architect",
-        description="Khalid Shams — Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
+    (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
+        description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
         canonical=SITE + "/", og_type="profile"), encoding="utf-8")
 
     # ---- writing index
@@ -175,7 +189,7 @@ def build():
     (DIST / "writing").mkdir(exist_ok=True)
     (DIST / "writing" / "index.html").write_text(page(
         fill(tpl("writing_index.html"), MASTHEAD=masthead, FOOTER=footer, ITEMS=items),
-        title="Writing — Khalid Shams", description="Short essays on architecture, agentic AI, and the decisions that actually cost money.",
+        title="Writing · Khalid Shams", description="Short essays on architecture, agentic AI, and the decisions that actually cost money.",
         canonical=SITE + "/writing/"), encoding="utf-8")
 
     # ---- feed.xml
@@ -192,7 +206,7 @@ def build():
     (DIST / "feed.xml").write_text(f"""<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>Khalid Shams — Writing</title>
+  <title>Khalid Shams · Writing</title>
   <link>{SITE}/writing/</link>
   <atom:link href="{SITE}/feed.xml" rel="self" type="application/rss+xml"/>
   <description>Short essays on architecture, agentic AI, and the decisions that actually cost money.</description>
@@ -209,14 +223,14 @@ def build():
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
     # ---- 404 (CloudFront custom error response points here)
     nf = fill(tpl("404.html"), MASTHEAD=masthead, FOOTER=footer)
-    (DIST / "404.html").write_text(page(nf, title="Not found — Khalid Shams",
+    (DIST / "404.html").write_text(page(nf, title="Not found · Khalid Shams",
                                         description="That page doesn't exist.", canonical=f"{SITE}/404.html"),
                                    encoding="utf-8")
 
     # ---- privacy policy (needed by the LinkedIn app registration)
     pv = fill(tpl("privacy.html"), MASTHEAD=masthead, FOOTER=footer)
     (DIST / "privacy").mkdir(exist_ok=True)
-    (DIST / "privacy" / "index.html").write_text(page(pv, title="Privacy policy — Khalid Shams",
+    (DIST / "privacy" / "index.html").write_text(page(pv, title="Privacy policy · Khalid Shams",
         description="This site sets no cookies and collects no personal data.", canonical=f"{SITE}/privacy/"),
         encoding="utf-8")
 
