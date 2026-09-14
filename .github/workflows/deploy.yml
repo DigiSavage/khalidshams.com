@@ -1,0 +1,70 @@
+# Build the site and publish it to S3 + CloudFront.
+#
+# Runs on every push to main, on a daily schedule (so date-gated posts appear
+# on their day even if nothing was pushed), and on demand. Also callable from
+# publish.yml after a post goes out.
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ["README.md", "LICENSE"]
+  schedule:
+    - cron: "10 15 * * *"        # 08:10 America/Phoenix, daily
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-khalidshams-com
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Build
+        run: python build.py
+
+      - name: Check deploy secrets
+        env:
+          KEY: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        run: |
+          if [ -z "$KEY" ]; then
+            echo "::error::AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY are not set. Add them in Settings → Secrets and variables → Actions, then re-run this workflow."
+            exit 1
+          fi
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Upload to S3
+        # No --delete on purpose: the deploy identity has no s3:DeleteObject.
+        # Short cache so updates are visible within a minute.
+        run: |
+          aws s3 sync dist/ s3://khalidshams.com/ \
+            --cache-control "public, max-age=60, must-revalidate" \
+            --exclude "posts.json"
+          aws s3 cp dist/posts.json s3://khalidshams.com/posts.json \
+            --cache-control "no-cache" --content-type "application/json"
+
+      - name: Invalidate CloudFront
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id E14OT21V7ATYP1 \
+            --paths "/*" --query 'Invalidation.Id' --output text

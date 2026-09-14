@@ -1,0 +1,59 @@
+# Post the next approved note to LinkedIn, mark it published, then redeploy.
+#
+# Tuesday + Thursday 08:00 America/Phoenix. Safe to run on demand.
+# If LINKEDIN_ACCESS_TOKEN is not configured the job exits quietly — the site
+# still updates on its own daily schedule; LinkedIn is distribution, not source.
+name: Publish to LinkedIn
+
+on:
+  schedule:
+    - cron: "0 15 * * 2,4"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (don't post, don't commit)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-linkedin
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    outputs:
+      published: ${{ steps.pub.outputs.published }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Publish next approved post
+        id: pub
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_VERSION: ${{ vars.LINKEDIN_VERSION }}
+          DRY_RUN: ${{ inputs.dry_run == true && '1' || '' }}
+          SCHEDULED: ${{ github.event_name == 'schedule' && '1' || '' }}
+        run: python scripts/publish_linkedin.py
+
+      - name: Commit publication record
+        if: steps.pub.outputs.published == 'true'
+        run: |
+          git config user.name  "khalidshams.com publisher"
+          git config user.email "publisher@khalidshams.com"
+          git add content/posts
+          git commit -m "Publish: ${{ steps.pub.outputs.title }}"
+          git push
+
+  deploy:
+    needs: publish
+    if: needs.publish.outputs.published == 'true'
+    uses: ./.github/workflows/deploy.yml
+    secrets: inherit
