@@ -83,6 +83,42 @@ def api(method: str, path: str, token: str, body=None, version=None):
         return e.code, dict(e.headers), e.read().decode()
 
 
+IMAGES = POSTS.parent / "images"
+
+
+def image_for(path) -> "Path | None":
+    """content/images/<slug>.png, where slug is the filename without the date prefix."""
+    m = re.match(r"\d{4}-\d{2}-\d{2}-(.+)$", path.stem)
+    if not m:
+        return None
+    img = IMAGES / f"{m.group(1)}.png"
+    return img if img.exists() else None
+
+
+def upload_image(token: str, version: str, author: str, img_path) -> "str | None":
+    """LinkedIn Images API: initializeUpload -> PUT bytes -> return urn:li:image:..."""
+    status, _, raw = api("POST", "/rest/images?action=initializeUpload", token,
+                         {"initializeUploadRequest": {"owner": author}}, version)
+    if status != 200:
+        print(f"::warning::image initializeUpload failed ({status}): {raw[:300]} — posting without image")
+        return None
+    v = json.loads(raw)["value"]
+    upload_url, urn = v["uploadUrl"], v["image"]
+    req = urllib.request.Request(upload_url, data=img_path.read_bytes(), method="PUT")
+    req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Content-Type", "application/octet-stream")
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            if r.status not in (200, 201):
+                print(f"::warning::image upload returned {r.status} — posting without image")
+                return None
+    except urllib.error.HTTPError as e:
+        print(f"::warning::image upload failed ({e.code}): {e.read().decode()[:300]} — posting without image")
+        return None
+    print(f"image uploaded: {urn}")
+    return urn
+
+
 def main() -> int:
     t = today()
     dry = bool(os.environ.get("DRY_RUN"))
@@ -108,7 +144,7 @@ def main() -> int:
             print("::error::The approved queue is empty. Nothing will post until a new note is approved.")
             return 1
         if len(remaining) <= 1:
-            print(f"::warning::Only {len(remaining)} approved post(s) left in the queue — time to write.")
+            print(f"::warning::Only {len(remaining)} approved post(s) left in the queue. Time to write.")
         print("Nothing due today.")
         return 0
 
@@ -118,10 +154,12 @@ def main() -> int:
     out("title", title.replace("\n", " "))
 
     if not token:
-        print("::notice::LINKEDIN_ACCESS_TOKEN not set — skipping LinkedIn. Site will still update on its daily deploy.")
+        print("::notice::LINKEDIN_ACCESS_TOKEN not set. Skipping LinkedIn. Site will still update on its daily deploy.")
         out("published", "false")
         return 0
+    img = image_for(path)
     if dry:
+        print(f"DRY_RUN: image={'none' if img is None else img.name}")
         print("DRY_RUN: would post the following commentary:\n" + "-" * 60 + f"\n{body}\n" + "-" * 60)
         out("published", "false")
         return 0
@@ -143,6 +181,10 @@ def main() -> int:
         "lifecycleState": "PUBLISHED",
         "isReshareDisabledByAuthor": False,
     }
+    if img is not None:
+        urn = upload_image(token, version, author, img)
+        if urn:
+            payload["content"] = {"media": {"id": urn, "title": title, "altText": title}}
     status, headers, raw = api("POST", "/rest/posts", token, payload, version)
     if status != 201:
         print(f"::error::LinkedIn post failed ({status}, version {version}): {raw[:500]}")
