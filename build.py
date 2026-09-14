@@ -207,6 +207,12 @@ def build():
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
+    # ---- 404 (CloudFront custom error response points here)
+    nf = fill(tpl("404.html"), MASTHEAD=masthead, FOOTER=footer)
+    (DIST / "404.html").write_text(page(nf, title="Not found — Khalid Shams",
+                                        description="That page doesn't exist.", canonical=f"{SITE}/404.html"),
+                                   encoding="utf-8")
+
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
     # ---- manifest (used by the publisher and handy for debugging)
