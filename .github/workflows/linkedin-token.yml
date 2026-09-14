@@ -1,0 +1,73 @@
+name: LinkedIn token
+
+# Exchanges a one-time OAuth code for a 60-day access token and stores it as the
+# LINKEDIN_ACCESS_TOKEN repo secret. Run this from the Actions tab after visiting
+# the authorize URL (scripts/linkedin_auth.py url) and copying the ?code= value.
+#
+# Needs secrets: LINKEDIN_CLIENT_SECRET, REPO_ADMIN_TOKEN (fine-grained PAT with
+# "Secrets: read and write" on this repo). LINKEDIN_CLIENT_ID is public.
+
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: "The ?code= value from the redirect URL (without &state)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+env:
+  LINKEDIN_CLIENT_ID: "86y39x2gyw0lrc"
+  LINKEDIN_REDIRECT_URI: "https://khalidshams.com/"
+
+jobs:
+  exchange:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check secrets
+        env:
+          CS: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+          PAT: ${{ secrets.REPO_ADMIN_TOKEN }}
+        run: |
+          [ -n "$CS" ]  || { echo "::error::LINKEDIN_CLIENT_SECRET secret is not set"; exit 1; }
+          [ -n "$PAT" ] || { echo "::error::REPO_ADMIN_TOKEN secret is not set"; exit 1; }
+
+      - name: Exchange code for token
+        id: ex
+        env:
+          CODE: ${{ inputs.code }}
+          CS: ${{ secrets.LINKEDIN_CLIENT_SECRET }}
+        run: |
+          CODE="${CODE%%&*}"; CODE="${CODE#code=}"
+          RESP=$(curl -sS -X POST https://www.linkedin.com/oauth/v2/accessToken \
+            --data-urlencode grant_type=authorization_code \
+            --data-urlencode "redirect_uri=$LINKEDIN_REDIRECT_URI" \
+            --data-urlencode "client_id=$LINKEDIN_CLIENT_ID" \
+            --data-urlencode "client_secret=$CS" \
+            --data-urlencode "code=$CODE")
+          TOKEN=$(printf '%s' "$RESP" | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d.get("access_token",""))')
+          if [ -z "$TOKEN" ]; then
+            echo "::error::LinkedIn did not return a token: $(printf '%s' "$RESP" | python3 -c 'import sys,json; d=json.load(sys.stdin); print(d.get("error_description") or d.get("error") or "unknown error")')"
+            exit 1
+          fi
+          echo "::add-mask::$TOKEN"
+          DAYS=$(printf '%s' "$RESP" | python3 -c 'import sys,json; print(json.load(sys.stdin).get("expires_in",0)//86400)')
+          echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+          echo "days=$DAYS"   >> "$GITHUB_OUTPUT"
+
+      - name: Verify token against LinkedIn
+        env:
+          TOKEN: ${{ steps.ex.outputs.token }}
+        run: |
+          curl -sS -f -H "Authorization: Bearer $TOKEN" https://api.linkedin.com/v2/userinfo \
+            | python3 -c 'import sys,json; d=json.load(sys.stdin); print("Token belongs to:", d.get("name"))'
+
+      - name: Store as LINKEDIN_ACCESS_TOKEN secret
+        env:
+          GH_TOKEN: ${{ secrets.REPO_ADMIN_TOKEN }}
+          TOKEN: ${{ steps.ex.outputs.token }}
+        run: |
+          gh secret set LINKEDIN_ACCESS_TOKEN --repo "$GITHUB_REPOSITORY" --body "$TOKEN"
+          echo "::notice::LINKEDIN_ACCESS_TOKEN stored. Expires in about ${{ steps.ex.outputs.days }} days — re-run this workflow with a fresh code before then."
