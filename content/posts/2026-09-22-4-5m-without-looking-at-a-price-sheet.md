@@ -17,7 +17,7 @@ They were things like: two teams licensing overlapping capability because neithe
 
 The savings weren't in negotiating. They were in noticing.
 
-That's the underrated part of assessments. People treat them as a procurement exercise, or a formality before a migration. Done properly, an assessment is the only moment an organisation sees itself whole — applications, data, identity, security, cost, and dependencies, on one page.
+That's the underrated part of assessments. People treat them as a procurement exercise, or a formality before a migration. Done properly, an assessment is the only moment an organisation sees itself whole. Applications, data, identity, security, cost, and dependencies, on one page.
 
 Most organisations have never seen that page.
 

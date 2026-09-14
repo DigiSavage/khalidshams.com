@@ -13,11 +13,11 @@ The setup: an Azure Database for PostgreSQL Flexible Server under real pressure,
 
 The instinct in that room is always to resize. Add capacity, buy time, move on.
 
-We didn't — not first. We did the boring thing and established what was actually happening before deciding what to do about it. Where the load genuinely came from. Which queries. What the resiliency posture actually was, versus what everyone assumed it was. Which regional options were real versus theoretical.
+We didn't, not first. We did the boring thing and established what was actually happening before deciding what to do about it. Where the load really came from. Which queries. What the resiliency posture actually was, versus what everyone assumed it was. Which regional options were real versus theoretical.
 
 Root cause first. Remediation second.
 
-The reason that ordering matters: if you resize before you understand, you now have the same problem at a higher bill — and you've spent the credibility you were going to need for the harder conversation.
+The reason that ordering matters: if you resize before you understand, you now have the same problem at a higher bill, and you've spent the credibility you were going to need for the harder conversation.
 
 The remediation ended up implementation-ready, and the modernisation momentum survived. That second part was the real goal. An escalation that stalls a programme costs far more than the incident ever did.
 

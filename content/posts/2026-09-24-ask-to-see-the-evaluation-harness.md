@@ -11,11 +11,11 @@ One question separates real AI projects from expensive demos:
 
 "Can you show me your evaluation harness?"
 
-Not the demo. Not the architecture diagram. The harness — the thing that runs a fixed set of cases and tells you whether today's version is better or worse than last week's.
+Not the demo. Not the architecture diagram. The harness. The thing that runs a fixed set of cases and tells you whether today's version is better or worse than last week's.
 
 If the answer is a pause, you're looking at a prototype wearing production clothes.
 
-Here's why it matters. Every change to an agentic system — a prompt, a tool, a model version, a retrieval tweak — has an unknown blast radius. Without a regression suite you aren't iterating. You're gambling and calling it iteration.
+Here's why it matters. Every change to an agentic system, whether a prompt, a tool, a model version, or a retrieval tweak, has an unknown blast radius. Without a regression suite you aren't iterating. You're gambling and calling it iteration.
 
 What I look for:
 

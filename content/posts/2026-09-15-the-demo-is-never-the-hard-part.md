@@ -9,9 +9,9 @@ linkedin_url:
 
 Most agent demos work. Most agent systems don't.
 
-I've spent the last stretch building a complete agentic system on Anthropic's Claude platform — inception through delivery — and separately building agentic workflows in Azure AI Foundry with RAG grounding over governed data.
+I've spent the last stretch building a complete agentic system on Anthropic's Claude platform, inception through delivery, and separately building agentic workflows in Azure AI Foundry with RAG grounding over governed data.
 
-The gap between a demo and a system isn't model quality. It's four things nobody demos:
+The gap between a demo and a system isn't model quality. It's four things nobody demos.
 
 Agent boundaries. What each agent owns, where control passes, and where a human stays in the loop. Vague ownership is how an agent quietly does the wrong thing, confidently.
 
