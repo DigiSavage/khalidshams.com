@@ -213,6 +213,13 @@ def build():
                                         description="That page doesn't exist.", canonical=f"{SITE}/404.html"),
                                    encoding="utf-8")
 
+    # ---- privacy policy (needed by the LinkedIn app registration)
+    pv = fill(tpl("privacy.html"), MASTHEAD=masthead, FOOTER=footer)
+    (DIST / "privacy").mkdir(exist_ok=True)
+    (DIST / "privacy" / "index.html").write_text(page(pv, title="Privacy policy — Khalid Shams",
+        description="This site sets no cookies and collects no personal data.", canonical=f"{SITE}/privacy/"),
+        encoding="utf-8")
+
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
     # ---- manifest (used by the publisher and handy for debugging)
