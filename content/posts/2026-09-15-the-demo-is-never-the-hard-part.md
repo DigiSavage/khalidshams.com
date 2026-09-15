@@ -1,10 +1,10 @@
 ---
 title: "The demo is never the hard part"
 date: 2026-09-15
-status: approved
+status: published
 tag: agentic-ai
 summary: "Most agent demos work. Most agent systems don't. The four things nobody demos are the whole difference."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7505698175551418370/
 ---
 
 Most agent demos work. Most agent systems don't.
