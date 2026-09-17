@@ -1,10 +1,10 @@
 ---
 title: "1,000 tenants and a problem you can't reproduce"
 date: 2026-09-17
-status: approved
+status: published
 tag: architecture
 summary: "A performance problem nobody could reproduce across 1,000+ tenant databases, and why the fix was written rules, not a bigger tier."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7506424556291735552/
 ---
 
 A customer had 1,000+ Azure SQL tenant databases and a performance problem nobody could reproduce.
