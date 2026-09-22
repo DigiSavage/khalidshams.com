@@ -1,10 +1,10 @@
 ---
 title: "$4.5M without looking at a price sheet"
 date: 2026-09-22
-status: approved
+status: published
 tag: business-value
 summary: "$4.5M in cost avoidance without touching a price sheet. The savings weren't in negotiating; they were in noticing."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7508232350133112832/
 ---
 
 We found $4.5M in cost avoidance without looking at a single price sheet.
