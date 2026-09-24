@@ -1,10 +1,10 @@
 ---
 title: "Ask to see the evaluation harness"
 date: 2026-09-24
-status: approved
+status: published
 tag: agentic-ai
 summary: "The one question that separates real AI projects from expensive demos."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7508961326426124289/
 ---
 
 One question separates real AI projects from expensive demos:
