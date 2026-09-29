@@ -1,10 +1,10 @@
 ---
 title: "Root cause before remediation"
 date: 2026-09-29
-status: approved
+status: published
 tag: architecture
 summary: "A PostgreSQL escalation, a room full of confident theories, and why we refused to resize first."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7510788185241866240/
 ---
 
 A PostgreSQL capacity escalation taught me more about architecture than most design sessions do.
