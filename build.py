@@ -217,10 +217,17 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = [f"{SITE}/", f"{SITE}/writing/"] + [p.abs_url for p in live]
+    urls = [f"{SITE}/", f"{SITE}/method/", f"{SITE}/writing/"] + [p.abs_url for p in live]
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
+    # ---- method page
+    mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer)
+    (DIST / "method").mkdir(exist_ok=True)
+    (DIST / "method" / "index.html").write_text(page(mp, title="How I build agentic AI · Khalid Shams",
+        description="Eight gates between a demo and a system: the questions I make a team answer in writing, in order, before the next step is allowed.",
+        canonical=f"{SITE}/method/"), encoding="utf-8")
+
     # ---- 404 (CloudFront custom error response points here)
     nf = fill(tpl("404.html"), MASTHEAD=masthead, FOOTER=footer)
     (DIST / "404.html").write_text(page(nf, title="Not found · Khalid Shams",
