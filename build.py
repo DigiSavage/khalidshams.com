@@ -181,6 +181,70 @@ def page(body: str, *, title: str, description: str, canonical: str, og_type="we
 def esc(s: str) -> str: return html.escape(s, quote=True)
 
 
+
+def build_search_index(pages, graph, posts):
+    """Walk rendered pages and emit one entry per heading-delimited section (plus map ideas and posts)."""
+    from html.parser import HTMLParser
+
+    class Walker(HTMLParser):
+        SKIP = {"script", "style", "header", "footer", "nav", "svg", "select", "button", "option", "title"}
+        def __init__(self):
+            super().__init__(convert_charrefs=True)
+            self.skip = 0; self.stack = []; self.sections = []; self.cur = None; self.h1 = ""; self.in_h1 = False
+            self.in_head = None; self.head_buf = ""
+        def handle_starttag(self, tag, attrs):
+            a = dict(attrs)
+            cls = a.get("class", "") or ""
+            VOID = {"img", "br", "hr", "meta", "link", "input", "source", "wbr"}
+            sk = tag in self.SKIP or a.get("id") == "drawer"
+            if sk: self.skip += 1
+            if tag not in VOID: self.stack.append((tag, a.get("id"), sk))
+            if self.skip: return
+            if tag == "h1": self.in_h1 = True
+            if tag in ("h2", "h3", "summary"):
+                anchor = a.get("id") or self._nearest_id()
+                self.cur = {"t": "", "a": anchor or "", "s": "", "lvl": tag}; self.sections.append(self.cur); self.in_head = tag; self.head_buf = ""
+        def _nearest_id(self):
+            for tag, i, _ in reversed(self.stack):
+                if i: return i
+            return None
+        def handle_endtag(self, tag):
+            for k in range(len(self.stack) - 1, -1, -1):
+                if self.stack[k][0] == tag:
+                    for item in self.stack[k:]:
+                        if item[2]: self.skip = max(0, self.skip - 1)
+                    del self.stack[k:]; break
+            if tag == "h1": self.in_h1 = False
+            if tag == self.in_head:
+                self.cur["t"] = " ".join(self.head_buf.split()); self.in_head = None
+        def handle_data(self, data):
+            if self.skip: return
+            if self.in_h1: self.h1 += data
+            if self.in_head: self.head_buf += data
+            elif self.cur is not None: self.cur["s"] += data + " "
+            elif not self.sections and data.strip():
+                self.cur = {"t": "", "a": "", "s": data + " "}; self.sections.append(self.cur)
+    out = []
+    for url, path in pages:
+        w = Walker(); w.feed(path.read_text(encoding="utf-8"))
+        page = " ".join(w.h1.split()) or url
+        last_h2 = ""
+        for sec in w.sections:
+            text = " ".join(sec["s"].split())
+            if sec.get("lvl") == "h2": last_h2 = sec["t"]
+            if not text and not sec["t"]: continue
+            entry = {"u": url + ("#" + sec["a"] if sec["a"] else ""), "p": page, "t": sec["t"] or page, "s": text[:420], "k": "section"}
+            if sec.get("lvl") in ("h3", "summary") and last_h2 and last_h2 != sec["t"]: entry["x"] = last_h2[:90]
+            out.append(entry)
+    if graph:
+        for i in graph["ideas"]:
+            out.append({"u": f"/learn/?idea={i['id']}#map", "p": "Learn AI", "t": i["label"], "s": i["plain"] + " " + i["picture"] + " " + i["deep"], "k": "idea", "c": i["cluster"]})
+    for p in posts:
+        body = re.sub(r"<[^>]+>", " ", p.body_html or "")
+        out.append({"u": p.url, "p": "Writing", "t": p.title, "s": " ".join((p.summary + " " + body).split())[:600], "k": "post", "d": p.date_long})
+    return out
+
+
 def build():
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -311,7 +375,9 @@ def build():
         canonical=f"{SITE}/method/"), encoding="utf-8")
 
     # ---- learn page
-    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer)
+    graph = json.loads((ROOT / "content" / "learn" / "graph.json").read_text(encoding="utf-8"))
+    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer,
+              GRAPH=json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
     (DIST / "learn").mkdir(exist_ok=True)
     (DIST / "learn" / "index.html").write_text(page(lp, title="Learn AI · Khalid Shams",
         description="Learn AI the way it learns: an interactive map of 32 ideas with three depths each, the seven-layer AI stack (where MCP, agents and guardrails actually sit), model vs chatbot vs workflow vs agent, the agentic loop, multi-agent patterns, prompts vs hooks, and the questions beginners ask.",
@@ -331,6 +397,14 @@ def build():
         encoding="utf-8")
 
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
+
+    # ---- search index
+    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/method/", DIST / "method" / "index.html"),
+             ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
+            [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]
+    idx = build_search_index([pg for pg in pages if pg[1].exists()], graph, live)
+    (DIST / "search.json").write_text(json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(f"search index: {len(idx)} entries")
 
     # ---- manifest (used by the publisher and handy for debugging)
     (DIST / "posts.json").write_text(json.dumps([{
