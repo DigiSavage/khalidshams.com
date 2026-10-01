@@ -26,6 +26,9 @@ HOME_LIMIT = 6
 VISIBLE = {"approved", "published"}
 
 MD = markdown.Markdown(extensions=["smarty", "sane_lists"], output_format="html5")
+MD_PB = markdown.Markdown(extensions=["smarty", "sane_lists", "toc"],
+                          extension_configs={"toc": {"toc_depth": "2", "permalink": False}}, output_format="html5")
+PLAYBOOKS = ROOT / "content" / "playbooks"
 
 
 @dataclass
@@ -94,6 +97,50 @@ def load_posts() -> list[Post]:
             linkedin_url=meta.get("linkedin_url", "").strip(),
             body_md=body, path=p))
     return posts
+
+
+@dataclass
+class Playbook:
+    slug: str
+    num: int
+    title: str
+    kicker: str
+    summary: str
+    stack: list[str]
+    body_md: str
+    body_html: str = ""
+    toc: list[tuple[str, str]] = field(default_factory=list)
+
+    @property
+    def url(self) -> str: return f"/playbooks/{self.slug}/"
+    @property
+    def abs_url(self) -> str: return SITE + self.url
+    @property
+    def nn(self) -> str: return f"{self.num:02d}"
+
+
+def load_playbooks() -> list[Playbook]:
+    out = []
+    if not PLAYBOOKS.exists():
+        return out
+    for p in sorted(PLAYBOOKS.glob("*.md")):
+        meta, body = parse_frontmatter(p.read_text(encoding="utf-8"))
+        m = re.match(r"(\d+)-(.+)\.md$", p.name)
+        if not m:
+            print(f"skip (bad playbook filename): {p.name}", file=sys.stderr); continue
+        out.append(Playbook(
+            slug=m.group(2), num=int(meta.get("order", m.group(1))),
+            title=meta.get("title", m.group(2)), kicker=meta.get("kicker", ""),
+            summary=meta.get("summary", ""),
+            stack=[t.strip() for t in meta.get("stack", "").split("·") if t.strip()],
+            body_md=body))
+    return sorted(out, key=lambda x: x.num)
+
+
+def render_playbook_md(pb: Playbook) -> None:
+    MD_PB.reset()
+    pb.body_html = MD_PB.convert(pb.body_md)
+    pb.toc = [(t["id"], t["name"]) for t in MD_PB.toc_tokens]
 
 
 def today_phx() -> date:
@@ -175,7 +222,41 @@ def build():
         writing = f'<div class="posts">\n{cards}\n  </div>\n  <p class="more"><a href="/writing/">All writing ({len(live)}) →</a></p>'
     else:
         writing = '<p class="empty">First notes land here on September 15, 2026.</p>'
-    home = fill(tpl("home.html"), WRITING=writing, MASTHEAD=masthead)
+    # ---- playbooks
+    pbs = load_playbooks()
+    for pb in pbs:
+        render_playbook_md(pb)
+    def pb_card(pb: Playbook, current: Playbook | None = None) -> str:
+        on = ' aria-current="page"' if current and pb.slug == current.slug else ""
+        chips = "".join(f'<span class="chip">{esc(t)}</span>' for t in pb.stack[:5])
+        return (f'    <a class="pb-card" href="{pb.url}"{on}><b>{pb.nn}</b><span class="pb-k">{esc(pb.kicker)}</span>'
+                f'<span class="pb-t">{esc(pb.title)}</span><span class="pb-s">{esc(pb.summary)}</span>'
+                f'<span class="chips">{chips}</span><span class="pb-go">Read the playbook →</span></a>')
+    if pbs:
+        (DIST / "playbooks").mkdir(exist_ok=True)
+        for i, pb in enumerate(pbs):
+            nxt = pbs[(i + 1) % len(pbs)]
+            toc = "\n".join(f'      <a href="#{hid}">{esc(name)}</a>' for hid, name in pb.toc)
+            jump = "".join(f'<a class="btn{" solid" if j == 0 else ""}" href="#{hid}">{esc(name)}</a>'
+                           for j, (hid, name) in enumerate(pb.toc[:3]))
+            body = fill(tpl("playbook.html"), MASTHEAD=masthead, FOOTER=footer, NUM=pb.nn, TOTAL=f"{len(pbs):02d}",
+                        KICKER=esc(pb.kicker), TITLE=esc(pb.title), SUMMARY=esc(pb.summary),
+                        STACK="".join(f'<span class="chip">{esc(t)}</span>' for t in pb.stack), JUMP=jump, TOC=toc,
+                        CONTENT=pb.body_html, NEXT_TITLE=esc(nxt.title), NEXT_SUMMARY=esc(nxt.summary),
+                        NEXT_URL=nxt.url, NEXT_NUM=nxt.nn,
+                        SIBLINGS="\n".join(pb_card(o, pb) for o in pbs if o.slug != pb.slug))
+            (DIST / "playbooks" / pb.slug).mkdir(exist_ok=True)
+            (DIST / "playbooks" / pb.slug / "index.html").write_text(page(body,
+                title=f"{pb.title} playbook · Khalid Shams", description=pb.summary, canonical=pb.abs_url,
+                og_type="article"), encoding="utf-8")
+        idx = fill(tpl("playbooks_index.html"), MASTHEAD=masthead, FOOTER=footer,
+                   CARDS="\n".join(pb_card(o) for o in pbs))
+        (DIST / "playbooks" / "index.html").write_text(page(idx, title="Playbooks · Khalid Shams",
+            description="Six principal-level playbooks: agentic AI, application modernization, data and AI platform, security and governance, cloud foundations and multi-tenant SaaS, and full-stack product engineering. The questions, the Azure build in order, and the real use cases.",
+            canonical=f"{SITE}/playbooks/"), encoding="utf-8")
+
+    home = fill(tpl("home.html"), WRITING=writing, MASTHEAD=masthead,
+                PLAYBOOKS="\n".join(pb_card(o) for o in pbs))
     (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
         description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
         canonical=SITE + "/", og_type="profile"), encoding="utf-8")
@@ -217,7 +298,8 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = [f"{SITE}/", f"{SITE}/method/", f"{SITE}/writing/"] + [p.abs_url for p in live]
+    urls = ([f"{SITE}/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+            + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
