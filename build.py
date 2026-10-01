@@ -298,7 +298,7 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
@@ -309,6 +309,13 @@ def build():
     (DIST / "method" / "index.html").write_text(page(mp, title="The SHAMS Method · Khalid Shams",
         description="Where AI belongs in your enterprise and how to keep it safe: an interactive map of your estate, the autonomy ladder, and the eight gates between a demo and a system.",
         canonical=f"{SITE}/method/"), encoding="utf-8")
+
+    # ---- learn page
+    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer)
+    (DIST / "learn").mkdir(exist_ok=True)
+    (DIST / "learn" / "index.html").write_text(page(lp, title="Learn AI · Khalid Shams",
+        description="Learn AI the way it learns: an interactive map of 32 ideas with three depths each, the seven-layer AI stack (where MCP, agents and guardrails actually sit), model vs chatbot vs workflow vs agent, the agentic loop, multi-agent patterns, prompts vs hooks, and the questions beginners ask.",
+        canonical=f"{SITE}/learn/"), encoding="utf-8")
 
     # ---- 404 (CloudFront custom error response points here)
     nf = fill(tpl("404.html"), MASTHEAD=masthead, FOOTER=footer)
