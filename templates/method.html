@@ -1,16 +1,64 @@
 {{MASTHEAD}}
 <div class="wrap">
   <div class="hero method-hero">
-    <p class="eyebrow">How I build agentic AI</p>
-    <h1>Eight gates between a demo <em>and a system.</em></h1>
-    <p class="lede">Most agent demos work. Most agent systems don't. The difference isn't the model. It's a short list of questions that have to be answered in writing, in order, before the next step is allowed to happen. I run every agentic build through the same eight gates. Each gate is one question, the evidence that answers it, and the name of the person who signs.</p>
+    <p class="eyebrow">The SHAMS Method · for principal-level architecture</p>
+    <h1>Where AI belongs in your enterprise, <em>and how to keep it safe.</em></h1>
+    <p class="lede">A reference I built from fifteen years of enterprise architecture and the last stretch shipping agentic systems. It answers the three questions every leadership team is asking in the same meeting: what do we actually have, where would AI pay off first, and what has to be true before we let it act. Pick your industry, explore the map, run the gate check, keep the page.</p>
     <div class="cta">
-      <a class="btn solid" href="#gate-check">Run the gate check</a>
-      <a class="btn" href="#gates">Read the gates</a>
-      <button class="btn" type="button" onclick="window.print()">Print the one-pager</button>
+      <a class="btn solid" href="#map">Explore the map</a>
+      <a class="btn" href="#gate-check">Run the gate check</a>
+      <a class="btn" href="#gates">The eight gates</a>
+      <button class="btn" type="button" onclick="window.print()">Print</button>
     </div>
   </div>
 </div>
+
+<div class="band"><div class="wrap">
+  <ol class="shams" aria-label="The SHAMS Method">
+    <li><b>S</b><span class="sh-t">Scope</span><span class="sh-d">Name the decision the system makes, who owns it when it's wrong, and what wrong costs.</span><span class="sh-g">Gate 01</span></li>
+    <li><b>H</b><span class="sh-t">Harden</span><span class="sh-d">Draw the boundaries: agent ownership, identity and permissions, typed and reversible actions.</span><span class="sh-g">Gates 02 · 03 · 05</span></li>
+    <li><b>A</b><span class="sh-t">Anchor</span><span class="sh-d">Ground every answer in governed data with provenance. Retrieve facts; never let the agent remember them.</span><span class="sh-g">Gate 04</span></li>
+    <li><b>M</b><span class="sh-t">Measure</span><span class="sh-d">A harness, a failure-mode catalogue, and a cost per run, before anything ships.</span><span class="sh-g">Gates 06 · 07</span></li>
+    <li><b>S</b><span class="sh-t">Sustain</span><span class="sh-d">An off switch, traces that explain why, versioned prompts and models, and exit criteria with a date.</span><span class="sh-g">Gate 08</span></li>
+  </ol>
+  <p class="shams-note">Five moves, in order. The map below shows where to apply them; the eight gates below that are how each move gets signed off.</p>
+</div></div>
+
+<div class="band" id="map"><div class="wrap">
+  <div class="sec-head">
+    <p class="sec-label">The map</p>
+    <div>
+      <h2>Your estate in one view: six layers you already have, seven places AI can go.</h2>
+      <p class="intro">Inner ring: the infrastructure every enterprise already runs, at whatever maturity it's at. Outer ring: where AI gets applied. Lines show what each AI zone depends on. Choose an industry and the map re-weights: bigger stars pay off sooner, red rings carry more risk. Drag any star. Hover to trace. Click to read.</p>
+    </div>
+  </div>
+  <div class="ind" id="ind" role="tablist" aria-label="Industry"></div>
+  <div class="mapwrap">
+    <div class="mapstage">
+      <svg id="svg" viewBox="0 0 1000 760" role="img" aria-label="Interactive map of infrastructure layers and AI zones"></svg>
+      <div class="legend"><span><i class="lg-layer"></i>Infrastructure layer</span><span><i class="lg-zone"></i>AI zone, sized by payoff for this industry</span><span><i class="lg-risk"></i>Red ring: higher risk here</span></div>
+    </div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+  <div class="start" id="start"></div>
+</div></div>
+
+<div class="band"><div class="wrap">
+  <div class="sec-head">
+    <p class="sec-label">The autonomy ladder</p>
+    <div>
+      <h2>Five rungs. Each one needs more of the estate underneath it.</h2>
+      <p class="intro">Most organisations should climb this one rung at a time, per use case, with the safeguards for the next rung in place before stepping onto it. The rung tells you which gates matter most.</p>
+    </div>
+  </div>
+  <ol class="ladder">
+    <li><b>0</b><div><h3>Manual</h3><p>People do the work; AI is absent or used ad hoc on personal accounts. Risk: shadow AI with company data in it.</p><span>Needs: an acceptable-use policy and a sanctioned tool, nothing more.</span></div></li>
+    <li><b>1</b><div><h3>Assisted</h3><p>AI drafts, summarises, searches. A person reads everything before it goes anywhere. Low blast radius, immediate value.</p><span>Needs: identity (gate 03) and grounding (gate 04). The place to start.</span></div></li>
+    <li><b>2</b><div><h3>Augmented</h3><p>AI proposes a decision with evidence; a person approves inside a designed queue. Extraction, triage, classification live here.</p><span>Needs: boundaries and a real review queue (gate 02), a harness (gate 06).</span></div></li>
+    <li><b>3</b><div><h3>Automated</h3><p>AI acts without per-item review inside narrow, reversible bounds. Someone watches the aggregate, not each case.</p><span>Needs: typed, idempotent, reversible actions (gate 05), cost ceilings (gate 07), an off switch and traces (gate 08).</span></div></li>
+    <li><b>4</b><div><h3>Autonomous</h3><p>Multi-step agents plan and act across systems with a human only at consequence points. Rare in regulated industries today, and it should be.</p><span>Needs: every gate closed and signed, re-opened whenever a tool, source, or model changes.</span></div></li>
+  </ol>
+</div></div>
 
 <div class="band"><div class="wrap">
   <ol class="gate-strip" aria-label="The eight gates">
@@ -178,6 +226,123 @@ REVISIT       When a tool is added, when a data source is added, or at 90 days</
 <div class="band"><div class="wrap">
 {{FOOTER}}
 </div></div>
+
+<script>
+(function(){
+  var LAYERS=[
+    {id:"identity",name:"Identity & access",what:"Who and what can reach which systems, enforced by the platform.",
+     assess:["Is there one identity provider, with conditional access and just-in-time elevation for privileged roles?","Do service principals and workload identities have owners, scopes, and a review cadence?","Can you produce, today, the list of what any one identity can reach?"],
+     levels:["Shared accounts and standing admin rights.","SSO for people; machines have broad standing access.","Least privilege for people and machines; JIT elevation; owners for every identity.","Per-workload identities, on-behalf-of flows, access logged and reviewed."],
+     unlocks:"Nothing AI-related is safe above rung 1 without this at level 2."},
+    {id:"data",name:"Data & platform",what:"Where facts live, who owns each layer, and whether a consumer can trust it.",
+     assess:["Is there a governed layer (gold, semantic model) with named owners, or a landscape of extracts?","How do you know when a source changes, and does anything downstream find out?","Can a user's permission be enforced at query time, not just at the application?"],
+     levels:["Spreadsheets and extracts; nobody owns definitions.","A warehouse or lakehouse; ownership informal.","Medallion layers with owners, contracts, and a governed semantic model.","Change events, lineage, and query-time permissions across the estate."],
+     unlocks:"Grounding (gate 04). Every AI answer is only as trustworthy as this layer."},
+    {id:"integration",name:"Integration & APIs",what:"How systems talk to each other, and whether an action can be taken safely through a contract.",
+     assess:["Are systems of record reachable through versioned APIs, or through screen-scraping and shared databases?","Do write operations support idempotency keys or safe retries?","Is there an API gateway with authentication, rate limits, and audit?"],
+     levels:["Point-to-point scripts and file drops.","Some APIs; many integrations undocumented.","Versioned APIs behind a gateway; most writes safe to retry.","Event-driven, contract-tested, with sandbox environments for every system of record."],
+     unlocks:"Actions (gate 05). Agents can only act as safely as the APIs they call."},
+    {id:"apps",name:"Applications & workflow",what:"The processes people run and the systems they run them in.",
+     assess:["Which workflows have a clear owner, a defined input, and a defined output?","Where do people already queue, triage, and approve? Those are the natural review points.","Which applications are modern enough to embed AI, and which need a wrapper?"],
+     levels:["Tribal process; email and spreadsheets as the workflow engine.","Core processes in systems of record; many exceptions outside them.","Mapped workflows with owners; review queues exist and are measured.","Workflows instrumented end to end; AI steps are first-class with human checkpoints designed in."],
+     unlocks:"Boundaries (gate 02). You can't place a human in the loop until the loop exists."},
+    {id:"ops",name:"Operations & observability",what:"Whether you can see what the estate is doing, stop it, and explain it afterwards.",
+     assess:["Is there one place to see cost, errors, and latency per service, per day?","Can a change be rolled back in minutes, and has that been tested?","Do logs answer who did what, on whose behalf, and what it cost?"],
+     levels:["Monitoring is someone noticing.","Centralised logs; alerting for outages.","Traces, budgets, and alarms per environment; feature flags; tested rollback.","Per-run tracing with cost, policy-as-code, and automated kill switches."],
+     unlocks:"Measure and Sustain (gates 06 to 08). AI without this is a liability you can't see."},
+    {id:"people",name:"People & governance",what:"Who decides, who signs, who is accountable, and how fast exceptions get handled.",
+     assess:["Who owns an AI decision when it's wrong? A name, not a committee.","Is there an exception process with a time limit, or do exceptions become the standard?","Do risk, product, and engineering share one review for prompts and models?"],
+     levels:["No AI policy; shadow usage.","A policy document; no owner for outcomes.","Named owners per system; a review that spans risk, product, and engineering.","Gate records signed and revisited; exit criteria on every pilot; governance measured, not just stated."],
+     unlocks:"Scope (gate 01). Every other gate is a question somebody here has to answer."}
+  ];
+  var ZONES=[
+    {id:"knowledge",name:"Knowledge & search",rung:1,what:"An assistant over your own documents, policies, contracts, and runbooks, with citations.",
+     up:"Fastest value in the estate: hours saved per person per week, onboarding time cut, fewer wrong answers from stale wikis.",down:"Fluent and wrong when the index is stale or the permissions drifted. The first embarrassing answer is usually a document someone shouldn't have seen.",
+     needs:{identity:2,data:2,ops:1,people:1},gates:[3,4,6],first:"Index one governed corpus with query-time permissions, citations on every answer, and a fixed set of 50 real questions as the harness.",
+     ind:{health:["Policy, protocol, and formulary search for clinicians and staff. Keep PHI out of the index until gate 03 is signed.",3,2],fin:["Policy, product, and regulatory search; the citation requirement maps directly to audit.",3,2],eng:["Standards, specifications, and past project records; export-controlled documents need a separate, stricter index.",3,2],public:["Policy and case-law search; FOIA-style traceability is a feature, not a burden.",2,2],retail:["Supplier terms, SOPs, store operations. Low risk, quick payback.",2,1],energy:["Procedures, permits, and asset histories; safety documents must cite the controlled version.",3,2],saas:["Internal docs and support knowledge; the easiest win in the company.",3,1]}},
+    {id:"intake",name:"Intake & extraction",rung:2,what:"Turning documents, forms, scans, and messages into structured, checked data with a human queue.",
+     up:"Removes the most tedious work in the organisation and produces the clean data everything else needs.",down:"A field extracted with 94 percent accuracy is wrong for one in sixteen. Without confidence scores and a designed queue, errors become facts.",
+     needs:{identity:2,data:2,apps:2,ops:2},gates:[2,5,6],first:"One document type, confidence-scored fields, every low-confidence item to a reviewer with the source region highlighted, reason codes feeding the harness.",
+     ind:{health:["Referrals, labs, multilingual records. Candidates never facts; source immutable; a human confirms every identity match.",3,3],fin:["KYC documents, invoices, claims. Strong value; model drift on new document formats is the recurring failure.",3,2],eng:["Drawings, submittals, RFIs, inspection reports. Big value in change-order and compliance tracking.",3,2],public:["Applications, permits, benefits forms. High value, high scrutiny; fairness review is mandatory.",3,3],retail:["Invoices, supplier documents, returns. Straightforward and well understood.",2,1],energy:["Inspection and maintenance records, permits. Pairs with asset data for real gains.",3,2],saas:["Support tickets and contracts. Moderate value; often solved by product changes instead.",2,1]}},
+    {id:"assist",name:"Customer & employee assistants",rung:2,what:"Conversational help for customers, patients, employees: answering, routing, and drafting inside bounds.",
+     up:"Deflects routine volume, extends hours, and makes the back office reachable in plain language.",down:"The assistant speaks for the organisation. A confident wrong answer about a refund, a dose, or a deadline is a liability, and tone failures go viral.",
+     needs:{identity:2,data:2,integration:2,apps:2,ops:2,people:2},gates:[1,3,4,8],first:"Employee-facing before customer-facing. Scope what it may never assert, log every conversation, and put the off switch in the hands of the support lead.",
+     ind:{health:["Scheduling, intake, and navigation. Never clinical advice without a named clinical owner and gate 01 signed.",2,3],fin:["Account questions and guided forms. Regulated advice boundaries must be enforced by the platform, not the prompt.",2,3],eng:["Internal engineering help desk; customer-facing is usually low priority.",1,1],public:["Citizen services in plain language; accessibility and equity review are part of the build.",3,3],retail:["Order status, returns, product questions. The most proven zone in the industry.",3,2],energy:["Outage and billing questions; must defer to safety procedures instantly.",2,2],saas:["Support and onboarding, grounded on docs and the customer's own account state.",3,2]}},
+    {id:"decision",name:"Decision support",rung:2,what:"Forecasts, anomaly detection, and summarised evidence that a person uses to decide.",
+     up:"Better decisions at the same headcount: earlier signals, consistent analysis, fewer surprises in month seven.",down:"Opaque models invite over-trust; biased data produces biased recommendations with a confident face. The human must be able to see why.",
+     needs:{data:3,ops:2,people:2},gates:[1,4,6],first:"One decision with a measurable outcome, a baseline, a model that explains its inputs, and a reviewer who is allowed to disagree.",
+     ind:{health:["Capacity, readmission, and supply forecasting. Clinical decision support is a regulated device conversation; start operational.",2,3],fin:["Risk, fraud, and liquidity signals. Model governance already exists here; use it.",3,3],eng:["Schedule and cost risk on projects; failure prediction on assets. Strong, underused.",3,2],public:["Demand forecasting for services; any decision touching individuals needs a fairness review.",2,3],retail:["Demand and inventory forecasting, pricing signals. Mature and high value.",3,2],energy:["Load forecasting, predictive maintenance, outage prediction. Among the best returns anywhere.",3,2],saas:["Churn, usage, and capacity forecasting. Good value; watch for feedback loops.",2,1]}},
+    {id:"agents",name:"Workflow agents",rung:3,what:"Agents that take actions in systems of record: create, update, route, reconcile, within typed and reversible bounds.",
+     up:"This is where the step-change is: whole workflows run without a person in each step, at a cost that scales with outcomes.",down:"Agents retry. Agents act with the permissions they're given. A bad prompt change can do the wrong thing forty times before anyone notices. Everything in the eight gates exists because of this zone.",
+     needs:{identity:3,data:2,integration:3,apps:3,ops:3,people:3},gates:[2,3,5,7,8],first:"One workflow, read-only first, then proposals a human approves, then narrow reversible writes with an off switch tested in front of the owner.",
+     ind:{health:["Prior authorisation, referral routing, coding support. Enormous value; PHI, consent, and audit make every action a signed decision.",3,3],fin:["Reconciliation, onboarding, dispute handling. High value; every write is a regulated record. Idempotency is non-negotiable.",3,3],eng:["Change-order processing, procurement, compliance filings. Strong value with clear systems of record.",3,2],public:["Case processing and benefits workflows. Transformational and politically sensitive; transparency is the product.",3,3],retail:["Order exceptions, supplier onboarding, returns. Proven territory with contained blast radius.",3,2],energy:["Work-order creation, outage response coordination. Safety procedures stay human-owned.",2,3],saas:["Provisioning, billing operations, incident triage. Natural fit; usually the first industry to reach rung 3.",3,2]}},
+    {id:"code",name:"Engineering & modernisation",rung:2,what:"AI in the software lifecycle: code assistance, test generation, documentation, and legacy modernisation.",
+     up:"Measurable throughput gains and a credible path off systems nobody understands anymore.",down:"Velocity without review quality produces more code to maintain, not less. Secrets and licensed code leak through careless tooling.",
+     needs:{identity:2,integration:2,ops:2,people:2},gates:[3,5,6,8],first:"Sanctioned tooling with policy, then a modernisation pilot on one bounded legacy component with tests generated before the rewrite.",
+     ind:{health:["Interface engines, HL7/FHIR integration work, legacy clinical apps. Validation burden is real.",2,2],fin:["COBOL and batch modernisation, test generation. Large payoff; change control is strict.",3,2],eng:["CAD/PLM integrations and internal tools. Moderate value.",2,1],public:["Legacy case systems. Huge need, procurement-bound.",3,2],retail:["Commerce and integration platforms. Good value.",2,1],energy:["SCADA-adjacent tooling must stay air-gapped from AI tooling; enterprise IT is fair game.",2,3],saas:["The core of the business. Highest value, best tooling, strongest culture for it.",3,1]}},
+    {id:"secops",name:"Operations & security",rung:3,what:"AI across the SOC, NOC, and service desk: triage, correlation, investigation, and runbook execution.",
+     up:"Analysts spend time on judgment instead of noise; mean time to detect and resolve drops.",down:"Automated response can take down production as fast as an attacker. Ingest-everything strategies become a bill, not a defence.",
+     needs:{identity:3,ops:3,integration:2,people:2},gates:[1,5,7,8],first:"Detections first, then AI-assisted investigation on that signal, then automated response only for actions with tested rollback.",
+     ind:{health:["Medical device and PHI monitoring; response automation must never touch clinical systems without a person.",2,3],fin:["Fraud and security operations converge; strong investment case, strict change control.",3,2],eng:["OT and IT separation is the whole design; AI stays on the IT side until OT security matures.",2,3],public:["Under-resourced SOCs gain the most; data residency constraints on tooling.",3,2],retail:["Payment systems in scope; PCI boundaries define what AI can touch.",2,2],energy:["Critical infrastructure. Detection and investigation yes; automated response only with regulator-grade evidence.",3,3],saas:["Cloud-native estates with good telemetry; most mature environment for this zone.",3,1]}}
+  ];
+  var INDS=[["all","All industries"],["health","Healthcare"],["fin","Financial services"],["eng","Engineering & manufacturing"],["public","Public sector & education"],["retail","Retail & logistics"],["energy","Energy & utilities"],["saas","Software & SaaS"]];
+  var INDNOTE={all:"Across industries the order is the same: knowledge first, intake second, assistants and decision support once the data layer has owners, agents only when identity and integration are at level three.",
+    health:"Regulated by HIPAA and clinical safety expectations. Source evidence stays immutable, inference is labelled, and a clinician owns every judgment. Start with operational, not clinical, decisions.",
+    fin:"SOX, GLBA, model-risk management. The industry already has model governance; extend it to prompts and agents rather than inventing a parallel process. Every write is a record.",
+    eng:"Export control and IP protection shape what any model may see. Separate controlled technical data from general corpora. The biggest returns are in project risk and compliance workflows.",
+    public:"Transparency, fairness, and records law. Explainability is a requirement, not a feature. Citizen-facing systems need an equity review and a human appeal path from day one.",
+    retail:"PCI boundaries and customer data. The most proven zones are assistants, forecasting, and order-exception agents. Move fast, but keep payments out of scope.",
+    energy:"Critical infrastructure and OT/IT separation. Predictive maintenance and load forecasting pay back quickly; nothing automated touches the control network.",
+    saas:"Usually the most mature estate and the least regulated. The risk is speed: agents reach rung 3 before anyone has written gate 01. Write it anyway."};
+  var svg=document.getElementById('svg'); if(!svg) return;
+  var NS='http://www.w3.org/2000/svg'; var W=1000,H=760,CX=500,CY=380;
+  var nodes={}, lines=[], sel=null, ind='all';
+  function el(n,a){ var e=document.createElementNS(NS,n); for(var k in a) e.setAttribute(k,a[k]); return e; }
+  // positions
+  LAYERS.forEach(function(l,i){ var a=-Math.PI/2+i*(2*Math.PI/LAYERS.length); nodes[l.id]={x:CX+Math.cos(a)*170,y:CY+Math.sin(a)*170,t:'layer',d:l}; });
+  ZONES.forEach(function(z,i){ var a=-Math.PI/2+i*(2*Math.PI/ZONES.length)+0.22; nodes[z.id]={x:CX+Math.cos(a)*315,y:CY+Math.sin(a)*315,t:'zone',d:z}; });
+  var gL=el('g',{class:'m-lines'}), gN=el('g',{class:'m-nodes'}); svg.appendChild(gL); svg.appendChild(gN);
+  // rings
+  [170,315].forEach(function(r){ svg.insertBefore(el('circle',{cx:CX,cy:CY,r:r,class:'m-ring'}), gL); });
+  var core=el('g',{class:'m-core'}); core.appendChild(el('circle',{cx:CX,cy:CY,r:46})); var ct=el('text',{x:CX,y:CY-4,'text-anchor':'middle'}); ct.textContent='Your'; var ct2=el('text',{x:CX,y:CY+14,'text-anchor':'middle'}); ct2.textContent='estate'; core.appendChild(ct); core.appendChild(ct2); svg.insertBefore(core,gL);
+  ZONES.forEach(function(z){ Object.keys(z.needs).forEach(function(l){ var ln=el('line',{class:'m-line',  'data-z':z.id,'data-l':l,'stroke-width':0.6+z.needs[l]*0.7}); gL.appendChild(ln); lines.push({z:z.id,l:l,el:ln}); }); });
+  function mk(id){ var n=nodes[id]; var g=el('g',{class:'m-node m-'+n.t,'data-id':id,tabindex:0,role:'button','aria-label':n.d.name}); var r=n.t==='layer'?30:38;
+    g.appendChild(el('circle',{r:r+6,class:'m-risk'})); g.appendChild(el('circle',{r:r,class:'m-disc'}));
+    var lab=el('text',{'text-anchor':'middle',y:r+18,class:'m-lab'}); var parts=n.d.name.split(' & '); 
+    if(parts.length>1){ var t1=el('tspan',{x:0,dy:0}); t1.textContent=parts[0]+' &'; var t2=el('tspan',{x:0,dy:15}); t2.textContent=parts[1]; lab.appendChild(t1); lab.appendChild(t2);} else { lab.textContent=n.d.name; }
+    g.appendChild(lab); var ic=el('text',{'text-anchor':'middle',y:6,class:'m-ic'}); ic.textContent=n.t==='layer'?'L'+(LAYERS.indexOf(n.d)+1):'Z'+(ZONES.indexOf(n.d)+1); g.appendChild(ic);
+    gN.appendChild(g); n.el=g; place(id); return g; }
+  function place(id){ var n=nodes[id]; n.el.setAttribute('transform','translate('+n.x+','+n.y+')'); lines.forEach(function(L){ if(L.z===id||L.l===id){ L.el.setAttribute('x1',nodes[L.z].x); L.el.setAttribute('y1',nodes[L.z].y); L.el.setAttribute('x2',nodes[L.l].x); L.el.setAttribute('y2',nodes[L.l].y);} }); }
+  Object.keys(nodes).forEach(mk);
+  function weight(){ ZONES.forEach(function(z){ var n=nodes[z.id]; var v=2,r=2; if(ind!=='all'&&z.ind[ind]){ v=z.ind[ind][1]; r=z.ind[ind][2]; } var disc=n.el.querySelector('.m-disc'), risk=n.el.querySelector('.m-risk'); var rad=28+v*6; disc.setAttribute('r',rad); risk.setAttribute('r',rad+6); risk.setAttribute('class','m-risk'+(ind!=='all'&&r>=3?' hi':ind!=='all'&&r===2?' mid':'')); n.el.querySelector('.m-lab').setAttribute('y',rad+18); }); }
+  function trace(id,on){ lines.forEach(function(L){ var hit=(L.z===id||L.l===id); L.el.classList.toggle('on', on&&hit); L.el.classList.toggle('dim', on&&!hit); }); Object.keys(nodes).forEach(function(k){ var hit=k===id||lines.some(function(L){ return (L.z===id&&L.l===k)||(L.l===id&&L.z===k); }); nodes[k].el.classList.toggle('dim', on&&!hit); }); }
+  var panel=document.getElementById('panel');
+  function chips(z){ return Object.keys(z.needs).map(function(l){ var L=LAYERS.filter(function(x){return x.id===l;})[0]; return '<span class="chip">'+L.name+' <b>L'+z.needs[l]+'</b></span>'; }).join(''); }
+  function show(id){ sel=id; var n=nodes[id]; var d=n.d; var h='';
+    if(n.t==='zone'){ var note=(ind!=='all'&&d.ind[ind])?d.ind[ind]:null;
+      h+='<p class="p-k">AI zone '+(ZONES.indexOf(d)+1)+' · typical rung '+d.rung+'</p><h3>'+d.name+'</h3><p class="p-what">'+d.what+'</p>';
+      if(note){ h+='<div class="p-ind"><span class="p-ik">'+INDS.filter(function(i){return i[0]===ind;})[0][1]+'</span><p>'+note[0]+'</p><div class="p-meter"><span>Payoff '+'●'.repeat(note[1])+'○'.repeat(3-note[1])+'</span><span>Risk '+'●'.repeat(note[2])+'○'.repeat(3-note[2])+'</span></div></div>'; }
+      h+='<h4>Upside</h4><p>'+d.up+'</p><h4>Downside</h4><p>'+d.down+'</p><h4>Needs, by layer and minimum level</h4><div class="chips">'+chips(d)+'</div><h4>Gates that matter most</h4><p>'+d.gates.map(function(g){ return '<a href="#g'+g+'">Gate 0'+g+'</a>'; }).join(' · ')+'</p><h4>First move</h4><p>'+d.first+'</p>';
+    } else {
+      h+='<p class="p-k">Infrastructure layer '+(LAYERS.indexOf(d)+1)+'</p><h3>'+d.name+'</h3><p class="p-what">'+d.what+'</p><h4>What I assess</h4><ul>'+d.assess.map(function(q){return '<li>'+q+'</li>';}).join('')+'</ul><h4>Maturity levels</h4><ol class="lv">'+d.levels.map(function(x,i){return '<li><b>L'+i+'</b>'+x+'</li>';}).join('')+'</ol><h4>What it unlocks</h4><p>'+d.unlocks+'</p><h4>AI zones that depend on it</h4><div class="chips">'+ZONES.filter(function(z){return z.needs[d.id];}).map(function(z){return '<span class="chip">'+z.name+' <b>L'+z.needs[d.id]+'</b></span>';}).join('')+'</div>';
+    }
+    panel.innerHTML=h; Object.keys(nodes).forEach(function(k){ nodes[k].el.classList.toggle('sel',k===id); }); }
+  function start(){ var box=document.getElementById('start'); var list=ZONES.slice().map(function(z){ var v=ind!=='all'&&z.ind[ind]?z.ind[ind][1]:2, r=ind!=='all'&&z.ind[ind]?z.ind[ind][2]:2; return {z:z,s:v*2-r+ (5-z.rung)*0.5}; }).sort(function(a,b){return b.s-a.s;}).slice(0,3);
+    box.innerHTML='<div class="st-note"><p class="sec-label">Where to start · '+INDS.filter(function(i){return i[0]===ind;})[0][1]+'</p><p>'+INDNOTE[ind]+'</p></div><ol class="st-list">'+list.map(function(x,i){ var z=x.z; var n=ind!=='all'&&z.ind[ind]?z.ind[ind][0]:z.what; return '<li><b>0'+(i+1)+'</b><div><h3>'+z.name+'</h3><p>'+n+'</p><span>First move: '+z.first+'</span></div></li>'; }).join('')+'</ol>'; }
+  // industry pills
+  var indBox=document.getElementById('ind'); INDS.forEach(function(i){ var b=document.createElement('button'); b.type='button'; b.role='tab'; b.textContent=i[1]; b.dataset.id=i[0]; b.className=i[0]===ind?'on':''; b.addEventListener('click',function(){ ind=i[0]; [].forEach.call(indBox.children,function(c){ c.className=c.dataset.id===ind?'on':''; }); weight(); if(sel) show(sel); start(); }); indBox.appendChild(b); });
+  // interactions
+  var drag=null;
+  gN.addEventListener('pointerdown',function(e){ var g=e.target.closest('.m-node'); if(!g) return; drag={id:g.dataset.id,moved:false}; g.setPointerCapture&&g.setPointerCapture(e.pointerId); });
+  svg.addEventListener('pointermove',function(e){ if(!drag) return; var pt=svg.createSVGPoint(); pt.x=e.clientX; pt.y=e.clientY; var p=pt.matrixTransform(svg.getScreenCTM().inverse()); var n=nodes[drag.id]; if(Math.abs(p.x-n.x)+Math.abs(p.y-n.y)>2) drag.moved=true; n.x=Math.max(40,Math.min(W-40,p.x)); n.y=Math.max(40,Math.min(H-40,p.y)); place(drag.id); });
+  function endDrag(e){ if(!drag) return; if(!drag.moved) show(drag.id); drag=null; }
+  svg.addEventListener('pointerup',endDrag); svg.addEventListener('pointercancel',endDrag);
+  gN.addEventListener('pointerover',function(e){ var g=e.target.closest('.m-node'); if(g) trace(g.dataset.id,true); });
+  gN.addEventListener('pointerout',function(e){ var g=e.target.closest('.m-node'); if(g) trace(g.dataset.id,false); });
+  gN.addEventListener('keydown',function(e){ var g=e.target.closest('.m-node'); if(g&&(e.key==='Enter'||e.key===' ')){ e.preventDefault(); show(g.dataset.id);} });
+  weight(); show('agents'); start();
+})();
+</script>
 
 <script>
 (function(){
