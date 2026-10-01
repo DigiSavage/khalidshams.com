@@ -1,0 +1,51 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero pb-hero">
+    <p class="crumbs"><a href="/">Home</a> · <a href="/playbooks/">Playbooks</a> · {{NUM}} of {{TOTAL}}</p>
+    <p class="eyebrow">Playbook {{NUM}} · {{KICKER}}</p>
+    <h1>{{TITLE}}</h1>
+    <p class="lede">{{SUMMARY}}</p>
+    <div class="pb-stack"><span class="sec-label">Tools in this build</span><div class="chips">{{STACK}}</div></div>
+    <div class="pb-jump">{{JUMP}}</div>
+  </div>
+</div>
+
+<div class="band"><div class="wrap">
+  <div class="pb-body">
+    <nav class="gate-nav pb-nav" aria-label="On this page">
+      <p class="sec-label">On this page</p>
+      {{TOC}}
+      <a class="nav-check" href="/method/#gate-check">Run the gate check</a>
+      <a class="nav-check" href="/playbooks/">All playbooks</a>
+    </nav>
+    <div class="pb-prose prose">
+{{CONTENT}}
+      <p class="pb-close">Every playbook here follows the same five moves: Scope, Harden, Anchor, Measure, Sustain. <a href="/method/">The SHAMS Method</a> is where they come from, and the <a href="/method/#gate-check">gate check</a> is how you find out which one your project is missing.</p>
+    </div>
+  </div>
+</div></div>
+
+<div class="band"><div class="wrap">
+  <div class="sec-head">
+    <p class="sec-label">Next</p>
+    <div>
+      <h2>{{NEXT_TITLE}}</h2>
+      <p class="intro">{{NEXT_SUMMARY}}</p>
+      <p class="intro"><a class="btn solid" href="{{NEXT_URL}}">Read playbook {{NEXT_NUM}} →</a></p>
+    </div>
+  </div>
+  <div class="pb-grid pb-grid-compact">
+{{SIBLINGS}}
+  </div>
+</div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+<script>
+(function(){var links=[].slice.call(document.querySelectorAll('.pb-nav a[href^="#"]'));var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+if(!('IntersectionObserver' in window)||!secs.length)return;var cur=null;
+function mark(id){if(cur===id)return;cur=id;links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)mark(e.target.id);});},{rootMargin:'-20% 0px -70% 0px',threshold:0});
+secs.forEach(function(s){if(s)io.observe(s);});})();
+</script>
