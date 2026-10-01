@@ -175,7 +175,7 @@ def build():
         writing = f'<div class="posts">\n{cards}\n  </div>\n  <p class="more"><a href="/writing/">All writing ({len(live)}) →</a></p>'
     else:
         writing = '<p class="empty">First notes land here on September 15, 2026.</p>'
-    home = fill(tpl("home.html"), WRITING=writing)
+    home = fill(tpl("home.html"), WRITING=writing, MASTHEAD=masthead)
     (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
         description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
         canonical=SITE + "/", og_type="profile"), encoding="utf-8")
