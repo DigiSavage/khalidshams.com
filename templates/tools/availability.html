@@ -1,0 +1,346 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero tl-hero">
+    <p class="crumbs"><a href="/">Home</a> · <a href="/tools/">Tools</a> · {{NUM}} of {{TOTAL}}</p>
+    <p class="eyebrow">Tool {{NUM}} · Availability and recovery budget</p>
+    <h1>Multiply the chain. <em>Then time the restore.</em></h1>
+    <p class="lede">Every architecture review reaches the same question: what availability can we promise, and how fast do we come back? The answer in the room is usually the SLA of the best component and the RTO someone wrote on a slide. The real availability is every hard dependency multiplied together. The real recovery time is whatever the restore takes when somebody actually runs it. This is the calculator I use to get both numbers honest before anyone puts them in a contract. Nothing you type leaves this page.</p>
+    <div class="cta">
+      <a class="btn solid" href="#chain">Build the chain</a>
+      <a class="btn" href="#restore">Time the restore</a>
+      <a class="btn" href="#nines">The nines, in minutes</a>
+    </div>
+  </div>
+</div>
+
+<div class="band" id="chain"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">The chain</p>
+    <div>
+      <h2>Every hard dependency multiplies. Nothing adds.</h2>
+      <p class="intro">List what a request has to touch to succeed. A hard dependency fails the request when it fails. A soft one only degrades it, because there is a cache, a queue, or a fallback that has actually been tested. Copies are independent instances serving at the same time, in separate zones or regions. The figures loaded below are examples: replace them with the SLA for your SKU and configuration, or better, with the availability you measured.</p>
+    </div>
+  </div>
+
+  <div class="tl-inst">
+    <div class="tl-ed">
+      <div class="tl-bar">
+        <label class="tl-field">Example <select class="tl-sel" id="av-preset">
+          <option value="web">Web app, one region</option>
+          <option value="two">Same app, two regions</option>
+          <option value="agent">An agent behind an API</option>
+          <option value="custom" hidden>Your chain</option>
+        </select></label>
+        <label class="tl-field">Target % <input class="tl-in tl-num" id="av-target" type="number" inputmode="decimal" step="0.001" min="90" max="99.99999" value="99.95"></label>
+      </div>
+      <div class="tl-head" aria-hidden="true"><span>Dependency</span><span style="text-align:right">Uptime %</span><span>Copies</span><span>Kind</span><span></span></div>
+      <div id="av-rows"></div>
+      <div class="tl-foot">
+        <button class="btn tl-btn" type="button" id="av-add">Add a dependency</button>
+        <p class="tl-hint">Two copies only count if they fail independently. Same region, same deploy, same identity provider: that is one copy.</p>
+      </div>
+    </div>
+    <aside class="tl-out" aria-live="polite" aria-label="Composite availability">
+      <p class="sec-label">Composite availability</p>
+      <div class="tl-big" id="av-comp">99.920<small>%</small></div>
+      <div class="tl-dt">
+        <div><b id="av-month">35m</b><span>Per month</span></div>
+        <div><b id="av-year">7h</b><span>Per year</span></div>
+        <div><b id="av-week">8m</b><span>Per week</span></div>
+      </div>
+      <p class="tl-verdict" id="av-verdict"></p>
+      <p class="sec-label">Where the downtime comes from</p>
+      <div class="tl-bars" id="av-bars"></div>
+      <p class="sec-label">Biggest levers</p>
+      <ul class="tl-levers" id="av-levers"></ul>
+      <p class="tl-soft" id="av-soft"></p>
+    </aside>
+  </div>
+</section></div></div>
+
+<div class="band" id="restore"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">The restore</p>
+    <div>
+      <h2>The RTO is what the restore takes, not what the slide says.</h2>
+      <p class="intro">Backups tell you the data exists somewhere. They tell you nothing about how long it takes to be a system again. List the steps between "it's down" and "it's back", in order, with the minutes each one takes. Mark the steps that run alongside the one above. Then tick only the steps somebody has actually timed, on purpose, in a test. The steps loaded below are the timeline I see most often; the minutes are examples.</p>
+    </div>
+  </div>
+
+  <div class="tl-inst tl-rs">
+    <div class="tl-ed">
+      <div class="tl-bar tl-rs-inputs">
+        <label class="tl-field">Stated RTO, hours <input class="tl-in tl-num" id="rs-rto" type="number" inputmode="decimal" step="0.25" min="0" value="4"></label>
+        <label class="tl-field">Stated RPO, minutes <input class="tl-in tl-num" id="rs-rpo" type="number" inputmode="numeric" step="5" min="0" value="60"></label>
+        <label class="tl-field">Backup every, minutes <input class="tl-in tl-num" id="rs-int" type="number" inputmode="numeric" step="5" min="0" value="60"></label>
+      </div>
+      <div class="tl-head" aria-hidden="true"><span>Step</span><span style="text-align:right">Minutes</span><span style="text-align:center">Alongside</span><span style="text-align:center">Timed</span><span></span></div>
+      <div id="rs-rows"></div>
+      <div class="tl-foot">
+        <button class="btn tl-btn" type="button" id="rs-add">Add a step</button>
+        <p class="tl-hint">"Alongside" means the step runs at the same time as the one above it, so only the longer of the two counts.</p>
+      </div>
+    </div>
+    <aside class="tl-out" aria-live="polite" aria-label="Recovery time">
+      <p class="sec-label">Recovery time, start to finish</p>
+      <div class="tl-big" id="rs-total">7h 00m</div>
+      <p class="tl-verdict" id="rs-verdict"></p>
+      <p class="sec-label">How much of it is proven</p>
+      <div class="tl-bars"><div class="tl-brow"><span id="rs-proof-l">Timed on purpose</span><span class="tl-m" id="rs-proof-m">0%</span><span class="tl-track"><i id="rs-proof" style="width:0"></i></span></div></div>
+      <p class="tl-soft" id="rs-proof-note"></p>
+      <p class="sec-label">Data you can lose</p>
+      <p class="tl-verdict" id="rs-rpo-v"></p>
+    </aside>
+  </div>
+</section></div></div>
+
+<div class="band" id="record"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">The note</p>
+    <div>
+      <h2>Both numbers, on one page, ready for the design review.</h2>
+      <p class="intro">This updates as you type. Paste it into the design document or the decision record, next to the name of whoever owns each number. The link button saves your chain and your restore steps into a URL, so you can send the exact version to a colleague.</p>
+    </div>
+  </div>
+  <pre class="record" id="av-record"></pre>
+  <div class="tl-acts">
+    <button class="btn solid tl-btn" type="button" id="av-copy">Copy the note</button>
+    <button class="btn tl-btn" type="button" id="av-link">Copy a link to this version</button>
+    <button class="btn tl-btn" type="button" id="av-reset">Start over</button>
+  </div>
+</section></div></div>
+
+<div class="band" id="seen"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">From the work</p>
+    <div>
+      <h2>Why I stopped trusting the posture people describe.</h2>
+      <p class="intro">Every rule built into this tool came from a room where the number on the slide and the number in the system turned out to be different things.</p>
+    </div>
+  </div>
+  <div class="lessons">
+    <article>
+      <p class="ls-when">A database escalation</p>
+      <h3>Three confident answers. None matched the system.</h3>
+      <p>During a database escalation I asked what the resiliency posture was. Three people answered, all confident, none agreeing with each other, and none matching what was actually configured. Each carried the version from the last time they touched the system.</p>
+      <p class="ls-now"><b>Now:</b> I write down, in one place, which failover is configured and tested, which is configured and never tested, and which is a slide that never got built. That is why this tool separates "copies" from hopes.</p>
+    </article>
+    <article>
+      <p class="ls-when">An assessment with 32 gaps</p>
+      <h3>The first thing it restored depended on the fourth.</h3>
+      <p>One of the gaps in that assessment was a DR plan that had never been exercised against the real dependency map. On paper it was fine. In practice the restore order was wrong, and nobody had noticed because nobody had tried.</p>
+      <p class="ls-now"><b>Now:</b> restore one system a month into an isolated environment, and time it. If the restore takes longer than the RTO on the slide, the slide is wrong. That is the "timed" column.</p>
+    </article>
+    <article>
+      <p class="ls-when">Regions nobody chose</p>
+      <h3>Failover only works to somewhere you have set up.</h3>
+      <p>In another escalation I asked which regions were real options for the workload. Nobody could say. The primary had been chosen by whoever created the first subscription and the secondary was whatever the platform assigned.</p>
+      <p class="ls-now"><b>Now:</b> a second copy in this tool only counts if the region it runs in was decided on purpose: primary, secondary, why, and what data is allowed to leave.</p>
+    </article>
+    <article>
+      <p class="ls-when">My own platform on AWS</p>
+      <h3>The restore test is the job I like least.</h3>
+      <p>On the platform I run alone, the monthly restore test is the least enjoyable thing I do. It is also the only reason I am confident the RTO in my own runbook is true.</p>
+      <p class="ls-now"><b>Now:</b> a recovery number nobody has measured is a rumour with an approval signature on it. Measure it, date it, and measure it again after anything changes.</p>
+    </article>
+  </div>
+  <blockquote class="pq"><p>Assumed posture and actual posture drift apart quietly. The only way to know the gap is to write it down and test it.</p><footer>Khalid Shams</footer></blockquote>
+</section></div></div>
+
+<div class="band" id="maths"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">How the maths works</p>
+    <div>
+      <h2>Six questions, and the assumption under each answer.</h2>
+      <p class="intro">The arithmetic is simple. The judgment is in deciding what counts as hard, what counts as a copy, and which number you trust.</p>
+    </div>
+  </div>
+  <div class="ln-faq">
+    <details id="q-multiply"><summary>Why multiply, rather than take the lowest number?</summary><p>Because a request needs every hard dependency to be up at the same moment. Four components at 99.99% each give about 99.96% together, not 99.99%. The chain is always worse than its weakest link, and every dependency you add makes it worse again. This is the single most common mistake I see in a design review: quoting the database SLA as the system SLA.</p></details>
+    <details id="q-copies"><summary>What does a second copy buy, and when is it a lie?</summary><p>Two independent copies fail together only when both fail, so the unavailability squares: 1 minus (1 minus A) to the power of the number of copies. Two copies at 99.95% give about 99.99998%. That only holds if the copies fail independently. Two instances in the same region, behind the same load balancer, deployed by the same pipeline at the same time, are closer to one copy. So is anything that depends on a single identity provider or a single DNS zone. And failover that has never been exercised is not a copy at all.</p></details>
+    <details id="q-soft"><summary>What makes a dependency soft?</summary><p>A fallback that has been tested, and a degraded experience the business has agreed to accept. A cache in front of a catalogue, a queue in front of an email provider, a "try again later" on a recommendations panel. Turning a hard dependency soft is often the cheapest availability you can buy, cheaper than a second region. But a fallback that has never run in anger is a hard dependency with a comment on it.</p></details>
+    <details id="q-sla"><summary>Is an SLA the same as availability?</summary><p>No. An SLA is a commitment with service credits attached: it tells you what you get back when the provider misses, not how often it will. It usually depends on configuration, so the same service can carry different SLAs by tier and by zone or region setup. Use the published SLA for your exact SKU as a floor for planning, and your own measured availability wherever you have it.</p></details>
+    <details id="q-round"><summary>Why is the composite rounded down?</summary><p>Because a number that gets rounded up in a design review gets quoted in a contract. The tool truncates the composite to three decimal places and never rounds it up. If the honest answer is 99.949%, it is not 99.95%.</p></details>
+    <details id="q-month"><summary>How long is a month here?</summary><p>A year of 365 days is 525,600 minutes. A month is a twelfth of that, 43,800 minutes, so the monthly figure lines up with the yearly one. Provider SLAs are usually measured per calendar month, so check how yours defines it.</p></details>
+  </div>
+</section></div></div>
+
+<div class="band" id="nines"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">Reference</p>
+    <div>
+      <h2>The nines, in minutes.</h2>
+      <p class="intro">What each availability level allows you to be down for. Keep this next to any conversation where someone says "five nines" without a budget attached. The line for 99.95% is highlighted because it is where most single-region designs land, and where most targets get set.</p>
+    </div>
+  </div>
+  <div class="tl-table-wrap">
+    <table class="tl-table">
+      <thead><tr><th scope="col">Availability</th><th scope="col">Per year</th><th scope="col">Per month</th><th scope="col">Per week</th><th scope="col">Per day</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">99%</th><td>3d 15h 36m</td><td>7h 18m</td><td>1h 40m</td><td>14m 24s</td></tr>
+        <tr><th scope="row">99.5%</th><td>1d 19h 48m</td><td>3h 39m</td><td>50m 24s</td><td>7m 12s</td></tr>
+        <tr><th scope="row">99.9%</th><td>8h 45m</td><td>43m 48s</td><td>10m 05s</td><td>1m 26s</td></tr>
+        <tr class="hl"><th scope="row">99.95%</th><td>4h 22m</td><td>21m 54s</td><td>5m 02s</td><td>43s</td></tr>
+        <tr><th scope="row">99.99%</th><td>52m 34s</td><td>4m 23s</td><td>1m 00s</td><td>9s</td></tr>
+        <tr><th scope="row">99.995%</th><td>26m 17s</td><td>2m 11s</td><td>30s</td><td>4s</td></tr>
+        <tr><th scope="row">99.999%</th><td>5m 15s</td><td>26s</td><td>6s</td><td>1s</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ln-note">At 99.99% a month allows four and a half minutes. That is less time than most teams take to notice, page someone, and open the runbook. A target above what your on-call process can physically deliver is not a target.</p>
+</section></div></div>
+
+<div class="band"><div class="wrap close">
+  <p class="eyebrow">Where this goes next</p>
+  <h2>Put the two numbers in the design, with an owner and a date.</h2>
+  <p class="lede">The composite belongs in the architecture decision record. The restore time belongs in the runbook, next to the date it was last measured. Both get reopened when a dependency is added, a region changes, or a restore test comes back slower. The playbooks show where this sits in a real build.</p>
+  <div class="tl-related">
+    <a class="btn solid" href="/playbooks/app-modernization/">Modernization playbook</a>
+    <a class="btn" href="/playbooks/cloud-foundations-multitenant/">Cloud foundations playbook</a>
+    <a class="btn" href="/writing/root-cause-before-remediation/">Root cause before remediation</a>
+    <a class="btn" href="/tools/">All tools</a>
+  </div>
+</div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+
+<script>
+(function(){
+var MIN_Y=525600,MIN_M=43800,MIN_W=10080;
+var PRESETS={
+  web:{t:99.95,r:[["Front door and CDN",99.99,1,"h"],["Web tier",99.95,1,"h"],["Database",99.99,1,"h"],["Identity provider",99.99,1,"h"],["Cache",99.9,1,"s"],["Email provider",99.9,1,"s"]]},
+  two:{t:99.95,r:[["Front door and CDN",99.99,1,"h"],["Web tier",99.95,2,"h"],["Database",99.99,2,"h"],["Identity provider",99.99,1,"h"],["Cache",99.9,2,"s"],["Email provider",99.9,1,"s"]]},
+  agent:{t:99.9,r:[["API gateway",99.95,1,"h"],["Orchestrator service",99.95,1,"h"],["Model API",99.9,1,"h"],["Retrieval index",99.9,1,"h"],["System of record API",99.9,1,"h"],["Identity provider",99.99,1,"h"],["Trace store",99.9,1,"s"]]}
+};
+var STEPS=[["Notice, declare, and decide to restore",20,0,0],["Find the right backup",20,0,0],["Find someone with permission to run the restore",30,0,0],["Restore the data",240,0,0],["Restore what the backup did not include: config, secrets, keys",60,0,0],["Repoint DNS and traffic",20,0,0],["Verify with a real transaction and reopen",30,0,0]];
+function $(id){return document.getElementById(id)}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function clone(a){return JSON.parse(JSON.stringify(a))}
+function num(v,d){var n=parseFloat(v);return isFinite(n)?n:d}
+var S;
+function fresh(){return{p:"web",t:PRESETS.web.t,r:clone(PRESETS.web.r),rto:4,rpo:60,iv:60,s:clone(STEPS)}}
+
+/* ---------- formatting: never round availability up ---------- */
+function pct(a){var v=Math.floor(a*1e5+1e-7)/1e3;return v.toFixed(3)}
+function dur(min){var s=Math.round(min*60);if(s<=0)return"0s";
+  if(s>=86400){var d=Math.floor(s/86400),h=Math.floor(s%86400/3600);return d+"d "+h+"h"}
+  if(s>=3600){var hh=Math.floor(s/3600),mm=Math.round(s%3600/60);if(mm===60){hh++;mm=0}return hh+"h "+(mm<10?"0":"")+mm+"m"}
+  if(s>=60){var m=Math.floor(s/60),ss=s%60;return m+"m "+(ss<10?"0":"")+ss+"s"}
+  return s+"s"}
+function hm(min){min=Math.max(0,Math.round(min));var h=Math.floor(min/60),m=min%60;return h?h+"h "+(m<10?"0":"")+m+"m":m+"m"}
+
+/* ---------- the chain ---------- */
+function eff(r){var a=Math.min(100,Math.max(0,r[1]))/100;return 1-Math.pow(1-a,Math.max(1,r[2]))}
+function comp(rows){return rows.reduce(function(p,r){return r[3]==="h"?p*eff(r):p},1)}
+
+function cell(label,input){var l=el("label","tl-cell");l.appendChild(el("span","tl-lab",label));l.appendChild(input);return l}
+function chk(label,on){var l=el("label","tl-chk");var i=el("input");i.type="checkbox";i.checked=!!on;l.appendChild(el("span","tl-lab",label));l.appendChild(i);return[l,i]}
+function rm(label){var b=el("button","tl-x","×");b.type="button";b.setAttribute("aria-label",label);return b}
+
+function drawChain(){var host=$("av-rows");host.textContent="";
+  S.r.forEach(function(r,i){var row=el("div","tl-row"+(r[3]==="s"?" soft":""));
+    var n=el("input","tl-in");n.type="text";n.value=r[0];n.maxLength=60;n.oninput=function(){r[0]=n.value;custom();update()};
+    var a=el("input","tl-in tl-num");a.type="number";a.inputMode="decimal";a.step="0.001";a.min="0";a.max="100";a.value=r[1];a.oninput=function(){r[1]=num(a.value,0);custom();update()};
+    var c=el("select","tl-sel");[1,2,3].forEach(function(k){var o=el("option",null,"×"+k);o.value=k;c.appendChild(o)});c.value=r[2];c.onchange=function(){r[2]=+c.value;custom();update()};
+    var m=el("select","tl-sel");[["h","Hard"],["s","Soft"]].forEach(function(k){var o=el("option",null,k[1]);o.value=k[0];m.appendChild(o)});m.value=r[3];m.onchange=function(){r[3]=m.value;row.classList.toggle("soft",r[3]==="s");custom();update()};
+    var x=rm("Remove "+(r[0]||"dependency"));x.onclick=function(){S.r.splice(i,1);custom();drawChain();update()};
+    row.appendChild(cell("Dependency",n));row.appendChild(cell("Uptime %",a));row.appendChild(cell("Copies",c));row.appendChild(cell("Kind",m));row.appendChild(x);
+    host.appendChild(row)})}
+function custom(){S.p="custom";$("av-preset").value="custom"}
+
+function updChain(){var rows=S.r.filter(function(r){return r[0]!==undefined}),hard=rows.filter(function(r){return r[3]==="h"}),soft=rows.filter(function(r){return r[3]==="s"});
+  var C=comp(rows),U=1-C,T=Math.min(99.99999,Math.max(0,num(S.t,99.9)))/100;
+  $("av-comp").innerHTML=pct(C)+"<small>%</small>";
+  $("av-month").textContent=dur(U*MIN_M);$("av-year").textContent=dur(U*MIN_Y);$("av-week").textContent=dur(U*MIN_W);
+  var used=U*MIN_M,allow=(1-T)*MIN_M,v=$("av-verdict");
+  if(!hard.length){v.className="tl-verdict";v.textContent="Add at least one hard dependency. A chain with nothing on it is always up, and never true."}
+  else if(C+1e-12>=T){v.className="tl-verdict";v.innerHTML="<b>Meets "+pct(T)+"%</b> with "+dur(allow-used)+" a month to spare. That margin is for everything not on this list: deploys, config changes, and the dependency nobody mentioned."}
+  else{v.className="tl-verdict miss";v.innerHTML="<b>Misses "+pct(T)+"%</b> by "+dur(used-allow)+" a month. The target allows "+dur(allow)+"; this chain spends "+dur(used)+"."+(hard.every(function(r){return eff(r)>=T})?" Every part meets the target on its own. The chain does not.":"")}
+  var bars=$("av-bars");bars.textContent="";var mx=0;hard.forEach(function(r){mx=Math.max(mx,1-eff(r))});
+  hard.map(function(r){return[r,1-eff(r)]}).sort(function(a,b){return b[1]-a[1]}).forEach(function(p,k){
+    var b=el("div","tl-brow"+(k===0&&p[1]>0?" top":""));b.appendChild(el("span",null,(p[0][0]||"Unnamed")+(p[0][2]>1?" ×"+p[0][2]:"")));b.appendChild(el("span","tl-m",dur(p[1]*MIN_M)+" / mo"));
+    var t=el("span","tl-track"),i=el("i");i.style.width=(mx>0?Math.max(1,p[1]/mx*100):0)+"%";t.appendChild(i);b.appendChild(t);bars.appendChild(b)});
+  if(!hard.length)bars.appendChild(el("p","tl-soft","Nothing hard on the chain yet."));
+  var lv=[];hard.forEach(function(r){var j=S.r.indexOf(r);
+    if(r[2]<3){var alt=clone(S.r);alt[j][2]=r[2]+1;lv.push({g:(comp(alt)-C)*MIN_M,h:"Add an independent copy of <b></b>",n:r[0]})}
+});
+  lv.sort(function(a,b){return b.g-a.g});var ul=$("av-levers");ul.textContent="";
+  lv.filter(function(l){return l.g*60>=1}).slice(0,3).forEach(function(l){var li=el("li");li.innerHTML=l.h+": "+dur(l.g)+" a month back.";li.querySelector("b").textContent=l.n||"Unnamed";ul.appendChild(li)});
+  if(!ul.children.length)ul.appendChild(el("li",null,"Another copy buys back less than a second a month anywhere on this chain. The next minutes come from making a dependency soft, or removing it."));
+  $("av-soft").textContent=soft.length?"Left out of the composite as soft: "+soft.map(function(r){return r[0]||"Unnamed"}).join(", ")+". They only belong there if the fallback has run in a test.":"";
+  return{C:C,U:U,T:T,used:used,allow:allow,hard:hard,soft:soft}}
+
+/* ---------- the restore ---------- */
+function drawSteps(){var host=$("rs-rows");host.textContent="";
+  S.s.forEach(function(s,i){var row=el("div","tl-row"+(s[2]&&i>0?" par":""));
+    var n=el("input","tl-in");n.type="text";n.value=s[0];n.maxLength=80;n.oninput=function(){s[0]=n.value;update()};
+    var t=el("input","tl-in tl-num");t.type="number";t.inputMode="numeric";t.step="5";t.min="0";t.value=s[1];t.oninput=function(){s[1]=Math.max(0,num(t.value,0));update()};
+    var p=chk("Alongside",s[2]);if(i===0){p[1].disabled=true;p[1].checked=false;p[0].title="The first step has nothing above it"}p[1].onchange=function(){s[2]=p[1].checked?1:0;row.classList.toggle("par",!!s[2]);update()};
+    var x=chk("Timed",s[3]);x[1].onchange=function(){s[3]=x[1].checked?1:0;update()};
+    var r=rm("Remove "+(s[0]||"step"));r.onclick=function(){S.s.splice(i,1);drawSteps();update()};
+    row.appendChild(cell("Step",n));row.appendChild(cell("Minutes",t));row.appendChild(p[0]);row.appendChild(x[0]);row.appendChild(r);host.appendChild(row)})}
+
+function updRestore(){var groups=[];S.s.forEach(function(s,i){if(s[2]&&i>0&&groups.length){var g=groups[groups.length-1];if(s[1]>g.top[1])g.top=s;g.items.push(s)}else groups.push({top:s,items:[s]})});
+  var total=0,timed=0;groups.forEach(function(g){total+=g.top[1];if(g.top[3])timed+=g.top[1]});
+  var rto=Math.max(0,num(S.rto,0))*60,rpo=Math.max(0,num(S.rpo,0)),iv=Math.max(0,num(S.iv,0));
+  $("rs-total").textContent=hm(total);
+  var v=$("rs-verdict");
+  if(!S.s.length){v.className="tl-verdict";v.textContent="Add the steps between “it’s down” and “it’s back”."}
+  else if(total<=rto){v.className="tl-verdict";v.innerHTML="<b>Fits the stated RTO of "+hm(rto)+"</b> with "+hm(rto-total)+" to spare. That margin is for the step nobody listed."}
+  else{v.className="tl-verdict miss";v.innerHTML="<b>The slide says "+hm(rto)+". The steps add up to "+hm(total)+".</b> The slide is wrong by "+hm(total-rto)+", or a step is missing a cheaper way to do it."}
+  var share=total>0?Math.round(timed/total*100):0;$("rs-proof").style.width=share+"%";$("rs-proof-m").textContent=share+"%";
+  $("rs-proof-note").textContent=!total?"":share===0?"None of this number has been measured. Until someone restores on purpose and times it, the recovery time is a rumour.":share<100?"The rest of the critical path is an estimate. The longest untimed step is the next restore test to run.":"Every step on the critical path has been timed. Write down when, and run it again after anything changes.";
+  var r=$("rs-rpo-v");
+  if(iv>rpo){r.className="tl-verdict miss";r.innerHTML="<b>Backups every "+hm(iv)+" can lose up to "+hm(iv)+" of data.</b> The stated RPO is "+hm(rpo)+". Either the backups get more frequent, or the business signs a longer RPO."}
+  else{r.className="tl-verdict";r.innerHTML="<b>Worst case "+hm(iv)+" of data lost</b>, inside the RPO of "+hm(rpo)+". That assumes the last backup succeeded, which only a restore proves."}
+  return{total:total,rto:rto,rpo:rpo,iv:iv,share:share,groups:groups}}
+
+/* ---------- the note ---------- */
+function pad(s,n){s=String(s);return s.length>=n?s+" ":s+new Array(n-s.length+1).join(" ")}
+function record(a,b){var L=[];
+  L.push(pad("AVAILABILITY",18)+pct(a.C)+"% composite, rounded down");
+  L.push(pad("DOWNTIME",18)+dur(a.U*MIN_M)+" a month · "+dur(a.U*MIN_Y)+" a year");
+  L.push(pad("TARGET",18)+pct(a.T)+"% · "+(a.C+1e-12>=a.T?"met, "+dur(a.allow-a.used)+" a month to spare":"missed by "+dur(a.used-a.allow)+" a month"));
+  L.push(pad("HARD CHAIN",18)+(a.hard.length?"":"none"));
+  a.hard.forEach(function(r){L.push(pad("",20)+pad((r[0]||"Unnamed").slice(0,32),34)+pad(r[1]+"%",9)+"x"+r[2]+" · "+dur((1-eff(r))*MIN_M)+" a month")});
+  if(a.soft.length)L.push(pad("SOFT",18)+a.soft.map(function(r){return r[0]||"Unnamed"}).join(", ")+" (fallbacks must be tested)");
+  L.push("");
+  L.push(pad("RECOVERY TIME",18)+hm(b.total)+" against a stated RTO of "+hm(b.rto)+(b.total>b.rto?" · MISSES by "+hm(b.total-b.rto):" · fits"));
+  L.push(pad("PROVEN",18)+b.share+"% of the critical path timed in a test");
+  b.groups.forEach(function(g,k){g.items.forEach(function(s,j){L.push(pad("",20)+pad(((j?"  + ":(k+1<10?"0":"")+(k+1)+"  ")+(s[0]||"Unnamed")).slice(0,60),62)+pad(hm(s[1]),8)+(s[3]?"timed":"estimate"))})});
+  L.push(pad("DATA LOSS",18)+"up to "+hm(b.iv)+" against a stated RPO of "+hm(b.rpo)+(b.iv>b.rpo?" · MISSES":" · fits"));
+  L.push("");
+  L.push(pad("OWNER",18)+"________________");
+  L.push(pad("LAST RESTORE TEST",18)+"________________");
+  L.push(pad("REVISIT",18)+"When a dependency or region changes, or a restore test comes back slower");
+  L.push("");
+  L.push("khalidshams.com/tools/availability/");
+  return L.join("\n")}
+
+function update(){S.t=num($("av-target").value,99.9);S.rto=num($("rs-rto").value,0);S.rpo=num($("rs-rpo").value,0);S.iv=num($("rs-int").value,0);
+  var a=updChain(),b=updRestore();$("av-record").textContent=record(a,b)}
+
+/* ---------- share, copy, reset ---------- */
+function enc(o){return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
+function dec(s){s=s.replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";return JSON.parse(decodeURIComponent(escape(atob(s))))}
+function valid(o){return o&&Array.isArray(o.r)&&Array.isArray(o.s)&&o.r.length<=40&&o.s.length<=40&&o.r.every(function(r){return Array.isArray(r)&&typeof r[0]==="string"&&isFinite(r[1])&&[1,2,3].indexOf(+r[2])>=0&&(r[3]==="h"||r[3]==="s")})&&o.s.every(function(s){return Array.isArray(s)&&typeof s[0]==="string"&&isFinite(s[1])})}
+function copy(txt,btn){var done=function(){var o=btn.textContent;btn.textContent="Copied";setTimeout(function(){btn.textContent=o},1600)};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallback(txt);done()})}else{fallback(txt);done()}}
+function fallback(txt){var t=el("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{document.execCommand("copy")}catch(e){}document.body.removeChild(t)}
+function syncInputs(){$("av-preset").value=PRESETS[S.p]?S.p:"custom";$("av-target").value=S.t;$("rs-rto").value=S.rto;$("rs-rpo").value=S.rpo;$("rs-int").value=S.iv}
+
+S=fresh();
+try{var q=new URLSearchParams(location.search).get("s");if(q){var o=dec(q);if(valid(o)){o.r.forEach(function(r){r[0]=r[0].slice(0,60);r[1]=+r[1];r[2]=+r[2]});o.s.forEach(function(s){s[0]=s[0].slice(0,80);s[1]=Math.max(0,+s[1]);s[2]=s[2]?1:0;s[3]=s[3]?1:0});S={p:PRESETS[o.p]?o.p:"custom",t:num(o.t,99.9),r:o.r,rto:num(o.rto,4),rpo:num(o.rpo,60),iv:num(o.iv,60),s:o.s}}}}catch(e){}
+syncInputs();drawChain();drawSteps();update();
+
+$("av-preset").onchange=function(){var p=PRESETS[this.value];if(!p)return;S.p=this.value;S.t=p.t;S.r=clone(p.r);$("av-target").value=S.t;drawChain();update()};
+["av-target","rs-rto","rs-rpo","rs-int"].forEach(function(id){$(id).oninput=update});
+$("av-add").onclick=function(){S.r.push(["New dependency",99.9,1,"h"]);custom();drawChain();update();var ins=$("av-rows").querySelectorAll("input[type=text]");ins[ins.length-1].select()};
+$("rs-add").onclick=function(){S.s.push(["New step",15,0,0]);drawSteps();update();var ins=$("rs-rows").querySelectorAll("input[type=text]");ins[ins.length-1].select()};
+$("av-copy").onclick=function(){copy($("av-record").textContent,this)};
+$("av-link").onclick=function(){var u=location.origin+location.pathname+"?s="+enc(S);try{history.replaceState(null,"",u)}catch(e){}copy(u,this)};
+$("av-reset").onclick=function(){S=fresh();syncInputs();drawChain();drawSteps();update();try{history.replaceState(null,"",location.pathname)}catch(e){}};
+})();
+</script>

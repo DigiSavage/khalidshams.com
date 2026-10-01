@@ -30,6 +30,16 @@ MD_PB = markdown.Markdown(extensions=["smarty", "sane_lists", "toc"],
                           extension_configs={"toc": {"toc_depth": "2", "permalink": False}}, output_format="html5")
 PLAYBOOKS = ROOT / "content" / "playbooks"
 
+# Tools: one template per tool in templates/tools/<slug>.html, rendered to /tools/<slug>/.
+# Order here is the order on /tools/ and the number shown on each page.
+TOOLS = [
+    {"slug": "availability", "title": "Availability and recovery budget",
+     "kicker": "Multiply the chain, then time the restore",
+     "summary": "Composite availability from your hard and soft dependencies, the downtime it allows, and a recovery time built from restore steps someone actually timed.",
+     "chips": ["Composite SLA", "Downtime budget", "RTO", "RPO"],
+     "description": "A calculator for the availability you can actually promise: multiply every hard dependency, see where the downtime comes from and which change buys the most back, then build the recovery time from restore steps and check it against the RTO and RPO."},
+]
+
 
 @dataclass
 class Post:
@@ -319,6 +329,24 @@ def build():
             description="Six principal-level playbooks: agentic AI, application modernization, data and AI platform, security and governance, cloud foundations and multi-tenant SaaS, and full-stack product engineering. The questions, the Azure build in order, and the real use cases.",
             canonical=f"{SITE}/playbooks/"), encoding="utf-8")
 
+    # ---- tools
+    def tool_card(i: int, t: dict) -> str:
+        chips = "".join(f'<span class="chip">{esc(c)}</span>' for c in t["chips"])
+        return (f'    <a class="pb-card" href="/tools/{t["slug"]}/"><b>{i:02d}</b><span class="pb-k">{esc(t["kicker"])}</span>'
+                f'<span class="pb-t">{esc(t["title"])}</span><span class="pb-s">{esc(t["summary"])}</span>'
+                f'<span class="chips">{chips}</span><span class="pb-go">Open the tool →</span></a>')
+    (DIST / "tools").mkdir(exist_ok=True)
+    for i, t in enumerate(TOOLS, 1):
+        body = fill(tpl(f"tools/{t['slug']}.html"), MASTHEAD=masthead, FOOTER=footer, NUM=f"{i:02d}", TOTAL=f"{len(TOOLS):02d}")
+        (DIST / "tools" / t["slug"]).mkdir(exist_ok=True)
+        (DIST / "tools" / t["slug"] / "index.html").write_text(page(body, title=f"{t['title']} · Tools · Khalid Shams",
+            description=t["description"], canonical=f"{SITE}/tools/{t['slug']}/"), encoding="utf-8")
+    ti = fill(tpl("tools_index.html"), MASTHEAD=masthead, FOOTER=footer,
+              CARDS="\n".join(tool_card(i, t) for i, t in enumerate(TOOLS, 1)))
+    (DIST / "tools" / "index.html").write_text(page(ti, title="Tools · Khalid Shams",
+        description="Reference calculators for cloud and AI architecture: composite availability and recovery time today, with agent cost per run, tenant tier rules, a detection-first log budget, and an honest estimate on the bench. Runs in your browser.",
+        canonical=f"{SITE}/tools/"), encoding="utf-8")
+
     home = fill(tpl("home.html"), WRITING=writing, MASTHEAD=masthead,
                 PLAYBOOKS="\n".join(pb_card(o) for o in pbs))
     (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
@@ -363,6 +391,7 @@ def build():
 
     # ---- sitemap + robots
     urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+            + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
@@ -401,6 +430,7 @@ def build():
     # ---- search index
     pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/method/", DIST / "method" / "index.html"),
              ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
+            [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]
     idx = build_search_index([pg for pg in pages if pg[1].exists()], graph, live)
     (DIST / "search.json").write_text(json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")

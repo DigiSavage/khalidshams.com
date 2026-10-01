@@ -29,6 +29,8 @@ templates/
   learn.html              Learn AI: the living map (data injected from content/learn/graph.json), seven-layer stack, four kinds table,
                           when-to-build-an-agent decision tree, agentic loop, hub and spoke, prompts vs hooks, FAQ
   playbook.html           one playbook page; playbooks_index.html the /playbooks/ index
+  tools_index.html        /tools/: live tool cards (from TOOLS in build.py) + the "On the bench" list
+  tools/<slug>.html       one interactive tool per file, vanilla JS inline, CSS in base.html /* ---------- tools ---------- */
   post.html, writing_index.html, privacy.html, 404.html
 content/
   posts/YYYY-MM-DD-slug.md    frontmatter: title, date, status (draft|approved|published), tag, summary, linkedin_url
@@ -70,6 +72,8 @@ Never commit secrets. AWS keys and LinkedIn tokens are GitHub Actions secrets th
 
 **A SHAMS move's detail:** the five panels are generated in `templates/method.html` (the `MOVES`-style markup under `.shams-panels`). Each has: in my words, four questions, estate layers, map ideas, gates, playbooks, "where I got this wrong once".
 
+**A tool:** write `templates/tools/<slug>.html` (copy the shape of `availability.html`: hero with crumbs, the instrument with editor + `.tl-out` results panel, a live `pre.record` note with copy/link/reset, from-the-work lessons, an FAQ on the maths, related links). Add an entry to `TOOLS` in `build.py` (sitemap and search index pick it up), remove it from the bench list in `tools_index.html`, and add it to the Tools submenu and drawer group in `templates/masthead.html`. Rules: example figures are labelled as examples, never presented as vendor prices or SLAs; nothing leaves the browser; share state only through `?s=` in the URL and validate it on load; never round a result in the reader's favour.
+
 **A new section or page:** add a template, render it in `build.py`, add it to the sitemap list, to `build_search_index` pages, and to `templates/masthead.html` (desktop submenu + drawer group). Give every `h2`/`h3` a nearby `id` so search can deep-link and highlight.
 
 ## Site search
@@ -78,7 +82,7 @@ Never commit secrets. AWS keys and LinkedIn tokens are GitHub Actions secrets th
 
 ## Pending and next
 
-- Next phase: a **Tools** section (reference tools/calculators for cloud architecture). It should be a new template, rendered by `build.py`, added to the menu, drawer, sitemap and search index like the others.
+- Tools: 01 Availability and recovery budget is live. Next, in order: 02 Agent cost per run, 03 Tenant tier rules, 04 Detection-first log budget, 05 The honest estimate (listed under "On the bench" in `templates/tools_index.html`).
 - Posts needed before late April 2027.
 - Khalid's own items (not for Claude Code): LinkedIn Featured PDF swap, LinkedIn token renewal around Nov 9 2026, AWS CSV deletion, six old template objects in the S3 bucket.
 

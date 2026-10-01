@@ -7,7 +7,9 @@
   var SYN = { llm: ["large language model"], ai: ["artificial intelligence"], rag: ["retrieval"], mcp: ["model context protocol"],
     agents: ["agent"], agent: ["agentic"], hooks: ["guardrails"], hook: ["guardrails"], evals: ["evaluation"], eval: ["evaluation"],
     saas: ["multi-tenant", "tenant"], fabric: ["microsoft fabric", "lakehouse"], entra: ["identity"], sentinel: ["detection"],
-    cost: ["economics", "finops"], kill: ["off switch", "stop"], switch: ["off switch"], "off": ["kill switch"], security: ["identity", "governance"], gates: ["gate"], gate: ["gates"] };
+    cost: ["economics", "finops"], kill: ["off switch", "stop"], switch: ["off switch"], "off": ["kill switch"], security: ["identity", "governance"], gates: ["gate"], gate: ["gates"],
+    sla: ["availability"], uptime: ["availability"], downtime: ["availability"], nines: ["availability"], rto: ["recovery"], rpo: ["data loss", "recovery"],
+    dr: ["disaster recovery", "restore"], backup: ["restore"], backups: ["restore"], calculator: ["tool"], calculators: ["tools"] };
 
   function $(sel, root) { return (root || document).querySelector(sel); }
   function h(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
