@@ -1,0 +1,919 @@
+{
+ "ideas": [
+  {
+   "id": "ai",
+   "label": "Artificial Intelligence",
+   "cluster": "Foundations",
+   "x": 110,
+   "y": 340,
+   "plain": "Software that does things we used to think needed human thinking: recognising faces, translating, writing, deciding.",
+   "picture": "A huge umbrella. Chess engines, spam filters and chatbots all stand under it, even though they work very differently.",
+   "deep": "An academic field since 1956. Early AI followed hand-written rules; most modern AI instead learns patterns from data (machine learning).",
+   "link": {
+    "label": "What I'm for",
+    "href": "/#situations"
+   }
+  },
+  {
+   "id": "data",
+   "label": "Data",
+   "cluster": "Foundations",
+   "x": 210,
+   "y": 170,
+   "plain": "The examples an AI learns from: text, photos, clicks, sounds, numbers.",
+   "picture": "Data is the textbook. A student who only ever reads cookbooks will think every question is about food.",
+   "deep": "Quality, quantity and coverage matter more than raw size. Data is cleaned, labelled and split into training and test sets. In an enterprise, who owns it and what it may contain matters as much as how much there is.",
+   "link": {
+    "label": "The data and AI platform playbook",
+    "href": "/playbooks/data-platform/"
+   }
+  },
+  {
+   "id": "algorithm",
+   "label": "Algorithm",
+   "cluster": "Foundations",
+   "x": 210,
+   "y": 500,
+   "plain": "A precise, step-by-step recipe a computer follows.",
+   "picture": "A recipe card. Same ingredients plus the same steps always gives the same dish.",
+   "deep": "In machine learning, the learning algorithm (for example gradient descent) is the recipe that adjusts the model; the model is the dish it produces."
+  },
+  {
+   "id": "model",
+   "label": "Model",
+   "cluster": "Foundations",
+   "x": 330,
+   "y": 430,
+   "plain": "The thing AI produces after learning: a compact set of numbers that turns inputs into outputs.",
+   "picture": "A trained musician's instincts. You don't see the practice hours, only the ability left behind.",
+   "deep": "A mathematical function with learned parameters. GPT, Claude and Llama are names of models.",
+   "link": {
+    "label": "The stack: models",
+    "href": "/learn/#stack"
+   }
+  },
+  {
+   "id": "bias",
+   "label": "Bias",
+   "cluster": "Society",
+   "x": 330,
+   "y": 70,
+   "plain": "When AI treats some people or situations unfairly because of patterns in its data.",
+   "picture": "If every doctor in your picture book is a man, you'll guess 'man' when someone says doctor.",
+   "deep": "Arises from skewed data, labels, or objectives. Measured with fairness metrics; reduced by better data, audits and evaluation.",
+   "link": {
+    "label": "Gate 06, evaluation",
+    "href": "/method/#g6"
+   }
+  },
+  {
+   "id": "ml",
+   "label": "Machine Learning",
+   "cluster": "Learning",
+   "x": 340,
+   "y": 270,
+   "plain": "Instead of writing rules, you show the computer many examples and it figures out the rules itself.",
+   "picture": "Teaching a child what a dog is by pointing at dogs, not by describing fur and ears.",
+   "deep": "Optimising a model's parameters to minimise error on examples. Main styles: supervised, unsupervised and reinforcement learning."
+  },
+  {
+   "id": "training",
+   "label": "Training",
+   "cluster": "Learning",
+   "x": 480,
+   "y": 150,
+   "plain": "The practice phase: the model makes guesses, gets told how wrong it was, and adjusts. Millions of times.",
+   "picture": "A darts player throwing, seeing where it landed, and nudging their aim.",
+   "deep": "Repeated passes over data computing a loss, then updating parameters. Large models train for weeks on thousands of GPUs."
+  },
+  {
+   "id": "supervised",
+   "label": "Supervised Learning",
+   "cluster": "Learning",
+   "x": 490,
+   "y": 340,
+   "plain": "Learning from examples that come with the right answer attached.",
+   "picture": "Flashcards: question on the front, answer on the back.",
+   "deep": "Labelled pairs of input and target. Used for classification and regression. Unsupervised learning finds structure without labels."
+  },
+  {
+   "id": "parameters",
+   "label": "Parameters",
+   "cluster": "Learning",
+   "x": 620,
+   "y": 240,
+   "plain": "The adjustable numbers inside a model. Learning means tuning them.",
+   "picture": "The knobs on a giant mixing desk. Billions of knobs, each turned a tiny bit.",
+   "deep": "Weights and biases. Model size is quoted in parameters (70B, say). More parameters means more capacity, not guaranteed quality."
+  },
+  {
+   "id": "neuron",
+   "label": "Artificial Neuron",
+   "cluster": "Learning",
+   "x": 520,
+   "y": 540,
+   "plain": "A tiny calculator: it takes numbers in, weighs them, and passes on a signal if the total is strong enough.",
+   "picture": "A voter who listens to friends, trusts some more than others, and then says yes or no.",
+   "deep": "Computes a weighted sum plus bias, then applies an activation function such as ReLU. Loosely inspired by biological neurons."
+  },
+  {
+   "id": "nn",
+   "label": "Neural Network",
+   "cluster": "Learning",
+   "x": 670,
+   "y": 420,
+   "plain": "Many artificial neurons wired together in layers, passing signals forward.",
+   "picture": "A relay of rooms. Each room notices something a bit more abstract: edges, then shapes, then faces.",
+   "deep": "Stacked layers of neurons: input, hidden, output. Trained end to end with backpropagation."
+  },
+  {
+   "id": "backprop",
+   "label": "Backpropagation",
+   "cluster": "Learning",
+   "x": 700,
+   "y": 110,
+   "plain": "How a network figures out which of its knobs to blame for a mistake, so it can fix them.",
+   "picture": "After a group project goes wrong, tracing back who contributed what to the error and giving each person specific feedback.",
+   "deep": "Applies the chain rule to compute the gradient of the loss with respect to every parameter, from the output backwards."
+  },
+  {
+   "id": "deep",
+   "label": "Deep Learning",
+   "cluster": "Learning",
+   "x": 800,
+   "y": 300,
+   "plain": "Neural networks with many layers, which turned out to be surprisingly good at images, speech and language.",
+   "picture": "A very tall relay of rooms. More floors, more subtle things noticed.",
+   "deep": "The 2012 ImageNet result kicked off the era. Depth plus data plus GPUs is the recipe behind most AI you use today."
+  },
+  {
+   "id": "finetune",
+   "label": "Fine-tuning",
+   "cluster": "Learning",
+   "x": 850,
+   "y": 170,
+   "plain": "Training an already-trained model a little more on your own examples so it behaves the way you need.",
+   "picture": "A new hire who already knows the job, spending a week learning how your company does it.",
+   "deep": "Continued training on a smaller, task-specific dataset; full fine-tuning, LoRA adapters, instruction tuning. It changes behaviour and style reliably and adds facts unreliably. For facts, use retrieval.",
+   "link": {
+    "label": "The data and AI platform playbook",
+    "href": "/playbooks/data-platform/"
+   }
+  },
+  {
+   "id": "token",
+   "label": "Tokens",
+   "cluster": "Language",
+   "x": 720,
+   "y": 580,
+   "plain": "The small chunks of text an AI actually reads, often word pieces rather than whole words.",
+   "picture": "Lego bricks of language. 'Unbelievable' might be three bricks: un, believ, able.",
+   "deep": "Produced by a tokenizer such as BPE. Pricing, speed and limits are all counted in tokens; roughly three quarters of an English word each."
+  },
+  {
+   "id": "embed",
+   "label": "Embeddings",
+   "cluster": "Language",
+   "x": 860,
+   "y": 510,
+   "plain": "Turning a word or idea into a list of numbers so that similar meanings end up close together.",
+   "picture": "A map of meaning where 'king' and 'queen' are neighbours and 'banana' lives across town.",
+   "deep": "Dense vectors, often hundreds to thousands of dimensions. They power search, recommendations and retrieval.",
+   "link": {
+    "label": "The data and AI platform playbook",
+    "href": "/playbooks/data-platform/"
+   }
+  },
+  {
+   "id": "attention",
+   "label": "Attention",
+   "cluster": "Language",
+   "x": 960,
+   "y": 420,
+   "plain": "A way for a model to decide which earlier words matter most for understanding the current one.",
+   "picture": "Reading 'the trophy didn't fit in the suitcase because it was too big' and knowing 'it' points to the trophy.",
+   "deep": "Each token forms queries, keys and values; weights come from query and key similarity. Multi-head attention runs many of these in parallel."
+  },
+  {
+   "id": "transformer",
+   "label": "Transformer",
+   "cluster": "Language",
+   "x": 940,
+   "y": 250,
+   "plain": "The 2017 design that nearly all modern language AI is built on.",
+   "picture": "A room where every word can look at every other word at once, instead of reading left to right one at a time.",
+   "deep": "Stacks of attention and feed-forward layers with residual connections, introduced in the paper 'Attention Is All You Need'. It scales very well."
+  },
+  {
+   "id": "alignment",
+   "label": "Alignment",
+   "cluster": "Society",
+   "x": 880,
+   "y": 80,
+   "plain": "Making sure AI does what people actually intend, safely and honestly.",
+   "picture": "Raising a brilliant apprentice who is not only skilled but trustworthy.",
+   "deep": "Techniques include reinforcement learning from human feedback, constitutional training, red-teaming and evaluations. An active research field with open problems.",
+   "link": {
+    "label": "The eight gates",
+    "href": "/method/#gates"
+   }
+  },
+  {
+   "id": "llm",
+   "label": "Large Language Model",
+   "cluster": "Language",
+   "x": 1070,
+   "y": 320,
+   "plain": "A program that writes by predicting the next word, over and over, very well.",
+   "picture": "Autocomplete that has read a large share of the internet and keeps your whole conversation in mind.",
+   "deep": "A transformer with billions of parameters, pre-trained on next-token prediction, then tuned with human feedback.",
+   "link": {
+    "label": "The agentic AI playbook",
+    "href": "/playbooks/agentic-ai/"
+   }
+  },
+  {
+   "id": "prompt",
+   "label": "Prompting",
+   "cluster": "Language",
+   "x": 1120,
+   "y": 190,
+   "plain": "What you type to an AI. Clear context and a clear ask get clearer answers.",
+   "picture": "Briefing a smart new colleague who knows nothing about your situation yet.",
+   "deep": "Includes system prompts, examples (few-shot), and structured instructions. Output quality is highly sensitive to it.",
+   "link": {
+    "label": "Prompts vs hooks",
+    "href": "/learn/#enforce"
+   }
+  },
+  {
+   "id": "context",
+   "label": "Context Window",
+   "cluster": "Language",
+   "x": 1120,
+   "y": 460,
+   "plain": "How much text an AI can keep in mind at once.",
+   "picture": "The size of the desk it works on. Bigger desk, more papers open side by side.",
+   "deep": "Measured in tokens. Anything outside the window is invisible to the model unless it is retrieved or summarised back in.",
+   "link": {
+    "label": "Why doesn't it remember me?",
+    "href": "/learn/#faq"
+   }
+  },
+  {
+   "id": "hallucination",
+   "label": "Hallucination",
+   "cluster": "Language",
+   "x": 990,
+   "y": 585,
+   "plain": "When an AI states something false with total confidence.",
+   "picture": "A student who never says 'I don't know' and fills gaps with plausible-sounding guesses.",
+   "deep": "A side effect of optimising for fluent, likely text. Reduced by retrieval, citations, better training, and an evaluation that measures how often it happens.",
+   "link": {
+    "label": "Gate 04, grounding",
+    "href": "/method/#g4"
+   }
+  },
+  {
+   "id": "rag",
+   "label": "Retrieval (RAG)",
+   "cluster": "Language",
+   "x": 1125,
+   "y": 570,
+   "plain": "Letting an AI look things up in trusted documents before it answers.",
+   "picture": "An open-book exam instead of answering from memory.",
+   "deep": "Retrieval-augmented generation: embed documents, search for the chunks nearest to the question, and place them in the context window. Permissions must be checked at query time so nobody retrieves what they were never cleared to see.",
+   "link": {
+    "label": "Gate 04, grounding",
+    "href": "/method/#g4"
+   }
+  },
+  {
+   "id": "sysprompt",
+   "label": "System Prompt",
+   "cluster": "Agents",
+   "x": 1240,
+   "y": 100,
+   "plain": "The standing instructions a model is given before the conversation starts: who it is, what it may do, how to answer.",
+   "picture": "The briefing a receptionist gets on day one, before any customer walks in.",
+   "deep": "A privileged message at the top of the context that sets role, constraints, tools and format. Strong guidance, not enforcement. Anything that must never happen needs a check in code.",
+   "link": {
+    "label": "Prompts vs hooks",
+    "href": "/learn/#enforce"
+   }
+  },
+  {
+   "id": "agent",
+   "label": "AI Agents",
+   "cluster": "Agents",
+   "x": 1330,
+   "y": 230,
+   "plain": "AI that doesn't just answer but takes steps: searching, using tools, and checking its own work toward a goal.",
+   "picture": "Going from a helpful librarian to an assistant who actually runs the errands.",
+   "deep": "A model in a loop: it receives the conversation, decides whether to answer or call a tool, your code runs the tool and returns the result, and the loop repeats until the model's stop reason says it is done. Reliability and oversight are the hard parts.",
+   "link": {
+    "label": "The agentic loop",
+    "href": "/learn/#loop"
+   }
+  },
+  {
+   "id": "multi",
+   "label": "Multi-agent Systems",
+   "cluster": "Agents",
+   "x": 1410,
+   "y": 120,
+   "plain": "Several agents with different jobs working together, usually with one coordinating the others.",
+   "picture": "A project lead who splits the work among specialists and assembles the result.",
+   "deep": "A coordinator decomposes a goal, routes subtasks to specialists with their own tools and isolated context, and aggregates the results. The main failure is decomposing too narrowly: give goals, not task lists.",
+   "link": {
+    "label": "Hub and spoke",
+    "href": "/learn/#multi"
+   }
+  },
+  {
+   "id": "tools",
+   "label": "Tools and Function Calling",
+   "cluster": "Agents",
+   "x": 1300,
+   "y": 380,
+   "plain": "Letting a model ask your software to do something: search, read a file, create a ticket, run a query.",
+   "picture": "Giving the librarian a phone and a list of people they are allowed to call.",
+   "deep": "The model emits a structured request (a name plus JSON arguments) matching a declared schema; your code validates it, executes it, and returns the result as a message. The model never executes anything itself.",
+   "link": {
+    "label": "Gate 05, actions",
+    "href": "/method/#g5"
+   }
+  },
+  {
+   "id": "mcp",
+   "label": "MCP",
+   "cluster": "Agents",
+   "x": 1440,
+   "y": 330,
+   "plain": "Model Context Protocol: a standard way to plug tools and data sources into any AI model, so each integration is built once.",
+   "picture": "USB-C for AI. One connector shape, so any tool fits any model.",
+   "deep": "An open protocol where servers expose tools, resources and prompts, and clients (agents, IDEs, chat apps) discover and call them. It lives in the tool layer between the agent and your systems. It standardises access, not permissions: authorisation is still yours.",
+   "link": {
+    "label": "The stack: tools and protocols",
+    "href": "/learn/#stack"
+   }
+  },
+  {
+   "id": "memory",
+   "label": "Memory",
+   "cluster": "Agents",
+   "x": 1240,
+   "y": 520,
+   "plain": "How an AI keeps track of things beyond the current conversation.",
+   "picture": "A notebook the assistant writes in and reads from, because the desk gets cleared between visits.",
+   "deep": "Short-term memory is the context window. Long-term memory is stored outside the model (a database or vector store) and retrieved back in. Models don't learn from conversations unless someone trains them again.",
+   "link": {
+    "label": "Anchor: retrieve facts, never let the agent remember them",
+    "href": "/method/#shams"
+   }
+  },
+  {
+   "id": "evals",
+   "label": "Evaluation",
+   "cluster": "Agents",
+   "x": 1400,
+   "y": 470,
+   "plain": "Testing an AI system against a fixed set of cases so you know whether a change made it better or worse.",
+   "picture": "A driving test. Not 'did it feel fine,' but a set course, scored the same way every time.",
+   "deep": "A case set with expected outcomes, scored automatically where possible (groundedness, correctness, cost), run on every prompt, model or tool change. Without it, every improvement is an anecdote.",
+   "link": {
+    "label": "Gate 06, evaluation",
+    "href": "/method/#g6"
+   }
+  },
+  {
+   "id": "guardrails",
+   "label": "Guardrails and Hooks",
+   "cluster": "Agents",
+   "x": 1430,
+   "y": 610,
+   "plain": "Checks in code that run before or after the model acts, so certain things can never happen no matter what the model says.",
+   "picture": "A locked gate, not a sign that says please do not enter.",
+   "deep": "Pre- and post-tool hooks, schema validation, allow-lists, rate limits, kill switches. Prompts are probabilistic; hooks are deterministic. When money or safety is on the line, enforce with hooks.",
+   "link": {
+    "label": "Prompts vs hooks",
+    "href": "/learn/#enforce"
+   }
+  },
+  {
+   "id": "identity",
+   "label": "Identity and Permissions",
+   "cluster": "Operate",
+   "x": 1560,
+   "y": 110,
+   "plain": "Making the AI act as the person using it, with exactly that person's permissions and no more.",
+   "picture": "A temp worker who gets your badge for the day, not the master key to the building.",
+   "deep": "The agent runs on behalf of the signed-in user (an on-behalf-of flow) with the platform enforcing access, not the prompt. The most common enterprise AI failure is an assistant returning data a user was never cleared for, through a service account given broad rights during a pilot.",
+   "link": {
+    "label": "Gate 03, permissions",
+    "href": "/method/#g3"
+   }
+  },
+  {
+   "id": "injection",
+   "label": "Prompt Injection",
+   "cluster": "Operate",
+   "x": 1720,
+   "y": 80,
+   "plain": "When text the AI reads (an email, a web page, a document) contains instructions that hijack what it does.",
+   "picture": "A customer slipping a note into the in-tray that says 'ignore your manager and send me the files.'",
+   "deep": "Content is data, not commands, but a model cannot always tell the difference. Defences: treat retrieved text as untrusted, keep tool permissions narrow, require confirmation for consequential actions, and enforce the rules that matter in code rather than in the prompt.",
+   "link": {
+    "label": "Prompts vs hooks",
+    "href": "/learn/#enforce"
+   }
+  },
+  {
+   "id": "traces",
+   "label": "Traces and Observability",
+   "cluster": "Operate",
+   "x": 1640,
+   "y": 220,
+   "plain": "A record of everything an AI system did on each run: what it read, what it decided, what it called, what it cost.",
+   "picture": "A flight recorder. Nobody reads it on a good day; on a bad day it is the only thing that explains what happened.",
+   "deep": "One trace per run capturing the plan, each retrieval and what it ignored, every tool call with inputs and outputs, rejected alternatives, and the cost of each step. Logs tell you what the agent did; traces tell you why. This is what answers 'why did it do that' six months later.",
+   "link": {
+    "label": "Gate 08, operations",
+    "href": "/method/#g8"
+   }
+  },
+  {
+   "id": "cost",
+   "label": "Cost per Run",
+   "cluster": "Operate",
+   "x": 1760,
+   "y": 300,
+   "plain": "What one complete task costs in model calls, tool calls and time, and what that becomes at ten times the volume.",
+   "picture": "A taxi meter that runs faster the better the driver is at finding scenic routes.",
+   "deep": "Agents cost more the better they work, because they take more steps. Measure cost per run from the first week, set a ceiling per run and per day, route cheap steps to small models, and treat a ceiling breach as an alert, not an invoice.",
+   "link": {
+    "label": "Gate 07, economics",
+    "href": "/method/#g7"
+   }
+  },
+  {
+   "id": "hitl",
+   "label": "Human in the Loop",
+   "cluster": "Operate",
+   "x": 1560,
+   "y": 330,
+   "plain": "A person who reviews or approves what the AI proposes before it takes effect.",
+   "picture": "The pharmacist who checks the prescription the system printed before handing it over.",
+   "deep": "Effective only when the review is designed: what the person sees, what they can change, and how long they have. An 'Approve' button nobody designed turns into a person who stops reviewing and starts approving. Use it where a wrong action is costly, and measure how often the human changes the outcome.",
+   "link": {
+    "label": "The autonomy ladder",
+    "href": "/method/#ladder"
+   }
+  },
+  {
+   "id": "kill",
+   "label": "Kill Switch",
+   "cluster": "Operate",
+   "x": 1700,
+   "y": 400,
+   "plain": "A way to stop the AI system in under a minute, tested before it is needed.",
+   "picture": "The red button on the factory line. Not a rollback. A stop.",
+   "deep": "A flag read before every action, circuit breakers per tool, and a documented procedure the owner has rehearsed. If stopping the system requires a deployment, you do not have a kill switch.",
+   "link": {
+    "label": "Gate 08, operations",
+    "href": "/method/#g8"
+   }
+  },
+  {
+   "id": "when",
+   "label": "When to Use an Agent",
+   "cluster": "Decide",
+   "x": 1560,
+   "y": 520,
+   "plain": "Use an agent when the steps vary each time and a person cannot be in every one. Otherwise use something simpler.",
+   "picture": "You hire a courier when every delivery is different. For the same route every morning, you set up a bus.",
+   "deep": "If the steps are known and repeat, build a workflow with a model inside it. If the value is answers and a person acts on them, build an assistant. Build an agent when the path varies, the actions are typed and reversible, and you can afford evaluation, traces and an off switch. Start one rung lower than you think.",
+   "link": {
+    "label": "When to build an agent",
+    "href": "/learn/#decide"
+   }
+  },
+  {
+   "id": "ladder",
+   "label": "Autonomy Ladder",
+   "cluster": "Decide",
+   "x": 1700,
+   "y": 560,
+   "plain": "Five levels of how much an AI system is allowed to do on its own, from suggesting to acting without review.",
+   "picture": "Learner's permit, then supervised driving, then solo on quiet roads, then the motorway.",
+   "deep": "Level 0 manual, 1 suggests, 2 drafts for approval, 3 acts with review after, 4 acts autonomously within limits. Each rung requires specific gates to be passed. Most enterprise systems should live at 2 or 3 and earn 4 per action type, not per system.",
+   "link": {
+    "label": "The autonomy ladder",
+    "href": "/method/#ladder"
+   }
+  },
+  {
+   "id": "gates",
+   "label": "The Eight Gates",
+   "cluster": "Decide",
+   "x": 1620,
+   "y": 660,
+   "plain": "Eight questions a system has to answer, in writing, before it is allowed to act in a business.",
+   "picture": "Pre-flight checks. Pilots don't skip them because the plane looks fine.",
+   "deep": "Decision, boundaries, permissions, grounding, actions, evaluation, economics, operations. Each gate is a question, a reason it matters, an artefact it produces, and a condition that fails it. You can run the check on your own system in a few minutes.",
+   "link": {
+    "label": "The eight gates",
+    "href": "/method/#gates"
+   }
+  },
+  {
+   "id": "shams",
+   "label": "The SHAMS Method",
+   "cluster": "Decide",
+   "x": 1760,
+   "y": 700,
+   "plain": "Five moves for putting AI into an organisation safely: Scope, Harden, Anchor, Measure, Sustain.",
+   "picture": "A builder's order of work. Foundations before walls, walls before roof, roof before furniture.",
+   "deep": "Scope names the decision and its owner. Harden draws the boundaries and permissions. Anchor grounds every answer in governed data. Measure builds the harness and the cost model. Sustain adds the off switch, the traces and the exit criteria. The eight gates are how each move is signed off.",
+   "link": {
+    "label": "The method",
+    "href": "/method/"
+   }
+  },
+  {
+   "id": "dataplat",
+   "label": "Data Platform",
+   "cluster": "Decide",
+   "x": 1330,
+   "y": 700,
+   "plain": "The organised, governed home for an organisation's data, which AI has to be built on top of.",
+   "picture": "A library with a catalogue and a librarian, rather than boxes of papers in everyone's garage.",
+   "deep": "A lakehouse with bronze, silver and gold layers, named owners per layer, lineage and classification, and semantic models people trust. Most AI projects that stall in month two stall here, not in the model.",
+   "link": {
+    "label": "The data and AI platform playbook",
+    "href": "/playbooks/data-platform/"
+   }
+  },
+  {
+   "id": "foundations",
+   "label": "Cloud Foundations",
+   "cluster": "Decide",
+   "x": 1480,
+   "y": 760,
+   "plain": "The platform underneath everything: how accounts are organised, how networks connect, which rules are enforced automatically, and how cost is tracked.",
+   "picture": "Plumbing and wiring. Nobody admires it, and nothing works without it.",
+   "deep": "Landing zones, management groups, policy as code, hub and spoke networking, identity, tagging and cost attribution. When the foundation is right, teams ship into it without asking permission. When it is wrong, every project rebuilds a worse version.",
+   "link": {
+    "label": "The cloud foundations playbook",
+    "href": "/playbooks/cloud-foundations-multitenant/"
+   }
+  }
+ ],
+ "edges": [
+  [
+   "ai",
+   "ml"
+  ],
+  [
+   "ai",
+   "algorithm"
+  ],
+  [
+   "data",
+   "ml"
+  ],
+  [
+   "algorithm",
+   "model"
+  ],
+  [
+   "model",
+   "ml"
+  ],
+  [
+   "ml",
+   "training"
+  ],
+  [
+   "ml",
+   "supervised"
+  ],
+  [
+   "data",
+   "training"
+  ],
+  [
+   "supervised",
+   "parameters"
+  ],
+  [
+   "training",
+   "parameters"
+  ],
+  [
+   "neuron",
+   "nn"
+  ],
+  [
+   "parameters",
+   "nn"
+  ],
+  [
+   "nn",
+   "backprop"
+  ],
+  [
+   "training",
+   "backprop"
+  ],
+  [
+   "nn",
+   "deep"
+  ],
+  [
+   "deep",
+   "transformer"
+  ],
+  [
+   "token",
+   "embed"
+  ],
+  [
+   "embed",
+   "attention"
+  ],
+  [
+   "attention",
+   "transformer"
+  ],
+  [
+   "transformer",
+   "llm"
+  ],
+  [
+   "llm",
+   "prompt"
+  ],
+  [
+   "llm",
+   "context"
+  ],
+  [
+   "token",
+   "context"
+  ],
+  [
+   "context",
+   "rag"
+  ],
+  [
+   "embed",
+   "rag"
+  ],
+  [
+   "llm",
+   "hallucination"
+  ],
+  [
+   "rag",
+   "hallucination"
+  ],
+  [
+   "llm",
+   "agent"
+  ],
+  [
+   "prompt",
+   "agent"
+  ],
+  [
+   "data",
+   "bias"
+  ],
+  [
+   "bias",
+   "alignment"
+  ],
+  [
+   "llm",
+   "alignment"
+  ],
+  [
+   "model",
+   "neuron"
+  ],
+  [
+   "training",
+   "finetune"
+  ],
+  [
+   "finetune",
+   "llm"
+  ],
+  [
+   "prompt",
+   "sysprompt"
+  ],
+  [
+   "sysprompt",
+   "agent"
+  ],
+  [
+   "agent",
+   "tools"
+  ],
+  [
+   "tools",
+   "mcp"
+  ],
+  [
+   "agent",
+   "memory"
+  ],
+  [
+   "context",
+   "memory"
+  ],
+  [
+   "agent",
+   "multi"
+  ],
+  [
+   "agent",
+   "evals"
+  ],
+  [
+   "evals",
+   "guardrails"
+  ],
+  [
+   "hallucination",
+   "evals"
+  ],
+  [
+   "alignment",
+   "guardrails"
+  ],
+  [
+   "rag",
+   "tools"
+  ],
+  [
+   "agent",
+   "identity"
+  ],
+  [
+   "data",
+   "identity"
+  ],
+  [
+   "prompt",
+   "injection"
+  ],
+  [
+   "injection",
+   "guardrails"
+  ],
+  [
+   "agent",
+   "traces"
+  ],
+  [
+   "evals",
+   "traces"
+  ],
+  [
+   "agent",
+   "cost"
+  ],
+  [
+   "token",
+   "cost"
+  ],
+  [
+   "guardrails",
+   "hitl"
+  ],
+  [
+   "when",
+   "hitl"
+  ],
+  [
+   "guardrails",
+   "kill"
+  ],
+  [
+   "agent",
+   "when"
+  ],
+  [
+   "when",
+   "ladder"
+  ],
+  [
+   "hitl",
+   "ladder"
+  ],
+  [
+   "ladder",
+   "gates"
+  ],
+  [
+   "evals",
+   "gates"
+  ],
+  [
+   "guardrails",
+   "gates"
+  ],
+  [
+   "gates",
+   "shams"
+  ],
+  [
+   "identity",
+   "foundations"
+  ],
+  [
+   "data",
+   "foundations"
+  ],
+  [
+   "data",
+   "dataplat"
+  ],
+  [
+   "rag",
+   "dataplat"
+  ],
+  [
+   "dataplat",
+   "foundations"
+  ]
+ ],
+ "circuits": {
+  "chat": [
+   "ai",
+   "ml",
+   "nn",
+   "deep",
+   "token",
+   "embed",
+   "attention",
+   "transformer",
+   "llm",
+   "prompt",
+   "context"
+  ],
+  "learn": [
+   "data",
+   "ml",
+   "supervised",
+   "training",
+   "parameters",
+   "neuron",
+   "nn",
+   "backprop",
+   "finetune"
+  ],
+  "agent": [
+   "llm",
+   "prompt",
+   "sysprompt",
+   "tools",
+   "mcp",
+   "agent",
+   "memory",
+   "multi",
+   "evals",
+   "guardrails"
+  ],
+  "trust": [
+   "data",
+   "bias",
+   "llm",
+   "hallucination",
+   "rag",
+   "evals",
+   "guardrails",
+   "alignment"
+  ],
+  "decide": [
+   "when",
+   "ladder",
+   "hitl",
+   "evals",
+   "guardrails",
+   "gates",
+   "shams"
+  ],
+  "operate": [
+   "identity",
+   "injection",
+   "traces",
+   "cost",
+   "kill",
+   "hitl"
+  ]
+ }
+}
