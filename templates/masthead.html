@@ -5,7 +5,7 @@
       <div class="sh-item"><a href="/">Home</a>
         <div class="sh-sub"><a href="/#outcomes">Outcomes</a><a href="/#situations">What I'm for</a><a href="/#work">Selected work</a><a href="/#learn">Learn AI</a><a href="/#playbooks">Playbooks</a><a href="/#built">Built end to end</a><a href="/#depth">Depth</a><a href="/#contact">Contact</a></div></div>
       <div class="sh-item"><a href="/learn/">Learn AI</a>
-        <div class="sh-sub"><a href="/learn/#map">The living map</a><a href="/learn/#stack">The stack in seven layers</a><a href="/learn/#kinds">Model vs chatbot vs agent</a><a href="/learn/#loop">The agentic loop</a><a href="/learn/#multi">Multi-agent patterns</a><a href="/learn/#enforce">Prompts vs hooks</a><a href="/learn/#faq">Questions people ask</a></div></div>
+        <div class="sh-sub"><a href="/learn/#map">The living map</a><a href="/learn/#stack">The stack in seven layers</a><a href="/learn/#kinds">Model vs chatbot vs agent</a><a href="/learn/#decide">When to build an agent</a><a href="/learn/#loop">The agentic loop</a><a href="/learn/#multi">Multi-agent patterns</a><a href="/learn/#enforce">Prompts vs hooks</a><a href="/learn/#faq">Questions people ask</a></div></div>
       <div class="sh-item"><a href="/method/">Method</a>
         <div class="sh-sub"><a href="/method/#map">The estate map</a><a href="/method/#shams">The SHAMS Method</a><a href="/method/#ladder">Autonomy ladder</a><a href="/method/#gates">The eight gates</a><a href="/method/#gate-check">Gate check</a><a href="/method/#record">The gate record</a></div></div>
       <div class="sh-item"><a href="/playbooks/">Playbooks</a>
@@ -22,17 +22,20 @@
         <div class="sh-sub"><a href="/writing/">All posts</a><a href="/#writing">Latest on the home page</a><a href="/feed.xml">RSS feed</a><a href="https://www.linkedin.com/in/kalshams/recent-activity/all/" target="_blank" rel="noopener">On LinkedIn</a></div></div>
       <div class="sh-item"><a href="/#work">Work</a>
         <div class="sh-sub"><a href="/#work">Case studies</a><a href="/#built">Products I built</a><a href="/#depth">Depth by area</a><a href="https://www.linkedin.com/in/kalshams" target="_blank" rel="noopener">LinkedIn profile</a><a href="https://github.com/DigiSavage/khalidshams.com" target="_blank" rel="noopener">This site's source</a></div></div>
+      <button class="sh-search" type="button" data-search aria-label="Search this site"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Search</span><kbd>⌘K</kbd></button>
       <a class="sh-cta" href="mailto:khalidshams@gmail.com">Get in touch</a>
     </nav>
+    <button class="sh-search sh-search-m" type="button" data-search aria-label="Search this site"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
     <button class="sh-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
   </div>
   <div class="drawer" id="drawer" hidden>
     <div class="wrap">
+      <button class="dr-search" type="button" data-search><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Search the whole site</button>
       <nav class="dr-list" aria-label="Site">
         <details class="dr-group"><summary><span class="dr-t">Home</span><span class="dr-d">Who I am and what I'm for</span></summary>
           <div><a href="/">Overview</a><a href="/#outcomes">Outcomes</a><a href="/#situations">What I'm for</a><a href="/#work">Selected work</a><a href="/#built">Built end to end</a><a href="/#depth">Depth</a><a href="/#contact">Contact</a></div></details>
         <details class="dr-group"><summary><span class="dr-t">Learn AI</span><span class="dr-d">For people new to it: a living map, the stack, the loop</span></summary>
-          <div><a href="/learn/">Start here</a><a href="/learn/#map">The living map</a><a href="/learn/#stack">The stack in seven layers</a><a href="/learn/#kinds">Model vs chatbot vs agent</a><a href="/learn/#loop">The agentic loop</a><a href="/learn/#multi">Multi-agent patterns</a><a href="/learn/#enforce">Prompts vs hooks</a><a href="/learn/#faq">Questions people ask</a></div></details>
+          <div><a href="/learn/">Start here</a><a href="/learn/#map">The living map</a><a href="/learn/#stack">The stack in seven layers</a><a href="/learn/#kinds">Model vs chatbot vs agent</a><a href="/learn/#decide">When to build an agent</a><a href="/learn/#loop">The agentic loop</a><a href="/learn/#multi">Multi-agent patterns</a><a href="/learn/#enforce">Prompts vs hooks</a><a href="/learn/#faq">Questions people ask</a></div></details>
         <details class="dr-group"><summary><span class="dr-t">The SHAMS Method</span><span class="dr-d">Where AI belongs and how to keep it safe</span></summary>
           <div><a href="/method/">The method</a><a href="/method/#map">The estate map</a><a href="/method/#ladder">Autonomy ladder</a><a href="/method/#gates">The eight gates</a><a href="/method/#gate-check">Gate check</a><a href="/method/#record">The gate record</a></div></details>
         <details class="dr-group" open><summary><span class="dr-t">Playbooks</span><span class="dr-d">Questions first, then the Azure build in order</span></summary>
@@ -59,7 +62,7 @@
 (function(){var b=document.querySelector('.sh-burger'),d=document.getElementById('drawer');if(!b||!d)return;
 function set(o){d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');document.documentElement.classList.toggle('nav-open',o);}
 b.addEventListener('click',function(){set(d.hidden);});
-d.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+d.addEventListener('click',function(e){if(e.target.closest('a')||e.target.closest('[data-search]'))set(false);});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d.hidden)set(false);});
 var here=location.pathname;[].forEach.call(document.querySelectorAll('.sh-item > a'),function(a){var h=a.getAttribute('href');if(h==='/'){if(here==='/')a.classList.add('on');return;}var p=h.replace(/#.*$/,'');if(p&&p!=='/'&&here.indexOf(p)===0)a.classList.add('on');});
 [].forEach.call(document.querySelectorAll('.dr-group'),function(g){var hit=[].some.call(g.querySelectorAll('a'),function(a){var p=a.getAttribute('href').replace(/#.*$/,'');return p&&p!=='/'&&p.indexOf('http')!==0&&here.indexOf(p)===0;});if(here==='/'&&g.querySelector('a[href="/"]'))hit=true;if(hit){[].forEach.call(document.querySelectorAll('.dr-group[open]'),function(o){o.removeAttribute('open');});g.setAttribute('open','');}});

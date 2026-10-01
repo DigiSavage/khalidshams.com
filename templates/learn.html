@@ -3,11 +3,12 @@
   <div class="hero learn-hero">
     <p class="eyebrow">Learn AI · a living map for people who are new to it</p>
     <h1>Learn AI the way <em>it</em> learns.</h1>
-    <p class="lede">AI is a web of ideas, not a glossary. This page lays out the thirty-two concepts that matter as neurons on a map: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
+    <p class="lede">AI is a web of ideas, not a glossary. This page lays out the forty-four ideas that matter as neurons on a map, from what a model is to when an agent is the right call: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
     <div class="cta">
       <a class="btn solid" href="#map">Explore the map</a>
       <a class="btn" href="#stack">The stack in layers</a>
       <a class="btn" href="#kinds">LLM vs agent</a>
+      <a class="btn" href="#decide">When to build an agent</a>
       <a class="btn" href="#faq">Questions people ask</a>
     </div>
   </div>
@@ -17,13 +18,13 @@
   <div class="sec-head">
     <p class="sec-label">The map</p>
     <div>
-      <h2>Thirty-two ideas, wired the way they depend on each other.</h2>
-      <p class="intro">Left to right: the foundations, how machines learn, how language models work, and what turns a model into an agent. Tap any idea. Mark it "I get this" and it lights up; when two ideas you understand are linked, the link between them glows. Pick a guided circuit if you'd rather be walked through.</p>
+      <h2>Forty-four ideas, wired the way they depend on each other.</h2>
+      <p class="intro">Left to right: the foundations, how machines learn, how language models work, what turns a model into an agent, what it takes to run one safely, and how to decide whether you should. Tap any idea, or zoom to a cluster. Mark it "I get this" and it lights up; when two ideas you understand are linked, the link between them glows. Pick a guided circuit if you'd rather be walked through.</p>
     </div>
   </div>
   <div class="ln-instrument">
     <div class="ln-bar">
-      <div class="ln-meter"><span id="ln-count">0 / 32 understood</span><span class="ln-track"><i id="ln-fill"></i></span></div>
+      <div class="ln-meter"><span id="ln-count">0 / 44 understood</span><span class="ln-track"><i id="ln-fill"></i></span></div>
       <label for="ln-circuit" class="visually-hidden">Guided circuit</label>
       <select id="ln-circuit">
         <option value="">Free roam</option>
@@ -31,13 +32,16 @@
         <option value="learn">Circuit: How does a machine learn?</option>
         <option value="agent">Circuit: What makes it an agent?</option>
         <option value="trust">Circuit: When should I trust it?</option>
+        <option value="decide">Circuit: Should we build an agent?</option>
+        <option value="operate">Circuit: Running it safely</option>
       </select>
       <button class="btn ln-next" id="ln-next" type="button" hidden>Next stop →</button>
       <span class="ln-spacer"></span>
       <div class="ln-legend"><span><i class="ln-dot"></i>Idea</span><span><i class="ln-dot lit"></i>Understood</span><span><i class="ln-dot sel"></i>Selected</span></div>
     </div>
+    <div class="ln-clusters" id="ln-clusters" role="group" aria-label="Zoom to a cluster"></div>
     <div class="ln-stage">
-      <div class="ln-mapwrap"><svg id="ln-svg" viewBox="0 0 1500 700" role="img" aria-label="Interactive map of AI concepts"></svg></div>
+      <div class="ln-mapwrap"><svg id="ln-svg" viewBox="0 0 1800 800" role="img" aria-label="Interactive map of AI concepts"></svg></div>
       <aside class="ln-panel" aria-live="polite">
         <p class="ln-tag" id="ln-tag"></p>
         <h3 id="ln-title"></h3>
@@ -49,6 +53,7 @@
         <p class="ln-lesson" id="ln-body"></p>
         <div class="ln-rel"><span class="sec-label">Builds on</span><div class="ln-chips" id="ln-from"></div></div>
         <div class="ln-rel"><span class="sec-label">Leads to</span><div class="ln-chips" id="ln-to"></div></div>
+        <p class="ln-deeper" id="ln-deeper"></p>
         <div class="ln-actions">
           <button class="btn" type="button" id="ln-mark" aria-pressed="false">I get this</button>
           <button class="btn" type="button" id="ln-fire">Fire the signal</button>
@@ -133,6 +138,45 @@
     <div class="lk-row" role="row"><div class="lk-k" role="rowheader">Watch out for</div><div>Confident wrong answers.</div><div>Answering from data the user was never cleared to see.</div><div>A step that fails silently and the rest keep going.</div><div>Taking an action nobody designed a check for.</div></div>
   </div>
   <p class="ln-note">Most organisations should start at assistant or workflow and earn their way to agents. The <a href="/method/#ladder">autonomy ladder</a> is how I decide when a system is ready to move right.</p>
+</section></div></div>
+
+<div class="band" id="decide"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">When to build an agent</p>
+    <div>
+      <h2>Four questions decide it. Most teams should answer "not yet" to the last one.</h2>
+      <p class="intro">An agent is the most expensive and least predictable of the four kinds, so it has to earn its place. Walk the questions in order. The first "yes" tells you what to build. Wherever you land, you can move one step to the right later, once the gates for that step are passed; that is the whole idea of the autonomy ladder.</p>
+    </div>
+  </div>
+  <figure class="ln-fig">
+    <svg viewBox="0 0 1000 600" role="img" aria-labelledby="dec-title">
+      <title id="dec-title">Decision tree: is the task one step, do the steps repeat, does a person act on the answer, can you afford the controls; leading to model, workflow, assistant, agent, or assistant for now</title>
+      <g class="ln-box ln-dia"><path d="M190 30 L370 85 L190 140 L10 85 Z"/><text x="190" y="79" class="ln-h" text-anchor="middle">Is it one step?</text><text x="190" y="101" class="ln-s" text-anchor="middle">Text in, text out, nothing else.</text></g>
+      <path d="M370 85 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="77" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect x="470" y="40" width="240" height="90" rx="4"/><text x="490" y="70" class="ln-h">Use a model</text><text x="490" y="94" class="ln-s">One call to the API.</text><text x="490" y="112" class="ln-s">Keep it simple.</text></g>
+      <path d="M190 140 V170" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="162" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path d="M190 170 L370 225 L190 280 L10 225 Z"/><text x="190" y="219" class="ln-h" text-anchor="middle">Do the steps repeat?</text><text x="190" y="241" class="ln-s" text-anchor="middle">Same path every time, known in advance.</text></g>
+      <path d="M370 225 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="217" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect x="470" y="180" width="240" height="90" rx="4"/><text x="490" y="210" class="ln-h">Build a workflow</text><text x="490" y="234" class="ln-s">A person draws the path.</text><text x="490" y="252" class="ln-s">AI does some of the steps.</text></g>
+      <path d="M190 280 V310" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="302" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path d="M190 310 L370 365 L190 420 L10 365 Z"/><text x="190" y="359" class="ln-h" text-anchor="middle">Does a person act on it?</text><text x="190" y="381" class="ln-s" text-anchor="middle">The value is the answer, not the action.</text></g>
+      <path d="M370 365 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="357" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect x="470" y="320" width="240" height="90" rx="4"/><text x="490" y="350" class="ln-h">Build an assistant</text><text x="490" y="374" class="ln-s">Grounded in your documents.</text><text x="490" y="392" class="ln-s">Autonomy ladder level 1.</text></g>
+      <path d="M190 420 V450" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="442" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path d="M190 450 L370 505 L190 560 L10 505 Z"/><text x="190" y="499" class="ln-h" text-anchor="middle">Can you afford the controls?</text><text x="190" y="521" class="ln-s" text-anchor="middle">Typed actions, evaluation, traces,</text><text x="190" y="539" class="ln-s" text-anchor="middle">a cost ceiling, an off switch.</text></g>
+      <path d="M370 505 H470" class="ln-arrow ln-tool" marker-end="url(#ah)"/><text x="420" y="497" class="ln-lab ln-labtool" text-anchor="middle">yes</text>
+      <g class="ln-box ln-hub"><rect x="470" y="460" width="240" height="90" rx="4"/><text x="490" y="490" class="ln-h">Build an agent</text><text x="490" y="514" class="ln-s">Start at level 2: it drafts, a person</text><text x="490" y="532" class="ln-s">approves. Earn levels 3 and 4.</text></g>
+      <path d="M710 505 H750" class="ln-arrow ln-end" marker-end="url(#ah)"/><text x="730" y="497" class="ln-lab ln-labend" text-anchor="middle">no</text>
+      <g class="ln-box "><rect x="750" y="460" width="240" height="90" rx="4"/><text x="770" y="490" class="ln-h">Assistant, for now</text><text x="770" y="514" class="ln-s">Build the controls first. The eight</text><text x="770" y="532" class="ln-s">gates are the list. Then come back.</text></g>
+      <text x="500" y="590" class="ln-lab" text-anchor="middle">Each box to the right is one rung up the autonomy ladder.</text>
+    </svg>
+    <figcaption>
+      <div class="ln-anti"><p class="sec-label">Why this order</p>
+        <p>Each kind to the right costs more to build, more to run, and more when it is wrong. A workflow fails in one visible place; an agent fails somewhere in a loop nobody drew. So the question is never "could an agent do this?" (usually yes) but "what is the simplest kind that delivers the value?" Teams that start one step simpler ship in weeks, learn what the real steps are, and then have the evidence to move right.</p>
+        <p class="ln-rule">Pick the simplest kind that delivers the value. Move right one rung at a time, and only through the gates.</p></div>
+    </figcaption>
+  </figure>
+  <p class="ln-note">The controls in the last question are gates 05 to 08 of <a href="/method/#gates">the eight gates</a>. The <a href="/method/#gate-check">gate check</a> tells you in a few minutes which ones you are missing.</p>
 </section></div></div>
 
 <div class="band" id="loop"><div class="wrap"><section>
@@ -242,18 +286,18 @@
     </div>
   </div>
   <div class="ln-faq">
-    <details><summary>Is ChatGPT an agent?</summary><p>Out of the box it is an assistant: a model with a conversation and standing instructions. It becomes agent-like when it is given tools (browsing, code, files) and allowed to decide when to use them. The product you are using may be either, depending on what is switched on. The test is: does it choose its own next step and act on it? <a href="#kinds">The four kinds</a>.</p></details>
-    <details><summary>What is the difference between an LLM and AI?</summary><p>AI is the whole field. A large language model is one kind of AI: a program that writes by predicting the next word, very well. Spam filters, route planners, and image recognisers are AI too, and most of them are not language models.</p></details>
-    <details><summary>Why does it make things up?</summary><p>Because it is built to produce the most likely next words, not to check them. When it lacks the fact, the most likely words still come out fluently. This is called hallucination. The fix is retrieval (letting it look the fact up in documents you trust), citations, and an evaluation that measures how often it happens.</p></details>
-    <details><summary>Why doesn't it remember what I told it last week?</summary><p>Because a model has no memory of its own. It sees only what is in front of it for this request, called the context window. Products that "remember" are storing notes outside the model and placing them back into the context each time. That is memory as a feature of the system, not of the model.</p></details>
-    <details><summary>What is a token, and why do I keep seeing the word?</summary><p>The small chunks of text a model reads and writes, often parts of words. Everything about a model is counted in tokens: the price, the speed, and how much it can hold at once.</p></details>
-    <details><summary>What is a system prompt?</summary><p>The standing instructions a model is given before the conversation starts: who it is, what it may do, how to answer. It is strong guidance, not enforcement. Anything that must never happen needs a rule in code, not a sentence in the prompt. <a href="#enforce">The enforcement question</a>.</p></details>
-    <details><summary>What is RAG?</summary><p>Retrieval-augmented generation: before the model answers, the system searches your documents for the relevant passages and places them in front of it. An open-book exam instead of answering from memory. It is how you get an assistant to answer from your handbook rather than from the internet in general.</p></details>
-    <details><summary>Should we fine-tune a model on our data?</summary><p>Usually not first. Fine-tuning changes how a model behaves and sounds; it is unreliable at adding facts, and it has to be redone when the facts change. For facts, use retrieval. Fine-tune when you need a consistent style or format, or a small model to do one narrow job cheaply.</p></details>
-    <details><summary>What is MCP?</summary><p>Model Context Protocol, an open standard for connecting tools and data sources to AI models. Think of it as one connector shape: a tool built once as an MCP server works with any model or agent that speaks the protocol. It sits in the tools layer, between the agent and your systems. It standardises how the connection is made, not who is allowed to use it; permissions are still yours to enforce. <a href="#stack">The stack</a>.</p></details>
-    <details><summary>What is the difference between function calling and MCP?</summary><p>Function calling is how a model asks for a tool to be run: it emits a structured request that matches a schema you declared. MCP is how tools are packaged and discovered so that any model can find and call them. Function calling is the verb; MCP is the plug.</p></details>
-    <details><summary>What does "multi-agent" mean, and do we need it?</summary><p>Several agents with different jobs, usually one coordinating the rest. You need it when one agent would have to hold too many tools or too much context to stay reliable. Most teams don't need it on day one. <a href="#multi">Hub and spoke</a>.</p></details>
-    <details><summary>How do I know if an AI system is safe to let act on its own?</summary><p>It can tell you what decision it makes and who owns it. It runs as the user, with the user's permissions. Every action is typed, validated, and reversible where it matters. There is a test set that runs on every change, a trace that explains each run, a cost ceiling, and an off switch someone has tested. If any of those is missing, keep a person in the loop. That list is <a href="/method/#gates">the eight gates</a>, and you can <a href="/method/#gate-check">run the check</a> on your own system.</p></details>
+    <details id="q-chatgpt-agent"><summary>Is ChatGPT an agent?</summary><p>Out of the box it is an assistant: a model with a conversation and standing instructions. It becomes agent-like when it is given tools (browsing, code, files) and allowed to decide when to use them. The product you are using may be either, depending on what is switched on. The test is: does it choose its own next step and act on it? <a href="#kinds">The four kinds</a>.</p></details>
+    <details id="q-llm-vs-ai"><summary>What is the difference between an LLM and AI?</summary><p>AI is the whole field. A large language model is one kind of AI: a program that writes by predicting the next word, very well. Spam filters, route planners, and image recognisers are AI too, and most of them are not language models.</p></details>
+    <details id="q-makes-things-up"><summary>Why does it make things up?</summary><p>Because it is built to produce the most likely next words, not to check them. When it lacks the fact, the most likely words still come out fluently. This is called hallucination. The fix is retrieval (letting it look the fact up in documents you trust), citations, and an evaluation that measures how often it happens.</p></details>
+    <details id="q-remember"><summary>Why doesn't it remember what I told it last week?</summary><p>Because a model has no memory of its own. It sees only what is in front of it for this request, called the context window. Products that "remember" are storing notes outside the model and placing them back into the context each time. That is memory as a feature of the system, not of the model.</p></details>
+    <details id="q-token"><summary>What is a token, and why do I keep seeing the word?</summary><p>The small chunks of text a model reads and writes, often parts of words. Everything about a model is counted in tokens: the price, the speed, and how much it can hold at once.</p></details>
+    <details id="q-system-prompt"><summary>What is a system prompt?</summary><p>The standing instructions a model is given before the conversation starts: who it is, what it may do, how to answer. It is strong guidance, not enforcement. Anything that must never happen needs a rule in code, not a sentence in the prompt. <a href="#enforce">The enforcement question</a>.</p></details>
+    <details id="q-rag"><summary>What is RAG?</summary><p>Retrieval-augmented generation: before the model answers, the system searches your documents for the relevant passages and places them in front of it. An open-book exam instead of answering from memory. It is how you get an assistant to answer from your handbook rather than from the internet in general.</p></details>
+    <details id="q-fine-tune"><summary>Should we fine-tune a model on our data?</summary><p>Usually not first. Fine-tuning changes how a model behaves and sounds; it is unreliable at adding facts, and it has to be redone when the facts change. For facts, use retrieval. Fine-tune when you need a consistent style or format, or a small model to do one narrow job cheaply.</p></details>
+    <details id="q-mcp"><summary>What is MCP?</summary><p>Model Context Protocol, an open standard for connecting tools and data sources to AI models. Think of it as one connector shape: a tool built once as an MCP server works with any model or agent that speaks the protocol. It sits in the tools layer, between the agent and your systems. It standardises how the connection is made, not who is allowed to use it; permissions are still yours to enforce. <a href="#stack">The stack</a>.</p></details>
+    <details id="q-function-calling-vs-mcp"><summary>What is the difference between function calling and MCP?</summary><p>Function calling is how a model asks for a tool to be run: it emits a structured request that matches a schema you declared. MCP is how tools are packaged and discovered so that any model can find and call them. Function calling is the verb; MCP is the plug.</p></details>
+    <details id="q-multi-agent"><summary>What does "multi-agent" mean, and do we need it?</summary><p>Several agents with different jobs, usually one coordinating the rest. You need it when one agent would have to hold too many tools or too much context to stay reliable. Most teams don't need it on day one. <a href="#multi">Hub and spoke</a>.</p></details>
+    <details id="q-safe-to-act"><summary>How do I know if an AI system is safe to let act on its own?</summary><p>It can tell you what decision it makes and who owns it. It runs as the user, with the user's permissions. Every action is typed, validated, and reversible where it matters. There is a test set that runs on every change, a trace that explains each run, a cost ceiling, and an off switch someone has tested. If any of those is missing, keep a person in the loop. That list is <a href="/method/#gates">the eight gates</a>, and you can <a href="/method/#gate-check">run the check</a> on your own system.</p></details>
   </div>
 </section></div></div>
 
@@ -274,146 +318,15 @@
 
 <script>
 (function(){
-const N=[
- ["ai","Artificial Intelligence","Foundations",110,340,
-  "Software that does things we used to think needed human thinking: recognising faces, translating, writing, deciding.",
-  "A huge umbrella. Chess engines, spam filters and chatbots all stand under it, even though they work very differently.",
-  "An academic field since 1956. Early AI followed hand-written rules; most modern AI instead learns patterns from data (machine learning)."],
- ["data","Data","Foundations",210,170,
-  "The examples an AI learns from: text, photos, clicks, sounds, numbers.",
-  "Data is the textbook. A student who only ever reads cookbooks will think every question is about food.",
-  "Quality, quantity and coverage matter more than raw size. Data is cleaned, labelled and split into training and test sets. In an enterprise, who owns it and what it may contain matters as much as how much there is."],
- ["algorithm","Algorithm","Foundations",210,500,
-  "A precise, step-by-step recipe a computer follows.",
-  "A recipe card. Same ingredients plus the same steps always gives the same dish.",
-  "In machine learning, the learning algorithm (for example gradient descent) is the recipe that adjusts the model; the model is the dish it produces."],
- ["model","Model","Foundations",330,430,
-  "The thing AI produces after learning: a compact set of numbers that turns inputs into outputs.",
-  "A trained musician's instincts. You don't see the practice hours, only the ability left behind.",
-  "A mathematical function with learned parameters. GPT, Claude and Llama are names of models."],
- ["bias","Bias","Society",330,70,
-  "When AI treats some people or situations unfairly because of patterns in its data.",
-  "If every doctor in your picture book is a man, you'll guess 'man' when someone says doctor.",
-  "Arises from skewed data, labels, or objectives. Measured with fairness metrics; reduced by better data, audits and evaluation."],
- ["ml","Machine Learning","Learning",340,270,
-  "Instead of writing rules, you show the computer many examples and it figures out the rules itself.",
-  "Teaching a child what a dog is by pointing at dogs, not by describing fur and ears.",
-  "Optimising a model's parameters to minimise error on examples. Main styles: supervised, unsupervised and reinforcement learning."],
- ["training","Training","Learning",480,150,
-  "The practice phase: the model makes guesses, gets told how wrong it was, and adjusts. Millions of times.",
-  "A darts player throwing, seeing where it landed, and nudging their aim.",
-  "Repeated passes over data computing a loss, then updating parameters. Large models train for weeks on thousands of GPUs."],
- ["supervised","Supervised Learning","Learning",490,340,
-  "Learning from examples that come with the right answer attached.",
-  "Flashcards: question on the front, answer on the back.",
-  "Labelled pairs of input and target. Used for classification and regression. Unsupervised learning finds structure without labels."],
- ["parameters","Parameters","Learning",620,240,
-  "The adjustable numbers inside a model. Learning means tuning them.",
-  "The knobs on a giant mixing desk. Billions of knobs, each turned a tiny bit.",
-  "Weights and biases. Model size is quoted in parameters (70B, say). More parameters means more capacity, not guaranteed quality."],
- ["neuron","Artificial Neuron","Learning",520,540,
-  "A tiny calculator: it takes numbers in, weighs them, and passes on a signal if the total is strong enough.",
-  "A voter who listens to friends, trusts some more than others, and then says yes or no.",
-  "Computes a weighted sum plus bias, then applies an activation function such as ReLU. Loosely inspired by biological neurons."],
- ["nn","Neural Network","Learning",670,420,
-  "Many artificial neurons wired together in layers, passing signals forward.",
-  "A relay of rooms. Each room notices something a bit more abstract: edges, then shapes, then faces.",
-  "Stacked layers of neurons: input, hidden, output. Trained end to end with backpropagation."],
- ["backprop","Backpropagation","Learning",700,110,
-  "How a network figures out which of its knobs to blame for a mistake, so it can fix them.",
-  "After a group project goes wrong, tracing back who contributed what to the error and giving each person specific feedback.",
-  "Applies the chain rule to compute the gradient of the loss with respect to every parameter, from the output backwards."],
- ["deep","Deep Learning","Learning",800,300,
-  "Neural networks with many layers, which turned out to be surprisingly good at images, speech and language.",
-  "A very tall relay of rooms. More floors, more subtle things noticed.",
-  "The 2012 ImageNet result kicked off the era. Depth plus data plus GPUs is the recipe behind most AI you use today."],
- ["finetune","Fine-tuning","Learning",850,170,
-  "Training an already-trained model a little more on your own examples so it behaves the way you need.",
-  "A new hire who already knows the job, spending a week learning how your company does it.",
-  "Continued training on a smaller, task-specific dataset; full fine-tuning, LoRA adapters, instruction tuning. It changes behaviour and style reliably and adds facts unreliably. For facts, use retrieval."],
- ["token","Tokens","Language",720,580,
-  "The small chunks of text an AI actually reads, often word pieces rather than whole words.",
-  "Lego bricks of language. 'Unbelievable' might be three bricks: un, believ, able.",
-  "Produced by a tokenizer such as BPE. Pricing, speed and limits are all counted in tokens; roughly three quarters of an English word each."],
- ["embed","Embeddings","Language",860,510,
-  "Turning a word or idea into a list of numbers so that similar meanings end up close together.",
-  "A map of meaning where 'king' and 'queen' are neighbours and 'banana' lives across town.",
-  "Dense vectors, often hundreds to thousands of dimensions. They power search, recommendations and retrieval."],
- ["attention","Attention","Language",960,420,
-  "A way for a model to decide which earlier words matter most for understanding the current one.",
-  "Reading 'the trophy didn't fit in the suitcase because it was too big' and knowing 'it' points to the trophy.",
-  "Each token forms queries, keys and values; weights come from query and key similarity. Multi-head attention runs many of these in parallel."],
- ["transformer","Transformer","Language",940,250,
-  "The 2017 design that nearly all modern language AI is built on.",
-  "A room where every word can look at every other word at once, instead of reading left to right one at a time.",
-  "Stacks of attention and feed-forward layers with residual connections, introduced in the paper 'Attention Is All You Need'. It scales very well."],
- ["alignment","Alignment","Society",880,80,
-  "Making sure AI does what people actually intend, safely and honestly.",
-  "Raising a brilliant apprentice who is not only skilled but trustworthy.",
-  "Techniques include reinforcement learning from human feedback, constitutional training, red-teaming and evaluations. An active research field with open problems."],
- ["llm","Large Language Model","Language",1070,320,
-  "A program that writes by predicting the next word, over and over, very well.",
-  "Autocomplete that has read a large share of the internet and keeps your whole conversation in mind.",
-  "A transformer with billions of parameters, pre-trained on next-token prediction, then tuned with human feedback."],
- ["prompt","Prompting","Language",1120,190,
-  "What you type to an AI. Clear context and a clear ask get clearer answers.",
-  "Briefing a smart new colleague who knows nothing about your situation yet.",
-  "Includes system prompts, examples (few-shot), and structured instructions. Output quality is highly sensitive to it."],
- ["context","Context Window","Language",1120,460,
-  "How much text an AI can keep in mind at once.",
-  "The size of the desk it works on. Bigger desk, more papers open side by side.",
-  "Measured in tokens. Anything outside the window is invisible to the model unless it is retrieved or summarised back in."],
- ["hallucination","Hallucination","Language",990,585,
-  "When an AI states something false with total confidence.",
-  "A student who never says 'I don't know' and fills gaps with plausible-sounding guesses.",
-  "A side effect of optimising for fluent, likely text. Reduced by retrieval, citations, better training, and an evaluation that measures how often it happens."],
- ["rag","Retrieval (RAG)","Language",1125,570,
-  "Letting an AI look things up in trusted documents before it answers.",
-  "An open-book exam instead of answering from memory.",
-  "Retrieval-augmented generation: embed documents, search for the chunks nearest to the question, and place them in the context window. Permissions must be checked at query time so nobody retrieves what they were never cleared to see."],
- ["sysprompt","System Prompt","Agents",1240,100,
-  "The standing instructions a model is given before the conversation starts: who it is, what it may do, how to answer.",
-  "The briefing a receptionist gets on day one, before any customer walks in.",
-  "A privileged message at the top of the context that sets role, constraints, tools and format. Strong guidance, not enforcement. Anything that must never happen needs a check in code."],
- ["agent","AI Agents","Agents",1330,230,
-  "AI that doesn't just answer but takes steps: searching, using tools, and checking its own work toward a goal.",
-  "Going from a helpful librarian to an assistant who actually runs the errands.",
-  "A model in a loop: it receives the conversation, decides whether to answer or call a tool, your code runs the tool and returns the result, and the loop repeats until the model's stop reason says it is done. Reliability and oversight are the hard parts."],
- ["multi","Multi-agent Systems","Agents",1410,120,
-  "Several agents with different jobs working together, usually with one coordinating the others.",
-  "A project lead who splits the work among specialists and assembles the result.",
-  "A coordinator decomposes a goal, routes subtasks to specialists with their own tools and isolated context, and aggregates the results. The main failure is decomposing too narrowly: give goals, not task lists."],
- ["tools","Tools and Function Calling","Agents",1300,380,
-  "Letting a model ask your software to do something: search, read a file, create a ticket, run a query.",
-  "Giving the librarian a phone and a list of people they are allowed to call.",
-  "The model emits a structured request (a name plus JSON arguments) matching a declared schema; your code validates it, executes it, and returns the result as a message. The model never executes anything itself."],
- ["mcp","MCP","Agents",1440,330,
-  "Model Context Protocol: a standard way to plug tools and data sources into any AI model, so each integration is built once.",
-  "USB-C for AI. One connector shape, so any tool fits any model.",
-  "An open protocol where servers expose tools, resources and prompts, and clients (agents, IDEs, chat apps) discover and call them. It lives in the tool layer between the agent and your systems. It standardises access, not permissions: authorisation is still yours."],
- ["memory","Memory","Agents",1240,520,
-  "How an AI keeps track of things beyond the current conversation.",
-  "A notebook the assistant writes in and reads from, because the desk gets cleared between visits.",
-  "Short-term memory is the context window. Long-term memory is stored outside the model (a database or vector store) and retrieved back in. Models don't learn from conversations unless someone trains them again."],
- ["evals","Evaluation","Agents",1400,470,
-  "Testing an AI system against a fixed set of cases so you know whether a change made it better or worse.",
-  "A driving test. Not 'did it feel fine,' but a set course, scored the same way every time.",
-  "A case set with expected outcomes, scored automatically where possible (groundedness, correctness, cost), run on every prompt, model or tool change. Without it, every improvement is an anecdote."],
- ["guardrails","Guardrails and Hooks","Agents",1430,610,
-  "Checks in code that run before or after the model acts, so certain things can never happen no matter what the model says.",
-  "A locked gate, not a sign that says please do not enter.",
-  "Pre- and post-tool hooks, schema validation, allow-lists, rate limits, kill switches. Prompts are probabilistic; hooks are deterministic. When money or safety is on the line, enforce with hooks."]
-];
-const E=[["ai","ml"],["ai","algorithm"],["data","ml"],["algorithm","model"],["model","ml"],["ml","training"],["ml","supervised"],["data","training"],["supervised","parameters"],["training","parameters"],["neuron","nn"],["parameters","nn"],["nn","backprop"],["training","backprop"],["nn","deep"],["deep","transformer"],["token","embed"],["embed","attention"],["attention","transformer"],["transformer","llm"],["llm","prompt"],["llm","context"],["token","context"],["context","rag"],["embed","rag"],["llm","hallucination"],["rag","hallucination"],["llm","agent"],["prompt","agent"],["data","bias"],["bias","alignment"],["llm","alignment"],["model","neuron"],
- ["training","finetune"],["finetune","llm"],["prompt","sysprompt"],["sysprompt","agent"],["agent","tools"],["tools","mcp"],["agent","memory"],["context","memory"],["agent","multi"],["agent","evals"],["evals","guardrails"],["hallucination","evals"],["alignment","guardrails"],["rag","tools"]];
-const CIRCUITS={chat:["ai","ml","nn","deep","token","embed","attention","transformer","llm","prompt","context"],learn:["data","ml","supervised","training","parameters","neuron","nn","backprop","finetune"],agent:["llm","prompt","sysprompt","tools","mcp","agent","memory","multi","evals","guardrails"],trust:["data","bias","llm","hallucination","rag","evals","guardrails","alignment"]};
-const nodes={};N.forEach(n=>nodes[n[0]]={id:n[0],label:n[1],cluster:n[2],x:n[3],y:n[4],plain:n[5],picture:n[6],deep:n[7]});
+const G={{GRAPH}};const N=G.ideas,E=G.edges,CIRCUITS=G.circuits;
+const nodes={};N.forEach(n=>nodes[n.id]=Object.assign({},n));
 const ns="http://www.w3.org/2000/svg",svg=document.getElementById("ln-svg");if(!svg)return;
 const el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let learned=new Set();try{learned=new Set(JSON.parse(localStorage.getItem("ks-learn")||"[]"))}catch(e){}
 const save=()=>{try{localStorage.setItem("ks-learn",JSON.stringify([...learned]))}catch(e){}};
-[["Foundations",60],["Learning",440],["Language",720],["Agents",1200]].forEach(([t,x])=>{const g=el("text",{x,y:24,class:"ln-cl"});g.textContent=t});
+const CL=[["Foundations",40,0,330,24],["Learning",440,0,900,24],["Language",720,0,1180,24],["Agents",1200,0,1500,24],["Operate",1520,0,1800,24],["Decide",1520,460,1800,478]];
+CL.forEach(([t,x,,,y])=>{const g=el("text",{x,y,class:"ln-cl"});g.textContent=t});
 const gE=el("g",{}),gS=el("g",{}),gN=el("g",{});
 const edges=E.map(([a,b])=>{const A=nodes[a],B=nodes[b],mx=(A.x+B.x)/2,my=(A.y+B.y)/2,dx=B.x-A.x,dy=B.y-A.y,len=Math.hypot(dx,dy),k=len*.12;
   const cx=mx-dy/len*k,cy=my+dx/len*k;const p=el("path",{d:`M${A.x} ${A.y} Q${cx} ${cy} ${B.x} ${B.y}`,class:"ln-edge"},gE);return{a,b,p}});
@@ -454,6 +367,7 @@ function render(){
   document.querySelectorAll(".ln-depths button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.d===depth));
   $("ln-body").textContent=n[depth];
   chips(E.filter(e=>e[1]===cur).map(e=>e[0]),$("ln-from"));chips(E.filter(e=>e[0]===cur).map(e=>e[1]),$("ln-to"));
+  const dp=$("ln-deeper");if(n.link){dp.innerHTML='Go deeper: <a href="'+n.link.href+'">'+n.link.label+' →</a>'}else{dp.innerHTML=""}
   const m=$("ln-mark"),on=learned.has(cur);m.setAttribute("aria-pressed",on);m.textContent=on?"Understood ✓":"I get this";
   paint();
 }
@@ -463,7 +377,17 @@ $("ln-mark").onclick=()=>{learned.has(cur)?learned.delete(cur):learned.add(cur);
 $("ln-fire").onclick=()=>fire(cur,2);
 $("ln-circuit").onchange=e=>{circuit=e.target.value||null;step=0;$("ln-next").hidden=!circuit;if(circuit)select(CIRCUITS[circuit][0],true);else render()};
 $("ln-next").onclick=()=>{const p=CIRCUITS[circuit];step=(step+1)%p.length;select(p[step],true)};
+// cluster zoom
+const FULL=[0,0,1800,800];let vb=FULL.slice();
+function setVB(b){svg.setAttribute("viewBox",b.join(" "));}
+function zoomTo(b){if(reduce){vb=b;setVB(b);return}const from=vb.slice(),t0=performance.now();(function st(now){const k=Math.min(1,(now-t0)/450),e=1-Math.pow(1-k,3);vb=from.map((v,i)=>v+(b[i]-v)*e);setVB(vb);if(k<1)requestAnimationFrame(st)})(t0);}
+function bbox(c){const ns=Object.values(nodes).filter(n=>n.cluster===c);if(!ns.length)return FULL;let x0=Math.min(...ns.map(n=>n.x))-90,x1=Math.max(...ns.map(n=>n.x))+90,y0=Math.min(...ns.map(n=>n.y))-70,y1=Math.max(...ns.map(n=>n.y))+70;
+  let w=x1-x0,h=y1-y0;const r=1800/800;if(w/h<r){const nw=h*r;x0-=(nw-w)/2;w=nw}else{const nh=w/r;y0-=(nh-h)/2;h=nh}return [x0,y0,w,h];}
+const clBox=$("ln-clusters");const clusters=["All","Foundations","Learning","Language","Agents","Operate","Decide"];
+clusters.forEach(c=>{const b=document.createElement("button");b.type="button";b.textContent=c;b.setAttribute("aria-pressed",c==="All");b.onclick=()=>{[].forEach.call(clBox.children,x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");
+  Object.values(nodes).forEach(n=>n.g.classList.toggle("dim",c!=="All"&&n.cluster!==c));edges.forEach(e=>e.p.classList.toggle("dim",c!=="All"&&!(nodes[e.a].cluster===c&&nodes[e.b].cluster===c)));const mw=svg.parentNode;mw.classList.toggle("zoomed",c!=="All");mw.scrollLeft=0;zoomTo(c==="All"?FULL:bbox(c));};clBox.appendChild(b)});
 render();
+const qp=new URLSearchParams(location.search).get("idea");if(qp&&nodes[qp]){select(qp,true);const cb=[].find.call(clBox.children,x=>x.textContent===nodes[qp].cluster);if(cb)cb.click();}
 if(!reduce){let touched=false;svg.addEventListener("pointerdown",()=>touched=true,{once:true});
   const ids=Object.keys(nodes);setTimeout(()=>fire("ai",2),700);
   setInterval(()=>{if(document.hidden)return;const pool=learned.size>2?[...learned]:ids;fire(pool[Math.floor(Math.random()*pool.length)],touched?1:2)},3600);}
