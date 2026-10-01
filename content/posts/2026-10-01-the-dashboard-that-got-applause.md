@@ -1,10 +1,10 @@
 ---
 title: "The dashboard that got applause"
 date: 2026-10-01
-status: approved
+status: published
 tag: engineering
 summary: "I've built dashboards that got applause and then quietly became the most expensive thing in the system."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7511518047585656832/
 ---
 
 I've built dashboards that got applause and then quietly became the most expensive thing in the system.
