@@ -1,9 +1,35 @@
-<div class="wrap">
-  <header class="mast">
-    <a class="nm" href="/" style="color:var(--ink)"><img class="mark" src="/icon-192.png" alt="" width="26" height="26">Khalid Shams</a>
-    <span>Principal Solutions Architect</span>
-    <span>Phoenix, Arizona</span>
-    <nav class="mnav"><a href="/method/">Method</a><a href="/writing/">Writing</a></nav>
-    <span class="avail"><span class="dot"></span>Open to principal-scope roles</span>
-  </header>
-</div>
+<header class="site-head">
+  <div class="wrap sh-row">
+    <a class="sh-brand" href="/"><img src="/icon-192.png" alt="" width="28" height="28"><span>Khalid Shams</span><em>Principal Solutions Architect</em></a>
+    <nav class="sh-nav" aria-label="Primary">
+      <div class="sh-item"><a href="/">Home</a>
+        <div class="sh-sub"><a href="/#outcomes">Outcomes</a><a href="/#situations">What I'm for</a><a href="/#work">Selected work</a><a href="/#built">Built end to end</a><a href="/#depth">Depth</a><a href="/#contact">Contact</a></div></div>
+      <div class="sh-item"><a href="/method/">Method</a>
+        <div class="sh-sub"><a href="/method/#map">The estate map</a><a href="/method/#shams">The SHAMS Method</a><a href="/method/#ladder">Autonomy ladder</a><a href="/method/#gates">The eight gates</a><a href="/method/#gate-check">Gate check</a><a href="/method/#record">The gate record</a></div></div>
+      <div class="sh-item"><a href="/writing/">Writing</a>
+        <div class="sh-sub"><a href="/writing/">All posts</a><a href="/#writing">Latest on the home page</a><a href="/feed.xml">RSS feed</a><a href="https://www.linkedin.com/in/kalshams/recent-activity/all/" target="_blank" rel="noopener">On LinkedIn</a></div></div>
+      <div class="sh-item"><a href="/#work">Work</a>
+        <div class="sh-sub"><a href="/#work">Case studies</a><a href="/#built">Products I built</a><a href="https://github.com/DigiSavage/khalidshams.com" target="_blank" rel="noopener">This site's source</a></div></div>
+      <a class="sh-cta" href="mailto:khalidshams@gmail.com">Get in touch</a>
+    </nav>
+    <button class="sh-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+  <div class="drawer" id="drawer" hidden>
+    <div class="wrap">
+      <div class="dr-group"><p class="sec-label">Home</p><a href="/">Overview</a><a href="/#outcomes">Outcomes</a><a href="/#situations">What I'm for</a><a href="/#work">Selected work</a><a href="/#built">Built end to end</a><a href="/#depth">Depth</a><a href="/#contact">Contact</a></div>
+      <div class="dr-group"><p class="sec-label">Method</p><a href="/method/">The SHAMS Method</a><a href="/method/#map">The estate map</a><a href="/method/#ladder">Autonomy ladder</a><a href="/method/#gates">The eight gates</a><a href="/method/#gate-check">Gate check</a><a href="/method/#record">The gate record</a></div>
+      <div class="dr-group"><p class="sec-label">Writing</p><a href="/writing/">All posts</a><a href="/feed.xml">RSS feed</a><a href="https://www.linkedin.com/in/kalshams/recent-activity/all/" target="_blank" rel="noopener">On LinkedIn</a></div>
+      <div class="dr-group"><p class="sec-label">Elsewhere</p><a href="https://www.linkedin.com/in/kalshams" target="_blank" rel="noopener">LinkedIn profile</a><a href="https://github.com/DigiSavage/khalidshams.com" target="_blank" rel="noopener">This site's source</a><a href="mailto:khalidshams@gmail.com">khalidshams@gmail.com</a></div>
+      <p class="dr-foot"><span class="dot"></span>Open to principal-scope roles · Phoenix, Arizona · Remote or hybrid</p>
+    </div>
+  </div>
+</header>
+<script>
+(function(){var b=document.querySelector('.sh-burger'),d=document.getElementById('drawer');if(!b||!d)return;
+function set(o){d.hidden=!o;b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?'Close menu':'Open menu');document.documentElement.classList.toggle('nav-open',o);}
+b.addEventListener('click',function(){set(d.hidden);});
+d.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!d.hidden)set(false);});
+var here=location.pathname;[].forEach.call(document.querySelectorAll('.sh-item > a'),function(a){var h=a.getAttribute('href');if(h==='/'){if(here==='/')a.classList.add('on');return;}var p=h.replace(/#.*$/,'');if(p&&p!=='/'&&here.indexOf(p)===0)a.classList.add('on');});
+})();
+</script>
