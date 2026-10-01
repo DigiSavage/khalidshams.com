@@ -82,6 +82,18 @@ Never commit secrets. AWS keys and LinkedIn tokens are GitHub Actions secrets th
 - Posts needed before late April 2027.
 - Khalid's own items (not for Claude Code): LinkedIn Featured PDF swap, LinkedIn token renewal around Nov 9 2026, AWS CSV deletion, six old template objects in the S3 bucket.
 
+## Keeping the local copy in sync with GitHub
+
+GitHub is the source of truth and it changes without you: the Tue/Thu publisher workflow commits to `main` (it flips a post to `status: published` and writes `linkedin_url`). So the local clone drifts if it is not pulled. Rules:
+
+1. **Start of every session and before every commit:** `git pull --rebase origin main`. If the rebase reports a conflict in `content/posts/*.md`, keep the GitHub version of `status` and `linkedin_url` (the publisher is right), keep the local version of everything else.
+2. **Push immediately after every commit.** Never leave commits sitting locally; `git push origin main` is part of "commit".
+3. **Never leave uncommitted work at the end of a session.** Commit and push, or `git stash` with a note, and say which.
+4. **Never force-push, never rewrite history on `main`, never delete the remote branch.**
+5. Before saying "done", run `git status` (clean) and `git fetch && git status -sb` (must say "up to date" with `origin/main`, not ahead or behind) and report both.
+
+If Khalid wants the folder to stay current even when no session is running, a `launchd` job on the Mac that runs `cd ~/Documents/khalidshams.com && git pull --rebase --autostash origin main` every 30 minutes is enough; the repo has no local-only state, so a pull can never lose anything that was pushed.
+
 ## Commit style
 
 Short imperative subject, what changed and why, no em dashes. Commits are authored as Khalid Shams <khalidshams@gmail.com>.
