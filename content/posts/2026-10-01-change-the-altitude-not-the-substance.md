@@ -1,10 +1,10 @@
 ---
 title: "Change the altitude, not the substance"
 date: 2026-10-01
-status: approved
+status: published
 tag: communication
 summary: "An ad hoc note I was inspired to write. A conversation with people who think about building, and the one habit that lets you talk to a CTO and an engineer in the same hour without lying to either."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7511539731055247360/
 ---
 
 This is more of an ad hoc post, one I was inspired to write rather than planned. I spent an hour today with people who think about building the way I do, trading ideas about what to make next, and remembered that this is my favourite part of the job. Not the diagrams. The conversations.
