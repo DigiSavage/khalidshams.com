@@ -14,6 +14,8 @@ CARDS = {
     text="Root cause first. Remediation second.", sub="Resize before you understand and you have the same problem at a higher bill."),
 "the-dashboard-that-got-applause": dict(layout="statement", dark=False, eyebrow="Foundations",
     text="Build the engine before you shape the body.", sub="Dashboards that get applause are the cheapest thing to build and the most expensive thing to keep."),
+"change-the-altitude-not-the-substance": dict(layout="statement", dark=True, eyebrow="Conversations",
+    text="Change the altitude, not the substance.", sub="The executive and the engineer get the same truth, at the height where their decision lives."),
 "the-agent-inherits-the-user-s-permissions": dict(layout="statement", dark=True, eyebrow="Security",
     text="The agent inherits the user's permissions, and never exceeds them.", sub="Governance isn't the brake. It's what lets you take your foot off it."),
 "where-i-put-the-human": dict(layout="numbered", dark=False, eyebrow="Healthcare",
