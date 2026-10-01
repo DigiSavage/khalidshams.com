@@ -1,0 +1,247 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero method-hero">
+    <p class="eyebrow">How I build agentic AI</p>
+    <h1>Eight gates between a demo <em>and a system.</em></h1>
+    <p class="lede">Most agent demos work. Most agent systems don't. The difference isn't the model. It's a short list of questions that have to be answered in writing, in order, before the next step is allowed to happen. I run every agentic build through the same eight gates. Each gate is one question, the evidence that answers it, and the name of the person who signs.</p>
+    <div class="cta">
+      <a class="btn solid" href="#gate-check">Run the gate check</a>
+      <a class="btn" href="#gates">Read the gates</a>
+      <button class="btn" type="button" onclick="window.print()">Print the one-pager</button>
+    </div>
+  </div>
+</div>
+
+<div class="band"><div class="wrap">
+  <ol class="gate-strip" aria-label="The eight gates">
+    <li><a href="#g1"><b>01</b><span>Decision</span></a></li>
+    <li><a href="#g2"><b>02</b><span>Boundaries</span></a></li>
+    <li><a href="#g3"><b>03</b><span>Permissions</span></a></li>
+    <li><a href="#g4"><b>04</b><span>Grounding</span></a></li>
+    <li><a href="#g5"><b>05</b><span>Actions</span></a></li>
+    <li><a href="#g6"><b>06</b><span>Evaluation</span></a></li>
+    <li><a href="#g7"><b>07</b><span>Economics</span></a></li>
+    <li><a href="#g8"><b>08</b><span>Operations</span></a></li>
+  </ol>
+  <div class="gate-rules">
+    <div><h3>In order</h3><p>Gates 1 to 4 are answered before a line of orchestration code exists. They take about a week and they decide most of the architecture.</p></div>
+    <div><h3>In writing</h3><p>Every gate produces one page. Question, answer, evidence, owner, date. If it won't fit on a page, the thinking isn't done.</p></div>
+    <div><h3>With a signature</h3><p>A gate isn't passed because the architect says so. The person accountable for that gate signs it, and a gate can be reopened when something changes.</p></div>
+  </div>
+</div></div>
+
+<div class="band" id="gates"><div class="wrap method-body">
+  <nav class="gate-nav" aria-label="Gates">
+    <p class="sec-label">The gates</p>
+    <a href="#g1">01 Decision</a><a href="#g2">02 Boundaries</a><a href="#g3">03 Permissions</a><a href="#g4">04 Grounding</a>
+    <a href="#g5">05 Actions</a><a href="#g6">06 Evaluation</a><a href="#g7">07 Economics</a><a href="#g8">08 Operations</a>
+    <a href="#gate-check" class="nav-check">Gate check</a>
+  </nav>
+
+  <div class="gates">
+
+    <section class="gate" id="g1">
+      <p class="gnum">Gate 01 · Decision</p>
+      <h2>What decision does this system make, and who owns it when it's wrong?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>Vague scope is how an agent does the wrong thing confidently. "It helps users with X" is not a decision. A system that decides which invoice to pay is a different build from one that drafts the email asking about it, and nobody can design the controls until that line is drawn. The owner question is the one that stalls projects: if the answer is a committee, the project isn't ready.</p></div>
+        <div><h3>What I produce</h3><ul><li>A one-page scope statement: the decisions in scope, the decisions explicitly out, and the cost of a wrong answer in dollars or harm.</li><li>One named accountable owner for the outcome, not for the build.</li><li>The three questions, answered in writing: who is accountable, what is it allowed to see, what does a run cost at ten times the volume.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>The scope is a list of use cases rather than decisions.</li><li>Nobody can say what a wrong answer costs.</li><li>Accountability is "the AI team."</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>In the clinical platform I architected, the system never decides a diagnosis. It decides which document goes to which human queue, and how urgently. Writing that sentence down shaped everything that followed.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g2">
+      <p class="gnum">Gate 02 · Boundaries</p>
+      <h2>What does each agent own, where does control pass, and where does a human sit?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>Handoffs are where failures hide. One "do everything" agent can't be tested, priced, or explained. A pipeline of narrow specialists with a planner on top can be swapped piece by piece. And a human in the loop is only a control if the loop was designed: if the review screen is bad, the human stops reviewing and starts approving.</p></div>
+        <div><h3>What I produce</h3><ul><li>An agent map: one box per agent with its inputs, outputs, and the condition under which it hands off.</li><li>Human decision points placed by consequence, not by convenience, each with a designed review surface.</li><li>The queue: priority by consequence, a service level per item type, one owner per item, reason codes on every rejection.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>There is one agent and a very long prompt.</li><li>"Human in the loop" is an Approve button nobody designed.</li><li>Handoffs happen inside the model's reasoning rather than in the architecture.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>On the system I delivered on Anthropic's Claude platform, the planner decomposes the task and specialists retrieve, analyse, and act, each with a bounded scope and an explicit handoff. The planner is where the care goes.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g3">
+      <p class="gnum">Gate 03 · Permissions</p>
+      <h2>What is the agent allowed to see and do, per user, enforced by the platform?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>The most common enterprise AI failure I've seen isn't a hallucination. It's a service principal with broad access wired in during the pilot, and an assistant that cheerfully returns data the user was never cleared for. Policy in the prompt is a suggestion. Policy in the platform is a control.</p></div>
+        <div><h3>What I produce</h3><ul><li>An identity model where the agent acts as the user and inherits the user's permissions, never exceeding them.</li><li>Per-tool permission scopes; the service identity does only what no user could.</li><li>Entra ID, RBAC, and just-in-time elevation for anything privileged, with an access log that answers "who saw what, on whose behalf."</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>The service principal has Contributor on the subscription.</li><li>"Don't reveal confidential data" appears in the system prompt as the control.</li><li>Nobody can list what the agent can reach.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>Governance isn't the brake. On the security and data strategy work I contributed to, controls landed before workloads, so the AI features inherited governance instead of fighting it.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g4">
+      <p class="gnum">Gate 04 · Grounding</p>
+      <h2>Where does every fact come from, and is that source governed?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>If the data underneath isn't governed, the agent is fluent and wrong. Retrieval systems rarely fail loudly; they drift. Stale indexes, permissions that changed after indexing, chunks that lost their context, citations to documents that no longer exist. And the moment an agent keeps its own copy of a fact, you have a second source of truth that nobody governs.</p></div>
+        <div><h3>What I produce</h3><ul><li>A source inventory with a named owner for every source, usually a governed gold layer rather than a folder someone made for the pilot.</li><li>Provenance on every answer: retrieval attaches where it came from and whether it's current.</li><li>The retrieval-versus-memory rule, written down: facts about the world are retrieved, never remembered. Index refresh tied to source change events. Permission checks at query time, not index time.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>The index was built once from a demo folder.</li><li>Answers have no citation, or citations that 404.</li><li>The team says the agent "remembers" things.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>Moving an estate onto Microsoft Fabric with real medallion layering changed the question from "where is the data" to "who owns this layer." That ownership is what made grounding an agent on it safe.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g5">
+      <p class="gnum">Gate 05 · Actions</p>
+      <h2>Is every write typed, validated, idempotent, and reversible?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>An agent will retry. That isn't a bug, it's how they work. If a tool sends an email, creates a ticket, or moves money, and the first call succeeded, you now have two. A tool call is an API call and deserves the same discipline as any other integration, and in most prototypes it gets none.</p></div>
+        <div><h3>What I produce</h3><ul><li>A contract per tool: typed input validated before execution, typed output, a description written for the model, a version, a permission scope, and a defined failure path.</li><li>Idempotency on every write: a request id the receiving system dedupes on, or a write that sets state rather than adds to it.</li><li>Reversibility where possible: drafts before sends, holds before transfers, proposals before merges. A blast-radius table listing what each tool can break.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>Tools take an untyped dictionary and return whatever comes back.</li><li>Nobody can answer "what happens if this is called twice."</li><li>Model output goes straight into a downstream step without a schema check.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>In the clinical system, name matching proposes and never merges. A human confirms that two records are one person, and that decision is logged with who made it. The source document stays immutable, forever.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g6">
+      <p class="gnum">Gate 06 · Evaluation</p>
+      <h2>Can you show me the harness, and what number moves when quality moves?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>Every change to an agentic system, whether a prompt, a tool, a model version, or a retrieval tweak, has an unknown blast radius. Without a regression suite you aren't iterating. You're gambling and calling it iteration. If the answer to "show me the harness" is a pause, you're looking at a prototype wearing production clothes.</p></div>
+        <div><h3>What I produce</h3><ul><li>A fixed case set that includes the ugly inputs, not just the happy path.</li><li>A written catalogue of known failure modes, grown from every rejection in the review queue.</li><li>Groundedness and citation checks, so "confident" and "correct" don't get confused. One quality number and one cost number on the same dashboard, and a rule that no prompt or model change ships if either moves the wrong way.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>Quality is "it looked good in the demo."</li><li>An evaluation exists but isn't run before changes.</li><li>There is no number that moves when quality moves.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>The Claude platform build shipped with an evaluation harness and a written failure-mode catalogue as deliverables, not afterthoughts. That's what let production hardening happen in weeks instead of quarters.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g7">
+      <p class="gnum">Gate 07 · Economics</p>
+      <h2>What does a run cost at ten times the volume?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>A license costs the same whether people use it or not. An agent costs more the better it works, sometimes faster than linearly, because successful agents get asked harder questions and take more steps to answer them. Cost per run is an architecture decision, not a finance surprise.</p></div>
+        <div><h3>What I produce</h3><ul><li>A token budget per run, enforced, with a graceful stop rather than a runaway loop.</li><li>Model routing: small, fast models for classification, extraction, and formatting; the frontier model only for steps that need judgment.</li><li>Caching where inputs are stable. Hard ceilings on tool calls, retries, and recursion depth. A cost line next to the quality line.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>One model does everything.</li><li>Nobody can quote the most expensive run last week.</li><li>Finance will find out from the invoice.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>On the platform I run alone on AWS, the cost alarm is set lower than I think I need. It has paid for itself three times. The same rule scales to an enterprise estate.</p></div>
+      </div>
+    </section>
+
+    <section class="gate" id="g8">
+      <p class="gnum">Gate 08 · Operations</p>
+      <h2>Can you stop it, explain it, and change it safely?</h2>
+      <div class="gcols">
+        <div><h3>Why it matters</h3><p>Agents fail in ways that are fast, repetitive, and confident. By the time a human notices, the agent has done the wrong thing forty times. Logs tell you what it did; only a trace tells you why. And a model version change is a production deploy, whether or not the team treats it as one.</p></div>
+        <div><h3>What I produce</h3><ul><li>An off switch someone can flip in under a minute, a read-only mode, and circuit breakers per tool.</li><li>A trace per run: the plan, each retrieval and what it ignored, each tool call, each rejected alternative, and the cost of every step.</li><li>Prompts as versioned configuration gated by the harness. Model versions behind feature flags, rolled to a slice first. Append-only audit. Pilot exit criteria with a date, written before the architecture.</li></ul></div>
+        <div><h3>Not through this gate if</h3><ul><li>Rollback is the only way to stop it.</li><li>There are logs but no traces.</li><li>The prompt was last edited in a console on a Friday afternoon.</li></ul></div>
+        <div class="ex"><h3>From the work</h3><p>Every pilot I scope now has its exit criteria in the first document: the numbers that trigger a production build, the numbers that trigger shutting it down, and a date. Both outcomes are wins. The only losing outcome is drifting into permanence.</p></div>
+      </div>
+    </section>
+
+  </div>
+</div></div>
+
+<div class="band" id="gate-check"><div class="wrap">
+  <div class="sec-head">
+    <p class="sec-label">The gate check</p>
+    <div>
+      <h2>Twenty-four questions. Answer honestly, read the verdict.</h2>
+      <p class="intro">This is the same check I run in the first week of an engagement. Nothing you tick leaves this page. Tick what's true today, not what's planned.</p>
+    </div>
+  </div>
+  <div class="check" id="check"></div>
+  <div class="verdict" id="verdict" aria-live="polite">
+    <div class="score"><span id="score">0</span><span class="of">/ 24</span></div>
+    <div class="vtext"><h3 id="vtitle">Nothing ticked yet.</h3><p id="vbody">Work through the gates in order. The first open gate is the one to fix first.</p></div>
+    <div class="vact"><button class="btn" type="button" id="copy">Copy the open gates</button><button class="btn" type="button" id="reset">Reset</button></div>
+  </div>
+</div></div>
+
+<div class="band"><div class="wrap">
+  <div class="sec-head">
+    <p class="sec-label">The record</p>
+    <div>
+      <h2>One page per gate. This is the page.</h2>
+      <p class="intro">Every gate ends in the same short record. It's deliberately plain so that it gets written, and so an auditor, a new engineer, or a future version of the team can read it in a minute.</p>
+    </div>
+  </div>
+  <pre class="record">GATE          03 · Permissions
+QUESTION      What is the agent allowed to see and do, per user, enforced by the platform?
+ANSWER        The agent runs as the signed-in user via on-behalf-of flow. It reaches the
+              gold layer of the claims lakehouse and the ticketing API, nothing else.
+              The service identity can only write traces and read configuration.
+EVIDENCE      Identity diagram v3 · RBAC assignments export · access log sample from a
+              test user with restricted scope returning a correct denial
+OPEN ITEMS    PIM activation for the two privileged tools (owner: platform team, due 14 Nov)
+OWNER         Head of Security Engineering
+SIGNED        12 Nov 2026
+REVISIT       When a tool is added, when a data source is added, or at 90 days</pre>
+</div></div>
+
+<div class="band"><div class="wrap close">
+  <p class="eyebrow">Why gates and not a checklist</p>
+  <h2>Order is the whole method.</h2>
+  <p class="lede">A checklist lets you do the exciting part first and tick the boundaries later. By then the exceptions are already in production and every control is a negotiation with something people depend on. Gates force the sequence: decide, bound, permit, ground, and only then build. It looks slower on the plan. It is the only version that stays fast. <a href="/writing/">The writing</a> is where each gate gets argued about in public, twice a week.</p>
+  <div class="cta"><a class="btn solid" href="mailto:khalidshams@gmail.com">Talk through a specific system</a><a class="btn" href="/">Back to the portfolio</a></div>
+</div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+
+<script>
+(function(){
+  var GATES=[
+    ["Decision",["Someone can state, in one sentence, the decision this system makes.","One named person owns the outcome when it's wrong.","The cost of a wrong answer has been written down."]],
+    ["Boundaries",["Each agent has a written scope and an explicit handoff condition.","Human review points were placed by consequence, not convenience.","The review queue has priorities, a service level, and reason codes."]],
+    ["Permissions",["The agent acts as the user and inherits the user's permissions.","Each tool has its own permission scope.","Policy is enforced by the platform, not by the prompt."]],
+    ["Grounding",["Every data source has a named owner.","Every answer carries provenance a user can follow.","Facts are retrieved, never remembered; the index refreshes on source change."]],
+    ["Actions",["Every tool has a typed input and output schema that is validated.","Every write is idempotent or has a dedupe key.","High-consequence writes are reversible or go through a draft or hold."]],
+    ["Evaluation",["A fixed case set exists and includes the ugly inputs.","A written failure-mode catalogue exists and grows from rejections.","No prompt or model change ships without running the harness."]],
+    ["Economics",["Cost per run is known, including the most expensive run last week.","A token budget per run is enforced with a graceful stop.","Narrow steps run on small models; the frontier model is reserved for judgment."]],
+    ["Operations",["There is an off switch that works in under a minute.","Every run produces a trace that answers \"why did it do that.\"","Prompts and model versions are versioned, flagged, and rolled out to a slice first."]]
+  ];
+  var root=document.getElementById('check'); if(!root) return;
+  var KEY='ks-gate-check';
+  var state={}; try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
+  var html='';
+  GATES.forEach(function(g,gi){
+    html+='<div class="cg" role="group" id="cg'+(gi+1)+'"><div class="cg-h"><b>0'+(gi+1)+'</b> '+g[0]+'<span class="cg-score" data-g="'+gi+'">0/3</span></div>';
+    g[1].forEach(function(q,qi){
+      var id='q'+gi+'_'+qi; var on=!!state[id];
+      html+='<label class="cq"><input type="checkbox" id="'+id+'"'+(on?' checked':'')+'><span>'+q+'</span></label>';
+    });
+    html+='</div>';
+  });
+  root.innerHTML=html;
+  var scoreEl=document.getElementById('score'), vt=document.getElementById('vtitle'), vb=document.getElementById('vbody');
+  function verdict(n, firstOpen, perGate){
+    var t,b;
+    if(n===0){ t='Nothing ticked yet.'; b='Work through the gates in order. The first open gate is the one to fix first.'; }
+    else if(n<=9){ t='A prototype wearing production clothes.'; b='That is not an insult; most are. The fastest path is gates 1 to 4, in order, on paper, before any more code. '; }
+    else if(n<=17){ t='A pilot with a real chance.'; b='The foundations are partly there. Close the open gates before adding capability; every feature added now will have to be retrofitted later. '; }
+    else if(n<=22){ t='Ready for a slice of real traffic.'; b='Roll it to a small, named group with traces on and the off switch tested. Close the remaining gates while it runs. '; }
+    else { t='Ready to own.'; b='This is a system, not a demo. Keep the harness honest and reopen a gate whenever a tool, source, or model changes. '; }
+    if(n>0 && firstOpen!==null){ b+='First open gate: 0'+(firstOpen+1)+' '+GATES[firstOpen][0]+'.'; }
+    vt.textContent=t; vb.textContent=b;
+  }
+  function update(){
+    var n=0, firstOpen=null, per=[];
+    GATES.forEach(function(g,gi){
+      var c=0; g[1].forEach(function(_,qi){ var el=document.getElementById('q'+gi+'_'+qi); if(el&&el.checked){c++; state['q'+gi+'_'+qi]=1;} else { delete state['q'+gi+'_'+qi]; } });
+      per.push(c); n+=c; if(c<3 && firstOpen===null) firstOpen=gi;
+      var s=root.querySelector('.cg-score[data-g="'+gi+'"]'); if(s){ s.textContent=c+'/3'; s.className='cg-score'+(c===3?' done':''); }
+      var fs=document.getElementById('cg'+(gi+1)); if(fs) fs.classList.toggle('done', c===3);
+    });
+    scoreEl.textContent=n; verdict(n, firstOpen, per);
+    try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  }
+  root.addEventListener('change', update);
+  document.getElementById('reset').addEventListener('click', function(){ root.querySelectorAll('input').forEach(function(i){i.checked=false;}); update(); });
+  document.getElementById('copy').addEventListener('click', function(){
+    var lines=['Gate check, khalidshams.com/method'];
+    GATES.forEach(function(g,gi){ var open=[]; g[1].forEach(function(q,qi){ var el=document.getElementById('q'+gi+'_'+qi); if(!(el&&el.checked)) open.push(q); }); if(open.length){ lines.push('0'+(gi+1)+' '+g[0]+' ('+(3-open.length)+'/3)'); open.forEach(function(q){ lines.push('  - '+q); }); } });
+    if(lines.length===1) lines.push('All eight gates closed.');
+    var txt=lines.join('\n'); var btn=this;
+    function done(){ btn.textContent='Copied'; setTimeout(function(){ btn.textContent='Copy the open gates'; },1600); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done, done); } else { done(); }
+  });
+  update();
+  // highlight current gate in the side nav
+  var links=[].slice.call(document.querySelectorAll('.gate-nav a[href^="#g"]'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+e.target.id); }); } }); },{rootMargin:'-40% 0px -55% 0px'});
+    document.querySelectorAll('.gate').forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
