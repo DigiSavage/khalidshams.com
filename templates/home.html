@@ -2,25 +2,19 @@
 
 <div class="wrap">
   <div class="hero">
-    <p class="eyebrow">Enterprise Cloud · Data &amp; AI · Agentic Systems</p>
-    <h1>I turn ambiguous priorities into architecture people can <em>actually execute.</em></h1>
-    <p class="lede">Fifteen years in enterprise technology, five of them at Microsoft across cloud solutions architecture, solution assessment, customer success, and partner leadership. I work where the expensive decisions get made: regulated, multi-tenant, and mission-critical environments where being wrong costs real money and someone has to own the call.</p>
+    <p class="eyebrow">Principal Solutions Architect · Full-stack builder · Enterprise cloud, data &amp; AI</p>
+    <h1>I design the estate, and I still write the code that <em>runs on it.</em></h1>
+    <p class="lede">Fifteen years in enterprise technology, five of them at Microsoft across cloud architecture, solution assessment, customer success and partner leadership. The whole time, I kept building products of my own, end to end: the data model, the API, the identity, the front end, the pipeline, the bill. I work where the expensive decisions get made, in regulated, multi-tenant, mission-critical estates where being wrong costs real money and someone has to own the call.</p>
+    <div class="hero-note">
+      <p><strong>What AI changed.</strong> Not what a good system is. Where the cost sits. Building used to be the expensive part; a small team can now produce a working system in a week. The expensive part is deciding what that system is allowed to do, proving it does only that, grounding it in data someone governs, and being able to stop it. That is architecture work, and it is the reason I never stopped building: you cannot set those boundaries well for a system you could not build yourself.</p>
+    </div>
     <div class="cta">
       <a class="btn solid" href="mailto:khalidshams@gmail.com">Get in touch</a>
       <a class="btn" href="https://www.linkedin.com/in/kalshams" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
+  <blockquote class="pq pq-hero"><p>The old way was design it, build it, hope. The new way is decide what it may do, prove it, then let it build itself under supervision.</p><footer>Khalid Shams</footer></blockquote>
 </div>
-
-<div class="band" id="outcomes"><div class="wrap">
-  <div class="figs">
-    <div class="fig"><div class="v">$7.6M</div><div class="k">Pipeline generated from architecture-led assessments</div></div>
-    <div class="fig"><div class="v">$5.1M</div><div class="k">Incremental committed revenue closed against them</div></div>
-    <div class="fig"><div class="v">$4.5M</div><div class="k">Cost avoidance surfaced in one business-value assessment</div></div>
-    <div class="fig"><div class="v">250+</div><div class="k">Live patient records on a HIPAA-aligned platform I architected</div></div>
-  </div>
-  <p class="figs-note">Plus $532K in direct Azure consumed revenue attributed to delivered designs.</p>
-</div></div>
 
 <div class="band"><div class="wrap">
   <a class="method-callout" href="/method/">
@@ -75,6 +69,7 @@
       <p>Everyone knows it needs making; nobody wants to own it. I narrow the option space to two or three defensible paths, write down why, and put my name on the recommendation.</p>
     </div>
   </div>
+  <blockquote class="pq"><p>Speaking at a high level is earned in the deep-dive conversations. The executives who let me set scope are the ones I sat with long enough to understand what keeps them up at night, and told the honest number to, early.</p><footer>Khalid Shams</footer></blockquote>
 </section></div></div>
 
 <div class="band"><div class="wrap"><section id="work">
@@ -82,7 +77,21 @@
     <p class="sec-label">Selected work</p>
     <div>
       <h2>Engagements, and what actually changed.</h2>
-      <p class="intro">Client names withheld. The problems, the decisions, and the outcomes are exactly as they happened.</p>
+      <p class="intro">Client names withheld. The problems, the decisions, and the outcomes are exactly as they happened. Most of what I know about scope I learned in these rooms: it gets set in the conversation with the people who own the outcome, once they trust you enough to say what they are actually worried about, and it holds only if the expectations are written down that day.</p>
+    </div>
+  </div>
+  <div class="figs-ctx" id="outcomes">
+    <div class="sec-head figs-head">
+      <p class="sec-label">Numbers, in context</p>
+      <div>
+        <p class="intro">These four numbers come from one assessment-led role at Microsoft, not a career total. I show them because someone other than me measured them. The work below is the rest of the story.</p>
+      </div>
+    </div>
+    <div class="figs">
+      <div class="fig"><div class="v">$7.6M</div><div class="k">Pipeline generated from architecture-led assessments</div></div>
+      <div class="fig"><div class="v">$5.1M</div><div class="k">Incremental committed revenue closed against them</div></div>
+      <div class="fig"><div class="v">$4.5M</div><div class="k">Cost avoidance surfaced in one business-value assessment</div></div>
+      <div class="fig"><div class="v">$532K</div><div class="k">Direct Azure consumed revenue attributed to delivered designs</div></div>
     </div>
   </div>
 
@@ -149,6 +158,55 @@
   </div>
 </section></div></div>
 
+<div class="band"><div class="wrap"><section id="lessons">
+  <div class="sec-head">
+    <p class="sec-label">What I got wrong first</p>
+    <div>
+      <h2>Most of the method came from going down the wrong road and noticing.</h2>
+      <p class="intro">Every rule on this site has a day attached to it: the day I did the opposite and paid for it. These are the ones I'd rather you learn from my version of.</p>
+    </div>
+  </div>
+  <div class="lessons">
+    <article>
+      <p class="ls-when">The dashboard that got applause</p>
+      <h3>I built the visible part first.</h3>
+      <p>Early on I shipped dashboards that were fast, clean and useful-looking, with a backend still trying to catch up to what the front end had already promised. Months later the same team was spending its week keeping things upright: brittle data contracts, unclear ownership, lineage nobody could explain. You cannot retrofit a foundation under a system people already depend on.</p>
+      <p class="ls-now"><b>Now:</b> data contracts and ownership first, slightly over-built, before anything with a chart on it. It feels slow for a month and is the only version that stays fast.</p>
+    </article>
+    <article>
+      <p class="ls-when">A PostgreSQL escalation</p>
+      <h3>I nearly resized before I understood.</h3>
+      <p>An Azure Database for PostgreSQL Flexible Server under real pressure, a customer whose whole modernisation programme depended on it, and a room full of confident theories. The instinct is to add capacity and move on. We stopped and established where the load actually came from, which queries, and what the resilience posture really was versus what everyone assumed. Resizing first would have meant the same problem at a higher bill, and the credibility spent before the harder conversation.</p>
+      <p class="ls-now"><b>Now:</b> root cause before remediation, every time, even when the room wants the fast answer.</p>
+    </article>
+    <article>
+      <p class="ls-when">"Send everything to Sentinel"</p>
+      <h3>I mistook visibility for coverage.</h3>
+      <p>I have seen the invoice that sentence produces: every verbose log from every subscription flowing in, priced per gigabyte, and a SOC drowning in data it never wrote a single detection for. Seeing everything felt safe. It was expensive noise.</p>
+      <p class="ls-now"><b>Now:</b> detection first, ingestion second. Decide what you need to catch, trace backwards to the sources that feed it, and let the log bill be a consequence of that choice.</p>
+    </article>
+    <article>
+      <p class="ls-when">The pilot that never ended</p>
+      <h3>I let a pilot start without a definition of done.</h3>
+      <p>Six months in it still had users, a Teams channel and a renewed budget line, and no decision, because nobody had written down what would trigger a production build or a shutdown. It lived in the space between, indefinitely.</p>
+      <p class="ls-now"><b>Now:</b> exit criteria go in the first document, before the architecture. A clear no is a win; the only loss is the drift into permanence.</p>
+    </article>
+    <article>
+      <p class="ls-when">The honest number</p>
+      <h3>I rounded an estimate to what the room wanted to hear.</h3>
+      <p>The honest answer was somewhere between four and nine months depending on three things nobody knew yet. What got written down was six, because it fit the slide and the fiscal year. Month seven arrived, and the person who said six was explaining.</p>
+      <p class="ls-now"><b>Now:</b> a range, the assumptions that put you at each end, and what it costs to resolve the biggest unknown early. Less satisfying in the meeting. Far better in month seven.</p>
+    </article>
+    <article>
+      <p class="ls-when">My own AWS platform</p>
+      <h3>I set the cost alarm where it would only catch disasters.</h3>
+      <p>Running a consumer platform alone, I learned that cost is the fastest signal you have. Errors need a log to be read; latency needs a user to complain; cost just accumulates and is measured for free. The alarm I eventually set low enough to be occasionally annoying has paid for itself three times: a retry loop over a weekend, a storage class with retrieval charges I had not read carefully, a test environment I forgot existed.</p>
+      <p class="ls-now"><b>Now:</b> budgets per environment, thresholds at "surprising" not "catastrophic", daily granularity, and a human who receives it.</p>
+    </article>
+  </div>
+  <p class="ln-note">More of these, twice a week, in <a href="/writing/">Writing</a>. The rules they became are <a href="/method/#gates">the eight gates</a>.</p>
+</section></div></div>
+
 <div class="band"><div class="wrap"><section id="writing">
   <div class="sec-head">
     <p class="sec-label">Writing</p>
@@ -166,6 +224,7 @@
     <div>
       <h2>I still ship the thing myself.</h2>
       <p class="intro">Architecture advice ages badly when you stop building. These are mine, end to end: architecture, data model, services, security, infrastructure, release.</p>
+      <p class="intro">Full stack, at this level, is not a list of frameworks. It means owning every layer a system can fail in, from the schema to the invoice, and knowing which one is about to. It is why my recommendations to a team of forty are things I have run alone at two in the morning. And it is what AI has made more valuable, not less: when a model can write most of the code, the person who knows how the layers fail is the person who decides what gets shipped.</p>
     </div>
   </div>
   <div class="built">
@@ -205,6 +264,7 @@
 </section></div></div>
 
 <div class="band" id="contact"><div class="wrap">
+  <blockquote class="pq"><p>Predictable beats clever. Boring is a feature. The system that wins is the one someone can explain, stop, and change on a Tuesday.</p><footer>Khalid Shams</footer></blockquote>
   <div class="close">
     <p class="eyebrow">Next</p>
     <h2>If the wrong decision would be expensive, that's my kind of problem.</h2>

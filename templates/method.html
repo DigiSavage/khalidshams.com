@@ -15,13 +15,116 @@
 
 <div class="band" id="shams"><div class="wrap">
   <ol class="shams" aria-label="The SHAMS Method">
-    <li><b>S</b><span class="sh-t">Scope</span><span class="sh-d">Name the decision the system makes, who owns it when it's wrong, and what wrong costs.</span><span class="sh-g">Gate 01</span></li>
-    <li><b>H</b><span class="sh-t">Harden</span><span class="sh-d">Draw the boundaries: agent ownership, identity and permissions, typed and reversible actions.</span><span class="sh-g">Gates 02 · 03 · 05</span></li>
-    <li><b>A</b><span class="sh-t">Anchor</span><span class="sh-d">Ground every answer in governed data with provenance. Retrieve facts; never let the agent remember them.</span><span class="sh-g">Gate 04</span></li>
-    <li><b>M</b><span class="sh-t">Measure</span><span class="sh-d">A harness, a failure-mode catalogue, and a cost per run, before anything ships.</span><span class="sh-g">Gates 06 · 07</span></li>
-    <li><b>S</b><span class="sh-t">Sustain</span><span class="sh-d">An off switch, traces that explain why, versioned prompts and models, and exit criteria with a date.</span><span class="sh-g">Gate 08</span></li>
+    <li><button class="sh-card" type="button" aria-expanded="false" aria-controls="sp-s1"><b>S</b><span class="sh-t">Scope</span><span class="sh-d">Name the decision the system makes, who owns it when it's wrong, and what wrong costs.</span><span class="sh-g">Gate 01</span><span class="sh-more">What this governs <i aria-hidden="true"></i></span></button></li>
+    <li><button class="sh-card" type="button" aria-expanded="false" aria-controls="sp-s2"><b>H</b><span class="sh-t">Harden</span><span class="sh-d">Draw the boundaries: agent ownership, identity and permissions, typed and reversible actions.</span><span class="sh-g">Gates 02 · 03 · 05</span><span class="sh-more">What this governs <i aria-hidden="true"></i></span></button></li>
+    <li><button class="sh-card" type="button" aria-expanded="false" aria-controls="sp-s3"><b>A</b><span class="sh-t">Anchor</span><span class="sh-d">Ground every answer in governed data with provenance. Retrieve facts; never let the agent remember them.</span><span class="sh-g">Gate 04</span><span class="sh-more">What this governs <i aria-hidden="true"></i></span></button></li>
+    <li><button class="sh-card" type="button" aria-expanded="false" aria-controls="sp-s4"><b>M</b><span class="sh-t">Measure</span><span class="sh-d">A harness, a failure-mode catalogue, and a cost per run, before anything ships.</span><span class="sh-g">Gates 06 · 07</span><span class="sh-more">What this governs <i aria-hidden="true"></i></span></button></li>
+    <li><button class="sh-card" type="button" aria-expanded="false" aria-controls="sp-s5"><b>S</b><span class="sh-t">Sustain</span><span class="sh-d">An off switch, traces that explain why, versioned prompts and models, and exit criteria with a date.</span><span class="sh-g">Gate 08</span><span class="sh-more">What this governs <i aria-hidden="true"></i></span></button></li>
   </ol>
-  <p class="shams-note">Five moves, in order. The map below shows where to apply them; the eight gates below that are how each move gets signed off.</p>
+  <div class="shams-panels" id="shams-panels">
+    <div class="shams-panel" id="sp-s1" hidden>
+      <div class="sp-grid">
+        <div class="sp-col">
+          <p class="sec-label">S · Scope, in my words</p>
+          <p class="sp-words">Before any diagram, I sit with the people who own the outcome until they say what they are actually worried about. That conversation is the scope. Then I write the decision the system makes, who owns it when it's wrong, and what wrong costs, on one page, and get it signed. Scope an executive hasn't signed isn't scope; it's a hope, and it will be renegotiated the first time the pilot surprises someone.</p>
+          <p class="sec-label">The questions I ask</p>
+          <ol class="sp-qs"><li>What decision does this system make? Not 'it helps with X'. The decision, and a name next to it.</li><li>What does wrong cost, in dollars or harm, and what path does a wrong answer take before a person sees it?</li><li>What does done look like for the pilot: the numbers that trigger a build, the numbers that trigger a stop, and a date?</li><li>Who in the C-suite owns this outcome, and have they heard the honest range rather than the point estimate?</li></ol>
+        </div>
+        <div class="sp-col">
+          <p class="sec-label">Layers of the estate it governs</p><div class="chips"><a class="chip" href="/learn/#stack">People and products</a><a class="chip" href="/learn/#stack">Control</a></div>
+          <p class="sec-label">Ideas on the AI map</p><div class="chips"><a class="chip" href="/learn/?idea=when#map">When to use an agent</a><a class="chip" href="/learn/?idea=ladder#map">Autonomy ladder</a><a class="chip" href="/learn/?idea=cost#map">Cost per run</a></div>
+          <p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g1">01 Decision</a></div>
+          <p class="sec-label">Built in detail in</p><div class="chips"><a class="chip" href="/playbooks/">Every playbook opens with the questions I ask first</a></div>
+        </div>
+        <div class="sp-col sp-lesson">
+          <p class="sec-label">Where I got this wrong once</p>
+          <p>I once let a pilot start without a definition of done. Six months in it still had users, a Teams channel and a renewed budget, and no decision. Now the exit criteria go in the first document, before the architecture, and the range goes in writing rather than the number the room wanted to hear.</p>
+        </div>
+      </div>
+    </div>
+    <div class="shams-panel" id="sp-s2" hidden>
+      <div class="sp-grid">
+        <div class="sp-col">
+          <p class="sec-label">H · Harden, in my words</p>
+          <p class="sp-words">I draw the boundaries before anything is allowed to act: which agent owns what and where control passes; who the system runs as, and what that identity may see; what each tool may do, and whether it can be undone. The platform enforces all of it. The prompt gets to ask nicely. This is where every cloud security topic on the site lives, because an agent is an identity doing things, and it should be watched and limited like one.</p>
+          <p class="sec-label">The questions I ask</p>
+          <ol class="sp-qs"><li>Is there an agent map: one box per agent, its inputs and outputs, and the condition on which control passes?</li><li>Does the agent run as the signed-in user with that user's permissions, enforced by Entra and the platform, not by a sentence in the prompt?</li><li>Is every write typed, validated before execution, idempotent, and reversible where it has consequences?</li><li>Which rules are prompts and which are hooks? Anything involving money, compliance or data access should be a hook.</li></ol>
+        </div>
+        <div class="sp-col">
+          <p class="sec-label">Layers of the estate it governs</p><div class="chips"><a class="chip" href="/learn/#stack">Tools and protocols</a><a class="chip" href="/learn/#stack">Agents</a><a class="chip" href="/learn/#stack">Identity (estate layer 1)</a></div>
+          <p class="sec-label">Ideas on the AI map</p><div class="chips"><a class="chip" href="/learn/?idea=identity#map">Identity and permissions</a><a class="chip" href="/learn/?idea=tools#map">Tools and function calling</a><a class="chip" href="/learn/?idea=mcp#map">MCP</a><a class="chip" href="/learn/?idea=multi#map">Multi-agent systems</a><a class="chip" href="/learn/?idea=injection#map">Prompt injection</a><a class="chip" href="/learn/?idea=guardrails#map">Guardrails and hooks</a><a class="chip" href="/learn/?idea=sysprompt#map">System prompt</a></div>
+          <p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g2">02 Boundaries</a><a class="chip chip-b" href="#g3">03 Permissions</a><a class="chip chip-b" href="#g5">05 Actions</a></div>
+          <p class="sec-label">Built in detail in</p><div class="chips"><a class="chip" href="/playbooks/security-identity-governance/">Security, identity and governance</a><a class="chip" href="/playbooks/agentic-ai/">Agentic AI</a></div>
+        </div>
+        <div class="sp-col sp-lesson">
+          <p class="sec-label">Where I got this wrong once</p>
+          <p>The most common enterprise AI failure I have reviewed is not a hallucination. It is an assistant returning data a user was never cleared for, through a service principal that was given Contributor during the pilot and never revisited. I have been the person who approved that service principal 'just for the demo'. It is never just for the demo.</p>
+        </div>
+      </div>
+    </div>
+    <div class="shams-panel" id="sp-s3" hidden>
+      <div class="sp-grid">
+        <div class="sp-col">
+          <p class="sec-label">A · Anchor, in my words</p>
+          <p class="sp-words">Every fact the system states comes from a source somebody owns, and the answer can say which one. Facts are retrieved at the moment they are needed, with permissions checked at query time; the agent never keeps its own copy. This is where the data platform work lives: the lakehouse, the semantic models, the lineage. If the data underneath is not governed, the agent is fluent and wrong, and no amount of prompt engineering fixes that.</p>
+          <p class="sec-label">The questions I ask</p>
+          <ol class="sp-qs"><li>Where does every fact come from, and does that source have a named owner?</li><li>Are permissions checked when the question is asked, or when the index was built?</li><li>Is the index refreshed on source change events, or by a nightly job someone will forget?</li><li>Can the system show a citation for any answer, and does something validate that the citation still exists?</li></ol>
+        </div>
+        <div class="sp-col">
+          <p class="sec-label">Layers of the estate it governs</p><div class="chips"><a class="chip" href="/learn/#stack">Data</a><a class="chip" href="/learn/#stack">Context</a></div>
+          <p class="sec-label">Ideas on the AI map</p><div class="chips"><a class="chip" href="/learn/?idea=data#map">Data</a><a class="chip" href="/learn/?idea=dataplat#map">Data platform</a><a class="chip" href="/learn/?idea=rag#map">Retrieval (RAG)</a><a class="chip" href="/learn/?idea=embed#map">Embeddings</a><a class="chip" href="/learn/?idea=memory#map">Memory</a><a class="chip" href="/learn/?idea=context#map">Context window</a><a class="chip" href="/learn/?idea=hallucination#map">Hallucination</a></div>
+          <p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g4">04 Grounding</a></div>
+          <p class="sec-label">Built in detail in</p><div class="chips"><a class="chip" href="/playbooks/data-platform/">Data and AI platform</a></div>
+        </div>
+        <div class="sp-col sp-lesson">
+          <p class="sec-label">Where I got this wrong once</p>
+          <p>Early in my career I shipped dashboards that got applause and then became the most expensive thing in the system, because the foundation underneath was still catching up to what the front end had promised. The AI version of the same mistake is an index built once from a demo folder. Both look perfect on launch day. Both drift. Now the data contract comes first, and the index refresh is tied to the source.</p>
+        </div>
+      </div>
+    </div>
+    <div class="shams-panel" id="sp-s4" hidden>
+      <div class="sp-grid">
+        <div class="sp-col">
+          <p class="sec-label">M · Measure, in my words</p>
+          <p class="sp-words">Before anything ships I want two numbers that move: one for quality and one for money. The quality number comes from a fixed case set that includes the ugly inputs, run on every change to a prompt, a tool, or a model. The money number is cost per run, measured from week one, with a ceiling. Without these, every improvement is an anecdote and every budget is a surprise.</p>
+          <p class="sec-label">The questions I ask</p>
+          <ol class="sp-qs"><li>Can you show me the evaluation harness, and what number moves when quality moves?</li><li>Is there a written failure-mode catalogue, and does the harness include the cases in it?</li><li>What does a run cost today, and what does that become at ten times the volume?</li><li>Which steps really need the frontier model, and which could a small model do for a tenth of the price?</li></ol>
+        </div>
+        <div class="sp-col">
+          <p class="sec-label">Layers of the estate it governs</p><div class="chips"><a class="chip" href="/learn/#stack">Control</a></div>
+          <p class="sec-label">Ideas on the AI map</p><div class="chips"><a class="chip" href="/learn/?idea=evals#map">Evaluation</a><a class="chip" href="/learn/?idea=cost#map">Cost per run</a><a class="chip" href="/learn/?idea=finetune#map">Fine-tuning</a><a class="chip" href="/learn/?idea=token#map">Tokens</a></div>
+          <p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g6">06 Evaluation</a><a class="chip chip-b" href="#g7">07 Economics</a></div>
+          <p class="sec-label">Built in detail in</p><div class="chips"><a class="chip" href="/playbooks/agentic-ai/">Agentic AI</a><a class="chip" href="/playbooks/app-modernization/">Application modernization</a></div>
+        </div>
+        <div class="sp-col sp-lesson">
+          <p class="sec-label">Where I got this wrong once</p>
+          <p>On my own AWS platform I first set the cost alarm where it would only catch disasters. Then I set it low enough to be occasionally annoying, and it has paid for itself three times: a retry loop over a weekend, a storage class with retrieval charges I had not read carefully, a test environment I forgot existed. Cost is the fastest signal you have. Set the alarm at 'surprising', not 'catastrophic'.</p>
+        </div>
+      </div>
+    </div>
+    <div class="shams-panel" id="sp-s5" hidden>
+      <div class="sp-grid">
+        <div class="sp-col">
+          <p class="sec-label">S · Sustain, in my words</p>
+          <p class="sp-words">A system is not finished when it works. It is finished when someone can stop it in under a minute, explain any run six months later, change the prompt or the model without fear, and say when the pilot ends. This is where the platform foundations and operations topics live: landing zones, policy as code, traces, cost attribution, runbooks. Boring is a feature here. Predictable beats clever.</p>
+          <p class="sec-label">The questions I ask</p>
+          <ol class="sp-qs"><li>Can you stop it in under a minute, and has the owner watched you do it?</li><li>For any run, can you say what it read, what it decided, what it called, and what it cost?</li><li>Are prompts and model versions in the repo, behind flags, rolled to a slice first?</li><li>Who is told when a control fails, how fast, and what can they do about it?</li></ol>
+        </div>
+        <div class="sp-col">
+          <p class="sec-label">Layers of the estate it governs</p><div class="chips"><a class="chip" href="/learn/#stack">Control</a><a class="chip" href="/learn/#stack">Cloud foundations</a></div>
+          <p class="sec-label">Ideas on the AI map</p><div class="chips"><a class="chip" href="/learn/?idea=kill#map">Kill switch</a><a class="chip" href="/learn/?idea=traces#map">Traces and observability</a><a class="chip" href="/learn/?idea=hitl#map">Human in the loop</a><a class="chip" href="/learn/?idea=foundations#map">Cloud foundations</a></div>
+          <p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g8">08 Operations</a></div>
+          <p class="sec-label">Built in detail in</p><div class="chips"><a class="chip" href="/playbooks/cloud-foundations-multitenant/">Cloud foundations and multi-tenant SaaS</a><a class="chip" href="/playbooks/fullstack-product-engineering/">Full-stack product engineering</a></div>
+        </div>
+        <div class="sp-col sp-lesson">
+          <p class="sec-label">Where I got this wrong once</p>
+          <p>I have seen the invoice that 'send everything to Sentinel' produces: every verbose log flowing in, priced per gigabyte, and a SOC drowning in data it never wrote a detection for. Seeing everything felt safe. It was expensive noise. Now it is detection first, ingestion second, and the same rule applies to agent traces: record what you will need to answer 'why did it do that', and no more.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <blockquote class="pq"><p>I have never watched an AI project fail at the model. They fail at the gate nobody opened.</p><footer>Khalid Shams</footer></blockquote>
+  <p class="shams-note">Five moves, in order. Everything on this site hangs off them: every layer of the estate, every idea on the AI map, every playbook, every gate. Open a move to see what it governs, the questions I ask, and where I learned it the hard way.</p>
 </div></div>
 
 <div class="band" id="map"><div class="wrap">
@@ -234,6 +337,16 @@ REVISIT       When a tool is added, when a data source is added, or at 90 days</
 {{FOOTER}}
 </div></div>
 
+<script>
+(function(){var cards=[].slice.call(document.querySelectorAll('.sh-card')),host=document.getElementById('shams-panels');if(!cards.length||!host)return;
+function stacked(){return window.matchMedia('(max-width:620px)').matches}
+function closeAll(){cards.forEach(function(c){c.setAttribute('aria-expanded','false');c.parentNode.classList.remove('open');var p=document.getElementById(c.getAttribute('aria-controls'));if(p){p.hidden=true;if(p.parentNode!==host)host.appendChild(p);}});}
+cards.forEach(function(c){c.addEventListener('click',function(){var p=document.getElementById(c.getAttribute('aria-controls')),was=c.getAttribute('aria-expanded')==='true';closeAll();if(was)return;
+  c.setAttribute('aria-expanded','true');c.parentNode.classList.add('open');if(stacked())c.parentNode.appendChild(p);p.hidden=false;
+  if(!stacked()){var r=p.getBoundingClientRect();if(r.bottom>window.innerHeight)p.scrollIntoView({behavior:'smooth',block:'nearest'});}});});
+var qp=new URLSearchParams(location.search).get('move');if(qp){var c=document.querySelector('.sh-card[aria-controls="sp-'+qp+'"]');if(c)c.click();}
+})();
+</script>
 <script>
 (function(){
   var LAYERS=[
