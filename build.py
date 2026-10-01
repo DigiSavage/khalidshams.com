@@ -224,8 +224,8 @@ def build():
     # ---- method page
     mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer)
     (DIST / "method").mkdir(exist_ok=True)
-    (DIST / "method" / "index.html").write_text(page(mp, title="How I build agentic AI · Khalid Shams",
-        description="Eight gates between a demo and a system: the questions I make a team answer in writing, in order, before the next step is allowed.",
+    (DIST / "method" / "index.html").write_text(page(mp, title="The SHAMS Method · Khalid Shams",
+        description="Where AI belongs in your enterprise and how to keep it safe: an interactive map of your estate, the autonomy ladder, and the eight gates between a demo and a system.",
         canonical=f"{SITE}/method/"), encoding="utf-8")
 
     # ---- 404 (CloudFront custom error response points here)
