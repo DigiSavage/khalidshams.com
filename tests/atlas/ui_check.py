@@ -59,6 +59,27 @@ async def main():
         check("denied run ends as 'denied', no refund slot", st["outcome"] == "denied" and await pg.locator('.slot[data-slot="refund"].filled').count() == 0)
         await ctx.close()
 
+        # 2b. planted instruction: the check blocks it before any gate decision
+        ctx, pg, errs = await page(b, 1440, 900)
+        await pg.goto(A + "?x=injection&step=8"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("planted note visible on the Orders record", await pg.locator(".inj-note").is_visible())
+        await pg.goto(A + "?x=injection&step=10"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        hm = await pg.text_content("#o-hook .h-mark"); gm = await pg.text_content("#o-gate_refunds .g-mark")
+        check("check plate shows a cross and the refund gate shows nothing", hm == "✕" and gm == "", repr((hm, gm)))
+        await pg.screenshot(path=str(SHOTS / "02b-injection-1440.png"))
+        await pg.click("#atl-next"); await pg.wait_for_timeout(200)
+        st = await pg.evaluate("window.__atlas.state()")
+        check("injection run ends as 'blocked'", st["outcome"] == "blocked", st["outcome"])
+        await pg.goto(A); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("planted note hidden when the condition is off", not await pg.locator(".inj-note").is_visible())
+        await pg.click('.slot[data-slot="instructions"]'); await pg.wait_for_timeout(150)
+        f1 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        await pg.click(".tokens"); await pg.wait_for_timeout(150)
+        f2 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        check("sub-parts select their own concepts (instructions, tokens)", (f1, f2) == ("sysprompt", "token"), repr((f1, f2)))
+        check("no page errors (injection)", not errs, str(errs))
+        await ctx.close()
+
         # 3. collaborator: work order and result, picture and architecture
         ctx, pg, errs = await page(b, 1440, 900)
         await pg.goto(A + "?design=team&step=10"); await pg.wait_for_selector('#atlas[data-ready="true"]')

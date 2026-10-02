@@ -167,7 +167,7 @@ def scene():
            rect(816, 92, 66, 16, "card", rx=3) + rect(816, 116, 66, 16, "card", rx=3) +
            T(736, 160, "MODEL", "t-m") + T(736, 180, "replaceable · version pinned", "t-s") +
            path("M898 168 H912", "ln"))
-    eng += (f'<g class="tokens">' + "".join(rect(736 + i * 21, 196, 17, 12, "accf", rx=2, **{"data-tk": str(i)}) for i in range(7)) + '</g>')
+    eng += (f'<g class="tokens" data-sc="token">' + "".join(rect(736 + i * 21, 196, 17, 12, "accf", rx=2, **{"data-tk": str(i)}) for i in range(7)) + '</g>')
     eng += f'<text class="t-c proposal" x="736" y="232" fill="#1F45C8" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13"></text>'
     o.append(obj("model", "model", eng, abox(722, 72, 176, 166, "LLM API", "messages in\ncontent + stop_reason out\nmodel id pinned", [(722, 150), (898, 150)]), ["measure", "sustain"]))
     # ---------------- operator behind the context tray
@@ -177,30 +177,39 @@ def scene():
     tray = [path("M396 286 L834 286 L842 432 L388 432 Z", "top"), T(412, 304, "CONTEXT · THIS CALL ONLY", "t-m")]
     for i, (k, lab) in enumerate(SLOTS):
         x, y = slot_xy(i)
-        tray.append(f'<g class="slot" data-slot="{k}">' + rect(x, y, 96, 50, "dash", rx=4) +
+        sc = {"instructions": "sysprompt", "request": "prompt", "reply": "hallucination"}.get(k)
+        tray.append(f'<g class="slot" data-slot="{k}"' + (f' data-sc="{sc}"' if sc else '') + '>' + rect(x, y, 96, 50, "dash", rx=4) +
                     rect(x + 40, y + 6, 16, 20, "card slot-doc", rx=2) + T(x + 48, y + 42, lab, "t-s", "middle") + '</g>')
     tray.append(path("M380 432 H850 V446 H380 Z", "sunk"))
     o.append(obj("context", "context", "".join(tray), abox(388, 286, 454, 146, "Context assembly", "prompt builder: instructions, request,\nloaded skill, notes, passages, results"), ["anchor"]))
     # ---------------- tool dock + MCP ports
-    dock = (rect(852, 286, 62, 146, "sunk", rx=4) + T(852, 278, "TOOLS", "t-m") +
+    dock = (rect(852, 286, 62, 146, "sunk", rx=4) + T(852, 446, "TOOLS", "t-m") +
             circ(872, 312, 8, "ln") + path("M878 318 L884 324", "ln") +             # lookup
             circ(872, 357, 9, "card") + T(872, 362, "$", "t-h", "middle") +          # refund
             rect(862, 394, 22, 15, "card", rx=1) + path("M862 394 L873 403 L884 394", "ln"))  # message
     ports = "".join(rect(902, y - 6, 12, 12, "accf", rx=2) for y in (312, 357, 402))
     o.append(obj("tool", "tool", dock, abox(852, 286, 62, 146, "Tools", "schemas"), ["harden"]))
-    o.append(obj("mcp", "mcp", ports + T(908, 446, "MCP", "t-m", "middle"),
+    o.append(obj("mcp", "mcp", ports + T(908, 464, "MCP", "t-m", "middle"),
                  "".join(circ(908, y, 6, "accf") for y in (312, 357, 402)) + T(908, 446, "MCP clients", "t-c", "middle"), ["harden"]))
+    # ---------------- pre-call check (guardrail) between the proposal and the gates
+    hk = (rect(836, 246, 80, 26, "card", rx=3) + path("M844 253 L850 251 L856 253 V258 Q856 264 850 267 Q844 264 844 258 Z", "ln") +
+          T(862, 263, "CHECK", "t-m", font_size="10") +
+          '<text class="h-mark" x="906" y="264" text-anchor="middle" fill="#1F45C8" font-family="IBM Plex Sans, sans-serif" font-size="14" font-weight="600"></text>')
+    o.append(obj("hook", "guardrails", hk, rect(836, 246, 80, 26, "accf", rx=3) + T(876, 263, "pre-call hook", "t-c", "middle"), ["harden", "measure"]))
     # ---------------- gates on the boundary
     for gid, gy, label in (("gate_orders", 122, "orders:read"), ("gate_refunds", 280, "refunds:issue"), ("gate_msg", 438, "messages:send")):
         g = (rect(921, gy - 26, 18, 52, "card", rx=3) + rect(925, gy - 8, 10, 16, "accf", rx=2) +
              f'<g class="gate-state"><text class="g-mark" x="954" y="{gy + 8}" text-anchor="middle" fill="#1F45C8" font-family="IBM Plex Sans, sans-serif" font-size="18" font-weight="600"></text></g>' +
-             T(937, gy - 34, label, "t-m halo", "middle", font_size="10.5"))
+             T(937, gy - 34, label, "t-m halo", "middle", font_size="9.5"))
         o.append(obj(gid, "authorization", g, rect(915, gy - 28, 30, 56, "accf", rx=3) + T(930, gy - 34, "authz", "t-c", "middle"), ["harden"]))
     # ---------------- services
     for sid, sy, title, sub in (("svc_orders", 72, "Orders", "MCP server"), ("svc_refunds", 230, "Refunds", "MCP server"), ("svc_messaging", 388, "Messaging", "MCP server")):
         st = (rect(976, sy, 150, 104, "sunk", rx=4) + path(f"M976 {sy+30} H1126", "ln") + T(988, sy + 22, title.upper(), "t-m") +
               rect(990, sy + 44, 36, 44, "card", rx=2) + rect(1036, sy + 44, 36, 44, "card", rx=2) + rect(1082, sy + 44, 32, 44, "card", rx=2) +
               T(1134, sy + 60, title, "t-h") + T(1134, sy + 78, sub, "t-s"))
+        if sid == "svc_orders":
+            st += ('<g class="inj-note" data-sc="injection">' + rect(1094, 106, 30, 22, "card", rx=1, transform="rotate(-6 1109 117)") +
+                   path("M1099 113 H1118 M1099 118 H1116 M1099 123 H1112", "thin", transform="rotate(-6 1109 117)") + '</g>')
         o.append(obj(sid, "service", st, abox(976, sy, 290, 104, f"MCP server · {title.lower()}", "tools/list, tools/call\nown authorization", [(976, sy + 52)]), ["harden", "sustain"]))
     # ---------------- approver
     appr = (person(1020, 636, 0.95) + rect(1066, 530, 196, 84, "card", rx=3) + T(1076, 550, "PROPOSED OPERATION", "t-m") +
@@ -247,7 +256,8 @@ def scene():
         edge("e_note", f"M362 300 C 420 300, 690 250, {sc['note'][0]} {sc['note'][1]-18}", "data"),
         edge("e_policy", f"M366 508 C 400 500, 420 430, {sc['policy'][0]-30} {sc['policy'][1]}", "data", "passage + provenance", 420, 470),
         edge("e_ctx_model", "M780 286 C 780 260, 800 250, 808 214", "data"),
-        edge("e_proposal", "M898 188 C 920 200, 900 250, 884 282", "ctrl", "proposal", 858, 258),
+        edge("e_proposal", "M898 188 C 916 204, 904 228, 888 242", "ctrl"),
+        edge("e_check", "M882 270 L882 284", "ctrl"),
         edge("e_call_orders", "M914 312 C 926 300, 916 128, 930 122 L 972 122", "ctrl"),
         edge("e_res_orders", f"M976 160 C 940 190, 760 360, {sc['order'][0]+10} {sc['order'][1]}", "data", "order record", 760, 262),
         edge("e_call_refunds", "M914 357 C 926 350, 918 284, 930 280 L 972 280", "ctrl"),
@@ -259,7 +269,7 @@ def scene():
         edge("e_workorder", "M480 264 C 480 380, 560 420, 580 520", "ctrl", "work order", 560, 470),
         edge("e_spec_policy", "M364 568 C 390 580, 380 610, 412 600", "data"),
         edge("e_spec_result", f"M700 520 C 700 470, 520 440, {sc['policy'][0]+20} {sc['policy'][1]+16}", "data", "result + evidence", 690, 470),
-        edge("e_handoff", "M884 432 C 884 470, 860 560, 846 612", "ctrl", "hand-off", 900, 600),
+        edge("e_handoff", "M884 432 C 884 470, 860 560, 846 612", "ctrl", "hand-off", 900, 520),
     ]
     o.append('<g class="edges">' + "".join(E_) + '</g>')
     o.append('<g class="courier" aria-hidden="true"><rect x="-14" y="-10" width="28" height="20" rx="3" fill="#E7EBFB" stroke="#1F45C8" stroke-width="1.6"/><path d="M-8 -3 H8 M-8 3 H5" fill="none" stroke="#1F45C8" stroke-width="1.4"/></g>')

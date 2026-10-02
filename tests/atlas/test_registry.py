@@ -36,6 +36,7 @@ class Registry(unittest.TestCase):
 
     def test_every_registry_concept_appears_in_the_scene(self):
         in_scene = set(re.findall(r'data-c="([a-z_]+)"', self.svg))
+        for group in re.findall(r'data-sc="([a-z_ ]+)"', self.svg): in_scene |= set(group.split())
         for x in self.c["concepts"]:
             self.assertIn(x["id"], in_scene, f"{x['id']} has no illustration in the scene")
 
@@ -103,7 +104,7 @@ class Built(unittest.TestCase):
     def test_text_equivalent_present(self):
         html = self.page("learn/atlas/index.html")
         self.assertIn('id="text-version"', html)
-        self.assertEqual(html.count('<li><b>'), len(json.loads((ROOT / "content/atlas/scenarios/damaged-order.json").read_text())["textEquivalent"]) + 6)
+        self.assertEqual(html.count('<li><b>'), len(json.loads((ROOT / "content/atlas/scenarios/damaged-order.json").read_text())["textEquivalent"]) + len(json.loads((ROOT / "content/atlas/scenarios/damaged-order.json").read_text())["outcomes"]))
 
     def test_no_dashes_in_public_output(self):
         for p in ["learn/atlas/index.html", "learn/index.html", "method/index.html"]:

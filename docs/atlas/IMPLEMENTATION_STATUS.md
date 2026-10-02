@@ -29,3 +29,7 @@
 2. Draw each with the same vocabulary: map mark, concept scene, system-scene object.
 3. Field lens over the registry; replace the map's text panels with the concept scene.
 4. Broaden checks; review sources for every new concept.
+
+## 2026-10-02 · Runtime concepts added to the flagship
+Six Learn-map ideas that belong in the running system are now in the scene: system prompt (Instructions slot), prompting (Request slot), tokens (the model's token strip), guardrails and hooks (a pre-call check plate on the tool dock), prompt injection (a planted note in the Orders record, new condition "Plant an instruction in the order record", new outcome "Blocked by a check") and hallucination (the Reply slot, the escalation path and verification). Two new knowledge checks. Four new primary sources, checked 2026-10-02. Coverage: 20 of 44 map ideas.
+Next: a second scene, "How a model is made", for the Foundations, Learning and Language ideas; then the Decide ideas.

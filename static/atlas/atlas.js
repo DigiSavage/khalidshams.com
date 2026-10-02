@@ -56,7 +56,7 @@
 
   /* ---------------- scene helpers ---------------- */
   function obj(id) { return svg.querySelector('.obj[data-o="' + id + '"]'); }
-  function objsFor(concept) { return qa('.obj[data-c="' + concept + '"]', svg); }
+  function objsFor(concept) { return qa('.obj[data-c="' + concept + '"], [data-sc~="' + concept + '"]', svg).filter(function (el) { try { return el.getBBox().width > 0; } catch (e) { return false; } }); }
   function bbox(els) {
     var b = null;
     els.forEach(function (el) { if (!el) return; try { var r = el.getBBox(); if (!r.width) return;
@@ -130,6 +130,8 @@
     root.classList.toggle("is-arch", st.view === "arch");
     root.classList.toggle("is-team", st.design === "team");
     root.classList.toggle("lens-on", !!st.lens);
+    root.classList.toggle("x-injection", !!st.injection);
+    qa("[data-sc]", svg).forEach(function (el) { el.classList.toggle("sub-sel", (el.getAttribute("data-sc") || "").split(" ").indexOf(st.focus) >= 0); });
     // objects
     qa(".obj", svg).forEach(function (o) {
       var id = o.getAttribute("data-o");
@@ -161,6 +163,9 @@
       m.textContent = txt; m.setAttribute("class", "g-mark " + cls);
     }
     gate("gate_orders", "get_order"); gate("gate_refunds", "issue_refund"); gate("gate_msg", "send_message");
+    var hm = svg.querySelector(".h-mark");
+    if (hm) { var hv = "", hc = ""; evs.forEach(function (e) { if (e.type === "check.passed") { hv = "✓"; hc = "allowed"; } if (e.type === "check.blocked") { hv = "✕"; hc = "denied"; } });
+      hm.textContent = hv; hm.setAttribute("class", "h-mark " + hc); }
     var stamp = svg.querySelector(".stamp-t");
     if (stamp) { var granted = evs.some(function (e) { return e.type === "approval.granted"; }), req = evs.some(function (e) { return e.type === "authz.approval_required"; });
       stamp.textContent = granted ? "approved" : req ? "reviewing" : "awaiting"; stamp.setAttribute("class", "stamp-t" + (granted ? " ok" : "")); }
@@ -186,7 +191,7 @@
     var tk = svg.querySelector(".ticks"), last = svg.querySelector(".trail-last");
     if (tk) {
       var html = "", n = evs.length;
-      evs.forEach(function (e, i) { var x = 222 + i * Math.min(38, 1020 / Math.max(n, 1)); var cls = /denied|error|exhausted|cancel/.test(e.type) ? "tick deny" : /verified|allowed|granted/.test(e.type) ? "tick ok" : "tick";
+      evs.forEach(function (e, i) { var x = 222 + i * Math.min(38, 1020 / Math.max(n, 1)); var cls = /denied|error|exhausted|cancel|blocked|untrusted/.test(e.type) ? "tick deny" : /verified|allowed|granted|passed/.test(e.type) ? "tick ok" : "tick";
         html += '<rect class="' + cls + '" x="' + x.toFixed(1) + '" y="755" width="4" height="14" rx="1"></rect>'; });
       tk.innerHTML = html;
     }
@@ -234,7 +239,7 @@
     h += '<p class="in-h">Run budget</p><p class="in-p">' + step.budget.used + " of " + step.budget.limit + " model calls and tool executions used.</p>";
     var n0 = idx > 0 ? run.steps[idx - 1].events.length : 0;
     h += '<p class="in-h">Event trail (synthetic, newest last)</p><ol class="in-ev">' + step.events.slice(-8).map(function (e) {
-      var c = /denied|error|exhausted|cancel/.test(e.type) ? "t-deny" : /verified|allowed|granted/.test(e.type) ? "t-ok" : "";
+      var c = /denied|error|exhausted|cancel|blocked|untrusted/.test(e.type) ? "t-deny" : /verified|allowed|granted|passed/.test(e.type) ? "t-ok" : "";
       return '<li class="' + (e.n > n0 ? "new" : "") + '"><span class="n">' + e.n + '</span><span class="' + c + '">' + esc(e.type) + " " + esc(e.detail) + "</span></li>"; }).join("") + "</ol>";
     h += '<p class="in-h">Concepts in this step</p><div class="in-btns">' + step.concepts.map(function (c) { return '<button type="button" class="tb-b" data-go="' + c + '">' + esc(CBY[c].title) + "</button>"; }).join("") + "</div>";
     if (step.outcome) h += '<p class="in-h">Outcome</p><p class="in-p"><b>' + esc(SC.outcomes[step.outcome].label) + ".</b> " + esc(SC.outcomes[step.outcome].text) + "</p>";
@@ -287,7 +292,7 @@
 
   function renderChecks() {
     var p = $("pane-check");
-    p.innerHTML = '<p class="in-p">Three short checks on the distinctions that matter most. Passing one is recorded on this device only.</p>' +
+    p.innerHTML = '<p class="in-p">' + DATA.checks.checks.length + ' short checks on the distinctions that matter most. Passing one is recorded on this device only.</p>' +
       DATA.checks.checks.map(function (ch) {
         var passed = ch.concepts.every(function (c) { return prog.passed.indexOf(c) >= 0; });
         return '<div class="chk" data-ch="' + ch.id + '"><p class="q">' + esc(ch.q) + "</p>" + ch.options.map(function (o, i) {
@@ -362,7 +367,11 @@
   qa(".ls-b").forEach(function (b) { b.addEventListener("click", function () { var l = b.getAttribute("data-lens"); st.lens = st.lens === l ? null : l; syncControls(); urlState(true); render(false); }); });
   qa("[data-iv]").forEach(function (cb) { cb.addEventListener("change", function () { st[cb.getAttribute("data-iv")] = cb.checked; stop(); rebuild(); idx = -1; urlState(true); render(false); }); });
   qa(".rl-c").forEach(function (b) { b.addEventListener("click", function () { select(b.getAttribute("data-c"), true); }); });
-  svg.addEventListener("click", function (e) { var o = e.target.closest(".obj"); if (o) select(o.getAttribute("data-c"), true); });
+  svg.addEventListener("click", function (e) {
+    var sub = e.target.closest("[data-sc]"), o = e.target.closest(".obj");
+    if (sub && (!o || o.contains(sub))) { select(sub.getAttribute("data-sc").split(" ")[0], true); return; }
+    if (o) select(o.getAttribute("data-c"), true);
+  });
   $("atl-rail-t").addEventListener("click", function () {
     var narrow = window.matchMedia("(max-width:1699px)").matches;
     if (narrow) root.classList.toggle("rail-open"); else root.classList.toggle("rail-closed");

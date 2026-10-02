@@ -222,6 +222,12 @@
 .atlas-scene .slot.fresh > rect.dash{ stroke:var(--blue); stroke-width:2.4; }
 .atlas-scene .crit rect.done{ fill:var(--blue); stroke:var(--blue); }
 .atlas-scene .g-mark{ font-size:24px; }
+.atlas-scene .h-mark.allowed{ fill:var(--blue); } .atlas-scene .h-mark.denied{ fill:var(--warn); }
+.atlas-scene .inj-note{ display:none; } .atlas.x-injection .atlas-scene .inj-note{ display:inline; }
+.atlas.x-injection .atlas-scene .inj-note rect{ fill:var(--warn-soft); stroke:var(--warn); stroke-width:1.6; }
+.atlas.x-injection .atlas-scene .inj-note path{ stroke:var(--warn); }
+.atlas-scene [data-sc]{ cursor:pointer; }
+.atlas-scene .slot.sub-sel rect:first-child,.atlas-scene .tokens.sub-sel rect,.atlas-scene .inj-note.sub-sel rect{ stroke:var(--blue); stroke-width:2.2; }
 .atlas-scene .g-mark.allowed{ fill:var(--blue); } .atlas-scene .g-mark.denied{ fill:var(--warn); } .atlas-scene .g-mark.approval{ fill:var(--gold-ink); }
 .atlas-scene .stamp-t.ok{ fill:var(--blue); } .atlas-scene .stamp-t{ fill:var(--mute); }
 .atlas-scene .tokens rect{ opacity:.25; } .atlas-scene .tokens rect.lit{ opacity:1; }

@@ -87,7 +87,7 @@ One flagship interactive lesson: a damaged-order request followed through a gove
 ```
 atlas_build.py                       load + validate the registry (errors stop the build), render templates/atlas.html, standalone light/dark scene SVGs
 atlas_scene.py                       the 1280x800 scene SVG. Every shape carries presentation-attribute fills so it never renders black without CSS
-content/atlas/concepts.json          19 concepts, 7 layers, 5 SHAMS moves. Fields: recognize/understand/architect, picture, metaphorLimit, failureMode, sources, status, mapId
+content/atlas/concepts.json          25 concepts, 7 layers, 5 SHAMS moves. Sub-parts of a scene object carry their own concept with data-sc. Fields: recognize/understand/architect, picture, metaphorLimit, failureMode, sources, status, mapId
 content/atlas/sources.json           primary sources with checked dates and the claims each supports
 content/atlas/checks.json            knowledge checks (exactly one correct option each)
 content/atlas/scenarios/damaged-order.json  limits, interventions, outcomes, step templates, slots, text equivalent
@@ -97,6 +97,8 @@ docs/atlas/                          brief, status, coverage (generated), refere
 ```
 
 Rules: every scene object and step reference must exist in the registry (the build checks). `source-checked` concepts need sources. Colour meaning: cobalt is focus, gold is cost, coral is denial or error, and each also has a non-colour cue (mark, dash pattern, label). No runtime model calls, no framework. Never commit the reference drawings collection.
+
+After registry changes run `python tools/atlas_coverage.py` to regenerate docs/atlas/CONTENT_COVERAGE.md.
 
 Tests: `node --test tests/atlas/*.test.mjs` (engine), `python -m unittest tests/atlas/test_registry.py` (registry), then serve dist on 8767 and run `python tests/atlas/ui_check.py http://localhost:8767 <screenshot dir>` (layout matrix, light and dark, regressions).
 

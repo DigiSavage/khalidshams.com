@@ -168,7 +168,7 @@
    "y": 580,
    "plain": "The small chunks of text an AI actually reads, often word pieces rather than whole words.",
    "picture": "Lego bricks of language. 'Unbelievable' might be three bricks: un, believ, able.",
-   "deep": "Produced by a tokenizer such as BPE. Pricing, speed and limits are all counted in tokens; roughly three quarters of an English word each."
+   "deep": "Produced by a tokenizer, and tokenizers differ between models. Context windows, limits and usage are all counted in tokens; for Claude a token is about 3.5 English characters on average, varying by language."
   },
   {
    "id": "embed",
@@ -394,7 +394,7 @@
    "y": 610,
    "plain": "Checks in code that run before or after the model acts, so certain things can never happen no matter what the model says.",
    "picture": "A locked gate, not a sign that says please do not enter.",
-   "deep": "Pre- and post-tool hooks, schema validation, allow-lists, rate limits, kill switches. Prompts are probabilistic; hooks are deterministic. When money or safety is on the line, enforce with hooks.",
+   "deep": "Pre- and post-tool hooks, schema validation, allow-lists, rate limits, kill switches. A hook is a rule only when it is a check in code that can block the call; some hooks only log, and some ask another model. When money or safety is on the line, enforce in code at the boundary the action crosses.",
    "link": {
     "label": "Prompts vs hooks",
     "href": "/learn/#enforce"

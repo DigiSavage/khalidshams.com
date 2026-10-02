@@ -6,7 +6,7 @@
   else root.AtlasEngine = factory();
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
-  var FLAGS = ["noEvidence", "noNotes", "denyRefund", "toolFailure", "cancel", "tightBudget"];
+  var FLAGS = ["noEvidence", "noNotes", "denyRefund", "toolFailure", "injection", "cancel", "tightBudget"];
   var DESIGNS = ["single", "team"];
 
   function normalizeConfig(cfg) {
@@ -20,7 +20,7 @@
   function plan(cfg) {
     var c = normalizeConfig(cfg);
     var s = ["request", "assemble", "procedure", c.noNotes ? "note_missing" : "note",
-             "model_get_order", "authz_read", "exec_get_order"];
+             "model_get_order", "authz_read", c.injection ? "exec_get_order_injected" : "exec_get_order"];
     if (c.cancel) return s.concat(["cancel_received"]);
     if (c.design === "team") {
       s.push("work_order", c.noEvidence ? "spec_retrieve_empty" : "spec_retrieve", c.noEvidence ? "spec_return_empty" : "spec_return");
@@ -29,6 +29,7 @@
     }
     if (c.noEvidence) return s.concat(["model_escalate", "exec_handoff_owner"]);
     if (c.noNotes) return s.concat(["model_ask_photos", "exec_ask"]);
+    if (c.injection) return s.concat(["model_refund_injected", "check_blocked", "exec_handoff_injection"]);
     s.push("model_refund");
     if (c.denyRefund) return s.concat(["authz_refund_deny", "exec_handoff_denied"]);
     s.push("authz_refund_approval", "approval_granted");

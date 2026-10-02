@@ -62,6 +62,9 @@ def validate(concepts, sources, checks, scenario, graph_ids: set[str], svg: str)
     objs = set(re.findall(r'data-o="([a-z_]+)"', svg))
     obj_concepts = set(re.findall(r'data-c="([a-z_]+)"', svg))
     edges = set(re.findall(r'data-e="([a-z_]+)"', svg))
+    for group in re.findall(r'data-sc="([a-z_ ]+)"', svg):
+        for sc_ in group.split():
+            if sc_ not in idset: errs.append(f"scene sub-part concept {sc_} not in registry")
     for oc in obj_concepts:
         if oc not in idset: errs.append(f"scene object concept {oc} not in registry")
     slot_ids = {s["id"] for s in scenario["slots"]}
@@ -96,7 +99,7 @@ def standalone_svg(svg: str, theme: str = "light") -> str:
     """The scene as a file: Picture layer only, no interactive edges. Presentation attributes make it render alone,
     so it never falls back to black fills. The dark file maps each light token to its chosen dark token."""
     s = svg.replace('<svg class="atlas-scene" id="atlas-scene"', '<svg class="atlas-scene"', 1)
-    style = ('<style>.arch,.edges,.courier{display:none}.ticks{display:none}</style>')
+    style = ('<style>.arch,.edges,.courier,.inj-note{display:none}.ticks{display:none}</style>')
     bg = "#0D0F11" if theme == "dark" else "#F7F7F5"
     s = s.replace('<defs>', style + f'<rect x="0" y="0" width="1280" height="800" fill="{bg}"/><defs>', 1)
     if theme == "dark":
