@@ -5,7 +5,7 @@
   var INDEX = null, loading = null, open = false, items = [], active = -1, lastQ = "";
   var KIND = { section: "Section", idea: "Idea on the map", post: "Writing", playbook: "Playbook" };
   var SYN = { llm: ["large language model"], ai: ["artificial intelligence"], rag: ["retrieval"], mcp: ["model context protocol"],
-    agents: ["agent"], agent: ["agentic"], hooks: ["guardrails"], hook: ["guardrails"], evals: ["evaluation"], eval: ["evaluation"],
+    agents: ["agent"], agent: ["agentic"], coordinator: ["hub"], mesh: ["coordination"], specialists: ["coordination"], skills: ["skill"], skill: ["skills"], hooks: ["guardrails"], hook: ["guardrails"], evals: ["evaluation"], eval: ["evaluation"],
     saas: ["multi-tenant", "tenant"], fabric: ["microsoft fabric", "lakehouse"], entra: ["identity"], sentinel: ["detection"],
     cost: ["economics", "finops"], kill: ["off switch", "stop"], switch: ["off switch"], "off": ["kill switch"], security: ["identity", "governance"], gates: ["gate"], gate: ["gates"],
     sla: ["availability"], uptime: ["availability"], downtime: ["availability"], nines: ["availability"], rto: ["recovery"], rpo: ["data loss", "recovery"],
