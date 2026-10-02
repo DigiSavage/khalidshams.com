@@ -1,0 +1,1170 @@
+{
+ "id": "damaged-order",
+ "version": "2026.10.1",
+ "title": "Follow one request through a governed AI system",
+ "case": "A customer's order arrived damaged. Resolve the request without exceeding the system's authority.",
+ "disclaimer": "Teaching simulation. Every record, policy, name and event is synthetic. Nothing here calls a model or a real service, and the gates in the drawing represent enforcement; they do not enforce anything.",
+ "limits": {
+  "steps": 10,
+  "tightSteps": 4,
+  "maxAttempts": 2
+ },
+ "interventions": [
+  {
+   "id": "noEvidence",
+   "label": "Remove supporting evidence",
+   "help": "Retrieval finds no policy passage that covers this case."
+  },
+  {
+   "id": "noNotes",
+   "label": "Omit saved notes",
+   "help": "The earlier-session note with the damage photos is not loaded."
+  },
+  {
+   "id": "denyRefund",
+   "label": "Deny the refund permission",
+   "help": "The agent's identity is not granted refunds:issue."
+  },
+  {
+   "id": "toolFailure",
+   "label": "Make the refund service fail",
+   "help": "The Refunds service returns an error on every attempt."
+  },
+  {
+   "id": "cancel",
+   "label": "Customer withdraws the request",
+   "help": "A cancellation arrives after the order is looked up.",
+   "advanced": true
+  },
+  {
+   "id": "tightBudget",
+   "label": "Tighten the step budget",
+   "help": "The run may use only 4 model calls and tool executions.",
+   "advanced": true
+  }
+ ],
+ "outcomes": {
+  "completed": {
+   "label": "Verified completion",
+   "kind": "success",
+   "text": "The application checked the success criteria against service records: refund RF-2207 issued for $84.00 within policy, customer notified."
+  },
+  "waiting_input": {
+   "label": "Waiting for input",
+   "kind": "pause",
+   "text": "The run stopped safely and asked a person for what it lacks. Nothing irreversible happened."
+  },
+  "denied": {
+   "label": "Denied before execution",
+   "kind": "stop",
+   "text": "The enforcement point refused the operation before it reached the Refunds service. The proposal was handed to a person with its evidence."
+  },
+  "cancelled": {
+   "label": "Cancelled",
+   "kind": "stop",
+   "text": "The customer withdrew the request. Pending work was dropped; nothing had been executed that needs undoing."
+  },
+  "budget": {
+   "label": "Budget exhausted",
+   "kind": "stop",
+   "text": "The run used its step budget before the goal was verified. It stopped and handed off its progress. A bounded exit, not a success."
+  },
+  "failed": {
+   "label": "Operational failure",
+   "kind": "error",
+   "text": "The Refunds service failed on both permitted attempts. The run stopped, logged the error and handed off. No third attempt."
+  }
+ },
+ "steps": {
+  "request": {
+   "phase": "Request",
+   "title": "A customer asks for help",
+   "actor": "requester",
+   "narration": "The customer reports that order A-1042 arrived with a cracked lamp base. The application creates a run with a goal owned by the support operations lead.",
+   "focus": [
+    "requester",
+    "owner",
+    "goal"
+   ],
+   "edges": [
+    "e_request",
+    "e_owner"
+   ],
+   "load": [
+    "request"
+   ],
+   "concepts": [
+    "requester",
+    "owner"
+   ],
+   "events": [
+    {
+     "type": "request.received",
+     "detail": "order=A-1042 channel=chat"
+    },
+    {
+     "type": "run.created",
+     "detail": "goal=resolve_damaged_order owner=support_ops_lead"
+    }
+   ]
+  },
+  "assemble": {
+   "phase": "Context",
+   "title": "The application sets the desk",
+   "actor": "context",
+   "narration": "Context is assembled for the first model call: standing instructions and the request. Nothing else is on the desk yet.",
+   "focus": [
+    "context",
+    "agent"
+   ],
+   "edges": [],
+   "load": [
+    "instructions"
+   ],
+   "concepts": [
+    "context"
+   ],
+   "events": [
+    {
+     "type": "context.assembled",
+     "detail": "items=instructions,request"
+    }
+   ]
+  },
+  "procedure": {
+   "phase": "Context",
+   "title": "A procedure card is selected",
+   "actor": "skills",
+   "narration": "The skill description 'damaged item' matches, so the application loads the Damaged item procedure v3. It is guidance for this task, not a worker and not a permission.",
+   "focus": [
+    "skills",
+    "context"
+   ],
+   "edges": [
+    "e_skill"
+   ],
+   "load": [
+    "procedure"
+   ],
+   "concepts": [
+    "skills"
+   ],
+   "events": [
+    {
+     "type": "skill.loaded",
+     "detail": "skill=damaged-item version=3"
+    }
+   ]
+  },
+  "note": {
+   "phase": "Context",
+   "title": "A relevant earlier note is loaded",
+   "actor": "memory",
+   "narration": "Memory holds an entry from this customer's earlier session: two photos of the cracked base, uploaded 29 September. It is relevant, permitted for this customer and recent, so it goes on the desk.",
+   "focus": [
+    "memory",
+    "context"
+   ],
+   "edges": [
+    "e_note"
+   ],
+   "load": [
+    "note"
+   ],
+   "concepts": [
+    "memory"
+   ],
+   "events": [
+    {
+     "type": "memory.loaded",
+     "detail": "note=2026-09-29 photos=2 scope=customer"
+    }
+   ]
+  },
+  "note_missing": {
+   "phase": "Context",
+   "title": "No earlier note on the desk",
+   "actor": "memory",
+   "narration": "Saved notes are omitted for this run. The photos exist in the earlier session, but the model cannot use what is not placed in its context.",
+   "focus": [
+    "memory",
+    "context"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "memory"
+   ],
+   "warn": true,
+   "events": [
+    {
+     "type": "memory.skipped",
+     "detail": "reason=disabled_for_run"
+    }
+   ]
+  },
+  "model_get_order": {
+   "phase": "Model",
+   "title": "The model proposes a lookup",
+   "actor": "model",
+   "cost": 1,
+   "narration": "The model reads the desk and proposes a tool call. It does not run the call. The response ends with stop_reason tool_use, which says why this response stopped, nothing more.",
+   "focus": [
+    "model",
+    "context",
+    "tool"
+   ],
+   "edges": [
+    "e_ctx_model",
+    "e_proposal"
+   ],
+   "load": [],
+   "concepts": [
+    "model"
+   ],
+   "tool": {
+    "name": "get_order",
+    "args": {
+     "order_id": "A-1042"
+    }
+   },
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "tool.proposed",
+     "detail": "get_order order_id=A-1042"
+    }
+   ]
+  },
+  "authz_read": {
+   "phase": "Authorize",
+   "title": "The read is checked and allowed",
+   "actor": "gate_orders",
+   "narration": "The application validates the arguments and checks the agent identity's scopes: orders:read is granted. Allowed.",
+   "focus": [
+    "gate_orders",
+    "tool",
+    "mcp"
+   ],
+   "edges": [
+    "e_call_orders"
+   ],
+   "load": [],
+   "concepts": [
+    "authorization",
+    "mcp"
+   ],
+   "events": [
+    {
+     "type": "authz.allowed",
+     "detail": "op=get_order scope=orders:read"
+    }
+   ]
+  },
+  "exec_get_order": {
+   "phase": "Execute",
+   "title": "The Orders service answers",
+   "actor": "svc_orders",
+   "cost": 1,
+   "narration": "Through its MCP client the host calls tools/call on the Orders server. The record comes back and is added to the desk for the next model call.",
+   "focus": [
+    "svc_orders",
+    "mcp",
+    "context"
+   ],
+   "edges": [
+    "e_call_orders",
+    "e_res_orders"
+   ],
+   "load": [
+    "order"
+   ],
+   "concepts": [
+    "mcp",
+    "service",
+    "tool"
+   ],
+   "tool": {
+    "name": "get_order",
+    "args": {
+     "order_id": "A-1042"
+    },
+    "result": {
+     "item": "Table lamp",
+     "price": "84.00",
+     "delivered": "2026-09-27",
+     "status": "delivered"
+    }
+   },
+   "events": [
+    {
+     "type": "tool.executed",
+     "detail": "get_order status=ok"
+    }
+   ]
+  },
+  "cancel_received": {
+   "phase": "Exit",
+   "title": "The customer withdraws the request",
+   "actor": "requester",
+   "narration": "A cancellation arrives before any write. The run drops its pending work. Nothing was executed that needs undoing.",
+   "focus": [
+    "requester",
+    "recovery"
+   ],
+   "edges": [
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "recovery"
+   ],
+   "outcome": "cancelled",
+   "events": [
+    {
+     "type": "run.cancelled",
+     "detail": "by=customer before=write"
+    }
+   ]
+  },
+  "retrieve": {
+   "phase": "Evidence",
+   "title": "The policy passage is retrieved",
+   "actor": "retrieval",
+   "narration": "The application searches the policy library for this case. Returns policy v7 section 4.2 comes back with its provenance and goes on the desk.",
+   "focus": [
+    "retrieval",
+    "context"
+   ],
+   "edges": [
+    "e_policy"
+   ],
+   "load": [
+    "policy"
+   ],
+   "concepts": [
+    "retrieval"
+   ],
+   "evidence": {
+    "source": "Returns policy v7 §4.2",
+    "owner": "Support operations",
+    "reviewed": "2026-08-14",
+    "text": "Items damaged in transit: refund up to the item price when photo evidence is provided. Refunds over $50 need a supervisor's approval."
+   },
+   "events": [
+    {
+     "type": "retrieval.query",
+     "detail": "q=damaged in transit refund"
+    },
+    {
+     "type": "retrieval.result",
+     "detail": "hits=1 source=returns-policy-v7#4.2"
+    }
+   ]
+  },
+  "retrieve_empty": {
+   "phase": "Evidence",
+   "title": "Nothing relevant comes back",
+   "actor": "retrieval",
+   "narration": "The search returns no passage that covers damage in transit. The desk has no policy support for a refund.",
+   "focus": [
+    "retrieval",
+    "context"
+   ],
+   "edges": [
+    "e_policy"
+   ],
+   "load": [],
+   "concepts": [
+    "retrieval"
+   ],
+   "warn": true,
+   "events": [
+    {
+     "type": "retrieval.query",
+     "detail": "q=damaged in transit refund"
+    },
+    {
+     "type": "retrieval.result",
+     "detail": "hits=0"
+    }
+   ]
+  },
+  "work_order": {
+   "phase": "Delegate",
+   "title": "The coordinator writes a work order",
+   "actor": "coordinator",
+   "cost": 1,
+   "narration": "Instead of searching policy itself, the coordinator delegates. The work order carries a question and three facts. It does not carry the conversation, the customer's contact details or any credentials.",
+   "focus": [
+    "coordinator",
+    "specialist"
+   ],
+   "edges": [
+    "e_workorder"
+   ],
+   "load": [],
+   "concepts": [
+    "coordinator",
+    "specialist"
+   ],
+   "workOrder": {
+    "task": "Is order A-1042 eligible for a damage refund, and does it need approval?",
+    "given": [
+     "category: home goods",
+     "claim: damaged in transit",
+     "value: $84.00"
+    ],
+    "notGiven": [
+     "conversation history",
+     "customer contact",
+     "credentials"
+    ],
+    "returns": "eligible, refund_limit, approval_required, evidence"
+   },
+   "events": [
+    {
+     "type": "delegation.sent",
+     "detail": "to=policy_specialist fields=3"
+    }
+   ]
+  },
+  "spec_retrieve": {
+   "phase": "Delegate",
+   "title": "The specialist checks the policy",
+   "actor": "specialist",
+   "cost": 1,
+   "narration": "The policy specialist has its own context: the work order and what it fetches. Its only configured tool is retrieve_policy. It finds section 4.2.",
+   "focus": [
+    "specialist",
+    "retrieval"
+   ],
+   "edges": [
+    "e_spec_policy"
+   ],
+   "load": [],
+   "concepts": [
+    "specialist",
+    "retrieval"
+   ],
+   "tool": {
+    "name": "retrieve_policy",
+    "args": {
+     "q": "damaged in transit refund"
+    },
+    "result": {
+     "hits": 1,
+     "source": "returns-policy-v7#4.2"
+    }
+   },
+   "events": [
+    {
+     "type": "specialist.model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "specialist.tool.executed",
+     "detail": "retrieve_policy hits=1"
+    }
+   ]
+  },
+  "spec_retrieve_empty": {
+   "phase": "Delegate",
+   "title": "The specialist finds nothing",
+   "actor": "specialist",
+   "cost": 1,
+   "narration": "The specialist searches with its one tool and finds no passage covering this case.",
+   "focus": [
+    "specialist",
+    "retrieval"
+   ],
+   "edges": [
+    "e_spec_policy"
+   ],
+   "load": [],
+   "concepts": [
+    "specialist",
+    "retrieval"
+   ],
+   "warn": true,
+   "tool": {
+    "name": "retrieve_policy",
+    "args": {
+     "q": "damaged in transit refund"
+    },
+    "result": {
+     "hits": 0
+    }
+   },
+   "events": [
+    {
+     "type": "specialist.tool.executed",
+     "detail": "retrieve_policy hits=0"
+    }
+   ]
+  },
+  "spec_return": {
+   "phase": "Delegate",
+   "title": "A compact result comes back",
+   "actor": "specialist",
+   "narration": "The specialist returns a structured result with its evidence, not its working. The coordinator adds it to its own desk alongside the order record.",
+   "focus": [
+    "specialist",
+    "coordinator",
+    "context"
+   ],
+   "edges": [
+    "e_spec_result"
+   ],
+   "load": [
+    "policy"
+   ],
+   "concepts": [
+    "specialist",
+    "coordinator"
+   ],
+   "result": {
+    "eligible": true,
+    "refund_limit": "84.00",
+    "approval_required": true,
+    "evidence": "Returns policy v7 §4.2"
+   },
+   "evidence": {
+    "source": "Returns policy v7 §4.2",
+    "owner": "Support operations",
+    "reviewed": "2026-08-14",
+    "text": "Items damaged in transit: refund up to the item price when photo evidence is provided. Refunds over $50 need a supervisor's approval."
+   },
+   "events": [
+    {
+     "type": "delegation.result",
+     "detail": "eligible=true approval_required=true"
+    }
+   ]
+  },
+  "spec_return_empty": {
+   "phase": "Delegate",
+   "title": "The specialist reports no support",
+   "actor": "specialist",
+   "narration": "The result says so plainly: no covering policy found. That is a useful answer; inventing one would not be.",
+   "focus": [
+    "specialist",
+    "coordinator"
+   ],
+   "edges": [
+    "e_spec_result"
+   ],
+   "load": [],
+   "concepts": [
+    "specialist"
+   ],
+   "warn": true,
+   "result": {
+    "eligible": "unknown",
+    "evidence": "none found"
+   },
+   "events": [
+    {
+     "type": "delegation.result",
+     "detail": "eligible=unknown evidence=none"
+    }
+   ]
+  },
+  "model_escalate": {
+   "phase": "Model",
+   "title": "No support, so no refund proposal",
+   "actor": "model",
+   "cost": 1,
+   "narration": "With no policy on the desk, the model does not propose a refund. It proposes handing the case to a person with a summary.",
+   "focus": [
+    "model",
+    "recovery"
+   ],
+   "edges": [
+    "e_ctx_model",
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "model",
+    "recovery"
+   ],
+   "tool": {
+    "name": "create_handoff",
+    "args": {
+     "queue": "support_ops",
+     "reason": "no covering policy found"
+    }
+   },
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "tool.proposed",
+     "detail": "create_handoff queue=support_ops"
+    }
+   ]
+  },
+  "exec_handoff_owner": {
+   "phase": "Exit",
+   "title": "Handed to the policy owner",
+   "actor": "recovery",
+   "cost": 1,
+   "narration": "The handoff is allowed and created. The run waits for a person to decide. No refund was attempted.",
+   "focus": [
+    "recovery",
+    "owner"
+   ],
+   "edges": [
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "recovery",
+    "owner"
+   ],
+   "outcome": "waiting_input",
+   "events": [
+    {
+     "type": "authz.allowed",
+     "detail": "op=create_handoff"
+    },
+    {
+     "type": "handoff.created",
+     "detail": "queue=support_ops"
+    }
+   ]
+  },
+  "model_ask_photos": {
+   "phase": "Model",
+   "title": "Missing evidence, so it asks",
+   "actor": "model",
+   "cost": 1,
+   "narration": "Policy needs photo evidence and none is on the desk. The model proposes asking the customer for photos instead of refunding.",
+   "focus": [
+    "model",
+    "context"
+   ],
+   "edges": [
+    "e_ctx_model",
+    "e_proposal"
+   ],
+   "load": [],
+   "concepts": [
+    "model",
+    "memory"
+   ],
+   "tool": {
+    "name": "send_message",
+    "args": {
+     "to": "customer",
+     "template": "request_photos"
+    }
+   },
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "tool.proposed",
+     "detail": "send_message template=request_photos"
+    }
+   ]
+  },
+  "exec_ask": {
+   "phase": "Exit",
+   "title": "The customer is asked for photos",
+   "actor": "svc_messaging",
+   "cost": 1,
+   "narration": "Sending a message is allowed. The run pauses until the customer replies.",
+   "focus": [
+    "gate_msg",
+    "svc_messaging",
+    "requester"
+   ],
+   "edges": [
+    "e_call_msg"
+   ],
+   "load": [],
+   "concepts": [
+    "authorization",
+    "service"
+   ],
+   "outcome": "waiting_input",
+   "events": [
+    {
+     "type": "authz.allowed",
+     "detail": "op=send_message scope=messages:send"
+    },
+    {
+     "type": "tool.executed",
+     "detail": "send_message status=sent"
+    }
+   ]
+  },
+  "model_refund": {
+   "phase": "Model",
+   "title": "The model proposes a refund",
+   "actor": "model",
+   "cost": 1,
+   "narration": "Order, note and policy are on the desk. The model proposes issue_refund for $84.00 and cites its evidence. It is still only a proposal.",
+   "focus": [
+    "model",
+    "context",
+    "tool"
+   ],
+   "edges": [
+    "e_ctx_model",
+    "e_proposal"
+   ],
+   "load": [],
+   "concepts": [
+    "model",
+    "tool"
+   ],
+   "tool": {
+    "name": "issue_refund",
+    "args": {
+     "order_id": "A-1042",
+     "amount": "84.00",
+     "reason": "damaged_in_transit",
+     "evidence": [
+      "note 2026-09-29",
+      "policy v7 §4.2"
+     ]
+    }
+   },
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "tool.proposed",
+     "detail": "issue_refund amount=84.00"
+    }
+   ]
+  },
+  "authz_refund_deny": {
+   "phase": "Authorize",
+   "title": "Denied before execution",
+   "actor": "gate_refunds",
+   "narration": "The enforcement point checks the agent identity: refunds:issue is not granted. The call never reaches the Refunds service. The allowed next route is a handoff.",
+   "focus": [
+    "gate_refunds",
+    "tool"
+   ],
+   "edges": [
+    "e_refund_blocked"
+   ],
+   "load": [],
+   "concepts": [
+    "authorization"
+   ],
+   "deny": true,
+   "events": [
+    {
+     "type": "authz.denied",
+     "detail": "op=issue_refund missing_scope=refunds:issue"
+    }
+   ]
+  },
+  "exec_handoff_denied": {
+   "phase": "Exit",
+   "title": "The proposal goes to a person",
+   "actor": "recovery",
+   "cost": 1,
+   "narration": "A handoff with the proposed refund and its evidence is created for the support team. The run ends: denied, not failed and not succeeded.",
+   "focus": [
+    "recovery",
+    "approver"
+   ],
+   "edges": [
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "recovery"
+   ],
+   "outcome": "denied",
+   "events": [
+    {
+     "type": "handoff.created",
+     "detail": "queue=support_ops attached=proposal,evidence"
+    }
+   ]
+  },
+  "authz_refund_approval": {
+   "phase": "Authorize",
+   "title": "Allowed, but approval required",
+   "actor": "gate_refunds",
+   "narration": "refunds:issue is granted, but the amount is over $50, so the rule routes this operation to a human approver before execution.",
+   "focus": [
+    "gate_refunds",
+    "approver"
+   ],
+   "edges": [
+    "e_call_refunds",
+    "e_approval"
+   ],
+   "load": [],
+   "concepts": [
+    "authorization",
+    "approver"
+   ],
+   "events": [
+    {
+     "type": "authz.approval_required",
+     "detail": "op=issue_refund amount=84.00 rule=refund_over_50"
+    }
+   ]
+  },
+  "approval_granted": {
+   "phase": "Approve",
+   "title": "A supervisor approves",
+   "actor": "approver",
+   "narration": "The duty supervisor sees the exact operation, the order record and the policy passage, and approves. The decision is recorded and returns through the gate.",
+   "focus": [
+    "approver",
+    "gate_refunds"
+   ],
+   "edges": [
+    "e_approval"
+   ],
+   "load": [],
+   "concepts": [
+    "approver"
+   ],
+   "events": [
+    {
+     "type": "approval.granted",
+     "detail": "by=duty_supervisor op=issue_refund"
+    }
+   ]
+  },
+  "exec_refund": {
+   "phase": "Execute",
+   "title": "The refund is issued",
+   "actor": "svc_refunds",
+   "cost": 1,
+   "narration": "The approved call goes to the Refunds server with an idempotency key. The result comes back to the desk.",
+   "focus": [
+    "svc_refunds",
+    "mcp",
+    "context"
+   ],
+   "edges": [
+    "e_call_refunds",
+    "e_res_refunds"
+   ],
+   "load": [
+    "refund"
+   ],
+   "concepts": [
+    "service",
+    "mcp"
+   ],
+   "tool": {
+    "name": "issue_refund",
+    "args": {
+     "order_id": "A-1042",
+     "amount": "84.00",
+     "idempotency_key": "A-1042-dmg-1"
+    },
+    "result": {
+     "refund_id": "RF-2207",
+     "status": "issued"
+    }
+   },
+   "events": [
+    {
+     "type": "tool.executed",
+     "detail": "issue_refund refund_id=RF-2207"
+    }
+   ]
+  },
+  "exec_refund_error": {
+   "phase": "Execute",
+   "title": "The Refunds service fails",
+   "actor": "svc_refunds",
+   "cost": 1,
+   "narration": "Attempt 1 of 2 returns an error. Because the call carries an idempotency key, one retry is safe.",
+   "focus": [
+    "svc_refunds",
+    "recovery"
+   ],
+   "edges": [
+    "e_call_refunds"
+   ],
+   "load": [],
+   "concepts": [
+    "service",
+    "recovery"
+   ],
+   "warn": true,
+   "tool": {
+    "name": "issue_refund",
+    "args": {
+     "order_id": "A-1042",
+     "amount": "84.00",
+     "idempotency_key": "A-1042-dmg-1"
+    },
+    "result": {
+     "error": "503 service unavailable"
+    }
+   },
+   "events": [
+    {
+     "type": "tool.error",
+     "detail": "issue_refund attempt=1 error=503"
+    }
+   ]
+  },
+  "exec_refund_retry": {
+   "phase": "Execute",
+   "title": "One bounded retry, which also fails",
+   "actor": "svc_refunds",
+   "cost": 1,
+   "narration": "Attempt 2 of 2 fails the same way. The retry limit is reached; there is no third attempt.",
+   "focus": [
+    "svc_refunds",
+    "recovery"
+   ],
+   "edges": [
+    "e_call_refunds"
+   ],
+   "load": [],
+   "concepts": [
+    "recovery"
+   ],
+   "warn": true,
+   "tool": {
+    "name": "issue_refund",
+    "args": {
+     "order_id": "A-1042",
+     "amount": "84.00",
+     "idempotency_key": "A-1042-dmg-1"
+    },
+    "result": {
+     "error": "503 service unavailable"
+    }
+   },
+   "events": [
+    {
+     "type": "tool.error",
+     "detail": "issue_refund attempt=2 error=503"
+    },
+    {
+     "type": "retry.exhausted",
+     "detail": "max_attempts=2"
+    }
+   ]
+  },
+  "handoff_failure": {
+   "phase": "Exit",
+   "title": "Stopped and handed off",
+   "actor": "recovery",
+   "narration": "The run logs the failure and hands the approved refund to a person to complete when the service recovers.",
+   "focus": [
+    "recovery",
+    "observability"
+   ],
+   "edges": [
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "recovery",
+    "observability"
+   ],
+   "outcome": "failed",
+   "events": [
+    {
+     "type": "handoff.created",
+     "detail": "queue=support_ops reason=refund_service_unavailable"
+    }
+   ]
+  },
+  "model_reply": {
+   "phase": "Model",
+   "title": "The model drafts the reply",
+   "actor": "model",
+   "cost": 1,
+   "narration": "With the refund result on the desk, the model proposes a reply to the customer.",
+   "focus": [
+    "model",
+    "context"
+   ],
+   "edges": [
+    "e_ctx_model",
+    "e_proposal"
+   ],
+   "load": [],
+   "concepts": [
+    "model"
+   ],
+   "tool": {
+    "name": "send_message",
+    "args": {
+     "to": "customer",
+     "template": "refund_confirmed",
+     "refund_id": "RF-2207"
+    }
+   },
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=tool_use"
+    },
+    {
+     "type": "tool.proposed",
+     "detail": "send_message template=refund_confirmed"
+    }
+   ]
+  },
+  "exec_reply": {
+   "phase": "Execute",
+   "title": "The reply is sent",
+   "actor": "svc_messaging",
+   "cost": 1,
+   "narration": "Sending is allowed and the message goes out. A sent message cannot be unsent, which is why it comes after the refund succeeded.",
+   "focus": [
+    "gate_msg",
+    "svc_messaging"
+   ],
+   "edges": [
+    "e_call_msg",
+    "e_res_msg"
+   ],
+   "load": [
+    "reply"
+   ],
+   "concepts": [
+    "service"
+   ],
+   "events": [
+    {
+     "type": "authz.allowed",
+     "detail": "op=send_message scope=messages:send"
+    },
+    {
+     "type": "tool.executed",
+     "detail": "send_message status=sent"
+    }
+   ]
+  },
+  "verify": {
+   "phase": "Verify",
+   "title": "The application verifies the goal",
+   "actor": "goal",
+   "narration": "The model's last response ended with end_turn. That is not the success signal. The application checks the criteria against records: refund issued, amount within policy, customer notified.",
+   "focus": [
+    "goal",
+    "svc_refunds",
+    "observability"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "verification"
+   ],
+   "outcome": "completed",
+   "events": [
+    {
+     "type": "model.invoked",
+     "detail": "stop_reason=end_turn"
+    },
+    {
+     "type": "goal.verified",
+     "detail": "refund=RF-2207 amount_ok=true notified=true"
+    }
+   ],
+   "cost": 1
+  },
+  "budget_exhausted": {
+   "phase": "Exit",
+   "title": "The step budget runs out",
+   "actor": "budget",
+   "narration": "The next step would exceed the run's budget. The run stops and hands off what it has. A bounded exit, not a success.",
+   "focus": [
+    "budget",
+    "recovery"
+   ],
+   "edges": [
+    "e_handoff"
+   ],
+   "load": [],
+   "concepts": [
+    "budget"
+   ],
+   "outcome": "budget",
+   "events": [
+    {
+     "type": "budget.exhausted",
+     "detail": "limit_reached"
+    },
+    {
+     "type": "handoff.created",
+     "detail": "queue=support_ops attached=progress"
+    }
+   ]
+  }
+ },
+ "slots": [
+  {
+   "id": "instructions",
+   "label": "Instructions"
+  },
+  {
+   "id": "request",
+   "label": "Request"
+  },
+  {
+   "id": "procedure",
+   "label": "Procedure v3"
+  },
+  {
+   "id": "note",
+   "label": "Earlier note"
+  },
+  {
+   "id": "policy",
+   "label": "Policy §4.2"
+  },
+  {
+   "id": "order",
+   "label": "Order record"
+  },
+  {
+   "id": "refund",
+   "label": "Refund result"
+  },
+  {
+   "id": "reply",
+   "label": "Reply sent"
+  }
+ ],
+ "textEquivalent": [
+  "request",
+  "assemble",
+  "procedure",
+  "note",
+  "model_get_order",
+  "authz_read",
+  "exec_get_order",
+  "retrieve",
+  "model_refund",
+  "authz_refund_approval",
+  "approval_granted",
+  "exec_refund",
+  "model_reply",
+  "exec_reply",
+  "verify"
+ ]
+}

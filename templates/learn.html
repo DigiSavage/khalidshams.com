@@ -3,9 +3,10 @@
   <div class="hero learn-hero">
     <p class="eyebrow">Learn AI · a living map for people who are new to it</p>
     <h1>Learn AI the way <em>it</em> learns.</h1>
-    <p class="lede">AI is a web of ideas, not a glossary. This page lays out the forty-four ideas that matter as neurons on a map, from what a model is to when an agent is the right call: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
+    <p class="lede">AI is a web of ideas, not a glossary. This page lays out the {{NIDEAS}} ideas that matter as neurons on a map, from what a model is to when an agent is the right call: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
     <div class="cta">
-      <a class="btn solid" href="#map">Explore the map</a>
+      <a class="btn solid" href="/learn/atlas/">The SHAMS AI Atlas</a>
+      <a class="btn" href="#map">Explore the map</a>
       <a class="btn" href="#stack">The stack in layers</a>
       <a class="btn" href="#kinds">LLM vs agent</a>
       <a class="btn" href="#decide">When to build an agent</a>
@@ -14,17 +15,30 @@
   </div>
 </div>
 
+<div class="band" id="atlas"><div class="wrap"><section class="atlas-call">
+  <div class="sec-head">
+    <p class="sec-label">The SHAMS AI Atlas</p>
+    <div>
+      <h2>See what each part does, and how the whole system works.</h2>
+      <p class="intro">The map below teaches the words. The atlas puts them to work: one customer request followed through an illustrated, governed AI system, from who owns the goal to what the model proposes, what is checked before anything happens, and how the run ends. Switch between the picture and the architecture it stands for, turn on the SHAMS lenses, then break things on purpose: remove the evidence, deny a permission, make a tool fail, add a specialist.</p>
+      <p class="atlas-cta"><a class="btn solid" href="/learn/atlas/">Follow one request</a> <a class="btn" href="/learn/atlas/?x=denyRefund&amp;step=10">See a denied action</a> <a class="btn" href="/learn/atlas/?design=team&amp;step=10">Meet the specialist</a> <a class="btn" href="/learn/atlas/?view=arch&amp;step=9">The architecture view</a></p>
+    </div>
+  </div>
+  <a class="atlas-prev" href="/learn/atlas/" aria-label="Open the SHAMS AI Atlas"><img class="ap-light" src="/learn/atlas/scene.svg" alt="Preview of the atlas scene: people outside an application runtime; inside, an agent operator at a bench with a goal card, a context tray, a model engine and tools, beside a procedure binder, notes cabinet and policy library; gates on the wall lead to connected services and a human approver." loading="lazy" width="1280" height="800"><img class="ap-dark" src="/learn/atlas/scene-dark.svg" alt="Preview of the atlas scene: people outside an application runtime; inside, an agent operator at a bench with a goal card, a context tray, a model engine and tools, beside a procedure binder, notes cabinet and policy library; gates on the wall lead to connected services and a human approver." loading="lazy" width="1280" height="800"></a>
+  <p class="atlas-note">{{ATLASN}} concepts in the flagship lesson so far, each with a picture, three depths, its boundaries and where the analogy stops. Teaching simulation; all data synthetic.</p>
+</section></div></div>
+
 <div class="band" id="map"><div class="wrap"><section>
   <div class="sec-head">
     <p class="sec-label">The map</p>
     <div>
-      <h2>Forty-four ideas, wired the way they depend on each other.</h2>
+      <h2>{{NIDEASCAP}} ideas, wired the way they depend on each other.</h2>
       <p class="intro">Left to right: the foundations, how machines learn, how language models work, what turns a model into an agent, what it takes to run one safely, and how to decide whether you should. Tap any idea, or zoom to a cluster. Mark it "I get this" and it lights up; when two ideas you understand are linked, the link between them glows. Pick a guided circuit if you'd rather be walked through.</p>
     </div>
   </div>
   <div class="ln-instrument">
     <div class="ln-bar">
-      <div class="ln-meter"><span id="ln-count">0 / 44 understood</span><span class="ln-track"><i id="ln-fill"></i></span></div>
+      <div class="ln-meter"><span id="ln-count">0 / {{NIDEASN}} understood</span><span class="ln-track"><i id="ln-fill"></i></span></div>
       <label for="ln-circuit" class="visually-hidden">Guided circuit</label>
       <select id="ln-circuit">
         <option value="">Free roam</option>
@@ -212,7 +226,7 @@
     <figcaption>
       <div class="ln-anti"><p class="sec-label">Ways people break the loop</p>
         <ul><li>Searching the text for "I'm done" instead of reading the stop reason.</li><li>Using a fixed maximum number of turns as the only exit, so the agent either stops mid-task or spins.</li><li>Asking the model whether it has finished, which it will answer confidently either way.</li><li>Letting the model's tool request run without validating the arguments against the schema first.</li></ul>
-        <p class="ln-rule">Read the stop reason. Validate every tool call. Keep a ceiling on turns and cost as a safety net, never as the exit.</p></div>
+        <p class="ln-rule">Read the stop reason for each response. Validate every tool call. Count the run as a success only when the goal is verified; a turn, time or cost limit is a legitimate exit, reported as exactly that. <a href="/learn/atlas/?x=tightBudget">See a budget exit</a>.</p></div>
     </figcaption>
   </figure>
 </section></div></div>
@@ -242,7 +256,7 @@
     </svg>
     <figcaption>
       <div class="ln-anti"><p class="sec-label">The common mistake</p>
-        <p>The coordinator decomposes too narrowly. Asked to research "AI in creative industries," it assigns visual art and nothing else, and the result is missing music, writing, film, and theatre. The fix is not a smarter coordinator. It is giving it broad research goals rather than a narrow task list, and letting the specialists decide what to look at.</p>
+        <p>The coordinator decomposes too narrowly. Asked why one tenant's requests are slow, it sends a specialist to check database CPU and nothing else, and the answer misses lock contention, a recent deployment and a noisy neighbour. I have watched people make the same mistake before any agent was involved: resize first, understand later. The fix is not a smarter coordinator. It is a goal ("find why this tenant is slow, with evidence") rather than a pre-baked task, and a result format that carries the evidence back.</p>
         <p class="ln-rule">Give goals, not task lists. Keep specialists narrow. Keep their context separate.</p>
         <p class="ln-xl">How many specialists is too many? <a href="/method/?agents=10#ag-cost">Run the coordination cost</a>: ten agents in a full mesh is 45 possible links, through a coordinator it is 9.</p></div>
     </figcaption>
@@ -253,29 +267,32 @@
   <div class="sec-head">
     <p class="sec-label">The enforcement question</p>
     <div>
-      <h2>A prompt is a request. A hook is a rule.</h2>
-      <p class="intro">The most important distinction in agent design is also the simplest. Anything you write in a prompt is followed most of the time. Anything you put in code around the model is enforced every time. The question for each rule is which of those it needs to be.</p>
+      <h2>A prompt is a request. A check in code is a rule.</h2>
+      <p class="intro">Anything you write in a prompt is guidance the model usually follows. A rule you need to hold is a check in code that runs outside the model, at the boundary the action crosses, and decides allow, deny or ask a person. A hook is one place such a check can live, but not every hook enforces anything: some only log, and some ask another model. Name the behaviour you need and where it runs. And remember that code can be wrong too, so the check gets tests like anything else.</p>
     </div>
   </div>
   <div class="ln-enf">
     <div class="ln-enf-col">
       <p class="sec-label">Prompt-based</p>
-      <h3>Probabilistic</h3>
-      <div class="ln-quote">"Always verify the customer before processing a refund."</div>
-      <p>Lives in the system prompt. The model reads it, weighs it against everything else in the context, and usually complies. Usually. Under pressure from a long conversation, a persuasive user, or an ambiguous case, it can be argued out of it, and you will not know until the refund has gone.</p>
+      <h3>Guidance the model weighs</h3>
+      <div class="ln-quote">"Refunds over $50 need a supervisor's approval."</div>
+      <p>Lives in the system prompt. The model reads it, weighs it against everything else in the context, and usually complies. Usually. Under pressure from a long conversation, a persuasive user, or an ambiguous case, it can be argued out of it, and you will not know until the refund has gone. Good for shaping how it works; not enough on its own for what it may do.</p>
       <div class="ln-good"><span class="sec-label">Good for</span><div class="chips"><span class="chip">Style</span><span class="chip">Tone</span><span class="chip">Formatting</span><span class="chip">Preferences</span><span class="chip">Judgment calls</span></div></div>
     </div>
     <div class="ln-enf-col ln-enf-hook">
-      <p class="sec-label">Hook-based</p>
-      <h3>Deterministic</h3>
-      <pre class="ln-code"><code>before tool_call "process_refund":
-    if not verified(customer):
-        block("verify first")</code></pre>
-      <p>Lives in code that runs before or after every tool call. The model can want the refund as much as it likes; the hook checks the record and blocks the call. Zero exceptions, every time, with a log entry that says so.</p>
+      <p class="sec-label">Enforced in code</p>
+      <h3>A blocking check at the boundary</h3>
+      <pre class="ln-code"><code>before tool_call "issue_refund":
+    if not caller.has_scope("refunds:issue"):
+        return deny("not permitted")
+    if call.amount > 50:
+        return ask("duty_supervisor")
+    return allow()</code></pre>
+      <p>Runs in the application or the service, before the call executes, using the agent's configured identity. The model can propose the refund as often as it likes; the check decides, and every decision is logged. It holds as long as the code and its configuration are right, which is why it is tested and reviewed. In Claude Code, for example, a PreToolUse hook can return allow, deny or ask; a logging hook on the same event would enforce nothing.</p>
       <div class="ln-good"><span class="sec-label">Good for</span><div class="chips"><span class="chip">Money</span><span class="chip">Compliance</span><span class="chip">Security</span><span class="chip">Data access</span><span class="chip">Anything irreversible</span></div></div>
     </div>
   </div>
-  <p class="ln-statement">When money is on the line, use hooks, not prompts.</p>
+  <p class="ln-statement">When money or access is on the line, enforce it in code at the boundary, and test that code. <a href="/learn/atlas/?x=denyRefund&amp;step=10">Watch a refund get denied before execution</a>.</p>
   <p class="ln-note">This is gate 05 of <a href="/method/#gates">the eight gates</a>: every action typed, validated, and reversible, with the rules that matter enforced outside the model.</p>
 </section></div></div>
 

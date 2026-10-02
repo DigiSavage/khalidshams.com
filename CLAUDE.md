@@ -29,6 +29,7 @@ templates/
                           #agentic "Agentic AI, the SHAMS way": six components tagged to their primary stage (loop figure + panes),
                           coordination cost (mesh vs coordinator, ?agents=N), SHAMS applied to the team. Deep links ?part=<agent|mcp|rag|memory|llm|skills|sustain>#agentic.
                           One-pager download: static/agentic-ai-the-shams-way.jpg. CSS under /* ---------- agentic ---------- */ in base.html
+  atlas.html              the SHAMS AI Atlas workspace (see the Atlas section)
   learn.html              Learn AI: the living map (data injected from content/learn/graph.json), seven-layer stack, four kinds table,
                           when-to-build-an-agent decision tree, agentic loop, hub and spoke, prompts vs hooks, FAQ
   playbook.html           one playbook page; playbooks_index.html the /playbooks/ index
@@ -78,6 +79,26 @@ Never commit secrets. AWS keys and LinkedIn tokens are GitHub Actions secrets th
 **A tool:** write `templates/tools/<slug>.html` (copy the shape of `availability.html`: hero with crumbs, the instrument with editor + `.tl-out` results panel, a live `pre.record` note with copy/link/reset, from-the-work lessons, an FAQ on the maths, related links). Add an entry to `TOOLS` in `build.py` (sitemap and search index pick it up), remove it from the bench list in `tools_index.html`, and add it to the Tools submenu and drawer group in `templates/masthead.html`. Rules: example figures are labelled as examples, never presented as vendor prices or SLAs; nothing leaves the browser; share state only through `?s=` in the URL and validate it on load; never round a result in the reader's favour.
 
 **A new section or page:** add a template, render it in `build.py`, add it to the sitemap list, to `build_search_index` pages, and to `templates/masthead.html` (desktop submenu + drawer group). Give every `h2`/`h3` a nearby `id` so search can deep-link and highlight.
+
+## The SHAMS AI Atlas (/learn/atlas/)
+
+One flagship interactive lesson: a damaged-order request followed through a governed AI system. Branch `claude/shams-ai-atlas` until Khalid approves a release.
+
+```
+atlas_build.py                       load + validate the registry (errors stop the build), render templates/atlas.html, standalone light/dark scene SVGs
+atlas_scene.py                       the 1280x800 scene SVG. Every shape carries presentation-attribute fills so it never renders black without CSS
+content/atlas/concepts.json          19 concepts, 7 layers, 5 SHAMS moves. Fields: recognize/understand/architect, picture, metaphorLimit, failureMode, sources, status, mapId
+content/atlas/sources.json           primary sources with checked dates and the claims each supports
+content/atlas/checks.json            knowledge checks (exactly one correct option each)
+content/atlas/scenarios/damaged-order.json  limits, interventions, outcomes, step templates, slots, text equivalent
+static/atlas/engine.js               pure deterministic engine (plan, buildRun, parseState, serializeState). No DOM
+static/atlas/atlas.js, atlas.css     the workspace UI. Progress in localStorage `ks-atlas-v1`; reads `ks-learn` only
+docs/atlas/                          brief, status, coverage (generated), reference audit, verification, screenshots
+```
+
+Rules: every scene object and step reference must exist in the registry (the build checks). `source-checked` concepts need sources. Colour meaning: cobalt is focus, gold is cost, coral is denial or error, and each also has a non-colour cue (mark, dash pattern, label). No runtime model calls, no framework. Never commit the reference drawings collection.
+
+Tests: `node --test tests/atlas/*.test.mjs` (engine), `python -m unittest tests/atlas/test_registry.py` (registry), then serve dist on 8767 and run `python tests/atlas/ui_check.py http://localhost:8767 <screenshot dir>` (layout matrix, light and dark, regressions).
 
 ## Site search
 

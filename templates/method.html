@@ -139,6 +139,7 @@
     <div>
       <h2>From a capable agent to a governed, measurable system.</h2>
       <p class="intro">The five moves above govern the whole estate. Here they are applied to the thing every team is building right now: an agent. Six components, each tagged with the stage that governs it first, then the arithmetic that decides how many agents you actually need. Pick a component, or pick a stage and watch what it governs light up.</p>
+      <p class="intro"><a href="/learn/atlas/">Follow one request through all of these in the SHAMS AI Atlas</a>: the same components working together on a damaged-order case, with the SHAMS lenses as overlays and what changes when a permission is denied.</p>
     </div>
   </div>
 
@@ -220,7 +221,7 @@
         <div class="ag-pc"><p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g4">04 Grounding</a></div><p class="sec-label">Go deeper</p><div class="chips"><a class="chip" href="/learn/?idea=rag#map">Retrieval (RAG)</a><a class="chip" href="/learn/?idea=embed#map">Embeddings</a><a class="chip" href="/playbooks/data-platform/">Data and AI platform</a></div></div>
       </div>
       <div class="ag-pane" data-pane="memory" hidden>
-        <div class="ag-pc"><p class="sec-label">Memory · the notebook · <b>Anchor</b></p><p class="ag-what">Persistent state: stores useful facts, decisions and progress across steps, beyond one context window.</p><p>Memory keeps the work continuous: what was decided, what was tried, where it got to. It is not the source of record. Facts of record are retrieved from governed data every time; memory holds progress. Mixing the two is how an agent ends up repeating something that stopped being true.</p></div>
+        <div class="ag-pc"><p class="sec-label">Memory · the notebook · <b>Anchor</b></p><p class="ag-what">Persistent state: stores useful facts, decisions and progress across steps, beyond one context window.</p><p>Memory keeps the work continuous: what was decided, what was tried, where it got to. It can also hold facts, preferences and summaries, but it is not the system of record, and it only helps when the application loads a relevant, permitted, fresh entry. Business facts that change, like a balance or an order status, are better read from the source when they matter. Mixing the two is how an agent ends up repeating something that stopped being true.</p></div>
         <div class="ag-pc"><p class="sec-label">The question I ask</p><p class="ag-q">What is it allowed to keep, for how long, and who can read it back?</p></div>
         <div class="ag-pc"><p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g4">04 Grounding</a><a class="chip chip-b" href="#g3">03 Permissions</a></div><p class="sec-label">Go deeper</p><div class="chips"><a class="chip" href="/learn/?idea=memory#map">Memory</a><a class="chip" href="/learn/?idea=context#map">Context window</a></div></div>
       </div>
@@ -230,7 +231,7 @@
         <div class="ag-pc"><p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g6">06 Evaluation</a><a class="chip chip-b" href="#g7">07 Economics</a></div><p class="sec-label">Go deeper</p><div class="chips"><a class="chip" href="/learn/?idea=llm#map">Large language model</a><a class="chip" href="/learn/?idea=evals#map">Evaluation</a><a class="chip" href="/learn/?idea=hallucination#map">Hallucination</a></div></div>
       </div>
       <div class="ag-pane" data-pane="skills" hidden>
-        <div class="ag-pc"><p class="sec-label">Skills · practiced routines · <b>Measure</b></p><p class="ag-what">Reusable procedures: instructions, scripts and resources for repeat tasks, loaded when they're relevant.</p><p>A skill is a routine, and routines can be tested like routines: same input, expected output, every time the model or the source underneath changes. A skill is still guidance, not enforcement. Anything that touches money, compliance or access belongs in a hook.</p></div>
+        <div class="ag-pc"><p class="sec-label">Skills · practiced routines · <b>Measure</b></p><p class="ag-what">Reusable procedures: instructions, scripts and resources for repeat tasks, loaded when they're relevant.</p><p>A skill is a routine, and routines can be tested like routines: same input, expected output, every time the model or the source underneath changes. A skill is still guidance, not enforcement, and it cannot grant a permission the runtime has not. Anything that touches money, compliance or access needs a check in code at the boundary: a blocking hook, middleware, or the service's own authorization.</p></div>
         <div class="ag-pc"><p class="sec-label">The question I ask</p><p class="ag-q">Does the routine still pass when the model or the data underneath it changes?</p></div>
         <div class="ag-pc"><p class="sec-label">Signed off at</p><div class="chips"><a class="chip chip-b" href="#g6">06 Evaluation</a></div><p class="sec-label">Go deeper</p><div class="chips"><a class="chip" href="/learn/#enforce">Prompts vs hooks</a><a class="chip" href="/learn/?idea=guardrails#map">Guardrails and hooks</a></div></div>
       </div>
@@ -287,7 +288,7 @@
   <blockquote class="pq"><p>Every added agent needs a measured purpose.</p><footer>Khalid Shams</footer></blockquote>
   <div class="ag-keep">
     <p class="sec-label">Keep it</p>
-    <p>The one-page version of this section, for a slide, a design review, or the wall. <a href="/agentic-ai-the-shams-way.jpg" download>Download the one-pager</a> · <a href="/learn/#multi">How hub and spoke works</a> · <a href="/playbooks/agentic-ai/">The agentic AI playbook</a></p>
+    <p>The one-page version of this section, for a slide, a design review, or the wall. <a href="/agentic-ai-the-shams-way.jpg" download>Download the one-pager</a> · <a href="/learn/atlas/?design=team">A coordinator and specialist, step by step</a> · <a href="/learn/#multi">How hub and spoke works</a> · <a href="/playbooks/agentic-ai/">The agentic AI playbook</a></p>
   </div>
 </section></div></div>
 

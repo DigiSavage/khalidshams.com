@@ -1,0 +1,26 @@
+{
+  "version": "2026.10.1",
+  "checks": [
+    {"id": "memory-context-retrieval", "concepts": ["memory", "context", "retrieval"],
+     "q": "The customer sent damage photos in an earlier session. In this run, the model refunds without asking for them. What made that possible?",
+     "options": [
+       {"t": "The model remembers the earlier session.", "ok": false, "why": "Models do not carry anything between calls. Only what is on the desk for this call is available."},
+       {"t": "The application loaded the saved note into this call's context.", "ok": true, "why": "Memory is a store. It helps only when the application selects a relevant, permitted entry and puts it in context."},
+       {"t": "Retrieval searched the policy library and found the photos.", "ok": false, "why": "Retrieval brought the policy passage. The photos came from the customer's saved note."}
+     ]},
+    {"id": "proposal-authz-execution", "concepts": ["model", "authorization", "tool"],
+     "q": "The model proposes issue_refund for $84. What happens next in a governed system?",
+     "options": [
+       {"t": "The refund is issued, because the model decided.", "ok": false, "why": "The model only proposes. It has no credentials and executes nothing."},
+       {"t": "The application validates it and an enforcement point allows, denies or routes it for approval before any service is called.", "ok": true, "why": "Proposal, authorization and execution are three separate steps owned by different parts of the system."},
+       {"t": "The MCP connection guarantees the call is permitted.", "ok": false, "why": "A connection is not permission. The server and the application still check scopes and rules."}
+     ]},
+    {"id": "specialist-permissions", "concepts": ["specialist", "coordinator"],
+     "q": "Why can't the policy specialist issue the refund in this design?",
+     "options": [
+       {"t": "Specialists can never use write tools.", "ok": false, "why": "Nothing inherent stops it. In Claude Code, for example, subagents inherit the main tools unless restricted."},
+       {"t": "Its tool list was configured with retrieve_policy only.", "ok": true, "why": "The restriction is explicit configuration. A separate context window is not a separate permission set."},
+       {"t": "It runs in a separate sandbox.", "ok": false, "why": "A separate context is not process or network isolation unless that is configured too."}
+     ]}
+  ]
+}
