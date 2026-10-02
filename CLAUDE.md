@@ -26,6 +26,9 @@ templates/
   footer.html
   home.html               hero, method + learn callouts, playbooks grid, situations, selected work (+ figures in context), lessons, writing, built, depth, contact
   method.html             The SHAMS Method: expandable S/H/A/M/S moves, estate map (SVG), autonomy ladder, eight gates, gate check, gate record
+                          #agentic "Agentic AI, the SHAMS way": six components tagged to their primary stage (loop figure + panes),
+                          coordination cost (mesh vs coordinator, ?agents=N), SHAMS applied to the team. Deep links ?part=<agent|mcp|rag|memory|llm|skills|sustain>#agentic.
+                          One-pager download: static/agentic-ai-the-shams-way.jpg. CSS under /* ---------- agentic ---------- */ in base.html
   learn.html              Learn AI: the living map (data injected from content/learn/graph.json), seven-layer stack, four kinds table,
                           when-to-build-an-agent decision tree, agentic loop, hub and spoke, prompts vs hooks, FAQ
   playbook.html           one playbook page; playbooks_index.html the /playbooks/ index
