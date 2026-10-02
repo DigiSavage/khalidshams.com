@@ -310,7 +310,7 @@
    "y": 230,
    "plain": "AI that doesn't just answer but takes steps: searching, using tools, and checking its own work toward a goal.",
    "picture": "Going from a helpful librarian to an assistant who actually runs the errands.",
-   "deep": "A model in a loop: it receives the conversation, decides whether to answer or call a tool, your code runs the tool and returns the result, and the loop repeats until the model's stop reason says it is done. Reliability and oversight are the hard parts.",
+   "deep": "A model in a loop that your code runs: it receives the context, either answers or proposes a tool call, your code validates and runs permitted calls and returns the results, and the loop continues until the goal is verified or a limit, denial, cancellation or handoff ends it. The model's stop reason says why one response ended, not whether the task succeeded.",
    "link": {
     "label": "The agentic loop",
     "href": "/learn/#loop"

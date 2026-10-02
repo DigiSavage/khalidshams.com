@@ -17,6 +17,7 @@ from datetime import date, datetime, timezone, timedelta
 from pathlib import Path
 
 import markdown  # pip install markdown
+import atlas_build
 
 ROOT = Path(__file__).parent
 SITE = "https://khalidshams.com"
@@ -172,6 +173,15 @@ def render_md(p: Post) -> str:
     return MD.convert(p.body_md)
 
 
+def num_words(n: int) -> str:
+    """Small cardinal in words (0-99), so counts in prose come from the data."""
+    ones = "zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen".split()
+    tens = "_ _ twenty thirty forty fifty sixty seventy eighty ninety".split()
+    if n < 20: return ones[n]
+    t, o = divmod(n, 10)
+    return tens[t] + ("" if o == 0 else "-" + ones[o])
+
+
 def tpl(name: str) -> str:
     return (TPL / name).read_text(encoding="utf-8")
 
@@ -269,6 +279,7 @@ def build():
     posts = load_posts()
     live = visible(posts)
     masthead, footer = tpl("masthead.html"), tpl("footer.html")
+    n_ideas_all = len(json.loads((ROOT / "content" / "learn" / "graph.json").read_text(encoding="utf-8"))["ideas"])
 
     # ---- post pages
     for p in live:
@@ -347,7 +358,7 @@ def build():
         description="Reference calculators for cloud and AI architecture: composite availability and recovery time today, with agent cost per run, tenant tier rules, a detection-first log budget, and an honest estimate on the bench. Runs in your browser.",
         canonical=f"{SITE}/tools/"), encoding="utf-8")
 
-    home = fill(tpl("home.html"), WRITING=writing, MASTHEAD=masthead,
+    home = fill(tpl("home.html"), NIDEASCAP=num_words(n_ideas_all).capitalize(), WRITING=writing, MASTHEAD=masthead,
                 PLAYBOOKS="\n".join(pb_card(o) for o in pbs))
     (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
         description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
@@ -390,7 +401,7 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -403,13 +414,25 @@ def build():
         description="Where AI belongs in your enterprise and how to keep it safe: an interactive map of your estate, the autonomy ladder, and the eight gates between a demo and a system.",
         canonical=f"{SITE}/method/"), encoding="utf-8")
 
-    # ---- learn page
+    # ---- SHAMS AI Atlas (content registry in content/atlas, validated at build time)
     graph = json.loads((ROOT / "content" / "learn" / "graph.json").read_text(encoding="utf-8"))
-    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer,
+    graph_ids = {i["id"] for i in graph["ideas"]}
+    atlas_html, atlas_svg, atlas_stats = atlas_build.render(tpl("atlas.html"), masthead=masthead, footer=footer, graph_ids=graph_ids)
+    (DIST / "learn" / "atlas").mkdir(parents=True, exist_ok=True)
+    (DIST / "learn" / "atlas" / "index.html").write_text(page(atlas_html, title="The SHAMS AI Atlas · Learn AI · Khalid Shams",
+        description="See what each part does, and how the whole system works: follow one customer request through an illustrated, governed AI system. Picture and architecture views, SHAMS overlays, and what changes when evidence is missing, a permission is denied or a tool fails.",
+        canonical=f"{SITE}/learn/atlas/"), encoding="utf-8")
+    (DIST / "learn" / "atlas" / "scene.svg").write_text(atlas_svg["light"], encoding="utf-8")
+    (DIST / "learn" / "atlas" / "scene-dark.svg").write_text(atlas_svg["dark"], encoding="utf-8")
+    print(f"atlas: {atlas_stats['concepts']} concepts ({atlas_stats['mapped']} linked to the Learn map), {atlas_stats['steps']} step templates, {atlas_stats['sources']} sources")
+
+    # ---- learn page
+    n_ideas = len(graph["ideas"])
+    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer, NIDEAS=num_words(n_ideas), NIDEASCAP=num_words(n_ideas).capitalize(), NIDEASN=str(n_ideas), ATLASN=str(atlas_stats["concepts"]),
               GRAPH=json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
     (DIST / "learn").mkdir(exist_ok=True)
     (DIST / "learn" / "index.html").write_text(page(lp, title="Learn AI · Khalid Shams",
-        description="Learn AI the way it learns: an interactive map of 32 ideas with three depths each, the seven-layer AI stack (where MCP, agents and guardrails actually sit), model vs chatbot vs workflow vs agent, the agentic loop, multi-agent patterns, prompts vs hooks, and the questions beginners ask.",
+        description=f"Learn AI the way it learns: an interactive map of {n_ideas} ideas with three depths each, the seven-layer AI stack (where MCP, agents and guardrails actually sit), model vs chatbot vs workflow vs agent, the agentic loop, multi-agent patterns, prompts vs hooks, and the questions beginners ask.",
         canonical=f"{SITE}/learn/"), encoding="utf-8")
 
     # ---- 404 (CloudFront custom error response points here)
@@ -428,7 +451,7 @@ def build():
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
     # ---- search index
-    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/method/", DIST / "method" / "index.html"),
+    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/learn/atlas/", DIST / "learn" / "atlas" / "index.html"), ("/method/", DIST / "method" / "index.html"),
              ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
             [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]
