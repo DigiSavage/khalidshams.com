@@ -1,0 +1,682 @@
+{
+ "id": "model-making",
+ "version": "2026.10.3",
+ "title": "How a model is made",
+ "case": "Follow one language model from raw text to the pinned version the flagship scene calls.",
+ "disclaimer": "Teaching simulation. The stages are real; the scale, numbers, names and examples are illustrative and far smaller than any production model. No part of this page trains or calls a model.",
+ "page": {
+  "route": "/learn/atlas/how-models-are-made/",
+  "crumb": "How a model is made",
+  "h1": "How a model is made,",
+  "h1em": "before anyone calls it.",
+  "label": "Second lesson.",
+  "follow": "Follow the model",
+  "ready": "Press \"Follow the model\" to start.",
+  "intro": "One model, followed from raw text to a released version: what it learns from, what training actually adjusts, what fine-tuning and alignment add, and what evaluation has to show before release.",
+  "designs": false,
+  "slotsLabel": null,
+  "budget": false,
+  "legend": "training",
+  "outcomesIntro": "Release is a decision made on evidence. These are the ways this build can end."
+ },
+ "limits": {
+  "steps": 99,
+  "tightSteps": 99,
+  "maxAttempts": 0
+ },
+ "interventions": [
+  {
+   "id": "skewData",
+   "label": "Skew the training data",
+   "help": "One group of writers dominates the corpus and others are rare."
+  },
+  {
+   "id": "overfit",
+   "label": "Train too long on too little text",
+   "help": "A small corpus, many passes over it."
+  },
+  {
+   "id": "skipAlign",
+   "label": "Skip the preference stage",
+   "help": "The fine-tuned model goes straight to evaluation."
+  }
+ ],
+ "outcomes": {
+  "released": {
+   "label": "Released",
+   "kind": "success",
+   "text": "Released as a pinned version after meeting its evaluation criteria. From here, what changes per call is the context; monitoring in use decides when a new version is needed."
+  },
+  "held_back": {
+   "label": "Held back",
+   "kind": "stop",
+   "text": "Not released: evaluation found a problem the release criteria do not allow. Holding back is the control working. The next attempt starts from the data or the recipe."
+  }
+ },
+ "plan": [
+  "frame",
+  {
+   "if": "skewData",
+   "then": [
+    "collect_skewed"
+   ],
+   "else": [
+    "collect"
+   ]
+  },
+  "tokenize",
+  "embed",
+  "architecture",
+  "neuron",
+  "predict",
+  "loss",
+  "backprop",
+  {
+   "if": "overfit",
+   "then": [
+    "repeat_overfit"
+   ],
+   "else": [
+    "repeat"
+   ]
+  },
+  "checkpoint",
+  "finetune",
+  {
+   "if": "skipAlign",
+   "then": [
+    "align_skipped"
+   ],
+   "else": [
+    "align"
+   ]
+  },
+  {
+   "if": "skewData",
+   "then": [
+    "eval_bias_fail"
+   ]
+  },
+  {
+   "if": "overfit",
+   "then": [
+    "eval_overfit_fail"
+   ]
+  },
+  {
+   "if": "skipAlign",
+   "then": [
+    "eval_unaligned_fail"
+   ]
+  },
+  "evaluate",
+  "release"
+ ],
+ "steps": {
+  "frame": {
+   "phase": "Frame",
+   "title": "Where this fits",
+   "actor": "ai_rings",
+   "narration": "The model in the flagship scene is one kind of AI: inside machine learning, inside deep learning, a large language model. This lesson follows how such a model is made, long before any application calls it.",
+   "focus": [
+    "ai_rings"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "ai",
+    "ml",
+    "deep"
+   ],
+   "events": [
+    {
+     "type": "lesson.start",
+     "detail": "track=model_making synthetic=true"
+    }
+   ],
+   "cost": 0
+  },
+  "collect": {
+   "phase": "Data",
+   "title": "Collect and filter text",
+   "actor": "corpus",
+   "narration": "A large body of text is gathered, cleaned and deduplicated. A held-out slice is set aside and never trained on. The bars show who and what is represented; gaps here become weak spots later.",
+   "focus": [
+    "corpus"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "data",
+    "bias"
+   ],
+   "events": [
+    {
+     "type": "data.collected",
+     "detail": "corpus=illustrative filtered=true"
+    },
+    {
+     "type": "data.split",
+     "detail": "heldout=reserved"
+    },
+    {
+     "type": "data.profiled",
+     "detail": "representation=checked"
+    }
+   ],
+   "cost": 0
+  },
+  "collect_skewed": {
+   "phase": "Data",
+   "title": "Collect text, one group dominates",
+   "actor": "corpus",
+   "narration": "The text is gathered and cleaned, but one group of writers dominates and others are rare. Nothing fails yet. The skew stays silent until someone measures by group.",
+   "focus": [
+    "corpus"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "data",
+    "bias"
+   ],
+   "events": [
+    {
+     "type": "data.collected",
+     "detail": "corpus=illustrative filtered=true"
+    },
+    {
+     "type": "data.split",
+     "detail": "heldout=reserved"
+    },
+    {
+     "type": "data.profiled",
+     "detail": "representation=skewed"
+    }
+   ],
+   "warn": true,
+   "cost": 0
+  },
+  "tokenize": {
+   "phase": "Tokens",
+   "title": "Cut the text into tokens",
+   "actor": "tokenizer",
+   "narration": "A tokenizer splits text into tokens: whole words, parts of words, characters. Whether 'cracked' is one token or two depends on the tokenizer.",
+   "focus": [
+    "tokenizer",
+    "corpus"
+   ],
+   "edges": [
+    "e_corpus_tok"
+   ],
+   "load": [],
+   "concepts": [
+    "token"
+   ],
+   "events": [
+    {
+     "type": "tokenizer.applied",
+     "detail": "vocabulary=fixed"
+    }
+   ],
+   "cost": 0
+  },
+  "embed": {
+   "phase": "Embed",
+   "title": "Turn each token into numbers",
+   "actor": "embedmap",
+   "narration": "Each token is looked up in a learned embedding table and becomes a vector, a long list of numbers. During training, tokens used in similar ways drift near each other.",
+   "focus": [
+    "embedmap",
+    "tokenizer"
+   ],
+   "edges": [
+    "e_tok_embed"
+   ],
+   "load": [],
+   "concepts": [
+    "embed"
+   ],
+   "events": [
+    {
+     "type": "embed.lookup",
+     "detail": "dims=illustrative"
+    }
+   ],
+   "cost": 0
+  },
+  "architecture": {
+   "phase": "Architecture",
+   "title": "Up through the stack of blocks",
+   "actor": "network",
+   "narration": "The vectors pass up through many identical blocks. In each, attention lets every token weigh the others, then a small neural network transforms each one. The top of the stack scores every possible next token.",
+   "focus": [
+    "network"
+   ],
+   "edges": [
+    "e_embed_net"
+   ],
+   "load": [],
+   "concepts": [
+    "transformer",
+    "attention",
+    "nn",
+    "deep"
+   ],
+   "events": [
+    {
+     "type": "forward.pass",
+     "detail": "blocks=stacked"
+    }
+   ],
+   "cost": 0
+  },
+  "neuron": {
+   "phase": "Architecture",
+   "title": "Inside one unit",
+   "actor": "neuron_zoom",
+   "narration": "Zoom into one unit of that network: multiply each input by a weight, add them up, apply a simple function. The weights are parameters. At the start of training they are random.",
+   "focus": [
+    "neuron_zoom",
+    "network",
+    "dials"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "neuron",
+    "parameters"
+   ],
+   "events": [
+    {
+     "type": "unit.inspected",
+     "detail": "weights=random_init"
+    }
+   ],
+   "cost": 0
+  },
+  "predict": {
+   "phase": "Train",
+   "title": "Guess the next token",
+   "actor": "loop",
+   "narration": "Training shows real text with the next token hidden: 'The lamp arrived ___'. The model gives every candidate a probability, for example cracked 12%, broken 9%, late 4%. The numbers here are illustrative.",
+   "focus": [
+    "loop",
+    "network"
+   ],
+   "edges": [
+    "e_net_pred"
+   ],
+   "load": [],
+   "concepts": [
+    "training",
+    "ml"
+   ],
+   "events": [
+    {
+     "type": "train.predict",
+     "detail": "context='The lamp arrived' top=cracked p=0.12"
+    }
+   ],
+   "cost": 0
+  },
+  "loss": {
+   "phase": "Train",
+   "title": "Measure how wrong it was",
+   "actor": "loop",
+   "narration": "The text said 'cracked'. The loss is one number for how little probability the model gave the right token. The training algorithm's whole aim is to make this number smaller.",
+   "focus": [
+    "loop",
+    "losschart"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "training",
+    "algorithm"
+   ],
+   "events": [
+    {
+     "type": "train.loss",
+     "detail": "value=2.12 illustrative"
+    }
+   ],
+   "cost": 0
+  },
+  "backprop": {
+   "phase": "Train",
+   "title": "Adjust every parameter a little",
+   "actor": "loop",
+   "narration": "Backpropagation works out, for every parameter, which direction would have lowered the loss. Each one moves a tiny step that way. No person edits a rule; the numbers shift.",
+   "focus": [
+    "loop",
+    "dials",
+    "network"
+   ],
+   "edges": [
+    "e_loss_back",
+    "e_dials_net"
+   ],
+   "load": [],
+   "concepts": [
+    "backprop",
+    "parameters"
+   ],
+   "events": [
+    {
+     "type": "train.update",
+     "detail": "params=all step=small"
+    }
+   ],
+   "cost": 0
+  },
+  "repeat": {
+   "phase": "Train",
+   "title": "Repeat across the corpus",
+   "actor": "losschart",
+   "narration": "The loop runs an enormous number of times. Training loss falls, and loss on the held-out slice falls with it: the patterns carry over to text the model has not seen.",
+   "focus": [
+    "losschart",
+    "loop"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "training",
+    "deep"
+   ],
+   "events": [
+    {
+     "type": "train.progress",
+     "detail": "loss_train=falling loss_heldout=falling"
+    }
+   ],
+   "cost": 0
+  },
+  "repeat_overfit": {
+   "phase": "Train",
+   "title": "Too many passes over too little text",
+   "actor": "losschart",
+   "narration": "With a small corpus and many passes, training loss keeps falling but held-out loss turns upward. The model is memorising its examples instead of learning patterns that carry over.",
+   "focus": [
+    "losschart",
+    "loop"
+   ],
+   "edges": [],
+   "load": [],
+   "concepts": [
+    "training",
+    "deep"
+   ],
+   "events": [
+    {
+     "type": "train.progress",
+     "detail": "loss_train=falling loss_heldout=rising"
+    }
+   ],
+   "warn": true,
+   "cost": 0
+  },
+  "checkpoint": {
+   "phase": "Checkpoint",
+   "title": "Save the base model",
+   "actor": "checkpoint",
+   "narration": "The architecture and its learned parameters are saved as a checkpoint, base-v0. It continues text fluently, but a pretrained model is not inherently good at answering questions or following instructions.",
+   "focus": [
+    "checkpoint",
+    "dials"
+   ],
+   "edges": [
+    "e_save"
+   ],
+   "load": [],
+   "concepts": [
+    "checkpoint",
+    "parameters"
+   ],
+   "events": [
+    {
+     "type": "checkpoint.saved",
+     "detail": "id=base-v0"
+    }
+   ],
+   "cost": 0
+  },
+  "finetune": {
+   "phase": "Fine-tune",
+   "title": "Fine-tune on worked examples",
+   "actor": "ft_station",
+   "narration": "The base model is trained further on request and good-answer pairs written by people. It starts to answer like an assistant, and to copy any habits in those examples.",
+   "focus": [
+    "ft_station",
+    "checkpoint"
+   ],
+   "edges": [
+    "e_ckpt_ft"
+   ],
+   "load": [],
+   "concepts": [
+    "finetune",
+    "supervised"
+   ],
+   "events": [
+    {
+     "type": "sft.completed",
+     "detail": "id=sft-v1 examples=illustrative"
+    }
+   ],
+   "cost": 0
+  },
+  "align": {
+   "phase": "Align",
+   "title": "Train toward preferred answers",
+   "actor": "align_station",
+   "narration": "People, or a model guided by written principles, compare pairs of answers. A preference model learns those choices and reinforcement learning shifts the model toward the preferred ones. Wanted behaviour becomes more likely. It is not guaranteed.",
+   "focus": [
+    "align_station",
+    "ft_station"
+   ],
+   "edges": [
+    "e_ft_align"
+   ],
+   "load": [],
+   "concepts": [
+    "alignment"
+   ],
+   "events": [
+    {
+     "type": "preference.trained",
+     "detail": "id=aligned-v1"
+    }
+   ],
+   "cost": 0
+  },
+  "align_skipped": {
+   "phase": "Align",
+   "title": "The preference stage is skipped",
+   "actor": "ft_station",
+   "narration": "To save time, the preference stage is skipped and the fine-tuned model goes straight to evaluation.",
+   "focus": [
+    "align_station",
+    "ft_station"
+   ],
+   "edges": [
+    "e_ft_eval"
+   ],
+   "load": [],
+   "concepts": [
+    "alignment"
+   ],
+   "events": [
+    {
+     "type": "stage.skipped",
+     "detail": "stage=preference"
+    }
+   ],
+   "warn": true,
+   "cost": 0
+  },
+  "evaluate": {
+   "phase": "Evaluate",
+   "title": "Test on what it never trained on",
+   "actor": "eval_bench",
+   "narration": "The candidate is tested on held-out tasks, on requests it should decline, and by group to look for uneven quality. Every release criterion is met.",
+   "focus": [
+    "eval_bench",
+    "losschart"
+   ],
+   "edges": [
+    "e_align_eval"
+   ],
+   "load": [],
+   "concepts": [
+    "verification",
+    "bias"
+   ],
+   "events": [
+    {
+     "type": "eval.passed",
+     "detail": "heldout=ok decline_tests=ok by_group=ok"
+    }
+   ],
+   "cost": 0
+  },
+  "eval_bias_fail": {
+   "phase": "Evaluate",
+   "title": "Uneven quality between groups",
+   "actor": "eval_bench",
+   "narration": "The average score looks fine. Scores by group show the model misreads the under-represented writers. A release criterion fails, and the fix is in the data, not the prompt.",
+   "focus": [
+    "eval_bench",
+    "corpus"
+   ],
+   "edges": [
+    "e_align_eval",
+    "e_eval_hold"
+   ],
+   "load": [],
+   "concepts": [
+    "verification",
+    "bias"
+   ],
+   "events": [
+    {
+     "type": "eval.failed",
+     "detail": "by_group=uneven"
+    },
+    {
+     "type": "release.held",
+     "detail": "reason=bias"
+    }
+   ],
+   "outcome": "held_back",
+   "cost": 0
+  },
+  "eval_overfit_fail": {
+   "phase": "Evaluate",
+   "title": "It does not generalise",
+   "actor": "eval_bench",
+   "narration": "On held-out tasks the candidate scores far below its training results. It memorised. The fix is more varied data or fewer passes, then train again.",
+   "focus": [
+    "eval_bench",
+    "losschart"
+   ],
+   "edges": [
+    "e_align_eval",
+    "e_eval_hold"
+   ],
+   "load": [],
+   "concepts": [
+    "verification",
+    "training"
+   ],
+   "events": [
+    {
+     "type": "eval.failed",
+     "detail": "heldout=poor"
+    },
+    {
+     "type": "release.held",
+     "detail": "reason=overfit"
+    }
+   ],
+   "outcome": "held_back",
+   "cost": 0
+  },
+  "eval_unaligned_fail": {
+   "phase": "Evaluate",
+   "title": "Answers it should not give",
+   "actor": "eval_bench",
+   "narration": "On the decline tests the candidate goes along with requests it should refuse and is curt with upset customers. A release criterion fails.",
+   "focus": [
+    "eval_bench",
+    "align_station"
+   ],
+   "edges": [
+    "e_eval_hold"
+   ],
+   "load": [],
+   "concepts": [
+    "verification",
+    "alignment"
+   ],
+   "events": [
+    {
+     "type": "eval.failed",
+     "detail": "decline_tests=failed"
+    },
+    {
+     "type": "release.held",
+     "detail": "reason=unaligned"
+    }
+   ],
+   "outcome": "held_back",
+   "cost": 0
+  },
+  "release": {
+   "phase": "Release",
+   "title": "Pin and release a version",
+   "actor": "release",
+   "narration": "The passing checkpoint is released under a fixed version name, and applications pin it: this is the model card in the flagship scene. Its parameters no longer change. Each call gets a fresh context.",
+   "focus": [
+    "release",
+    "eval_bench"
+   ],
+   "edges": [
+    "e_eval_release",
+    "e_release_runtime"
+   ],
+   "load": [],
+   "concepts": [
+    "model",
+    "checkpoint"
+   ],
+   "events": [
+    {
+     "type": "release.pinned",
+     "detail": "version=assistant-v1"
+    }
+   ],
+   "outcome": "released",
+   "cost": 0
+  }
+ },
+ "slots": [],
+ "textEquivalent": [
+  "frame",
+  "collect",
+  "tokenize",
+  "embed",
+  "architecture",
+  "neuron",
+  "predict",
+  "loss",
+  "backprop",
+  "repeat",
+  "checkpoint",
+  "finetune",
+  "align",
+  "evaluate",
+  "release"
+ ]
+}

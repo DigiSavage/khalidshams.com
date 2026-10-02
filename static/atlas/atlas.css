@@ -227,6 +227,14 @@
 .atlas.x-injection .atlas-scene .inj-note rect{ fill:var(--warn-soft); stroke:var(--warn); stroke-width:1.6; }
 .atlas.x-injection .atlas-scene .inj-note path{ stroke:var(--warn); }
 .atlas-scene [data-sc]{ cursor:pointer; }
+.atlas-scene .st-mark.allowed{ fill:var(--blue); } .atlas-scene .st-mark.denied{ fill:var(--warn); }
+.atlas-scene .bars-skew,.atlas-scene .ho-bad{ display:none; }
+.atlas.x-skewData .atlas-scene .bars-skew,.atlas.x-overfit .atlas-scene .ho-bad{ display:inline; }
+.atlas.x-skewData .atlas-scene .bars-even,.atlas.x-overfit .atlas-scene .ho-good{ display:none; }
+.atlas.x-skewData .atlas-scene .bars-skew rect:first-child{ fill:var(--warn-soft); stroke:var(--warn); }
+.atlas.x-overfit .atlas-scene .ho-bad path{ stroke:var(--warn); }
+.atlas-scene [data-sc].sub-sel > rect:first-child,.atlas-scene [data-sc].sub-sel > ellipse:first-child{ stroke:var(--blue); stroke-width:2.4; }
+.atl-other{ font-size:.92em; } .atl-other a{ color:var(--blue); }
 .atlas-scene .slot.sub-sel rect:first-child,.atlas-scene .tokens.sub-sel rect,.atlas-scene .inj-note.sub-sel rect{ stroke:var(--blue); stroke-width:2.2; }
 .atlas-scene .g-mark.allowed{ fill:var(--blue); } .atlas-scene .g-mark.denied{ fill:var(--warn); } .atlas-scene .g-mark.approval{ fill:var(--gold-ink); }
 .atlas-scene .stamp-t.ok{ fill:var(--blue); } .atlas-scene .stamp-t{ fill:var(--mute); }

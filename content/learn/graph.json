@@ -36,7 +36,11 @@
    "y": 500,
    "plain": "A precise, step-by-step recipe a computer follows.",
    "picture": "A recipe card. Same ingredients plus the same steps always gives the same dish.",
-   "deep": "In machine learning, the learning algorithm (for example gradient descent) is the recipe that adjusts the model; the model is the dish it produces."
+   "deep": "In machine learning, the learning algorithm (for example gradient descent) is the recipe that adjusts the model; the model is the dish it produces.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=algorithm"
+   }
   },
   {
    "id": "model",
@@ -74,7 +78,11 @@
    "y": 270,
    "plain": "Instead of writing rules, you show the computer many examples and it figures out the rules itself.",
    "picture": "Teaching a child what a dog is by pointing at dogs, not by describing fur and ears.",
-   "deep": "Optimising a model's parameters to minimise error on examples. Main styles: supervised, unsupervised and reinforcement learning."
+   "deep": "Optimising a model's parameters to minimise error on examples. Main styles: supervised, unsupervised and reinforcement learning.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=ml"
+   }
   },
   {
    "id": "training",
@@ -84,7 +92,11 @@
    "y": 150,
    "plain": "The practice phase: the model makes guesses, gets told how wrong it was, and adjusts. Millions of times.",
    "picture": "A darts player throwing, seeing where it landed, and nudging their aim.",
-   "deep": "Repeated passes over data computing a loss, then updating parameters. Large models train for weeks on thousands of GPUs."
+   "deep": "Repeated passes over data computing a loss, then updating parameters. Large models train for weeks on thousands of GPUs.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=training"
+   }
   },
   {
    "id": "supervised",
@@ -94,7 +106,11 @@
    "y": 340,
    "plain": "Learning from examples that come with the right answer attached.",
    "picture": "Flashcards: question on the front, answer on the back.",
-   "deep": "Labelled pairs of input and target. Used for classification and regression. Unsupervised learning finds structure without labels."
+   "deep": "Labelled pairs of input and target. Used for classification and regression. Unsupervised learning finds structure without labels.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=supervised"
+   }
   },
   {
    "id": "parameters",
@@ -104,7 +120,11 @@
    "y": 240,
    "plain": "The adjustable numbers inside a model. Learning means tuning them.",
    "picture": "The knobs on a giant mixing desk. Billions of knobs, each turned a tiny bit.",
-   "deep": "Weights and biases. Model size is quoted in parameters (70B, say). More parameters means more capacity, not guaranteed quality."
+   "deep": "Weights and biases. Model size is quoted in parameters (70B, say). More parameters means more capacity, not guaranteed quality.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=parameters"
+   }
   },
   {
    "id": "neuron",
@@ -114,7 +134,11 @@
    "y": 540,
    "plain": "A tiny calculator: it takes numbers in, weighs them, and passes on a signal if the total is strong enough.",
    "picture": "A voter who listens to friends, trusts some more than others, and then says yes or no.",
-   "deep": "Computes a weighted sum plus bias, then applies an activation function such as ReLU. Loosely inspired by biological neurons."
+   "deep": "Computes a weighted sum plus bias, then applies an activation function such as ReLU. Loosely inspired by biological neurons.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=neuron"
+   }
   },
   {
    "id": "nn",
@@ -124,7 +148,11 @@
    "y": 420,
    "plain": "Many artificial neurons wired together in layers, passing signals forward.",
    "picture": "A relay of rooms. Each room notices something a bit more abstract: edges, then shapes, then faces.",
-   "deep": "Stacked layers of neurons: input, hidden, output. Trained end to end with backpropagation."
+   "deep": "Stacked layers of neurons: input, hidden, output. Trained end to end with backpropagation.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=nn"
+   }
   },
   {
    "id": "backprop",
@@ -134,7 +162,11 @@
    "y": 110,
    "plain": "How a network figures out which of its knobs to blame for a mistake, so it can fix them.",
    "picture": "After a group project goes wrong, tracing back who contributed what to the error and giving each person specific feedback.",
-   "deep": "Applies the chain rule to compute the gradient of the loss with respect to every parameter, from the output backwards."
+   "deep": "Applies the chain rule to compute the gradient of the loss with respect to every parameter, from the output backwards.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=backprop"
+   }
   },
   {
    "id": "deep",
@@ -144,7 +176,11 @@
    "y": 300,
    "plain": "Neural networks with many layers, which turned out to be surprisingly good at images, speech and language.",
    "picture": "A very tall relay of rooms. More floors, more subtle things noticed.",
-   "deep": "The 2012 ImageNet result kicked off the era. Depth plus data plus GPUs is the recipe behind most AI you use today."
+   "deep": "The 2012 ImageNet result kicked off the era. Depth plus data plus GPUs is the recipe behind most AI you use today.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=deep"
+   }
   },
   {
    "id": "finetune",
@@ -168,7 +204,11 @@
    "y": 580,
    "plain": "The small chunks of text an AI actually reads, often word pieces rather than whole words.",
    "picture": "Lego bricks of language. 'Unbelievable' might be three bricks: un, believ, able.",
-   "deep": "Produced by a tokenizer, and tokenizers differ between models. Context windows, limits and usage are all counted in tokens; for Claude a token is about 3.5 English characters on average, varying by language."
+   "deep": "Produced by a tokenizer, and tokenizers differ between models. Context windows, limits and usage are all counted in tokens; for Claude a token is about 3.5 English characters on average, varying by language.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/?focus=token"
+   }
   },
   {
    "id": "embed",
@@ -192,7 +232,11 @@
    "y": 420,
    "plain": "A way for a model to decide which earlier words matter most for understanding the current one.",
    "picture": "Reading 'the trophy didn't fit in the suitcase because it was too big' and knowing 'it' points to the trophy.",
-   "deep": "Each token forms queries, keys and values; weights come from query and key similarity. Multi-head attention runs many of these in parallel."
+   "deep": "Each token forms queries, keys and values; weights come from query and key similarity. Multi-head attention runs many of these in parallel.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=attention"
+   }
   },
   {
    "id": "transformer",
@@ -202,7 +246,11 @@
    "y": 250,
    "plain": "The 2017 design that nearly all modern language AI is built on.",
    "picture": "A room where every word can look at every other word at once, instead of reading left to right one at a time.",
-   "deep": "Stacks of attention and feed-forward layers with residual connections, introduced in the paper 'Attention Is All You Need'. It scales very well."
+   "deep": "Stacks of attention and feed-forward layers with residual connections, introduced in the paper 'Attention Is All You Need'. It scales very well.",
+   "link": {
+    "label": "See it drawn in the atlas",
+    "href": "/learn/atlas/how-models-are-made/?focus=transformer"
+   }
   },
   {
    "id": "alignment",

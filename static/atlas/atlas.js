@@ -23,11 +23,13 @@
 
   /* ---------------- state ---------------- */
   var conceptIds = CON.concepts.map(function (c) { return c.id; });
+  var PG = SC.page || {}, FL = E.flagsOf(SC);
+  var HERE = ((DATA.scenes || []).filter(function (m) { return m.id === DATA.here; })[0] || { concepts: conceptIds }).concepts;
   var st = E.parseState(location.search, SC, conceptIds);
   var run = null, idx = -1, playing = null, tab = "step", whole = false;
   var VB0 = { x: 0, y: 22, w: 1280, h: 772 }, vb = Object.assign({}, VB0);
 
-  function cfg() { var c = { design: st.design }; E.FLAGS.forEach(function (f) { c[f] = st[f]; }); return c; }
+  function cfg() { var c = { design: st.design }; FL.forEach(function (f) { c[f] = st[f]; }); return c; }
   function rebuild() { run = E.buildRun(SC, cfg()); }
 
   /* ---------------- progress (local only, never in URLs) ---------------- */
@@ -46,7 +48,7 @@
   /* ---------------- URL state ---------------- */
   function urlState(push) {
     var s = Object.assign({}, st, { step: idx < 0 ? 0 : idx + 1 });
-    var url = location.pathname + E.serializeState(s) + location.hash;
+    var url = location.pathname + E.serializeState(s, SC) + location.hash;
     try { (push ? history.pushState : history.replaceState).call(history, null, "", url); } catch (e) {}
   }
   window.addEventListener("popstate", function () {
@@ -130,7 +132,7 @@
     root.classList.toggle("is-arch", st.view === "arch");
     root.classList.toggle("is-team", st.design === "team");
     root.classList.toggle("lens-on", !!st.lens);
-    root.classList.toggle("x-injection", !!st.injection);
+    FL.forEach(function (f) { root.classList.toggle("x-" + f, !!st[f]); });
     qa("[data-sc]", svg).forEach(function (el) { el.classList.toggle("sub-sel", (el.getAttribute("data-sc") || "").split(" ").indexOf(st.focus) >= 0); });
     // objects
     qa(".obj", svg).forEach(function (o) {
@@ -163,6 +165,11 @@
       m.textContent = txt; m.setAttribute("class", "g-mark " + cls);
     }
     gate("gate_orders", "get_order"); gate("gate_refunds", "issue_refund"); gate("gate_msg", "send_message");
+    qa(".st-mark", svg).forEach(function (m) {
+      var key = m.getAttribute("data-key") + "=", v = "";
+      evs.forEach(function (e) { if (e.type.indexOf("eval.") !== 0) return; e.detail.split(" ").forEach(function (tok) { if (tok.indexOf(key) === 0) v = tok.slice(key.length); }); });
+      m.textContent = v === "ok" ? "✓" : v ? "✕" : ""; m.setAttribute("class", "st-mark " + (v === "ok" ? "allowed" : v ? "denied" : ""));
+    });
     var hm = svg.querySelector(".h-mark");
     if (hm) { var hv = "", hc = ""; evs.forEach(function (e) { if (e.type === "check.passed") { hv = "✓"; hc = "allowed"; } if (e.type === "check.blocked") { hv = "✕"; hc = "denied"; } });
       hm.textContent = hv; hm.setAttribute("class", "h-mark " + hc); }
@@ -191,22 +198,22 @@
     var tk = svg.querySelector(".ticks"), last = svg.querySelector(".trail-last");
     if (tk) {
       var html = "", n = evs.length;
-      evs.forEach(function (e, i) { var x = 222 + i * Math.min(38, 1020 / Math.max(n, 1)); var cls = /denied|error|exhausted|cancel|blocked|untrusted/.test(e.type) ? "tick deny" : /verified|allowed|granted|passed/.test(e.type) ? "tick ok" : "tick";
+      evs.forEach(function (e, i) { var x = 222 + i * Math.min(38, 1020 / Math.max(n, 1)); var cls = /denied|error|exhausted|cancel|blocked|untrusted|failed|held|skipped/.test(e.type) ? "tick deny" : /verified|allowed|granted|passed|pinned/.test(e.type) ? "tick ok" : "tick";
         html += '<rect class="' + cls + '" x="' + x.toFixed(1) + '" y="755" width="4" height="14" rx="1"></rect>'; });
       tk.innerHTML = html;
     }
     if (last) last.textContent = evs.length ? evs[evs.length - 1].type + "  " + evs[evs.length - 1].detail : "";
     // narration
     var o = step && step.outcome ? SC.outcomes[step.outcome] : null;
-    $("atl-phase").textContent = step ? step.phase + (st.design === "team" ? " · coordinator design" : " · one-agent design") : "Ready";
-    $("atl-title").textContent = step ? step.title : 'Press "Follow the request" to start.';
-    $("atl-text").textContent = step ? step.narration : "One customer request, followed through an example AI system: who owns it, what goes on the desk, what the model proposes, what is checked before anything happens, and how the run ends.";
+    $("atl-phase").textContent = step ? step.phase + (PG.designs ? (st.design === "team" ? " · coordinator design" : " · one-agent design") : "") : "Ready";
+    $("atl-title").textContent = step ? step.title : PG.ready;
+    $("atl-text").textContent = step ? step.narration : PG.intro;
     var out = $("atl-outcome");
     if (o) { out.hidden = false; out.setAttribute("data-kind", o.kind); out.innerHTML = "<b>Run ended: " + esc(o.label) + ".</b> " + esc(o.text); }
     else out.hidden = true;
     $("atl-stepno").textContent = step ? "Step " + (idx + 1) + " of " + run.steps.length : "Ready";
     $("atl-prev").disabled = idx < 0; $("atl-next").disabled = idx >= run.steps.length - 1;
-    $("atl-follow").textContent = idx < 0 ? "Follow the request" : idx >= run.steps.length - 1 ? "Replay" : "Next step";
+    $("atl-follow").textContent = idx < 0 ? PG.follow : idx >= run.steps.length - 1 ? "Replay" : "Next step";
     // rail
     qa(".rl-c").forEach(function (b) { var c = b.getAttribute("data-c"); b.classList.toggle("in-step", !!step && step.concepts.indexOf(c) >= 0); b.setAttribute("aria-current", st.focus === c ? "true" : "false"); });
     selBox(); lensBadges(); camera();
@@ -223,8 +230,10 @@
     if (!step) { p.innerHTML = '<p class="in-empty">Start the walkthrough to inspect each step: what is on the desk, the tool call and its arguments, what came back, where the evidence came from, and the events recorded.</p>' + coordHtml(); bindCoord(); return; }
     var h = '<p class="in-h">' + esc(step.phase) + " · step " + (idx + 1) + " of " + run.steps.length + "</p>" +
             '<p class="in-title">' + esc(step.title) + "</p><p class=\"in-p\">" + esc(step.narration) + "</p>";
-    var onDesk = SC.slots.filter(function (s) { return step.slots[s.id]; }).map(function (s) { return '<span class="in-chip">' + esc(s.label) + "</span>"; });
-    h += '<p class="in-h">On the desk for the next model call</p><div class="in-chips">' + (onDesk.join("") || '<span class="in-chip">nothing yet</span>') + "</div>";
+    if (SC.slots.length) {
+      var onDesk = SC.slots.filter(function (s) { return step.slots[s.id]; }).map(function (s) { return '<span class="in-chip">' + esc(s.label) + "</span>"; });
+      h += '<p class="in-h">' + esc(PG.slotsLabel) + '</p><div class="in-chips">' + (onDesk.join("") || '<span class="in-chip">nothing yet</span>') + "</div>";
+    }
     if (step.tool) {
       h += '<p class="in-h">' + (step.tool.result ? "Tool call executed" : "Proposed tool call (not executed by the model)") + "</p>";
       h += '<pre class="in-code">' + esc(step.tool.name + "(" + JSON.stringify(step.tool.args, null, 1).replace(/\n\s*/g, " ") + ")") + "</pre>";
@@ -236,10 +245,10 @@
     }
     if (step.result) h += '<p class="in-h">Structured result</p><pre class="in-code">' + esc(JSON.stringify(step.result, null, 1)) + "</pre>";
     if (step.evidence) h += '<p class="in-h">Evidence and provenance</p><blockquote class="in-quote">' + esc(step.evidence.text) + '</blockquote><p class="in-prov">' + esc(step.evidence.source) + " · owner: " + esc(step.evidence.owner) + " · reviewed " + esc(step.evidence.reviewed) + " · synthetic</p>";
-    h += '<p class="in-h">Run budget</p><p class="in-p">' + step.budget.used + " of " + step.budget.limit + " model calls and tool executions used.</p>";
+    if (PG.budget) h += '<p class="in-h">Run budget</p><p class="in-p">' + step.budget.used + " of " + step.budget.limit + " model calls and tool executions used.</p>";
     var n0 = idx > 0 ? run.steps[idx - 1].events.length : 0;
     h += '<p class="in-h">Event trail (synthetic, newest last)</p><ol class="in-ev">' + step.events.slice(-8).map(function (e) {
-      var c = /denied|error|exhausted|cancel|blocked|untrusted/.test(e.type) ? "t-deny" : /verified|allowed|granted|passed/.test(e.type) ? "t-ok" : "";
+      var c = /denied|error|exhausted|cancel|blocked|untrusted|failed|held|skipped/.test(e.type) ? "t-deny" : /verified|allowed|granted|passed|pinned/.test(e.type) ? "t-ok" : "";
       return '<li class="' + (e.n > n0 ? "new" : "") + '"><span class="n">' + e.n + '</span><span class="' + c + '">' + esc(e.type) + " " + esc(e.detail) + "</span></li>"; }).join("") + "</ol>";
     h += '<p class="in-h">Concepts in this step</p><div class="in-btns">' + step.concepts.map(function (c) { return '<button type="button" class="tb-b" data-go="' + c + '">' + esc(CBY[c].title) + "</button>"; }).join("") + "</div>";
     if (step.outcome) h += '<p class="in-h">Outcome</p><p class="in-p"><b>' + esc(SC.outcomes[step.outcome].label) + ".</b> " + esc(SC.outcomes[step.outcome].text) + "</p>";
@@ -262,7 +271,7 @@
   function renderConcept() {
     var p = $("pane-concept"), c = st.focus ? CBY[st.focus] : null;
     var opts = '<label class="in-h" for="atl-csel">Choose a concept</label><div class="in-sel"><select id="atl-csel"><option value="">Select…</option>' +
-      CON.concepts.map(function (x) { return '<option value="' + x.id + '"' + (c && c.id === x.id ? " selected" : "") + ">" + esc(x.title) + "</option>"; }).join("") + "</select></div>";
+      HERE.map(function (id) { var x = CBY[id]; return '<option value="' + x.id + '"' + (c && c.id === x.id ? " selected" : "") + ">" + esc(x.title) + "</option>"; }).join("") + "</select></div>";
     if (!c) { p.innerHTML = opts + '<p class="in-empty">Select anything in the scene, or a concept in the list, to see what it does at three depths and where the analogy stops.</p>'; bindSel(); return; }
     var d = st.depth, txt = c[d];
     var layers = '<span class="in-chip">Taught under: ' + esc(LAYER[c.primaryLayer].title) + "</span>" + c.relatedLayers.map(function (l) { return '<span class="in-chip">Connects to: ' + esc(LAYER[l].title) + "</span>"; }).join("");
@@ -282,6 +291,8 @@
       '<p class="in-h">SHAMS moves</p><div class="in-chips">' + lens + "</div>" + pre +
       '<p class="in-h">Sources</p><p class="in-status ' + c.status + '">' + esc(status) + "</p>" + (srcs ? '<ul class="in-src">' + srcs + "</ul>" : "") +
       (c.mapId ? '<p class="in-p"><a href="/learn/?idea=' + esc(c.mapId) + '#map">Find it on the Learn map</a></p>' : "") +
+      (DATA.scenes || []).filter(function (m) { return m.id !== DATA.here && m.concepts.indexOf(c.id) >= 0; }).map(function (m) {
+        return '<p class="in-p"><a href="' + esc(m.route) + "?focus=" + esc(c.id) + '">Also drawn in: ' + esc(m.title) + "</a></p>"; }).join("") +
       '<div class="in-btns"><button type="button" class="tb-b" id="atl-got" aria-pressed="' + understood(c) + '">' + (understood(c) ? "Marked as understood" : "I understand this") + "</button></div>" +
       '<p class="prog">Self-reported understanding is not a passed check. ' + (prog.passed.indexOf(c.id) >= 0 ? "You have passed a check that covers this concept." : "Try the check tab to test the distinction.") + "</p>";
     p.innerHTML = h; bindSel(); bindGo(p);
@@ -429,8 +440,8 @@
     var line2 = step ? ("Step " + (idx + 1) + " of " + run.steps.length + ": " + step.title + (step.outcome ? ". Outcome: " + SC.outcomes[step.outcome].label : "")) : "Overview";
     cap.innerHTML = '<rect x="0" y="806" width="1280" height="94" fill="' + v["--card"] + '"></rect>' +
       '<text x="20" y="836" font-family="Georgia, serif" font-size="22" fill="' + v["--ink"] + '">' + esc(SC.title) + "</text>" +
-      '<text x="20" y="862" font-family="sans-serif" font-size="14" fill="' + v["--body"] + '">' + esc(line2) + " · " + (st.design === "team" ? "coordinator design" : "one-agent design") + " · " + (st.view === "arch" ? "architecture view" : "picture view") + "</text>" +
-      '<text x="20" y="886" font-family="monospace" font-size="12" fill="' + v["--mute"] + '">khalidshams.com/learn/atlas · content ' + esc(CON.version) + " · teaching simulation, synthetic data · solid figures are people, outline figures are software</text>";
+      '<text x="20" y="862" font-family="sans-serif" font-size="14" fill="' + v["--body"] + '">' + esc(line2) + (PG.designs ? " · " + (st.design === "team" ? "coordinator design" : "one-agent design") : "") + " · " + (st.view === "arch" ? "architecture view" : "picture view") + "</text>" +
+      '<text x="20" y="886" font-family="monospace" font-size="12" fill="' + v["--mute"] + '">khalidshams.com' + esc(PG.route || "/learn/atlas/") + ' · content ' + esc(CON.version) + " · teaching simulation, synthetic data · solid figures are people, outline figures are software</text>";
     clone.appendChild(cap);
     var blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(clone)], { type: "image/svg+xml" });
     var a = document.createElement("a"); a.href = URL.createObjectURL(blob);

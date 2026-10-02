@@ -82,15 +82,15 @@ Never commit secrets. AWS keys and LinkedIn tokens are GitHub Actions secrets th
 
 ## The SHAMS AI Atlas (/learn/atlas/)
 
-One flagship interactive lesson: a damaged-order request followed through a governed AI system. Branch `claude/shams-ai-atlas` until Khalid approves a release.
+Two interactive lessons sharing one concept registry: the flagship (/learn/atlas/, a damaged-order request followed through a governed AI system) and How a model is made (/learn/atlas/how-models-are-made/, data to a pinned release). Lessons are listed in `SCENES` in atlas_build.py. Each batch ships on its own branch; Khalid merges to release.
 
 ```
 atlas_build.py                       load + validate the registry (errors stop the build), render templates/atlas.html, standalone light/dark scene SVGs
-atlas_scene.py                       the 1280x800 scene SVG. Every shape carries presentation-attribute fills so it never renders black without CSS
-content/atlas/concepts.json          25 concepts, 7 layers, 5 SHAMS moves. Sub-parts of a scene object carry their own concept with data-sc. Fields: recognize/understand/architect, picture, metaphorLimit, failureMode, sources, status, mapId
+atlas_scene.py, atlas_scene_model.py  the 1280x800 scene SVGs (flagship, model lesson). Every shape carries presentation-attribute fills so it never renders black without CSS
+content/atlas/concepts.json          43 concepts, 7 layers, 5 SHAMS moves. Sub-parts of a scene object carry their own concept with data-sc. Fields: recognize/understand/architect, picture, metaphorLimit, failureMode, sources, status, mapId
 content/atlas/sources.json           primary sources with checked dates and the claims each supports
-content/atlas/checks.json            knowledge checks (exactly one correct option each)
-content/atlas/scenarios/damaged-order.json  limits, interventions, outcomes, step templates, slots, text equivalent
+content/atlas/checks.json            knowledge checks (exactly one correct option each; `scene` picks the lesson, default the flagship)
+content/atlas/scenarios/*.json       page labels, limits, interventions, outcomes, steps, slots, text equivalent. A `plan` (step ids and {if, then, else} nodes) makes a lesson declarative; the flagship's branching stays in engine.js plan()
 static/atlas/engine.js               pure deterministic engine (plan, buildRun, parseState, serializeState). No DOM
 static/atlas/atlas.js, atlas.css     the workspace UI. Progress in localStorage `ks-atlas-v1`; reads `ks-learn` only
 docs/atlas/                          brief, status, coverage (generated), reference audit, verification, screenshots

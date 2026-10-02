@@ -3,15 +3,15 @@
 <div class="atlas" id="atlas" data-version="{{VERSION}}">
   <header class="atl-head">
     <div class="atl-head-t">
-      <p class="crumbs"><a href="/learn/">Learn AI</a> <span aria-hidden="true">/</span> The SHAMS AI Atlas</p>
-      <h1>See what each part does, <em>and how the whole system works.</em></h1>
+      <p class="crumbs"><a href="/learn/">Learn AI</a> <span aria-hidden="true">/</span> <a href="/learn/atlas/">The SHAMS AI Atlas</a> <span aria-hidden="true">/</span> {{CRUMB}}</p>
+      <h1>{{H1}} <em>{{H1EM}}</em></h1>
     </div>
-    <p class="atl-case"><b>Flagship lesson.</b> {{CASE}} <span class="atl-sim">Teaching simulation · synthetic data</span></p>
+    <p class="atl-case"><b>{{LABEL}}</b> {{CASE}} <span class="atl-sim">Teaching simulation · synthetic data</span></p>
   </header>
 
   <div class="atl-toolbar" id="atl-toolbar" role="toolbar" aria-label="Lesson controls">
     <div class="tb-g tb-play">
-      <button type="button" class="tb-b tb-primary" id="atl-follow">Follow the request</button>
+      <button type="button" class="tb-b tb-primary" id="atl-follow">{{FOLLOW}}</button>
       <button type="button" class="tb-b tb-i" id="atl-prev" aria-label="Previous step">&#8592;</button>
       <button type="button" class="tb-b tb-i" id="atl-next" aria-label="Next step">&#8594;</button>
       <button type="button" class="tb-b" id="atl-play" aria-pressed="false">Play</button>
@@ -19,13 +19,7 @@
       <span class="tb-step" id="atl-stepno" aria-live="polite">Ready</span>
       <button type="button" class="tb-b tb-opts" id="atl-opts" aria-expanded="false" aria-controls="atl-toolbar">Options</button>
     </div>
-    <div class="tb-g">
-      <span class="tb-l" id="lbl-design">Design</span>
-      <div class="seg" role="group" aria-labelledby="lbl-design">
-        <button type="button" class="seg-b" data-design="single" aria-pressed="true">One agent</button>
-        <button type="button" class="seg-b" data-design="team" aria-pressed="false">Coordinator + specialist</button>
-      </div>
-    </div>
+    {{DESIGNSEG}}
     <div class="tb-g">
       <span class="tb-l" id="lbl-view">View</span>
       <div class="seg" role="group" aria-labelledby="lbl-view">
@@ -43,7 +37,7 @@
         <div class="tb-pop">
           <p class="tb-pop-h">Each change rebuilds the run from step one. Nothing here calls a real system.</p>
           <ul class="iv-list">{{INTERVENTIONS}}</ul>
-          <details class="iv-more"><summary>More conditions</summary><ul class="iv-list">{{INTERVENTIONS_ADV}}</ul></details>
+          {{INTERVENTIONS_ADV}}
         </div>
       </details>
       <button type="button" class="tb-b" id="atl-expand" aria-pressed="false">Expand</button>
@@ -56,15 +50,7 @@
         <button type="button" class="st-b st-w st-exit" id="atl-exit">Exit</button>
         <details class="legend">
         <summary>Legend</summary>
-        <ul>
-          <li><svg width="44" height="10" aria-hidden="true"><path d="M2 5H40" stroke="currentColor" stroke-width="2.2"/><circle cx="40" cy="5" r="3.5" fill="currentColor"/></svg><span><b>Information moves</b> (data, evidence, results)</span></li>
-          <li><svg width="44" height="10" aria-hidden="true" class="lg-ctrl"><path d="M2 5H36" stroke="currentColor" stroke-width="2.2" stroke-dasharray="8 5"/><path d="M34 1L42 5L34 9z" fill="currentColor"/></svg><span><b>Control</b> (a proposal, call or work order)</span></li>
-          <li><svg width="44" height="10" aria-hidden="true" class="lg-ctrl"><path d="M2 5H40" stroke="currentColor" stroke-width="2.2" stroke-dasharray="2 4"/></svg><span><b>Approval route</b> to a person</span></li>
-          <li><svg width="44" height="10" aria-hidden="true" class="lg-own"><path d="M2 5H40" stroke="currentColor" stroke-width="2" stroke-dasharray="2 5"/></svg><span><b>Ownership</b>, not a runtime call</span></li>
-          <li><span class="lg-sym">&#10003; &#10005; &#9208;</span><span><b>Gate decisions</b>: allowed, denied, waiting for approval</span></li>
-          <li><span class="lg-sym"><svg width="14" height="20" aria-hidden="true"><circle cx="7" cy="5" r="4.5" fill="currentColor"/><path d="M1 20V13Q1 9 7 9Q13 9 13 13V20Z" fill="currentColor"/></svg> <svg width="14" height="20" aria-hidden="true"><circle cx="7" cy="5" r="4.5" fill="none" stroke="currentColor"/><path d="M1 20Q1 11 7 11Q13 11 13 20" fill="none" stroke="currentColor"/></svg></span><span><b>Solid figures are people.</b> Outline figures are software behaviour drawn as operators; they do not understand or intend anything.</span></li>
-          <li><span class="lg-sym">&#9671;</span><span><b>Learn first</b> links appear in the inspector, never as runtime arrows.</span></li>
-        </ul>
+        <ul>{{LEGEND}}</ul>
         </details>
     </div>
   </div>
@@ -82,8 +68,8 @@
       <div class="stage-svg" id="atl-svgwrap">{{SCENE}}</div>
       <div class="now" id="atl-now" aria-live="polite">
         <p class="now-phase" id="atl-phase">Ready</p>
-        <p class="now-title" id="atl-title">Press "Follow the request" to start.</p>
-        <p class="now-text" id="atl-text">One customer request, followed through an example AI system: who owns it, what goes on the desk, what the model proposes, what is checked before anything happens, and how the run ends.</p>
+        <p class="now-title" id="atl-title">{{READY}}</p>
+        <p class="now-text" id="atl-text">{{INTRO}}</p>
         <p class="now-out" id="atl-outcome" hidden></p>
       </div>
     </div>
@@ -105,6 +91,7 @@
     <div class="atl-exports">
       <button type="button" class="tb-b" id="atl-svg">Download this view (SVG)</button>
       <button type="button" class="tb-b" id="atl-print">Print one-pager</button>
+      <span class="atl-other">Also in the atlas: {{OTHERS}}</span>
       <span class="atl-ver">Content version {{VERSION}} · reviewed against primary sources on 2 October 2026</span>
     </div>
   </div>
@@ -121,7 +108,7 @@
     </div>
     <ol class="tx-steps">{{TEXTSTEPS}}</ol>
     <h3 class="tx-h" id="outcomes">How a run can end</h3>
-    <p class="tx-p">A model's stop reason says why one response ended. It is not proof that the task succeeded. These are the run's own outcomes.</p>
+    <p class="tx-p">{{OUTCOMESINTRO}}</p>
     <ul class="tx-out">{{OUTCOMES}}</ul>
     <h3 class="tx-h" id="concepts">The {{NCONCEPTS}} concepts in this scene</h3>
     <dl class="gl">{{GLOSSARY}}</dl>

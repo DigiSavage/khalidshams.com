@@ -88,7 +88,7 @@
    "publisher": "Anthropic, Claude Platform docs",
    "url": "https://platform.claude.com/docs/en/about-claude/glossary",
    "checked": "2026-10-02",
-   "supports": "Tokens are the smallest units a model processes (words, subwords, characters or bytes); for Claude a token is about 3.5 English characters, varying by language; the context window is what the model can reference when generating, distinct from its training data."
+   "supports": "Tokens are the smallest units a model processes (words, subwords, characters or bytes); for Claude a token is about 3.5 English characters, varying by language. The context window is distinct from training data. Pretraining predicts the next word on a large unlabeled corpus, and pretrained models are not inherently good at following instructions; fine-tuning further trains a pretrained model on additional data; RLHF trains a model toward human preferences from rankings of example outputs; the Claude API does not currently offer fine-tuning."
   },
   {
    "id": "claude-hallucinations",
@@ -105,6 +105,62 @@
    "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
    "checked": "2026-10-02",
    "supports": "For indirect injection: keep untrusted content in tool results, say what it is and where it came from, state the policy in the system prompt, screen tool outputs before acting, red-team the agent, and combine strategies. The steps strengthen guardrails; none is presented as complete."
+  },
+  {
+   "id": "oecd-ai-definition",
+   "title": "Updates to the OECD's definition of an AI system explained",
+   "publisher": "OECD.AI",
+   "url": "https://oecd.ai/en/wonk/ai-system-definition-update",
+   "checked": "2026-10-02",
+   "supports": "An AI system is a machine-based system that, for explicit or implicit objectives, infers from the input it receives how to generate outputs such as predictions, content, recommendations or decisions; systems vary in autonomy and adaptiveness after deployment (definition updated November 2023)."
+  },
+  {
+   "id": "lecun-2015",
+   "title": "Deep learning",
+   "publisher": "LeCun, Bengio and Hinton, Nature 521 (2015)",
+   "url": "https://www.nature.com/articles/nature14539",
+   "checked": "2026-10-02",
+   "supports": "Deep learning uses models composed of multiple processing layers that learn representations at multiple levels of abstraction; backpropagation indicates how a machine should change its internal parameters; supervised learning is the most common form of machine learning."
+  },
+  {
+   "id": "vaswani-2017",
+   "title": "Attention Is All You Need",
+   "publisher": "Vaswani et al., arXiv 1706.03762 (2017)",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "checked": "2026-10-02",
+   "supports": "The Transformer is based solely on attention mechanisms, dispensing with recurrence and convolutions; input tokens are converted to vectors with learned embeddings; layers are stacked."
+  },
+  {
+   "id": "claude-embeddings",
+   "title": "Embeddings",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+   "checked": "2026-10-02",
+   "supports": "Text embeddings are numerical representations of text that enable measuring semantic similarity, used for search, recommendations and anomaly detection. Anthropic does not offer its own embedding model."
+  },
+  {
+   "id": "anthropic-rlhf-2022",
+   "title": "Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback",
+   "publisher": "Bai et al., Anthropic, arXiv 2204.05862 (2022)",
+   "url": "https://arxiv.org/abs/2204.05862",
+   "checked": "2026-10-02",
+   "supports": "Preference modelling and reinforcement learning from human feedback train language models to act as helpful and harmless assistants; preference models and policies can be updated iteratively with fresh feedback."
+  },
+  {
+   "id": "anthropic-cai",
+   "title": "Constitutional AI: Harmlessness from AI Feedback",
+   "publisher": "Anthropic (2022)",
+   "url": "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback",
+   "checked": "2026-10-02",
+   "supports": "A set of written principles guides training: a supervised phase of self-critique and revision, then reinforcement learning from AI feedback, where a model compares pairs of responses to create preference data."
+  },
+  {
+   "id": "nist-sp1270",
+   "title": "Towards a Standard for Identifying and Managing Bias in Artificial Intelligence (SP 1270)",
+   "publisher": "NIST (2022)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf",
+   "checked": "2026-10-02",
+   "supports": "AI bias has systemic, statistical or computational, and human sources; data used to train and test systems may not be representative of the populations they affect."
   }
  ]
 }

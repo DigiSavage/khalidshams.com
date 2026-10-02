@@ -1,5 +1,5 @@
 {
- "version": "2026.10.2",
+ "version": "2026.10.3",
  "reviewed": "2026-10-02",
  "layers": [
   {
@@ -922,6 +922,586 @@
    ],
    "status": "source-checked",
    "mapId": "hallucination"
+  },
+  {
+   "id": "ai",
+   "title": "Artificial intelligence",
+   "aliases": [
+    "AI",
+    "AI system"
+   ],
+   "kind": "field",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "people"
+   ],
+   "recognize": "Software that works out from its input how to produce predictions, content, recommendations or decisions.",
+   "understand": "A broad term. Rule-based systems, machine learning, deep learning and large language models all sit inside it. What makes a system 'AI' in current definitions is that it infers its outputs rather than following a fixed list of instructions for every case.",
+   "architect": "Name the kind of AI you mean before you design around it: the controls for a rules engine, a classifier and a language model are different.",
+   "picture": "Nested rings: AI holds machine learning, which holds deep learning, which holds the large language models.",
+   "metaphorLimit": "Rings suggest neat borders. In practice the terms overlap and are used loosely, often for marketing.",
+   "prerequisites": [],
+   "example": "The flagship's model, the retrieval index and a spam filter are all AI, built in very different ways.",
+   "failureMode": "Treating 'we use AI' as a description of a system. It tells you almost nothing about how it behaves or fails.",
+   "boundaryNotes": "A field and a label, not a component.",
+   "shams": [
+    "scope"
+   ],
+   "sources": [
+    "oecd-ai-definition"
+   ],
+   "status": "source-checked",
+   "mapId": "ai"
+  },
+  {
+   "id": "ml",
+   "title": "Machine learning",
+   "aliases": [
+    "ML"
+   ],
+   "kind": "field",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data"
+   ],
+   "recognize": "Getting behaviour from examples instead of writing every rule by hand.",
+   "understand": "A training procedure adjusts a model's parameters so its outputs fit the examples it is shown. The rules end up in the numbers, learned from data, not written by a person.",
+   "architect": "Use it where examples are plentiful and rules are hard to write; keep the examples, the procedure and the evaluation as versioned artefacts so the result can be reproduced.",
+   "picture": "The second ring, inside AI.",
+   "metaphorLimit": "'Learning' suggests understanding. The model fits patterns in its training data, including patterns nobody intended.",
+   "prerequisites": [
+    "ai"
+   ],
+   "example": "Instead of rules for every damaged-item message, a model learns from many example messages.",
+   "failureMode": "Expecting a learned model to follow a rule it was never shown, or to drop one that its data contains.",
+   "boundaryNotes": "A field. The output is a model; the process is training.",
+   "shams": [
+    "anchor",
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "ml"
+  },
+  {
+   "id": "deep",
+   "title": "Deep learning",
+   "aliases": [
+    "deep neural network"
+   ],
+   "kind": "field",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data"
+   ],
+   "recognize": "Machine learning with many stacked layers, each building on the one before.",
+   "understand": "Each layer turns the previous layer's output into a slightly more useful representation. Stacking many layers lets the model learn complex patterns, such as grammar or meaning, from raw input.",
+   "architect": "Expect deep models to need a lot of data and compute, and to be hard to inspect; plan evaluation and monitoring accordingly.",
+   "picture": "The third ring, and the bracket beside the network showing many layers stacked.",
+   "metaphorLimit": "'Deep' means many layers, not deep understanding.",
+   "prerequisites": [
+    "ml",
+    "nn"
+   ],
+   "example": "The transformer in this scene is a deep network: the same block repeated many times.",
+   "failureMode": "Reading 'deep' as a claim about insight or reasoning quality.",
+   "boundaryNotes": "A family of models, inside machine learning.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "deep"
+  },
+  {
+   "id": "data",
+   "title": "Data",
+   "aliases": [
+    "training data",
+    "corpus",
+    "dataset"
+   ],
+   "kind": "material",
+   "primaryLayer": "data",
+   "relatedLayers": [
+    "people"
+   ],
+   "recognize": "The examples a model learns from.",
+   "understand": "For a language model, a large collection of text, filtered and deduplicated. What is in it, how much, and what is missing all shape what the model can do and how it fails.",
+   "architect": "Record where data came from, who owns it, what was filtered out and why. Keep a held-out set the model never trains on, for evaluation.",
+   "picture": "Shelves of documents on the left: the text corpus, unlabeled, with a bar showing who is represented.",
+   "metaphorLimit": "Shelves look neutral. Text carries the habits, gaps and biases of whoever wrote it.",
+   "prerequisites": [],
+   "example": "Public web pages, books and code, filtered for quality. This scene's numbers are illustrative.",
+   "failureMode": "Assuming more data is always better data.",
+   "boundaryNotes": "Before training. Once trained in, data cannot simply be deleted from the model.",
+   "shams": [
+    "anchor"
+   ],
+   "sources": [
+    "claude-glossary",
+    "nist-sp1270"
+   ],
+   "status": "source-checked",
+   "mapId": "data"
+  },
+  {
+   "id": "bias",
+   "title": "Bias",
+   "aliases": [
+    "skew",
+    "unrepresentative data"
+   ],
+   "kind": "failure mode",
+   "primaryLayer": "data",
+   "relatedLayers": [
+    "people",
+    "models"
+   ],
+   "recognize": "Systematic unfairness or error that comes in with the data, the design or the people involved.",
+   "understand": "If some groups, dialects or situations are rare in the data, the model will usually do worse for them. Bias can also come from how labels were made and from human choices across the whole process.",
+   "architect": "Measure performance by group in evaluation, not just on average. Fix it at the data or the recipe, and keep a person accountable for the decision to release.",
+   "picture": "The representation bars under the corpus. With 'Skew the training data' on, one bar dwarfs the rest.",
+   "metaphorLimit": "A bar chart makes it look like one number. Bias has many sources and shows up in different ways for different uses.",
+   "prerequisites": [
+    "data"
+   ],
+   "example": "Messages written in one dialect dominate the corpus; the model misreads others.",
+   "failureMode": "Checking only the average score, which can look fine while one group is badly served.",
+   "boundaryNotes": "Enters through data and decisions; found, if at all, by evaluation by group.",
+   "shams": [
+    "anchor",
+    "measure"
+   ],
+   "sources": [
+    "nist-sp1270"
+   ],
+   "status": "source-checked",
+   "mapId": "bias"
+  },
+  {
+   "id": "algorithm",
+   "title": "Algorithm",
+   "aliases": [
+    "procedure",
+    "training recipe"
+   ],
+   "kind": "concept",
+   "primaryLayer": "models",
+   "relatedLayers": [],
+   "recognize": "A precise, step-by-step procedure a computer follows.",
+   "understand": "Training is itself an algorithm: show examples, measure the error, adjust the parameters, repeat. The algorithm is written by people; the parameters it produces are learned.",
+   "architect": "Version the training recipe like code: the data mix, the settings and the order of steps, so a result can be reproduced and compared.",
+   "picture": "The recipe card inside the training loop.",
+   "metaphorLimit": "A recipe gives the same dish every time. Training runs can differ with data order and random starting values.",
+   "prerequisites": [],
+   "example": "Predict, compare, adjust: three steps, repeated.",
+   "failureMode": "Calling the trained model 'the algorithm' and assuming someone wrote its behaviour.",
+   "boundaryNotes": "The procedure, not the trained result.",
+   "shams": [
+    "sustain"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "algorithm"
+  },
+  {
+   "id": "training",
+   "title": "Training",
+   "aliases": [
+    "pretraining",
+    "learning"
+   ],
+   "kind": "process",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data"
+   ],
+   "recognize": "Adjusting a model's parameters, example by example, until its outputs fit the data.",
+   "understand": "For a language model: show text, ask the model to predict the next token, measure how wrong it was (the loss), adjust every parameter slightly to be less wrong, and repeat over a huge amount of text. This first stage is pretraining.",
+   "architect": "Track training loss and held-out loss together, save checkpoints, and decide in advance what evaluation result would stop a release.",
+   "picture": "The loop at the bottom: predict, compare, adjust, again. The chart shows the two loss curves.",
+   "metaphorLimit": "Practice makes a person better at many things at once. Training improves exactly what the loss measures, and nothing else is promised.",
+   "prerequisites": [
+    "ml",
+    "data"
+   ],
+   "example": "'The lamp arrived ___': the model gives 'cracked' 12% and the text said 'cracked', so the adjustment is small.",
+   "failureMode": "Reading a falling training loss as proof the model will work on new inputs.",
+   "boundaryNotes": "Happens before release. A released model does not keep training on the conversations it handles.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "claude-glossary",
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "training"
+  },
+  {
+   "id": "supervised",
+   "title": "Supervised learning",
+   "aliases": [
+    "labelled examples"
+   ],
+   "kind": "method",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data",
+    "people"
+   ],
+   "recognize": "Learning from examples that come with the right answer attached.",
+   "understand": "Each example pairs an input with a label or a good output, and the model is adjusted toward that answer. Fine-tuning a language model on prompt and good-answer pairs is a form of it.",
+   "architect": "Labels are a product: write a guide for labellers, check agreement between them, and keep the labelled set versioned.",
+   "picture": "The paired cards at the fine-tuning station: a request on the left, a good answer on the right.",
+   "metaphorLimit": "A teacher can explain why an answer is right. A label only says what the answer is.",
+   "prerequisites": [
+    "training"
+   ],
+   "example": "'My lamp arrived cracked' paired with a reply that asks for the order number and photos.",
+   "failureMode": "Labels that encode the labellers' shortcuts, which the model then learns.",
+   "boundaryNotes": "A training method, used during fine-tuning in this scene.",
+   "shams": [
+    "anchor",
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "supervised"
+  },
+  {
+   "id": "parameters",
+   "title": "Parameters",
+   "aliases": [
+    "weights",
+    "model weights"
+   ],
+   "kind": "component",
+   "primaryLayer": "models",
+   "relatedLayers": [],
+   "recognize": "The adjustable numbers inside a model. Training sets them; then they stay fixed.",
+   "understand": "Every connection in the network has a weight, a number that scales what passes through it. Large language models have billions of them. Together they hold everything the model learned.",
+   "architect": "Parameters are the model: version them, control who can change or copy them, and pin the version the application calls.",
+   "picture": "The bank of dials beside the network. Backpropagation nudges every dial a little on each round.",
+   "metaphorLimit": "Dials suggest each one means something. Individual parameters rarely do; meaning is spread across many.",
+   "prerequisites": [
+    "neuron"
+   ],
+   "example": "Each training round shifts millions of dials by tiny amounts.",
+   "failureMode": "Assuming more parameters automatically means a better model for your task.",
+   "boundaryNotes": "Fixed after release. In the flagship scene nothing changes them; only the context changes per call.",
+   "shams": [
+    "sustain",
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015",
+    "claude-glossary"
+   ],
+   "status": "source-checked",
+   "mapId": "parameters"
+  },
+  {
+   "id": "neuron",
+   "title": "Artificial neuron",
+   "aliases": [
+    "unit",
+    "node"
+   ],
+   "kind": "component",
+   "primaryLayer": "models",
+   "relatedLayers": [],
+   "recognize": "One small unit: multiply each input by a weight, add them up, apply a simple function.",
+   "understand": "Inputs arrive, each is scaled by its weight, the results are summed with a bias term, and a simple function (often one that cuts off negative values) decides the output. Networks are built from many of these.",
+   "architect": "You will rarely design neurons directly, but the picture explains why models are differentiable, trainable and hard to read.",
+   "picture": "The close-up under the network: three inputs, three weights, a sum and an output.",
+   "metaphorLimit": "Loosely inspired by brain cells. An artificial neuron is arithmetic and nothing more.",
+   "prerequisites": [],
+   "example": "0.2×0.9 + 0.7×0.4 + 0.1×(−0.3) = 0.43, passed on.",
+   "failureMode": "Reading 'neuron' as a claim that the model works like a brain.",
+   "boundaryNotes": "A building block inside the network.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "neuron"
+  },
+  {
+   "id": "nn",
+   "title": "Neural network",
+   "aliases": [
+    "network",
+    "feed-forward layer"
+   ],
+   "kind": "component",
+   "primaryLayer": "models",
+   "relatedLayers": [],
+   "recognize": "Layers of artificial neurons connected by weighted links.",
+   "understand": "Each layer's outputs become the next layer's inputs. With the right weights the whole network turns an input (tokens) into a useful output (a prediction of the next token).",
+   "architect": "Treat a network as a function you test from outside: inputs, outputs, evaluation. Its internals are not a specification.",
+   "picture": "The mesh of dots and lines inside each block of the transformer.",
+   "metaphorLimit": "A wiring diagram suggests you can trace why an answer came out. With billions of weights, you mostly cannot.",
+   "prerequisites": [
+    "neuron"
+   ],
+   "example": "Each transformer block contains a small network that every token passes through.",
+   "failureMode": "Expecting to read a network's reasoning from its weights.",
+   "boundaryNotes": "Inside the model architecture.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "nn"
+  },
+  {
+   "id": "backprop",
+   "title": "Backpropagation",
+   "aliases": [
+    "backward pass",
+    "gradient"
+   ],
+   "kind": "method",
+   "primaryLayer": "models",
+   "relatedLayers": [],
+   "recognize": "Working out how much each parameter contributed to an error, so each can be nudged the right way.",
+   "understand": "After the loss is measured, the error is passed backwards through the layers to compute, for every parameter, which direction would have reduced it. The optimizer then moves each parameter a small step that way.",
+   "architect": "Nothing to configure for most teams, but it is why training needs so much compute and why it happens before release, not during use.",
+   "picture": "The dashed return arrow from the loss back through the network to the dials.",
+   "metaphorLimit": "'Learning from mistakes' suggests reflection. It is calculus applied to one number, the loss.",
+   "prerequisites": [
+    "parameters",
+    "training"
+   ],
+   "example": "The model gave 'broken' too much weight; backprop shifts the dials that pushed it there.",
+   "failureMode": "Thinking the model updates itself while users talk to it.",
+   "boundaryNotes": "A training-time method. Not running in the flagship scene.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "lecun-2015"
+   ],
+   "status": "source-checked",
+   "mapId": "backprop"
+  },
+  {
+   "id": "embed",
+   "title": "Embeddings",
+   "aliases": [
+    "vector",
+    "embedding"
+   ],
+   "kind": "representation",
+   "primaryLayer": "data",
+   "relatedLayers": [
+    "models"
+   ],
+   "recognize": "Lists of numbers that stand for pieces of text, placed so similar meanings sit close together.",
+   "understand": "Inside a language model each token is turned into a vector by a learned embedding. Separately, embedding models produce vectors for whole passages, which retrieval uses to find similar text.",
+   "architect": "For retrieval, choose the embedding model with the same care as the generator, keep it versioned, and re-embed when you change it.",
+   "picture": "The map of dots beside the tokenizer. 'cracked', 'broken' and 'damaged' land near each other.",
+   "metaphorLimit": "A flat map has two directions. Real embeddings have hundreds or thousands, and 'close' depends on the model.",
+   "prerequisites": [
+    "token"
+   ],
+   "example": "The policy passage in the flagship scene was found because its embedding sat near the request's.",
+   "failureMode": "Assuming embeddings from two different models can be compared.",
+   "boundaryNotes": "A representation used inside models and by retrieval services.",
+   "shams": [
+    "anchor"
+   ],
+   "sources": [
+    "vaswani-2017",
+    "claude-embeddings"
+   ],
+   "status": "source-checked",
+   "mapId": "embed"
+  },
+  {
+   "id": "attention",
+   "title": "Attention",
+   "aliases": [
+    "self-attention",
+    "attention head"
+   ],
+   "kind": "mechanism",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "context"
+   ],
+   "recognize": "The step where each token weighs the other tokens in its context to decide what matters for it.",
+   "understand": "For every token, attention computes how relevant each other token is and mixes in information from the relevant ones. It is how 'it' gets linked to 'the lamp' many words earlier.",
+   "architect": "Everything on the desk competes for attention. Long, noisy context dilutes it, which is one reason context assembly matters.",
+   "picture": "The panel in each block where lines fan out from one token to the others, thicker where the weight is higher.",
+   "metaphorLimit": "Human attention is a spotlight with intent. Model attention is a computed weighting with no intent.",
+   "prerequisites": [
+    "embed",
+    "token"
+   ],
+   "example": "In 'The lamp arrived cracked, so I want a refund for it', 'it' weighs 'lamp' most.",
+   "failureMode": "Treating attention weights as a full explanation of why the model answered as it did.",
+   "boundaryNotes": "Inside the model, on whatever context it was given for this call.",
+   "shams": [
+    "anchor"
+   ],
+   "sources": [
+    "vaswani-2017"
+   ],
+   "status": "source-checked",
+   "mapId": "attention"
+  },
+  {
+   "id": "transformer",
+   "title": "Transformer",
+   "aliases": [
+    "transformer architecture"
+   ],
+   "kind": "architecture",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "context"
+   ],
+   "recognize": "The model design behind today's large language models: blocks of attention and small networks, stacked.",
+   "understand": "Tokens enter as embeddings; each block applies attention, then a small feed-forward network; many blocks are stacked; the last layer scores every possible next token. Introduced in 2017 and built entirely around attention.",
+   "architect": "Its practical limits come from this shape: a fixed context window, cost that grows with context length, and output produced token by token.",
+   "picture": "The tall stack in the middle: identical blocks, each with an attention panel and a network panel.",
+   "metaphorLimit": "A stack drawing looks like a pipeline of separate stages. Every block works on all tokens at once.",
+   "prerequisites": [
+    "attention",
+    "nn"
+   ],
+   "example": "The model in the flagship scene is a transformer, pinned at a released version.",
+   "failureMode": "Assuming 'transformer' says anything specific about a model's quality or training.",
+   "boundaryNotes": "The architecture. Training gives it its parameters.",
+   "shams": [
+    "measure"
+   ],
+   "sources": [
+    "vaswani-2017"
+   ],
+   "status": "source-checked",
+   "mapId": "transformer"
+  },
+  {
+   "id": "checkpoint",
+   "title": "Model (the trained file)",
+   "aliases": [
+    "base model",
+    "checkpoint",
+    "model weights file"
+   ],
+   "kind": "artifact",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data"
+   ],
+   "recognize": "What training produces: the architecture plus its learned parameters, saved as a versioned file.",
+   "understand": "After pretraining, the base model continues text well but is not inherently good at answering questions or following instructions. Later stages start from this checkpoint and produce new ones.",
+   "architect": "Treat each checkpoint as a release candidate: record its data, recipe and evaluation results, and keep the ability to roll back.",
+   "picture": "The cartridge that comes out of the training loop, labelled with its version.",
+   "metaphorLimit": "A saved file sounds finished. A base model is a starting point; fine-tuning and preference training shape how it behaves.",
+   "prerequisites": [
+    "training",
+    "parameters"
+   ],
+   "example": "base-v0: fluent text, no assistant manners yet.",
+   "failureMode": "Shipping a base model and expecting it to follow instructions reliably.",
+   "boundaryNotes": "An artefact between training stages. Released checkpoints become the pinned model the runtime calls.",
+   "shams": [
+    "sustain",
+    "measure"
+   ],
+   "sources": [
+    "claude-glossary"
+   ],
+   "status": "source-checked",
+   "mapId": "model"
+  },
+  {
+   "id": "finetune",
+   "title": "Fine-tuning",
+   "aliases": [
+    "supervised fine-tuning",
+    "SFT"
+   ],
+   "kind": "process",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "data"
+   ],
+   "recognize": "Further training a pretrained model on a smaller, focused set of examples.",
+   "understand": "The model's parameters are adjusted again, this time on examples of the behaviour wanted, such as answering in an assistant's manner or a domain's style. It starts to mimic that dataset, including its flaws.",
+   "architect": "Consider it only when prompting, context and retrieval fall short; it needs good data, evaluation and a plan for re-doing it when the base model changes. The Claude API does not currently offer it.",
+   "picture": "The station after the checkpoint, fed by paired request and good-answer cards.",
+   "metaphorLimit": "Coaching a person adds a skill. Fine-tuning can also shift behaviour you did not intend to touch.",
+   "prerequisites": [
+    "checkpoint",
+    "supervised"
+   ],
+   "example": "Example conversations where the assistant asks for photos before discussing refunds.",
+   "failureMode": "Fine-tuning to add facts that change often. Retrieval keeps facts current; fine-tuning bakes them in.",
+   "boundaryNotes": "A training stage, before release.",
+   "shams": [
+    "anchor",
+    "measure"
+   ],
+   "sources": [
+    "claude-glossary"
+   ],
+   "status": "source-checked",
+   "mapId": "finetune"
+  },
+  {
+   "id": "alignment",
+   "title": "Alignment",
+   "aliases": [
+    "preference training",
+    "RLHF",
+    "constitutional AI"
+   ],
+   "kind": "process",
+   "primaryLayer": "models",
+   "relatedLayers": [
+    "people",
+    "control"
+   ],
+   "recognize": "Training a model toward the behaviour people want and away from what they do not.",
+   "understand": "Raters (or another model guided by written principles) compare pairs of responses; a preference model learns those judgments; reinforcement learning then pushes the model toward preferred responses. This makes wanted behaviour much more likely. It does not guarantee it.",
+   "architect": "Still build the runtime as if the model may misbehave: least privilege, checks in code, approvals. Alignment and runtime controls are layers, not substitutes.",
+   "picture": "The comparison station: two answers side by side, a person choosing, and a card of written principles.",
+   "metaphorLimit": "A person who agrees to rules can be held to them. A model's training shifts likelihoods; it signs nothing.",
+   "prerequisites": [
+    "finetune"
+   ],
+   "example": "Two replies to an angry customer; the calm one that cites policy is preferred.",
+   "failureMode": "Assuming an aligned model makes runtime controls unnecessary.",
+   "boundaryNotes": "A training stage before release. In the flagship scene the gates and checks still apply.",
+   "shams": [
+    "harden",
+    "scope"
+   ],
+   "sources": [
+    "claude-glossary",
+    "anthropic-rlhf-2022",
+    "anthropic-cai"
+   ],
+   "status": "source-checked",
+   "mapId": "alignment"
   }
  ]
 }

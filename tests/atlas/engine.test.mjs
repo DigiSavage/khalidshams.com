@@ -145,3 +145,43 @@ test("every refund the gate sees has passed the argument check first", () => {
     assert.ok(chkAt >= 0 && chkAt < gateAt, JSON.stringify(c));
   }
 });
+
+/* ---------- the second lesson: How a model is made (declarative plan) ---------- */
+const M = require("../../content/atlas/scenarios/model-making.json");
+const MF = E.flagsOf(M);
+function modelConfigs() {
+  const out = [];
+  for (let m = 0; m < 1 << MF.length; m++) { const c = {}; MF.forEach((f, i) => (c[f] = !!(m & (1 << i)))); out.push(c); }
+  return out;
+}
+
+test("model lesson: every condition set ends in one known outcome", () => {
+  assert.deepEqual(MF, ["skewData", "overfit", "skipAlign"]);
+  for (const c of modelConfigs()) {
+    const r = E.buildRun(M, c);
+    assert.ok(M.outcomes[r.outcome], JSON.stringify(c));
+    assert.equal(r.steps.filter((s) => s.outcome).length, 1);
+  }
+});
+
+test("model lesson: release happens only when every evaluation criterion passes", () => {
+  for (const c of modelConfigs()) {
+    const r = E.buildRun(M, c), ev = r.steps.at(-1).events;
+    const anyFlag = MF.some((f) => c[f]);
+    assert.equal(r.outcome, anyFlag ? "held_back" : "released", JSON.stringify(c));
+    if (r.outcome === "released") assert.ok(ev.findIndex((e) => e.type === "eval.passed") < ev.findIndex((e) => e.type === "release.pinned"));
+    else assert.ok(!ev.some((e) => e.type === "release.pinned"));
+  }
+});
+
+test("model lesson: training comes before fine-tuning, which comes before evaluation", () => {
+  const ids = E.buildRun(M, {}).steps.map((s) => s.id);
+  for (const [a, b] of [["predict", "backprop"], ["backprop", "checkpoint"], ["checkpoint", "finetune"], ["finetune", "align"], ["align", "evaluate"], ["evaluate", "release"]])
+    assert.ok(ids.indexOf(a) < ids.indexOf(b), `${a} before ${b}`);
+});
+
+test("model lesson: URL state keeps its own conditions and drops the flagship's", () => {
+  const st = E.parseState("?x=overfit,denyRefund&step=4", M, ["training"]);
+  assert.equal(st.overfit, true); assert.equal(st.denyRefund, undefined);
+  assert.equal(E.serializeState(Object.assign({}, st, { step: 4 }), M), "?x=overfit&step=4");
+});

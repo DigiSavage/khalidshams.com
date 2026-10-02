@@ -1342,5 +1342,20 @@
   "model_reply",
   "exec_reply",
   "verify"
- ]
+ ],
+ "page": {
+  "route": "/learn/atlas/",
+  "crumb": "Follow one request",
+  "h1": "See what each part does,",
+  "h1em": "and how the whole system works.",
+  "label": "Flagship lesson.",
+  "follow": "Follow the request",
+  "ready": "Press \"Follow the request\" to start.",
+  "intro": "One customer request, followed through an example AI system: who owns it, what goes on the desk, what the model proposes, what is checked before anything happens, and how the run ends.",
+  "designs": true,
+  "slotsLabel": "On the desk for the next model call",
+  "budget": true,
+  "legend": "runtime",
+  "outcomesIntro": "A model's stop reason says why one response ended. It is not proof that the task succeeded. These are the run's own outcomes."
+ }
 }
