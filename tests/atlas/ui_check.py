@@ -59,6 +59,27 @@ async def main():
         check("denied run ends as 'denied', no refund slot", st["outcome"] == "denied" and await pg.locator('.slot[data-slot="refund"].filled').count() == 0)
         await ctx.close()
 
+        # 2b. planted instruction: the check blocks it before any gate decision
+        ctx, pg, errs = await page(b, 1440, 900)
+        await pg.goto(A + "?x=injection&step=8"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("planted note visible on the Orders record", await pg.locator(".inj-note").is_visible())
+        await pg.goto(A + "?x=injection&step=10"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        hm = await pg.text_content("#o-hook .h-mark"); gm = await pg.text_content("#o-gate_refunds .g-mark")
+        check("check plate shows a cross and the refund gate shows nothing", hm == "✕" and gm == "", repr((hm, gm)))
+        await pg.screenshot(path=str(SHOTS / "02b-injection-1440.png"))
+        await pg.click("#atl-next"); await pg.wait_for_timeout(200)
+        st = await pg.evaluate("window.__atlas.state()")
+        check("injection run ends as 'blocked'", st["outcome"] == "blocked", st["outcome"])
+        await pg.goto(A); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("planted note hidden when the condition is off", not await pg.locator(".inj-note").is_visible())
+        await pg.click('.slot[data-slot="instructions"]'); await pg.wait_for_timeout(150)
+        f1 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        await pg.click(".tokens"); await pg.wait_for_timeout(150)
+        f2 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        check("sub-parts select their own concepts (instructions, tokens)", (f1, f2) == ("sysprompt", "token"), repr((f1, f2)))
+        check("no page errors (injection)", not errs, str(errs))
+        await ctx.close()
+
         # 3. collaborator: work order and result, picture and architecture
         ctx, pg, errs = await page(b, 1440, 900)
         await pg.goto(A + "?design=team&step=10"); await pg.wait_for_selector('#atlas[data-ready="true"]')
@@ -121,6 +142,44 @@ async def main():
                     check(f"{w}x{h} {scheme}: stage gets most of the width", share >= 0.6, f"{share:.2f}")
                 if scheme == "light" or w in (1440, 390):
                     await pg.screenshot(path=str(SHOTS / f"layout-{w}x{h}-{scheme}.png"))
+                await ctx.close()
+
+        # 6b. the second lesson: How a model is made
+        M = A + "how-models-are-made/"
+        ctx, pg, errs = await page(b, 1440, 900)
+        await pg.goto(M); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("model lesson: no design toggle, its own follow label", await pg.locator("[data-design]").count() == 0 and (await pg.text_content("#atl-follow")).strip() == "Follow the model")
+        for _ in range(15): await pg.click("#atl-next" if _ else "#atl-follow"); await pg.wait_for_timeout(60)
+        st = await pg.evaluate("window.__atlas.state()")
+        marks = await pg.eval_on_selector_all(".st-mark", "els => els.map(e => e.textContent)")
+        check("model lesson: default run is released after three passing criteria", st["outcome"] == "released" and marks == ["✓", "✓", "✓"], f"{st['outcome']} {marks}")
+        await pg.screenshot(path=str(SHOTS / "10-model-released-1440.png"))
+        await pg.goto(M + "?x=skewData&step=14"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        st = await pg.evaluate("window.__atlas.state()")
+        marks = await pg.eval_on_selector_all(".st-mark", "els => els.map(e => e.textContent)")
+        check("model lesson: skewed data is held back on the by-group criterion", st["outcome"] == "held_back" and marks[2] == "✕" and marks[0] == "", f"{st['outcome']} {marks}")
+        check("model lesson: skewed bars shown only under that condition", await pg.locator(".bars-skew").is_visible() and not await pg.locator(".bars-even").is_visible())
+        await pg.screenshot(path=str(SHOTS / "11-model-skew-1440.png"))
+        await pg.goto(M); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        await pg.click('[data-sc="attention"] >> nth=0'); await pg.wait_for_timeout(150)
+        f1 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        await pg.click('[data-sc="backprop"]'); await pg.wait_for_timeout(150)
+        f2 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
+        check("model lesson: attention panel and adjust station select their concepts", (f1, f2) == ("attention", "backprop"), repr((f1, f2)))
+        await pg.click("#o-release"); await pg.wait_for_timeout(150)
+        link = pg.locator('#pane-concept a[href^="/learn/atlas/?focus=model"]')
+        check("model lesson: the released model links to the flagship scene", await link.count() == 1)
+        rail = await pg.eval_on_selector_all(".rl-c", "els => els.length")
+        check("model lesson: rail lists only this lesson's concepts", rail == 22, str(rail))
+        check("no page errors (model lesson)", not errs, str(errs))
+        await ctx.close()
+        for w, h in [(1920, 1080), (1280, 800), (768, 1024), (390, 844), (320, 640)]:
+            for scheme in ("light", "dark"):
+                ctx, pg, errs = await page(b, w, h, scheme)
+                await pg.goto(M + "?step=8"); await pg.wait_for_selector('#atlas[data-ready="true"]'); await pg.wait_for_timeout(300)
+                sw = await pg.evaluate("document.documentElement.scrollWidth")
+                check(f"model lesson {w}x{h} {scheme}: no horizontal overflow, no errors", sw <= w and not errs, f"scrollWidth={sw} " + "; ".join(errs[:2]))
+                if w in (1440, 1920, 390): await pg.screenshot(path=str(SHOTS / f"model-{w}x{h}-{scheme}.png"))
                 await ctx.close()
 
         # 7. regression pages

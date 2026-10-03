@@ -401,7 +401,7 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -417,18 +417,27 @@ def build():
     # ---- SHAMS AI Atlas (content registry in content/atlas, validated at build time)
     graph = json.loads((ROOT / "content" / "learn" / "graph.json").read_text(encoding="utf-8"))
     graph_ids = {i["id"] for i in graph["ideas"]}
-    atlas_html, atlas_svg, atlas_stats = atlas_build.render(tpl("atlas.html"), masthead=masthead, footer=footer, graph_ids=graph_ids)
-    (DIST / "learn" / "atlas").mkdir(parents=True, exist_ok=True)
-    (DIST / "learn" / "atlas" / "index.html").write_text(page(atlas_html, title="The SHAMS AI Atlas · Learn AI · Khalid Shams",
-        description="See what each part does, and how the whole system works: follow one customer request through an illustrated, governed AI system. Picture and architecture views, SHAMS overlays, and what changes when evidence is missing, a permission is denied or a tool fails.",
-        canonical=f"{SITE}/learn/atlas/"), encoding="utf-8")
-    (DIST / "learn" / "atlas" / "scene.svg").write_text(atlas_svg["light"], encoding="utf-8")
-    (DIST / "learn" / "atlas" / "scene-dark.svg").write_text(atlas_svg["dark"], encoding="utf-8")
-    print(f"atlas: {atlas_stats['concepts']} concepts ({atlas_stats['mapped']} linked to the Learn map), {atlas_stats['steps']} step templates, {atlas_stats['sources']} sources")
+    ATLAS_META = {
+        "damaged-order": ("The SHAMS AI Atlas · Learn AI · Khalid Shams",
+                          "See what each part does, and how the whole system works: follow one customer request through an illustrated, governed AI system. Picture and architecture views, SHAMS overlays, and what changes when evidence is missing, a permission is denied, a tool fails or a record carries a planted instruction."),
+        "model-making": ("How a model is made · The SHAMS AI Atlas · Khalid Shams",
+                         "Follow one language model from raw text to a pinned release: data and bias, tokens and embeddings, the transformer and attention, the training loop and backpropagation, fine-tuning, alignment and evaluation. Illustrated, with picture and architecture views."),
+    }
+    atlas_stats = None
+    for m in atlas_build.SCENES:
+        a_html, a_svg, a_stats = atlas_build.render_scene(m["id"], tpl("atlas.html"), masthead=masthead, footer=footer, graph_ids=graph_ids)
+        out_dir = DIST / m["out"]; out_dir.mkdir(parents=True, exist_ok=True)
+        t_, d_ = ATLAS_META[m["id"]]
+        (out_dir / "index.html").write_text(page(a_html, title=t_, description=d_, canonical=f"{SITE}/{m['out']}/"), encoding="utf-8")
+        (out_dir / "scene.svg").write_text(a_svg["light"], encoding="utf-8")
+        (out_dir / "scene-dark.svg").write_text(a_svg["dark"], encoding="utf-8")
+        atlas_stats = atlas_stats or a_stats
+        print(f"atlas {m['id']}: {a_stats['concepts']} concepts ({a_stats['mapped']} linked to the Learn map), {a_stats['steps']} step templates, {a_stats['sources']} sources")
+    atlas_registry = a_stats["registry"]
 
     # ---- learn page
     n_ideas = len(graph["ideas"])
-    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer, NIDEAS=num_words(n_ideas), NIDEASCAP=num_words(n_ideas).capitalize(), NIDEASN=str(n_ideas), ATLASN=str(atlas_stats["concepts"]),
+    lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer, NIDEAS=num_words(n_ideas), NIDEASCAP=num_words(n_ideas).capitalize(), NIDEASN=str(n_ideas), ATLASN=str(atlas_registry),
               GRAPH=json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
     (DIST / "learn").mkdir(exist_ok=True)
     (DIST / "learn" / "index.html").write_text(page(lp, title="Learn AI · Khalid Shams",
@@ -451,7 +460,7 @@ def build():
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
     # ---- search index
-    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/learn/atlas/", DIST / "learn" / "atlas" / "index.html"), ("/method/", DIST / "method" / "index.html"),
+    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/learn/atlas/", DIST / "learn" / "atlas" / "index.html"), ("/learn/atlas/how-models-are-made/", DIST / "learn" / "atlas" / "how-models-are-made" / "index.html"), ("/method/", DIST / "method" / "index.html"),
              ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
             [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]

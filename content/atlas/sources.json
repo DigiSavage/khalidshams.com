@@ -1,24 +1,166 @@
 {
-  "version": "2026.10.1",
-  "note": "Primary sources checked for the flagship lesson. 'checked' is the date the page was fetched and read for the claims listed. A URL alone does not make a claim verified.",
-  "sources": [
-    {"id": "anthropic-agents", "title": "Building effective agents", "publisher": "Anthropic", "url": "https://www.anthropic.com/engineering/building-effective-agents", "checked": "2026-10-02",
-     "supports": "Workflows follow predefined code paths; agents let the model direct its own process and tool use in a loop on environmental feedback; agents can pause for human feedback; stopping conditions such as iteration limits keep control."},
-    {"id": "anthropic-context", "title": "Effective context engineering for AI agents", "publisher": "Anthropic", "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents", "checked": "2026-10-02",
-     "supports": "Context is the set of tokens sent when sampling the model and is a finite resource; just-in-time retrieval; structured notes kept outside the context window; sub-agents return condensed summaries."},
-    {"id": "anthropic-skills", "title": "Equipping agents for the real world with Agent Skills", "publisher": "Anthropic", "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills", "checked": "2026-10-02",
-     "supports": "Skills are folders of instructions, scripts and resources loaded progressively when relevant; install from trusted sources and audit them."},
-    {"id": "claude-stop-reasons", "title": "Handling stop reasons", "publisher": "Claude Platform docs", "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons", "checked": "2026-10-02",
-     "supports": "stop_reason values (end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal, model_context_window_exceeded) describe why a response ended."},
-    {"id": "claude-code-hooks", "title": "Hooks reference", "publisher": "Claude Code docs", "url": "https://code.claude.com/docs/en/hooks", "checked": "2026-10-02",
-     "supports": "Hooks are handlers on lifecycle events; some events can block (PreToolUse permissionDecision allow/deny/ask), others only observe; hook types include command, http, mcp_tool, prompt (model-evaluated) and agent."},
-    {"id": "claude-code-subagents", "title": "Subagents", "publisher": "Claude Code docs", "url": "https://code.claude.com/docs/en/sub-agents", "checked": "2026-10-02",
-     "supports": "Each subagent runs in its own context window; subagents inherit the main conversation's tools unless restricted with tools / disallowedTools; worktree isolation is a filesystem copy, not an OS sandbox."},
-    {"id": "mcp-architecture", "title": "MCP architecture overview", "publisher": "Model Context Protocol", "url": "https://modelcontextprotocol.io/docs/learn/architecture", "checked": "2026-10-02",
-     "supports": "Host, client and server roles (one client per server connection); data layer (JSON-RPC) and transport layer; server primitives tools, resources, prompts; MCP covers context exchange, not how the application uses the model. Page served as protocol version 2026-07-28."},
-    {"id": "mcp-authorization", "title": "MCP specification: Authorization", "publisher": "Model Context Protocol", "url": "https://modelcontextprotocol.io/specification/latest/basic/authorization", "checked": "2026-10-02",
-     "supports": "Authorization is optional; defined for HTTP transports with OAuth 2.1; the MCP server is a resource server that must validate token audience; insufficient scope returns 403; step-up retries should be limited."},
-    {"id": "mcp-security", "title": "MCP security best practices", "publisher": "Model Context Protocol", "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices", "checked": "2026-10-02",
-     "supports": "Token passthrough is forbidden; confused deputy risks; scope minimization and progressive least privilege; servers must not treat possession of a state handle as authentication."}
-  ]
+ "version": "2026.10.1",
+ "note": "Primary sources checked for the flagship lesson. 'checked' is the date the page was fetched and read for the claims listed. A URL alone does not make a claim verified.",
+ "sources": [
+  {
+   "id": "anthropic-agents",
+   "title": "Building effective agents",
+   "publisher": "Anthropic",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents",
+   "checked": "2026-10-02",
+   "supports": "Workflows follow predefined code paths; agents let the model direct its own process and tool use in a loop on environmental feedback; agents can pause for human feedback; stopping conditions such as iteration limits keep control."
+  },
+  {
+   "id": "anthropic-context",
+   "title": "Effective context engineering for AI agents",
+   "publisher": "Anthropic",
+   "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+   "checked": "2026-10-02",
+   "supports": "Context is the set of tokens sent when sampling the model and is a finite resource; just-in-time retrieval; structured notes kept outside the context window; sub-agents return condensed summaries."
+  },
+  {
+   "id": "anthropic-skills",
+   "title": "Equipping agents for the real world with Agent Skills",
+   "publisher": "Anthropic",
+   "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+   "checked": "2026-10-02",
+   "supports": "Skills are folders of instructions, scripts and resources loaded progressively when relevant; install from trusted sources and audit them."
+  },
+  {
+   "id": "claude-stop-reasons",
+   "title": "Handling stop reasons",
+   "publisher": "Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons",
+   "checked": "2026-10-02",
+   "supports": "stop_reason values (end_turn, max_tokens, stop_sequence, tool_use, pause_turn, refusal, model_context_window_exceeded) describe why a response ended."
+  },
+  {
+   "id": "claude-code-hooks",
+   "title": "Hooks reference",
+   "publisher": "Claude Code docs",
+   "url": "https://code.claude.com/docs/en/hooks",
+   "checked": "2026-10-02",
+   "supports": "Hooks are handlers on lifecycle events; some events can block (PreToolUse permissionDecision allow/deny/ask), others only observe; hook types include command, http, mcp_tool, prompt (model-evaluated) and agent."
+  },
+  {
+   "id": "claude-code-subagents",
+   "title": "Subagents",
+   "publisher": "Claude Code docs",
+   "url": "https://code.claude.com/docs/en/sub-agents",
+   "checked": "2026-10-02",
+   "supports": "Each subagent runs in its own context window; subagents inherit the main conversation's tools unless restricted with tools / disallowedTools; worktree isolation is a filesystem copy, not an OS sandbox."
+  },
+  {
+   "id": "mcp-architecture",
+   "title": "MCP architecture overview",
+   "publisher": "Model Context Protocol",
+   "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+   "checked": "2026-10-02",
+   "supports": "Host, client and server roles (one client per server connection); data layer (JSON-RPC) and transport layer; server primitives tools, resources, prompts; MCP covers context exchange, not how the application uses the model. Page served as protocol version 2026-07-28."
+  },
+  {
+   "id": "mcp-authorization",
+   "title": "MCP specification: Authorization",
+   "publisher": "Model Context Protocol",
+   "url": "https://modelcontextprotocol.io/specification/latest/basic/authorization",
+   "checked": "2026-10-02",
+   "supports": "Authorization is optional; defined for HTTP transports with OAuth 2.1; the MCP server is a resource server that must validate token audience; insufficient scope returns 403; step-up retries should be limited."
+  },
+  {
+   "id": "mcp-security",
+   "title": "MCP security best practices",
+   "publisher": "Model Context Protocol",
+   "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+   "checked": "2026-10-02",
+   "supports": "Token passthrough is forbidden; confused deputy risks; scope minimization and progressive least privilege; servers must not treat possession of a state handle as authentication."
+  },
+  {
+   "id": "claude-prompting",
+   "title": "Prompting best practices",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+   "checked": "2026-10-02",
+   "supports": "Setting a role in the system prompt focuses behaviour and tone; clear, explicit instructions and the reason behind them improve results; relevant, diverse examples are one of the most reliable ways to steer format and structure."
+  },
+  {
+   "id": "claude-glossary",
+   "title": "Glossary",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/about-claude/glossary",
+   "checked": "2026-10-02",
+   "supports": "Tokens are the smallest units a model processes (words, subwords, characters or bytes); for Claude a token is about 3.5 English characters, varying by language. The context window is distinct from training data. Pretraining predicts the next word on a large unlabeled corpus, and pretrained models are not inherently good at following instructions; fine-tuning further trains a pretrained model on additional data; RLHF trains a model toward human preferences from rankings of example outputs; the Claude API does not currently offer fine-tuning."
+  },
+  {
+   "id": "claude-hallucinations",
+   "title": "Reduce hallucinations",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations",
+   "checked": "2026-10-02",
+   "supports": "Allow the model to say it does not know, ground answers in direct quotes, verify claims with citations, restrict answers to provided documents; these reduce hallucinations but do not eliminate them, so validate critical information."
+  },
+  {
+   "id": "claude-injection",
+   "title": "Mitigate jailbreaks and prompt injections",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+   "checked": "2026-10-02",
+   "supports": "For indirect injection: keep untrusted content in tool results, say what it is and where it came from, state the policy in the system prompt, screen tool outputs before acting, red-team the agent, and combine strategies. The steps strengthen guardrails; none is presented as complete."
+  },
+  {
+   "id": "oecd-ai-definition",
+   "title": "Updates to the OECD's definition of an AI system explained",
+   "publisher": "OECD.AI",
+   "url": "https://oecd.ai/en/wonk/ai-system-definition-update",
+   "checked": "2026-10-02",
+   "supports": "An AI system is a machine-based system that, for explicit or implicit objectives, infers from the input it receives how to generate outputs such as predictions, content, recommendations or decisions; systems vary in autonomy and adaptiveness after deployment (definition updated November 2023)."
+  },
+  {
+   "id": "lecun-2015",
+   "title": "Deep learning",
+   "publisher": "LeCun, Bengio and Hinton, Nature 521 (2015)",
+   "url": "https://www.nature.com/articles/nature14539",
+   "checked": "2026-10-02",
+   "supports": "Deep learning uses models composed of multiple processing layers that learn representations at multiple levels of abstraction; backpropagation indicates how a machine should change its internal parameters; supervised learning is the most common form of machine learning."
+  },
+  {
+   "id": "vaswani-2017",
+   "title": "Attention Is All You Need",
+   "publisher": "Vaswani et al., arXiv 1706.03762 (2017)",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "checked": "2026-10-02",
+   "supports": "The Transformer is based solely on attention mechanisms, dispensing with recurrence and convolutions; input tokens are converted to vectors with learned embeddings; layers are stacked."
+  },
+  {
+   "id": "claude-embeddings",
+   "title": "Embeddings",
+   "publisher": "Anthropic, Claude Platform docs",
+   "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings",
+   "checked": "2026-10-02",
+   "supports": "Text embeddings are numerical representations of text that enable measuring semantic similarity, used for search, recommendations and anomaly detection. Anthropic does not offer its own embedding model."
+  },
+  {
+   "id": "anthropic-rlhf-2022",
+   "title": "Training a Helpful and Harmless Assistant with Reinforcement Learning from Human Feedback",
+   "publisher": "Bai et al., Anthropic, arXiv 2204.05862 (2022)",
+   "url": "https://arxiv.org/abs/2204.05862",
+   "checked": "2026-10-02",
+   "supports": "Preference modelling and reinforcement learning from human feedback train language models to act as helpful and harmless assistants; preference models and policies can be updated iteratively with fresh feedback."
+  },
+  {
+   "id": "anthropic-cai",
+   "title": "Constitutional AI: Harmlessness from AI Feedback",
+   "publisher": "Anthropic (2022)",
+   "url": "https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback",
+   "checked": "2026-10-02",
+   "supports": "A set of written principles guides training: a supervised phase of self-critique and revision, then reinforcement learning from AI feedback, where a model compares pairs of responses to create preference data."
+  },
+  {
+   "id": "nist-sp1270",
+   "title": "Towards a Standard for Identifying and Managing Bias in Artificial Intelligence (SP 1270)",
+   "publisher": "NIST (2022)",
+   "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf",
+   "checked": "2026-10-02",
+   "supports": "AI bias has systemic, statistical or computational, and human sources; data used to train and test systems may not be representative of the populations they affect."
+  }
+ ]
 }

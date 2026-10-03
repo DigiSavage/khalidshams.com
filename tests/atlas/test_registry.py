@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-import atlas_build, atlas_scene  # noqa: E402
+import atlas_build, atlas_scene, atlas_scene_model  # noqa: E402
 
 GRAPH = json.loads((ROOT / "content/learn/graph.json").read_text(encoding="utf-8"))
 GIDS = {i["id"] for i in GRAPH["ideas"]}
@@ -34,8 +34,11 @@ class Registry(unittest.TestCase):
             c = next(x for x in self.c["concepts"] if x["id"] == cid)
             self.assertGreater(len(c["picture"]), 20); self.assertGreater(len(c["metaphorLimit"]), 20)
 
-    def test_every_registry_concept_appears_in_the_scene(self):
-        in_scene = set(re.findall(r'data-c="([a-z_]+)"', self.svg))
+    def test_every_registry_concept_appears_in_a_scene(self):
+        in_scene = set()
+        for svg in (self.svg, atlas_scene_model.scene()):
+            in_scene |= set(re.findall(r'data-c="([a-z_]+)"', svg))
+            for group in re.findall(r'data-sc="([a-z_ ]+)"', svg): in_scene |= set(group.split())
         for x in self.c["concepts"]:
             self.assertIn(x["id"], in_scene, f"{x['id']} has no illustration in the scene")
 
@@ -57,10 +60,23 @@ class Registry(unittest.TestCase):
         for s in self.s["sources"]:
             self.assertTrue(s["url"].startswith("https://")); self.assertRegex(s["checked"], r"^\d{4}-\d{2}-\d{2}$")
 
+    def test_model_lesson_is_valid_and_bad_plans_are_caught(self):
+        sc = atlas_build.load_scenario("model-making"); svg = atlas_scene_model.scene()
+        self.assertEqual(atlas_build.validate(self.c, self.s, self.k, sc, GIDS, svg), [])
+        bad = copy.deepcopy(sc); bad["plan"].append({"if": "nope", "then": ["ghost"]})
+        e = atlas_build.validate(self.c, self.s, self.k, bad, GIDS, svg)
+        self.assertTrue(any("unknown condition" in x for x in e) and any("unknown step ghost" in x for x in e), e)
+        bad = copy.deepcopy(sc); bad["plan"] = ["frame", "collect"]
+        self.assertTrue(any("without an outcome" in x for x in atlas_build.validate(self.c, self.s, self.k, bad, GIDS, svg)))
+
+    def test_checks_belong_to_a_lesson(self):
+        ids = {m["id"] for m in atlas_build.SCENES}
+        for ch in self.k["checks"]: self.assertIn(ch.get("scene", "damaged-order"), ids)
+
     def test_standalone_svg_has_explicit_fills(self):
         """Regression for the solid-black sheet: every shape must carry a fill attribute."""
-        for theme in ("light", "dark"):
-            s = atlas_build.standalone_svg(self.svg, theme)
+        for theme, svg in [(t, sv) for t in ("light", "dark") for sv in (self.svg, atlas_scene_model.scene())]:
+            s = atlas_build.standalone_svg(svg, theme)
             for tag in re.findall(r"<(?:rect|path|circle|ellipse|polygon)\b[^>]*>", s):
                 self.assertIn("fill=", tag, f"{theme}: {tag[:90]}")
 
@@ -90,23 +106,25 @@ class Built(unittest.TestCase):
         self.assertIn('"ks-learn"', js); self.assertIn('"ks-atlas-v1"', js)
 
     def test_internal_links_in_atlas_resolve(self):
-        html = self.page("learn/atlas/index.html")
+        html = self.page("learn/atlas/index.html") + self.page("learn/atlas/how-models-are-made/index.html") + self.page("learn/index.html")
         for href in set(re.findall(r'href="(/[^"#?]*)', html)):
             p = DIST / href.lstrip("/")
             ok = p.exists() or (p / "index.html").exists()
             self.assertTrue(ok, href)
 
     def test_atlas_in_sitemap_and_search(self):
-        self.assertIn("/learn/atlas/", self.page("sitemap.xml"))
-        self.assertIn("/learn/atlas/", self.page("search.json"))
+        for r in ("/learn/atlas/", "/learn/atlas/how-models-are-made/"):
+            self.assertIn(r, self.page("sitemap.xml")); self.assertIn(r, self.page("search.json"))
 
     def test_text_equivalent_present(self):
-        html = self.page("learn/atlas/index.html")
-        self.assertIn('id="text-version"', html)
-        self.assertEqual(html.count('<li><b>'), len(json.loads((ROOT / "content/atlas/scenarios/damaged-order.json").read_text())["textEquivalent"]) + 6)
+        for page, f in (("learn/atlas/index.html", "damaged-order.json"), ("learn/atlas/how-models-are-made/index.html", "model-making.json")):
+            html = self.page(page); sc = json.loads((ROOT / "content/atlas/scenarios" / f).read_text())
+            self.assertIn('id="text-version"', html)
+            self.assertEqual(html.count('<li><b>'), len(sc["textEquivalent"]) + len(sc["outcomes"]), page)
+            self.assertNotIn("{{", html, page)
 
     def test_no_dashes_in_public_output(self):
-        for p in ["learn/atlas/index.html", "learn/index.html", "method/index.html"]:
+        for p in ["learn/atlas/index.html", "learn/atlas/how-models-are-made/index.html", "learn/index.html", "method/index.html"]:
             self.assertIsNone(re.search("—|–| -- ", self.page(p)), p)
 
 

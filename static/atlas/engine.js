@@ -6,13 +6,28 @@
   else root.AtlasEngine = factory();
 })(typeof self !== "undefined" ? self : this, function () {
   "use strict";
-  var FLAGS = ["noEvidence", "noNotes", "denyRefund", "toolFailure", "cancel", "tightBudget"];
+  var FLAGS = ["noEvidence", "noNotes", "denyRefund", "toolFailure", "injection", "cancel", "tightBudget"];
   var DESIGNS = ["single", "team"];
 
-  function normalizeConfig(cfg) {
+  /* The conditions a scenario offers. The flagship keeps its fixed list; other scenarios declare theirs. */
+  function flagsOf(scenario) {
+    return scenario && scenario.plan && scenario.interventions ? scenario.interventions.map(function (i) { return i.id; }) : FLAGS;
+  }
+
+  function normalizeConfig(cfg, scenario) {
     cfg = cfg || {};
     var out = { design: DESIGNS.indexOf(cfg.design) >= 0 ? cfg.design : "single" };
-    FLAGS.forEach(function (f) { out[f] = cfg[f] === true; });
+    flagsOf(scenario).forEach(function (f) { out[f] = cfg[f] === true; });
+    return out;
+  }
+
+  /* Declarative plans: a list of step ids and {if: flag, then: [...], else: [...]} nodes. */
+  function walk(nodes, c, out) {
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      if (typeof n === "string") out.push(n);
+      else walk(c[n["if"]] ? (n.then || []) : (n["else"] || []), c, out);
+    }
     return out;
   }
 
@@ -20,7 +35,7 @@
   function plan(cfg) {
     var c = normalizeConfig(cfg);
     var s = ["request", "assemble", "procedure", c.noNotes ? "note_missing" : "note",
-             "model_get_order", "authz_read", "exec_get_order"];
+             "model_get_order", "authz_read", c.injection ? "exec_get_order_injected" : "exec_get_order"];
     if (c.cancel) return s.concat(["cancel_received"]);
     if (c.design === "team") {
       s.push("work_order", c.noEvidence ? "spec_retrieve_empty" : "spec_retrieve", c.noEvidence ? "spec_return_empty" : "spec_return");
@@ -29,6 +44,7 @@
     }
     if (c.noEvidence) return s.concat(["model_escalate", "exec_handoff_owner"]);
     if (c.noNotes) return s.concat(["model_ask_photos", "exec_ask"]);
+    if (c.injection) return s.concat(["model_refund_injected", "check_blocked", "exec_handoff_injection"]);
     s.push("model_refund");
     if (c.denyRefund) return s.concat(["authz_refund_deny", "exec_handoff_denied"]);
     s.push("authz_refund_approval", "approval_granted");
@@ -40,9 +56,9 @@
 
   /* Expand a plan into full step snapshots, applying the budget. */
   function buildRun(scenario, cfg) {
-    var c = normalizeConfig(cfg);
+    var c = normalizeConfig(cfg, scenario);
     var limit = c.tightBudget ? scenario.limits.tightSteps : scenario.limits.steps;
-    var ids = plan(c), steps = [], used = 0, slots = {}, events = [], attempts = 0;
+    var ids = scenario.plan ? walk(scenario.plan, c, []) : plan(c), steps = [], used = 0, slots = {}, events = [], attempts = 0;
     for (var i = 0; i < ids.length; i++) {
       var t = scenario.steps[ids[i]];
       if (!t) throw new Error("unknown step " + ids[i]);
@@ -77,22 +93,23 @@
     var lens = p.get("lens"); st.lens = ["scope", "harden", "anchor", "measure", "sustain"].indexOf(lens) >= 0 ? lens : null;
     var depth = p.get("depth"); st.depth = ["recognize", "understand", "architect"].indexOf(depth) >= 0 ? depth : "recognize";
     var focus = p.get("focus"); st.focus = conceptIds && conceptIds.indexOf(focus) >= 0 ? focus : null;
-    var x = (p.get("x") || "").split(",").filter(function (f) { return FLAGS.indexOf(f) >= 0; });
-    FLAGS.forEach(function (f) { st[f] = x.indexOf(f) >= 0; });
+    var flags = flagsOf(scenario);
+    var x = (p.get("x") || "").split(",").filter(function (f) { return flags.indexOf(f) >= 0; });
+    flags.forEach(function (f) { st[f] = x.indexOf(f) >= 0; });
     var step = parseInt(p.get("step"), 10); st.step = isFinite(step) && step >= 0 && step < 64 ? step : 0;
     return st;
   }
-  function serializeState(st) {
+  function serializeState(st, scenario) {
     var p = new URLSearchParams();
     if (st.design === "team") p.set("design", "team");
     if (st.view === "arch") p.set("view", "arch");
     if (st.lens) p.set("lens", st.lens);
     if (st.depth && st.depth !== "recognize") p.set("depth", st.depth);
     if (st.focus) p.set("focus", st.focus);
-    var x = FLAGS.filter(function (f) { return st[f]; }); if (x.length) p.set("x", x.join(","));
+    var x = flagsOf(scenario).filter(function (f) { return st[f]; }); if (x.length) p.set("x", x.join(","));
     if (st.step) p.set("step", String(st.step));
     var s = p.toString(); return s ? "?" + s : "";
   }
-  return { FLAGS: FLAGS, normalizeConfig: normalizeConfig, plan: plan, buildRun: buildRun,
+  return { FLAGS: FLAGS, flagsOf: flagsOf, normalizeConfig: normalizeConfig, plan: plan, buildRun: buildRun,
            meshLinks: meshLinks, starLinks: starLinks, parseState: parseState, serializeState: serializeState };
 });

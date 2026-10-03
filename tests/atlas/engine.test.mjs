@@ -1,4 +1,4 @@
-// Run: node --test tests/atlas/
+// Run: node --test tests/atlas/*.test.mjs
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
@@ -25,9 +25,9 @@ test("every configuration ends in exactly one known outcome, on the last step", 
   }
 });
 
-test("all six outcomes are reachable", () => {
+test("all seven outcomes are reachable", () => {
   const seen = new Set(allConfigs().map((c) => E.buildRun(S, c).outcome));
-  for (const k of ["completed", "waiting_input", "denied", "cancelled", "budget", "failed"]) assert.ok(seen.has(k), k);
+  for (const k of ["completed", "waiting_input", "denied", "blocked", "cancelled", "budget", "failed"]) assert.ok(seen.has(k), k);
 });
 
 test("the default run completes only after the application verifies the goal", () => {
@@ -41,7 +41,7 @@ test("the default run completes only after the application verifies the goal", (
 });
 
 test("a denied operation never reaches execution", () => {
-  for (const c of allConfigs().filter((c) => c.denyRefund && !c.cancel && !c.noEvidence && !c.noNotes)) {
+  for (const c of allConfigs().filter((c) => c.denyRefund && !c.cancel && !c.noEvidence && !c.noNotes && !c.injection)) {
     const r = E.buildRun(S, c);
     if (r.outcome === "budget") continue;
     const ev = r.steps.at(-1).events;
@@ -58,7 +58,7 @@ test("retries are bounded by maxAttempts and then stop", () => {
     const r = E.buildRun(S, c);
     const attempts = r.steps.at(-1).events.filter((e) => e.type === "tool.error").length;
     assert.ok(attempts <= S.limits.maxAttempts, `${attempts} attempts`);
-    if (!c.cancel && !c.noEvidence && !c.noNotes && !c.denyRefund && !c.tightBudget) {
+    if (!c.cancel && !c.noEvidence && !c.noNotes && !c.denyRefund && !c.injection && !c.tightBudget) {
       assert.equal(attempts, S.limits.maxAttempts);
       assert.equal(r.outcome, "failed");
     }
@@ -117,6 +117,71 @@ test("URL state validates input and round-trips", () => {
   assert.equal(bad.depth, "recognize"); assert.equal(bad.focus, null); assert.equal(bad.step, 0);
   assert.equal(bad.noEvidence, true); assert.equal(bad.denyRefund, false);
   const good = { design: "team", view: "arch", lens: "harden", depth: "architect", focus: "mcp", noEvidence: false, noNotes: true,
-                 denyRefund: false, toolFailure: false, cancel: false, tightBudget: false, step: 7 };
+                 denyRefund: false, toolFailure: false, injection: true, cancel: false, tightBudget: false, step: 7 };
   assert.deepEqual(E.parseState(E.serializeState(good), S, ids), good);
+});
+
+test("planted instructions are blocked by the check before any permission is asked", () => {
+  for (const c of allConfigs().filter((c) => c.injection)) {
+    const r = E.buildRun(S, c);
+    const ev = r.steps.at(-1).events;
+    assert.ok(!ev.some((e) => e.type === "tool.executed" && e.detail.startsWith("issue_refund")), "refund executed: " + JSON.stringify(c));
+    assert.ok(!ev.some((e) => e.type.startsWith("authz.") && e.detail.includes("op=issue_refund")), "authz asked: " + JSON.stringify(c));
+    if (!c.cancel && !c.noEvidence && !c.noNotes && !c.tightBudget) {
+      assert.equal(r.outcome, "blocked", JSON.stringify(c));
+      const blockAt = ev.findIndex((e) => e.type === "check.blocked");
+      const propAt = ev.findIndex((e) => e.type === "tool.proposed" && e.detail.includes("amount=500.00"));
+      assert.ok(propAt >= 0 && blockAt > propAt);
+    }
+  }
+});
+
+test("every refund the gate sees has passed the argument check first", () => {
+  for (const c of allConfigs()) {
+    const ev = E.buildRun(S, c).steps.at(-1).events;
+    const gateAt = ev.findIndex((e) => e.type.startsWith("authz.") && e.detail.includes("op=issue_refund"));
+    if (gateAt < 0) continue;
+    const chkAt = ev.findIndex((e) => e.type === "check.passed");
+    assert.ok(chkAt >= 0 && chkAt < gateAt, JSON.stringify(c));
+  }
+});
+
+/* ---------- the second lesson: How a model is made (declarative plan) ---------- */
+const M = require("../../content/atlas/scenarios/model-making.json");
+const MF = E.flagsOf(M);
+function modelConfigs() {
+  const out = [];
+  for (let m = 0; m < 1 << MF.length; m++) { const c = {}; MF.forEach((f, i) => (c[f] = !!(m & (1 << i)))); out.push(c); }
+  return out;
+}
+
+test("model lesson: every condition set ends in one known outcome", () => {
+  assert.deepEqual(MF, ["skewData", "overfit", "skipAlign"]);
+  for (const c of modelConfigs()) {
+    const r = E.buildRun(M, c);
+    assert.ok(M.outcomes[r.outcome], JSON.stringify(c));
+    assert.equal(r.steps.filter((s) => s.outcome).length, 1);
+  }
+});
+
+test("model lesson: release happens only when every evaluation criterion passes", () => {
+  for (const c of modelConfigs()) {
+    const r = E.buildRun(M, c), ev = r.steps.at(-1).events;
+    const anyFlag = MF.some((f) => c[f]);
+    assert.equal(r.outcome, anyFlag ? "held_back" : "released", JSON.stringify(c));
+    if (r.outcome === "released") assert.ok(ev.findIndex((e) => e.type === "eval.passed") < ev.findIndex((e) => e.type === "release.pinned"));
+    else assert.ok(!ev.some((e) => e.type === "release.pinned"));
+  }
+});
+
+test("model lesson: training comes before fine-tuning, which comes before evaluation", () => {
+  const ids = E.buildRun(M, {}).steps.map((s) => s.id);
+  for (const [a, b] of [["predict", "backprop"], ["backprop", "checkpoint"], ["checkpoint", "finetune"], ["finetune", "align"], ["align", "evaluate"], ["evaluate", "release"]])
+    assert.ok(ids.indexOf(a) < ids.indexOf(b), `${a} before ${b}`);
+});
+
+test("model lesson: URL state keeps its own conditions and drops the flagship's", () => {
+  const st = E.parseState("?x=overfit,denyRefund&step=4", M, ["training"]);
+  assert.equal(st.overfit, true); assert.equal(st.denyRefund, undefined);
+  assert.equal(E.serializeState(Object.assign({}, st, { step: 4 }), M), "?x=overfit&step=4");
 });
