@@ -6,9 +6,12 @@ from __future__ import annotations
 import html, json, re
 from pathlib import Path
 
+from vignettes import vignette, SCENES
+
 ROOT = Path(__file__).parent
 LDIR = ROOT / "content" / "learn"
 DEPTHS = [("plain", "In one line"), ("picture", "Picture it"), ("deep", "Under the hood")]
+PATH_ART = {"what-is-ai": "Foundations", "how-machines-learn": "Learning", "what-a-model-does": "Language", "what-makes-an-agent": "Agents", "running-it-safely": "Operate", "should-we-build-one": "Decide"}
 
 
 def esc(s) -> str: return html.escape(str(s), quote=True)
@@ -129,7 +132,7 @@ def render_doors(p, by_id, compact=False) -> str:
                    f'<p class="door-cta"><a class="btn solid" id="door-continue" href="/learn/paths/{first["id"]}/">{esc(d["cta"])}</a> <span class="door-prog" id="door-prog"></span></p>'
         else:
             body = f'<p class="door-cta"><a class="btn" href="{esc(d["href"])}">{esc(d["cta"])}</a></p>'
-        cards.append(f'<div class="door door-{d["id"]}"><p class="sec-label">{ {"new": "Door 1", "architect": "Door 2", "explore": "Door 3"}[d["id"]] }</p>'
+        cards.append(f'<div class="door door-{d["id"]}">{vignette("door-" + d["id"], "door-art")}<p class="sec-label">{ {"new": "Door 1", "architect": "Door 2", "explore": "Door 3"}[d["id"]] }</p>'
                      f'<h3>{esc(d["title"])}</h3><p class="door-sub">{esc(d["sub"])}</p>{body}</div>')
     return '<div class="doors">' + "".join(cards) + "</div>"
 
@@ -143,7 +146,7 @@ def render_path(tpl: str, path: dict, p, by_id, *, masthead, footer) -> str:
     first = stop_view(path["stops"][0], by_id)
     first_href = first["href"] + ("&" if "?" in first["href"] else "?") + "path=" + path["id"] if first["kind"] != "section" else first["href"]
     return fill(tpl, MASTHEAD=masthead, FOOTER=footer, N=str(path["n"]), TITLE=esc(path["title"]), PROMISE=esc(path["promise"]),
-                MINUTES=str(path["minutes"]), TOTAL=str(total), IDEAS=str(ideas), STOPS=stops_html(path, by_id), PATHID=path["id"],
+                MINUTES=str(path["minutes"]), TOTAL=str(total), ART=vignette(PATH_ART.get(path["id"], "door-new"), "hero-art"), IDEAS=str(ideas), STOPS=stops_html(path, by_id), PATHID=path["id"],
                 FIRST=esc(first_href), NAV=nav, PATHSJSON=paths_json(p, by_id))
 
 
@@ -162,7 +165,7 @@ def render_idea(tpl: str, i: dict, g, p, by_id, atlas_where: dict, *, masthead, 
     deeper = f'<a class="btn" href="{esc(i["link"]["href"])}">{esc(i["link"]["label"])}</a>' if i.get("link") and not i["link"]["href"].startswith("/learn/atlas/") else ""
     idx = [x["id"] for x in g["ideas"]].index(i["id"]) + 1
     return fill(tpl, MASTHEAD=masthead, FOOTER=footer, ID=i["id"], LABEL=esc(i["label"]), CLUSTER=esc(i["cluster"]), IDX=str(idx), NIDEAS=str(len(g["ideas"])),
-                PLAIN=esc(i["plain"]), DEPTHS=depths, FROM=chips(frm), TO=chips(to), ONPATH=on_path, SEE=see, DEEPER=deeper, PATHSJSON=paths_json(p, by_id))
+                PLAIN=esc(i["plain"]), DEPTHS=depths, ART=vignette(i["cluster"], "hero-art"), FROM=chips(frm), TO=chips(to), ONPATH=on_path, SEE=see, DEEPER=deeper, PATHSJSON=paths_json(p, by_id))
 
 
 def render_architect(tpl: str, r, p, by_id, *, masthead, footer) -> str:
@@ -170,7 +173,8 @@ def render_architect(tpl: str, r, p, by_id, *, masthead, footer) -> str:
     for s in r["situations"]:
         steps = "".join(f'<li class="rt-step rt-{x["kind"]}"><span class="rt-k">{esc(r["kinds"][x["kind"]])}</span><a href="{esc(x["href"])}">{esc(x["label"])}</a><small>{esc(x["why"])}</small></li>' for x in s["steps"])
         gates = " ".join(f'<a class="chip" href="/method/#{gid}">Gate {gid[1:].zfill(2)}</a>' for gid in s["gates"])
-        cards.append(f'<article class="route" id="{s["id"]}"><div class="route-head"><h3>{esc(s["title"])}</h3><p class="route-when">{esc(s["when"])}</p>'
+        art = vignette(s["id"], "route-art") if s["id"] in SCENES else ""
+        cards.append(f'<article class="route" id="{s["id"]}">{art}<div class="route-head"><h3>{esc(s["title"])}</h3><p class="route-when">{esc(s["when"])}</p>'
                      f'<p class="route-meta"><span class="chip chip-b">Rung {s["rung"]} on the ladder</span> {gates}</p></div><ol class="rt-steps">{steps}</ol></article>')
     qs = "".join(f'<fieldset class="bq" data-q="{q["id"]}"><legend>{esc(q["q"])}</legend>'
                  f'<label><input type="radio" name="{q["id"]}" value="yes"> {esc(q["yes"])}</label><label><input type="radio" name="{q["id"]}" value="no" checked> {esc(q["no"])}</label></fieldset>'

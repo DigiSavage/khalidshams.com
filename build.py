@@ -19,6 +19,7 @@ from pathlib import Path
 import markdown  # pip install markdown
 import atlas_build
 import learn_build
+import vignettes
 
 ROOT = Path(__file__).parent
 SITE = "https://khalidshams.com"
@@ -190,7 +191,7 @@ def tpl(name: str) -> str:
 def fill(s: str, **kw) -> str:
     for k, v in kw.items():
         s = s.replace("{{" + k + "}}", v)
-    return s
+    return re.sub(r"\{\{VIG:([A-Za-z-]+)\}\}", lambda m: vignettes.vignette(m.group(1), "three-vig"), s)
 
 
 def page(body: str, *, title: str, description: str, canonical: str, og_type="website", og_image=None) -> str:

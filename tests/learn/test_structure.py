@@ -84,6 +84,17 @@ class Built(unittest.TestCase):
             self.assertIn(r, sm, r)
         self.assertIn("/learn/ideas/agent/", sj); self.assertIn("/architect/", sj)
 
+    def test_vignettes_render_with_explicit_fills_and_sit_where_expected(self):
+        import vignettes
+        for k in vignettes.SCENES:
+            svg = vignettes.vignette(k)
+            for tag in re.findall(r"<(?:rect|path|circle|ellipse|polygon)\b[^>]*>", svg):
+                self.assertIn("fill=", tag, f"{k}: {tag[:80]}")
+        self.assertEqual(self.page("index.html").count('class="vig door-art"'), 3)
+        self.assertEqual(self.page("architect/index.html").count('class="vig route-art"'), 6)
+        self.assertIn('class="vig hero-art"', self.page("learn/ideas/agent/index.html"))
+        self.assertIn('class="home-scene"', self.page("index.html"))
+
     def test_no_dashes_and_no_fixed_narrow_wrap(self):
         for p in ("architect/index.html", "learn/paths/what-is-ai/index.html", "learn/ideas/agent/index.html", "index.html"):
             self.assertIsNone(re.search("—|–| -- ", self.page(p)), p)
