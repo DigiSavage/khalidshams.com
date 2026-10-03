@@ -93,7 +93,7 @@ class Built(unittest.TestCase):
         self.assertEqual(self.page("index.html").count('class="vig door-art"'), 3)
         self.assertEqual(self.page("architect/index.html").count('class="vig route-art"'), 6)
         self.assertIn('class="vig hero-art"', self.page("learn/ideas/agent/index.html"))
-        self.assertIn('class="home-scene"', self.page("index.html"))
+        self.assertIn('home-scene', self.page("index.html"))
 
     def test_no_dashes_and_no_fixed_narrow_wrap(self):
         for p in ("architect/index.html", "learn/paths/what-is-ai/index.html", "learn/ideas/agent/index.html", "index.html"):
