@@ -204,9 +204,17 @@
       tk.innerHTML = html;
     }
     if (last) last.textContent = evs.length ? evs[evs.length - 1].type + "  " + evs[evs.length - 1].detail : "";
+    // chapters: which reading chapter this step belongs to; jumps go to the first step of a chapter in this run
+    var ch = step ? step.chapter : null, CH = SC.chapters || [];
+    qa(".ch-b").forEach(function (b) {
+      var id = b.getAttribute("data-ch"), first = run.steps.map(function (x) { return x.chapter; }).indexOf(id);
+      b.setAttribute("aria-current", id === ch ? "step" : "false"); b.disabled = first < 0; b.setAttribute("data-first", first);
+      b.classList.toggle("ch-seen", first >= 0 && idx >= 0 && first <= idx);
+    });
+    var chObj = CH.filter(function (c) { return c.id === ch; })[0];
     // narration
     var o = step && step.outcome ? SC.outcomes[step.outcome] : null;
-    $("atl-phase").textContent = step ? step.phase + (PG.designs ? (st.design === "team" ? " · coordinator design" : " · one-agent design") : "") : "Ready";
+    $("atl-phase").textContent = step ? (chObj ? "Chapter " + chObj.n + " · " + chObj.title + " · " : "") + step.phase + (PG.designs ? (st.design === "team" ? " · coordinator design" : " · one-agent design") : "") : "Ready";
     $("atl-title").textContent = step ? step.title : PG.ready;
     $("atl-text").textContent = step ? step.narration : PG.intro;
     var out = $("atl-outcome");
@@ -251,7 +259,8 @@
     var n0 = idx > 0 ? run.steps[idx - 1].events.length : 0;
     h += '<p class="in-h">Event trail (synthetic, newest last)</p><ol class="in-ev">' + step.events.slice(-8).map(function (e) {
       var c = /denied|error|exhausted|cancel|blocked|untrusted|failed|held|skipped/.test(e.type) ? "t-deny" : /verified|allowed|granted|passed|pinned/.test(e.type) ? "t-ok" : "";
-      return '<li class="' + (e.n > n0 ? "new" : "") + '"><span class="n">' + e.n + '</span><span class="' + c + '">' + esc(e.type) + " " + esc(e.detail) + "</span></li>"; }).join("") + "</ol>";
+      var replay = e.type === "approval.granted" ? ' <em class="t-replay">replay: recorded in the simulation, not granted by you</em>' : "";
+      return '<li class="' + (e.n > n0 ? "new" : "") + '"><span class="n">' + e.n + '</span><span class="' + c + '">' + esc(e.type) + " " + esc(e.detail) + replay + "</span></li>"; }).join("") + "</ol>";
     h += '<p class="in-h">Concepts in this step</p><div class="in-btns">' + step.concepts.map(function (c) { return '<button type="button" class="tb-b" data-go="' + c + '">' + esc(CBY[c].title) + "</button>"; }).join("") + "</div>";
     if (step.outcome) h += '<p class="in-h">Outcome</p><p class="in-p"><b>' + esc(SC.outcomes[step.outcome].label) + ".</b> " + esc(SC.outcomes[step.outcome].text) + "</p>";
     if (st.design === "team") h += coordHtml();
@@ -360,6 +369,7 @@
   }
   $("atl-follow").addEventListener("click", function () { if (idx >= run.steps.length - 1) go(0); else go(idx + 1); if (tab !== "step") showTab("step"); });
   $("atl-next").addEventListener("click", function () { go(idx + 1); });
+  qa(".ch-b").forEach(function (b) { b.addEventListener("click", function () { var f = +b.getAttribute("data-first"); if (f >= 0) { go(f); if (tab !== "step") showTab("step"); } }); });
   $("atl-prev").addEventListener("click", function () { go(idx - 1); });
   $("atl-play").addEventListener("click", play);
   $("atl-reset").addEventListener("click", function () { stop(); idx = -1; urlState(false); fit(); render(false); });

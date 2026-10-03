@@ -285,6 +285,7 @@ def build():
     # ---- learn structure: guided paths, idea pages, the architect route (validated; errors stop the build)
     lgraph, lpaths, lroutes = learn_build.load()
     lerrs = learn_build.validate(lgraph, lpaths, lroutes, set(), None)
+    lerrs += learn_build.validate_scenes(json.loads((ROOT / "content" / "scenes.json").read_text(encoding="utf-8")))
     if lerrs: raise SystemExit("Learn structure errors:\n  " + "\n  ".join(lerrs))
     by_idea = {i["id"]: i for i in lgraph["ideas"]}
     doors_full = learn_build.render_doors(lpaths, by_idea)

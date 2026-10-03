@@ -30,6 +30,25 @@ def stop_key(st: dict) -> str:
     return st["key"]
 
 
+def validate_scenes(scenes: dict) -> list[str]:
+    """The five primary homes: every scene names a real vignette and an internal route."""
+    import re as _re
+    errs = []
+    ids = [x["id"] for x in scenes["scenes"]]
+    if len(ids) != len(set(ids)): errs.append("scenes: duplicate id")
+    for x in scenes["scenes"]:
+        for f in ("line", "purpose", "primary", "cast", "art", "study"):
+            if f not in x: errs.append(f"scene {x['id']}: missing {f}")
+        if not x["primary"]["route"].startswith("/"): errs.append(f"scene {x['id']}: primary route must be internal")
+        for c in x["cast"]:
+            if c not in scenes["cast"]: errs.append(f"scene {x['id']}: unknown cast {c}")
+        for o in x.get("objects", []):
+            if o not in scenes["objects"]: errs.append(f"scene {x['id']}: unknown object {o}")
+        for v in _re.findall(r"\{\{VIG:([A-Za-z-]+)\}\}", x["primary"]["component"]):
+            if v not in SCENES: errs.append(f"scene {x['id']}: vignette {v} does not exist")
+    return errs
+
+
 def validate(g, p, r, atlas_concepts: set[str], dist_exists) -> list[str]:
     errs = []
     ids = {i["id"] for i in g["ideas"]}

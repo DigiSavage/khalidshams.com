@@ -95,6 +95,23 @@ class Built(unittest.TestCase):
         self.assertIn('class="vig hero-art"', self.page("learn/ideas/agent/index.html"))
         self.assertIn('home-scene', self.page("index.html"))
 
+    def test_scene_registry_is_valid_and_catches_bad_homes(self):
+        sc = json.loads((ROOT / "content/scenes.json").read_text(encoding="utf-8"))
+        self.assertEqual(learn_build.validate_scenes(sc), [])
+        self.assertEqual([x["id"] for x in sc["scenes"]], ["atlas-workshop", "shams-autonomy", "production-review", "enterprise-clarity", "architectural-judgment"])
+        bad = copy.deepcopy(sc); bad["scenes"][2]["primary"]["component"] = "{{VIG:nope}}"
+        self.assertTrue(any("vignette nope" in e for e in learn_build.validate_scenes(bad)))
+        home = self.page("index.html")
+        for key in ("act-on-records", "estate", "judgment"):
+            self.assertIn(key, [k for k in ("act-on-records", "estate", "judgment")])
+        self.assertIn("DOMAIN: ORDERS", home); self.assertIn("RECOMMENDED", home); self.assertNotIn("POLICY LIBRARY", home.split('id="situations"')[1].split("</section>")[0])
+
+    def test_flagship_steps_all_have_chapters(self):
+        sc = json.loads((ROOT / "content/atlas/scenarios/damaged-order.json").read_text(encoding="utf-8"))
+        ids = {c["id"] for c in sc["chapters"]}
+        self.assertEqual(len(ids), 5)
+        for k, st in sc["steps"].items(): self.assertIn(st.get("chapter"), ids, k)
+
     def test_no_dashes_and_no_fixed_narrow_wrap(self):
         for p in ("architect/index.html", "learn/paths/what-is-ai/index.html", "learn/ideas/agent/index.html", "index.html"):
             self.assertIsNone(re.search("—|–| -- ", self.page(p)), p)

@@ -102,6 +102,10 @@ def validate(concepts, sources, checks, scenario, graph_ids: set[str], svg: str)
             if not st.get(f): errs.append(f"step {sid}: missing {f}")
     for k, o in scenario["outcomes"].items():
         if o.get("kind") not in OUTCOME_KINDS: errs.append(f"outcome {k}: bad kind")
+    if scenario.get("chapters"):
+        chid = {c["id"] for c in scenario["chapters"]}
+        for sid, st in scenario["steps"].items():
+            if st.get("chapter") not in chid: errs.append(f"step {sid}: chapter missing or unknown")
     if "plan" in scenario:
         iv = {i["id"] for i in scenario["interventions"]}
         def check_nodes(nodes):
@@ -228,7 +232,13 @@ def render_scene(sid: str, tpl: str, *, masthead: str, footer: str, graph_ids: s
                          for m in concepts["shams"])
     legend = "".join(f'<li>{PEOPLE_SYM if sym == "PEOPLE" else sym}<span>{txt}</span></li>' for sym, txt in LEGENDS[pg["legend"]])
     others = " ".join(f'<a href="{esc(m["route"])}">{esc(m["title"])}</a>' for m in scenes if m["id"] != sid)
-    rep = {"MASTHEAD": masthead, "FOOTER": footer, "SCENE": svg, "RAIL": "".join(rail), "TEXTSTEPS": text_steps, "OUTCOMES": outcomes,
+    chapters = ""
+    if scenario.get("chapters"):
+        items = "".join(f'<li><button type="button" class="ch-b" data-ch="{c["id"]}" aria-current="false"><span class="ch-n">{c["n"]}</span><span class="ch-t">{esc(c["title"])}</span><span class="ch-s">{esc(c["sub"])}</span></button></li>'
+                        for c in scenario["chapters"])
+        chapters = (f'<nav class="chapters" id="atl-chapters" aria-label="Reading chapters"><p class="ch-note">{esc(scenario.get("chapterNote", ""))}</p>'
+                    f'<ol class="ch-rail">{items}</ol></nav>')
+    rep = {"MASTHEAD": masthead, "CHAPTERS": chapters, "FOOTER": footer, "SCENE": svg, "RAIL": "".join(rail), "TEXTSTEPS": text_steps, "OUTCOMES": outcomes,
            "INTERVENTIONS": ivs(False), "INTERVENTIONS_ADV": (f'<details class="iv-more"><summary>More conditions</summary><ul class="iv-list">{adv}</ul></details>' if adv else ""),
            "GLOSSARY": glossary, "SOURCES": srcs, "SHAMS": shams_btns, "DATA": data_json, "VERSION": esc(concepts["version"]),
            "NCONCEPTS": str(len(here)), "DISCLAIMER": esc(scenario["disclaimer"]), "CASE": esc(scenario["case"]),

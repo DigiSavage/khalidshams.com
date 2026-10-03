@@ -171,7 +171,7 @@ def scene():
     eng += f'<text class="t-c proposal" x="736" y="232" fill="#1F45C8" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13"></text>'
     o.append(obj("model", "model", eng, abox(722, 72, 176, 166, "LLM API", "messages in\ncontent + stop_reason out\nmodel id pinned", [(722, 150), (898, 150)]), ["measure", "sustain"]))
     # ---------------- operator behind the context tray
-    op = operator(640, 300, 1.7) + T(640, 206, "AGENT LOOP", "t-m", "middle")
+    op = operator(640, 300, 1.7) + T(640, 206, "AGENT LOOP", "t-m", "middle") + T(640, 222, "software metaphor", "t-s", "middle", font_size="10")
     o.append(obj("agent", "agent", op, abox(578, 208, 124, 62, "Agent loop", "orchestrator code"), ["scope", "harden", "measure", "sustain"]))
     # ---------------- context tray with slots
     tray = [path("M396 286 L834 286 L842 432 L388 432 Z", "top"), T(412, 304, "CONTEXT · THIS CALL ONLY", "t-m")]
@@ -218,7 +218,7 @@ def scene():
     o.append(obj("approver", "approver", appr, abox(976, 530, 290, 150, "Approval workflow", "human task queue\ndecision recorded"), ["harden", "scope"]))
     # ---------------- specialist station
     spec = (rect(400, 484, 360, 186, "sunk", rx=6) + T(412, 506, "POLICY SPECIALIST · OWN CONTEXT", "t-m") +
-            operator(470, 596, 0.95) +
+            operator(470, 596, 0.95) + T(470, 612, "software metaphor", "t-s", "middle", font_size="9.5") +
             rect(520, 520, 120, 70, "card", rx=3) + T(530, 540, "WORK ORDER", "t-m") +
             f'<g class="wo-lines">{path("M530 554 H626 M530 566 H612 M530 578 H620", "thin")}</g>' +
             rect(652, 520, 96, 70, "card", rx=3) + T(662, 540, "RESULT", "t-m") +

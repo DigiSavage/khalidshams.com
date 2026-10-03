@@ -135,7 +135,7 @@ def multi():
     cx, cy = 160, 92
     pts = [(60, 50), (260, 50), (60, 140), (260, 140), (160, 28)]
     s = "".join(path(f"M{cx} {cy} L{x} {y}", "acc", stroke_dasharray="6 4") for x, y in pts)
-    s += circ(cx, cy, 22, "accf") + operator(cx, cy + 14, 0.42) + T(cx, cy + 40, "coordinator", "t-c", "middle", font_size="8.5")
+    s += circ(cx, cy, 22, "accf") + operator(cx, cy + 14, 0.42) + T(cx, cy + 40, "coordinator", "t-c", "middle", font_size="8.5") + T(cx, cy + 50, "software metaphor", "t-s", "middle", font_size="6.5")
     for x, y in pts:
         s += circ(x, y, 15, "card") + operator(x, y + 10, 0.3)
     s += T(60, 72, "retrieve only", "t-s", "middle", font_size="7.5") + T(260, 72, "refunds: no", "t-s", "middle", font_size="7.5")
@@ -200,7 +200,7 @@ def cluster_language():
 
 def cluster_agents():
     s = rect(50, 26, 200, 128, "dash", rx=8) + T(58, 40, "AGENT LOOP", "t-m", font_size="7.5")
-    s += operator(110, 118, 0.62) + path("M78 124 L142 124 L146 140 L74 140 Z", "top")
+    s += operator(110, 118, 0.62) + path("M78 124 L142 124 L146 140 L74 140 Z", "top") + T(110, 152, "software metaphor", "t-s", "middle", font_size="6.5")
     s += "".join(rect(82 + i * 20, 128, 14, 9, "accf" if i < 2 else "dash", rx=1) for i in range(3))
     s += rect(168, 50, 60, 42, "sunk", rx=4) + rect(176, 58, 22, 14, "card", rx=2) + path("M179 70 A8 8 0 0 1 195 70", "ln") + path("M187 70 L192 63", "acc") + T(176, 86, "MODEL", "t-m", font_size="7")
     s += rect(176, 104, 50, 40, "sunk", rx=3) + circ(188, 116, 5, "ln") + circ(188, 132, 5, "card") + T(188, 135, "$", "t-h", "middle", font_size="8") + rect(206, 110, 14, 10, "card", rx=1) + T(201, 154, "TOOLS", "t-m", "middle", font_size="7")
@@ -232,11 +232,49 @@ def cluster_society():
     return s
 
 
+
+def estate():
+    """The estate: real systems grouped by ownership, typed dependencies, one link unverified, an architect inspecting."""
+    s = rect(26, 34, 150, 118, "dash", rx=8) + T(34, 48, "DOMAIN: ORDERS", "t-m", font_size="7.5")
+    s += rect(190, 34, 112, 118, "dash", rx=8) + T(198, 48, "DOMAIN: FINANCE", "t-m", font_size="7.5")
+    nodes = {"web": (60, 76, "Storefront"), "api": (120, 76, "Order API"), "db": (90, 126, "Orders DB"), "bill": (246, 70, "Billing"), "ledger": (246, 124, "Ledger")}
+    for k, (x, y, lab) in nodes.items():
+        s += rect(x - 26, y - 11, 52, 22, "accf" if k == "api" else "card", rx=3) + T(x, y + 4, lab, "t-s", "middle", font_size="8")
+    s += path("M86 76 L94 76", "ln", marker_end="url(#vg-ar)") + path("M120 87 L96 115", "ln", marker_end="url(#vg-ar)")
+    s += path("M146 76 C 170 76, 190 70, 220 70", "ln", marker_end="url(#vg-ar)")
+    s += path("M246 81 L246 113", "ln", marker_end="url(#vg-ar)")
+    s += path("M116 126 C 160 140, 190 136, 220 124", "dash", marker_end="url(#vg-ar)") + circ(168, 134, 8, "goldf") + T(168, 137, "?", "t-h", "middle", font_size="10")
+    s += T(100, 166, "unverified link: stays unknown", "t-s", "middle", font_size="7.5")
+    s += person(296, 172, 0.5) + T(232, 166, "blast radius: 3", "t-c", "middle", font_size="7.5")
+    return s
+
+
+def judgment():
+    """Architectural judgment: alternatives against criteria, trade-offs exposed, one recommendation signed."""
+    s = rect(30, 36, 196, 112, "card", rx=3) + T(38, 50, "DECISION TABLE \u00b7 OWNER NAMED", "t-m", font_size="7")
+    cols = [("A", 92), ("B", 148), ("C", 204)]
+    for lab, x in cols:
+        s += T(x, 68, lab, "t-h", "middle", font_size="9")
+    s += rect(128, 56, 40, 88, "accf", rx=3)
+    rows = [("cost", ["\u2713", "\u2713", "\u2715"]), ("risk", ["\u2713", "\u2713", "\u2715"]), ("time", ["\u2713", "\u2715", "\u2715"]), ("fit", ["\u2715", "\u2713", "\u2713"])]
+    for i, (lab, marks) in enumerate(rows):
+        y = 84 + i * 16
+        s += T(38, y, lab, "t-s", font_size="8") + path(f"M36 {y + 5} H220", "thin")
+        for (_, x), m in zip(cols, marks):
+            s += T(x, y, m, "t-c" if m == "\u2713" else "t-s", "middle", font_size="10")
+    s += rect(236, 44, 72, 70, "card", rx=3) + T(244, 58, "RECOMMENDED", "t-m", font_size="7") + T(244, 74, "B: replatform", "t-h", font_size="9")
+    s += T(244, 88, "assumption noted", "t-s", font_size="7") + T(244, 98, "revisit trigger set", "t-s", font_size="7")
+    s += path("M244 108 C 252 100, 262 112, 272 104 C 280 98, 286 110, 300 104", "acc")
+    s += person(272, 172, 0.5)
+    s += T(128, 166, "trade-offs shown, one choice owned", "t-s", "middle", font_size="8")
+    return s
+
 SCENES = {
     "request": request, "door-new": door_new, "door-architect": door_architect, "door-explore": door_explore,
     "assistant": assistant, "act-on-records": act, "back-office": backoffice, "knowledge": knowledge, "multi-agent": multi, "decide": decide,
     "Foundations": cluster_foundations, "Learning": cluster_learning, "Language": cluster_language, "Agents": cluster_agents,
     "Operate": cluster_operate, "Decide": cluster_decide, "Society": cluster_society,
+    "estate": estate, "judgment": judgment,
 }
 
 DEFS = ('<defs><marker id="vg-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'

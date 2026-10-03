@@ -176,9 +176,9 @@
           <path d="M111.8 184.3 A125 125 0 0 1 189.3 106.8" class="ag-arc" marker-end="url(#ag-ah)"/>
           <g class="ag-core" data-part="agent"><circle cx="230" cy="225" r="58"/><text x="230" y="208" class="ag-t-st" text-anchor="middle">Agent</text><text x="230" y="232" class="ag-t-h" text-anchor="middle">The goal</text><text x="230" y="252" class="ag-t-s" text-anchor="middle">within limits</text></g>
           <line x1="190" y1="50" x2="214" y2="72" class="ag-lead" data-part="llm"/><line x1="270" y1="50" x2="246" y2="72" class="ag-lead" data-part="skills"/>
-          <line x1="386" y1="183" x2="368" y2="196" class="ag-lead" data-part="mcp"/>
-          <line x1="230" y1="384" x2="230" y2="404" class="ag-lead" data-part="rag"/>
-          <line x1="74" y1="183" x2="92" y2="196" class="ag-lead" data-part="memory"/>
+          <line x1="386" y1="183" x2="368" y2="196" class="ag-lead" data-part="mcp"/><path d="M400 190 C 420 280, 330 380, 262 364" class="ag-lead ag-lead2" data-part="mcp"/><g class="ag-check" aria-label="A check in code between the proposal and the action"><rect x="286" y="138" width="46" height="18" rx="3"/><text x="309" y="151" text-anchor="middle">CHECK</text></g>
+          <line x1="230" y1="384" x2="230" y2="404" class="ag-lead" data-part="rag"/><path d="M198 414 C 60 400, 40 120, 206 86" class="ag-lead ag-lead2" data-part="rag"/>
+          <line x1="74" y1="183" x2="92" y2="196" class="ag-lead" data-part="memory"/><path d="M62 158 C 70 100, 150 80, 200 82" class="ag-lead ag-lead2" data-part="memory"/>
           <g class="ag-stn" data-stn="plan"><circle cx="230" cy="100" r="34"/><text x="230" y="104" text-anchor="middle">Plan</text></g>
           <g class="ag-stn" data-stn="act"><circle cx="355" cy="225" r="34"/><text x="355" y="229" text-anchor="middle">Act</text></g>
           <g class="ag-stn" data-stn="observe"><circle cx="230" cy="350" r="34"/><text x="230" y="354" text-anchor="middle">Observe</text></g>
@@ -189,7 +189,7 @@
           <g class="ag-pill" data-part="rag"><rect x="194" y="404" width="72" height="26" rx="13"/><text x="230" y="421" text-anchor="middle">RAG</text></g>
           <g class="ag-pill" data-part="memory"><rect x="12" y="157" width="80" height="26" rx="13"/><text x="52" y="174" text-anchor="middle">Memory</text></g>
         </svg>
-        <figcaption class="ag-figcap" id="ag-figcap">Each component sits at the station where it does its work.</figcaption>
+        <figcaption class="ag-figcap" id="ag-figcap">Each component is drawn at the station where it does most of its work; the dashed leads show where else it reaches. The check sits between a proposal and its execution.</figcaption>
       </figure>
 
       <div class="ag-col">
@@ -702,7 +702,7 @@ var qp=new URLSearchParams(location.search).get('move');if(qp){var c=document.qu
   var root=document.getElementById('agentic');if(!root)return;
   /* ---- 01 components ---- */
   var STN={agent:null,llm:'plan',skills:'plan',mcp:'act',rag:'observe',memory:'adjust',sustain:null};
-  var CAP={agent:'The agent is the whole loop: it holds the goal and decides when it is met.',llm:'The model reasons at plan: it reads the context and proposes the next step.',skills:'Skills load at plan: the how-to for a task the agent has done before.',mcp:'MCP is how the agent acts: one standard way to reach tools and resources.',rag:'Retrieval brings evidence back at observe, with its source attached.',memory:'Memory is written at adjust: what was decided, tried and learned so far.',sustain:'Sustain runs around the whole loop: traces on every step, budgets and an off switch on every run.'};
+  var CAP={agent:'The agent is the whole loop: it holds the goal. Application checks and explicit success and stop criteria decide when it is met, not the model.',llm:'The model reasons at plan: it reads the context and proposes the next step.',skills:'Skills load at plan: the how-to for a task the agent has done before.',mcp:'MCP is a protocol between the application and tool servers. Calls go out through it at act, and results come back through it to observe. It is a connection, not a permission.',rag:'Retrieval puts selected passages, with their source, into the context: before a plan, and again when an observation shows a gap.',memory:'Memory is a store outside the loop. Relevant notes are read into the context at plan; what was decided or learned is written back at adjust.',sustain:'Sustain runs around the whole loop: traces on every step, budgets and an off switch on every run.'};
   var STAGE={s1:['agent'],s2:['mcp','sustain'],s3:['rag','memory'],s4:['llm','skills'],s5:['sustain']};
   var MOVE={s1:'Scope',s2:'Harden',s3:'Anchor',s4:'Measure',s5:'Sustain'};
   var svg=document.getElementById('ag-svg'),cap=document.getElementById('ag-figcap'),openBtn=document.getElementById('ag-open');
