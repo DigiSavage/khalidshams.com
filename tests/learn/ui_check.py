@@ -69,7 +69,7 @@ async def main():
 
         # 4. layout: the page fills the screen on desktop and never overflows on phones
         for path in ["/", "/learn/", "/architect/", "/method/", "/playbooks/", "/playbooks/agentic-ai/", "/tools/", "/tools/availability/", "/writing/", "/learn/paths/what-is-ai/", "/learn/ideas/agent/"]:
-            for w, h in [(2560, 1200), (1920, 1080), (1440, 900), (1024, 768), (768, 1024), (390, 844), (320, 640)]:
+            for w, h in [(2560, 1200), (1920, 1080), (1440, 900), (1024, 768), (768, 1024), (430, 932), (390, 844), (360, 740), (320, 640)]:
                 for scheme in (("light", "dark") if w in (1920, 390) else ("light",)):
                     ctx, pg, errs = await page(b, w, h, scheme)
                     await pg.goto(BASE + path); await pg.wait_for_timeout(200)
@@ -80,6 +80,18 @@ async def main():
                         check(f"{path} {w}: content uses the width", wrap >= 0.85 if w <= 1680 else wrap >= 0.62, f"{wrap:.2f}")
                     if w == 1920 and scheme == "light": await pg.screenshot(path=str(SHOTS / f"layout-{path.strip('/').replace('/', '-') or 'home'}-1920.png"))
                     await ctx.close()
+        # 5. 200 percent zoom: text and amounts stay readable, nothing drifts sideways
+        for path in ["/", "/learn/", "/architect/", "/learn/atlas/?step=10", "/method/"]:
+            # browser zoom at 200 percent on a 1440 x 900 screen is a 720 x 450 CSS viewport at device scale 2
+            ctx = await b.new_context(viewport={"width": 720, "height": 450}, device_scale_factor=2); pg = await ctx.new_page(); errs = []
+            pg.on("pageerror", lambda e: errs.append(str(e)))
+            await pg.goto(BASE + path); await pg.wait_for_timeout(300)
+            sw = await pg.evaluate("document.documentElement.scrollWidth"); cw = await pg.evaluate("document.documentElement.clientWidth")
+            check(f"{path} at 200% zoom: no horizontal overflow", sw <= cw + 1, f"scrollWidth={sw} clientWidth={cw}")
+            if "atlas" in path:
+                amt = await pg.locator("#pane-step:has-text('84.00')").count()
+                check("amount stays in live text at 200% zoom", amt == 1)
+            await ctx.close()
         await b.close()
     n = sum(1 for r in results if r[1]); print(f"\n{n} passed, {len(results) - n} failed")
     sys.exit(0 if n == len(results) else 1)

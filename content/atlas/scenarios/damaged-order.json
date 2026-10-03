@@ -117,7 +117,8 @@
      "type": "run.created",
      "detail": "goal=resolve_damaged_order owner=support_ops_lead"
     }
-   ]
+   ],
+   "chapter": "question"
   },
   "assemble": {
    "phase": "Context",
@@ -141,7 +142,8 @@
      "type": "context.assembled",
      "detail": "items=instructions,request"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "procedure": {
    "phase": "Context",
@@ -166,7 +168,8 @@
      "type": "skill.loaded",
      "detail": "skill=damaged-item version=3"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "note": {
    "phase": "Context",
@@ -191,7 +194,8 @@
      "type": "memory.loaded",
      "detail": "note=2026-09-29 photos=2 scope=customer"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "note_missing": {
    "phase": "Context",
@@ -213,7 +217,8 @@
      "type": "memory.skipped",
      "detail": "reason=disabled_for_run"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "model_get_order": {
    "phase": "Model",
@@ -250,7 +255,8 @@
      "type": "tool.proposed",
      "detail": "get_order order_id=A-1042"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "authz_read": {
    "phase": "Authorize",
@@ -275,7 +281,8 @@
      "type": "authz.allowed",
      "detail": "op=get_order scope=orders:read"
     }
-   ]
+   ],
+   "chapter": "boundary"
   },
   "exec_get_order": {
    "phase": "Execute",
@@ -317,7 +324,8 @@
      "type": "tool.executed",
      "detail": "get_order status=ok"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "cancel_received": {
    "phase": "Exit",
@@ -341,7 +349,8 @@
      "type": "run.cancelled",
      "detail": "by=customer before=write"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "retrieve": {
    "phase": "Evidence",
@@ -376,7 +385,8 @@
      "type": "retrieval.result",
      "detail": "hits=1 source=returns-policy-v7#4.2"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "retrieve_empty": {
    "phase": "Evidence",
@@ -404,7 +414,8 @@
      "type": "retrieval.result",
      "detail": "hits=0"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "work_order": {
    "phase": "Delegate",
@@ -443,7 +454,8 @@
      "type": "delegation.sent",
      "detail": "to=policy_specialist fields=3"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "spec_retrieve": {
    "phase": "Delegate",
@@ -482,7 +494,8 @@
      "type": "specialist.tool.executed",
      "detail": "retrieve_policy hits=1"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "spec_retrieve_empty": {
    "phase": "Delegate",
@@ -517,7 +530,8 @@
      "type": "specialist.tool.executed",
      "detail": "retrieve_policy hits=0"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "spec_return": {
    "phase": "Delegate",
@@ -556,7 +570,8 @@
      "type": "delegation.result",
      "detail": "eligible=true approval_required=true"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "spec_return_empty": {
    "phase": "Delegate",
@@ -584,7 +599,8 @@
      "type": "delegation.result",
      "detail": "eligible=unknown evidence=none"
     }
-   ]
+   ],
+   "chapter": "evidence"
   },
   "model_escalate": {
    "phase": "Model",
@@ -623,7 +639,8 @@
      "type": "tool.proposed",
      "detail": "create_handoff queue=support_ops"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "exec_handoff_owner": {
    "phase": "Exit",
@@ -653,7 +670,8 @@
      "type": "handoff.created",
      "detail": "queue=support_ops"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "model_ask_photos": {
    "phase": "Model",
@@ -691,7 +709,8 @@
      "type": "tool.proposed",
      "detail": "send_message template=request_photos"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "exec_ask": {
    "phase": "Exit",
@@ -722,7 +741,8 @@
      "type": "tool.executed",
      "detail": "send_message status=sent"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "model_refund": {
    "phase": "Model",
@@ -766,7 +786,8 @@
      "type": "tool.proposed",
      "detail": "issue_refund amount=84.00"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "authz_refund_deny": {
    "phase": "Authorize",
@@ -797,7 +818,8 @@
      "type": "authz.denied",
      "detail": "op=issue_refund missing_scope=refunds:issue"
     }
-   ]
+   ],
+   "chapter": "boundary"
   },
   "exec_handoff_denied": {
    "phase": "Exit",
@@ -822,7 +844,8 @@
      "type": "handoff.created",
      "detail": "queue=support_ops attached=proposal,evidence"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "authz_refund_approval": {
    "phase": "Authorize",
@@ -854,7 +877,8 @@
      "type": "authz.approval_required",
      "detail": "op=issue_refund amount=84.00 rule=refund_over_50"
     }
-   ]
+   ],
+   "chapter": "boundary"
   },
   "approval_granted": {
    "phase": "Approve",
@@ -877,7 +901,8 @@
      "type": "approval.granted",
      "detail": "by=duty_supervisor op=issue_refund"
     }
-   ]
+   ],
+   "chapter": "boundary"
   },
   "exec_refund": {
    "phase": "Execute",
@@ -918,7 +943,8 @@
      "type": "tool.executed",
      "detail": "issue_refund refund_id=RF-2207"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "exec_refund_error": {
    "phase": "Execute",
@@ -955,7 +981,8 @@
      "type": "tool.error",
      "detail": "issue_refund attempt=1 error=503"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "exec_refund_retry": {
    "phase": "Execute",
@@ -995,7 +1022,8 @@
      "type": "retry.exhausted",
      "detail": "max_attempts=2"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "handoff_failure": {
    "phase": "Exit",
@@ -1020,7 +1048,8 @@
      "type": "handoff.created",
      "detail": "queue=support_ops reason=refund_service_unavailable"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "model_reply": {
    "phase": "Model",
@@ -1058,7 +1087,8 @@
      "type": "tool.proposed",
      "detail": "send_message template=refund_confirmed"
     }
-   ]
+   ],
+   "chapter": "proposal"
   },
   "exec_reply": {
    "phase": "Execute",
@@ -1089,7 +1119,8 @@
      "type": "tool.executed",
      "detail": "send_message status=sent"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "verify": {
    "phase": "Verify",
@@ -1118,7 +1149,8 @@
      "detail": "refund=RF-2207 amount_ok=true notified=true"
     }
    ],
-   "cost": 1
+   "cost": 1,
+   "chapter": "receipt"
   },
   "budget_exhausted": {
    "phase": "Exit",
@@ -1146,7 +1178,8 @@
      "type": "handoff.created",
      "detail": "queue=support_ops attached=progress"
     }
-   ]
+   ],
+   "chapter": "receipt"
   },
   "exec_get_order_injected": {
    "phase": "Execute",
@@ -1195,7 +1228,8 @@
      "detail": "field=delivery_note source=orders"
     }
    ],
-   "warn": true
+   "warn": true,
+   "chapter": "evidence"
   },
   "model_refund_injected": {
    "phase": "Model",
@@ -1237,7 +1271,8 @@
      "detail": "issue_refund amount=500.00 destination=card_7781"
     }
    ],
-   "warn": true
+   "warn": true,
+   "chapter": "proposal"
   },
   "check_blocked": {
    "phase": "Check",
@@ -1263,7 +1298,8 @@
      "type": "check.blocked",
      "detail": "issue_refund amount>order_total destination!=original_payment"
     }
-   ]
+   ],
+   "chapter": "boundary"
   },
   "exec_handoff_injection": {
    "phase": "Exit",
@@ -1289,7 +1325,8 @@
      "type": "handoff.created",
      "detail": "queue=support_ops attached=proposal,record_field"
     }
-   ]
+   ],
+   "chapter": "receipt"
   }
  },
  "slots": [
@@ -1357,5 +1394,38 @@
   "budget": true,
   "legend": "runtime",
   "outcomesIntro": "A model's stop reason says why one response ended. It is not proof that the task succeeded. These are the run's own outcomes."
- }
+ },
+ "chapters": [
+  {
+   "id": "question",
+   "n": "01",
+   "title": "The question",
+   "sub": "The request, the intended outcome, the accountable owner."
+  },
+  {
+   "id": "evidence",
+   "n": "02",
+   "title": "The evidence",
+   "sub": "Selected sources, relevant saved notes, procedures, what is on the desk."
+  },
+  {
+   "id": "proposal",
+   "n": "03",
+   "title": "The proposal",
+   "sub": "What the model proposes, and any bounded work handed to a specialist."
+  },
+  {
+   "id": "boundary",
+   "n": "04",
+   "title": "The boundary",
+   "sub": "Validation, authorization, required review: denied, or permitted to continue."
+  },
+  {
+   "id": "receipt",
+   "n": "05",
+   "title": "The receipt",
+   "sub": "The returned result, verification, the outcome, the recorded events, and how the run ends."
+  }
+ ],
+ "chapterNote": "Five reading chapters over the runtime steps. A run moves back and forth between them: a result that arrives is evidence for the next proposal."
 }

@@ -121,7 +121,7 @@ static/atlas/atlas.js, atlas.css     the workspace UI. Progress in localStorage 
 docs/atlas/                          brief, status, coverage (generated), reference audit, verification, screenshots
 ```
 
-Rules: every scene object and step reference must exist in the registry (the build checks). `source-checked` concepts need sources. Colour meaning: cobalt is focus, gold is cost, coral is denial or error, and each also has a non-colour cue (mark, dash pattern, label). No runtime model calls, no framework. Never commit the reference drawings collection.
+Rules: every scene object and step reference must exist in the registry (the build checks). Flagship steps carry a `chapter` (one of the five reading chapters in the scenario); `content/scenes.json` locks the five primary illustrated scenes to their homes and is validated at build. Operator figures always carry an adjacent "software metaphor" label. `source-checked` concepts need sources. Colour meaning: cobalt is focus, gold is cost, coral is denial or error, and each also has a non-colour cue (mark, dash pattern, label). No runtime model calls, no framework. Never commit the reference drawings collection.
 
 After registry changes run `python tools/atlas_coverage.py` to regenerate docs/atlas/CONTENT_COVERAGE.md.
 

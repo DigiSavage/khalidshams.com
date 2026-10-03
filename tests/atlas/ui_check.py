@@ -80,7 +80,23 @@ async def main():
         check("no page errors (injection)", not errs, str(errs))
         await ctx.close()
 
-        # 3. collaborator: work order and result, picture and architecture
+        # 2c. reading chapters: the rail reflects the step, jumps keep design, condition and selection, replay approvals are labelled
+        ctx, pg, errs = await page(b, 1440, 900)
+        await pg.goto(A + "?design=team&x=denyRefund&step=6&focus=authorization"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("chapter rail marks the boundary chapter at the read check", await pg.get_attribute('.ch-b[aria-current="step"]', "data-ch") == "boundary")
+        await pg.click('.ch-b[data-ch="receipt"]'); await pg.wait_for_timeout(200)
+        st = await pg.evaluate("window.__atlas.state()")
+        check("chapter jump keeps design, condition, selection; lands on this run's first receipt step", st["st"]["design"] == "team" and st["st"]["denyRefund"] and st["st"]["focus"] == "authorization" and st["steps"][st["idx"]] == "exec_handoff_denied", str(st["steps"][st["idx"]]))
+        check("a denied run never shows the receipt chapter as success", st["outcome"] == "denied")
+        await pg.goto(A + "?step=11"); await pg.wait_for_selector('#atlas[data-ready="true"]')
+        check("recorded approval is labelled as a replay event in the trace", await pg.locator(".t-replay").count() == 1)
+        check("inspector's first tab is the trace", (await pg.text_content("#tab-step")).strip() == "Trace")
+        check("operators carry a software-metaphor label", await pg.locator("#atlas-scene text:has-text('software metaphor')").count() >= 2)
+        rail_h = await pg.evaluate("document.getElementById('atl-chapters').getBoundingClientRect().height")
+        check("chapter rail is compact", rail_h < 100, f"{rail_h:.0f}px")
+        check("no page errors (chapters)", not errs, str(errs)); await ctx.close()
+
+
         ctx, pg, errs = await page(b, 1440, 900)
         await pg.goto(A + "?design=team&step=10"); await pg.wait_for_selector('#atlas[data-ready="true"]')
         check("specialist shows a filled work order", await pg.locator(".wo-lines.lit").count() == 1)
@@ -128,7 +144,7 @@ async def main():
         await ctx.close()
 
         # 6. layout matrix
-        sizes = [(1920, 1080), (2560, 1080), (1440, 900), (1280, 800), (768, 1024), (390, 844), (360, 740), (320, 640)]
+        sizes = [(1920, 1080), (2560, 1080), (1440, 900), (1280, 800), (768, 1024), (430, 932), (390, 844), (360, 740), (320, 640)]
         for w, h in sizes:
             for scheme in ("light", "dark"):
                 ctx, pg, errs = await page(b, w, h, scheme)

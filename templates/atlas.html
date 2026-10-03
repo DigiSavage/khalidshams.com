@@ -55,6 +55,7 @@
     </div>
   </div>
 
+  {{CHAPTERS}}
   <div class="atl-body">
     <nav class="atl-rail" id="atl-rail" aria-label="Concepts in this scene">
       <button type="button" class="rl-toggle" id="atl-rail-t" aria-expanded="true" aria-controls="atl-rail-list"><span>Seven layers to orient you</span></button>
@@ -76,11 +77,11 @@
 
     <aside class="atl-insp" id="atl-insp" aria-label="Inspector">
       <div class="in-tabs" role="tablist">
-        <button type="button" role="tab" class="in-t" id="tab-step" aria-selected="true" aria-controls="pane-step">This step</button>
+        <button type="button" role="tab" class="in-t" id="tab-step" aria-selected="true" aria-controls="pane-step">Trace</button>
         <button type="button" role="tab" class="in-t" id="tab-concept" aria-selected="false" aria-controls="pane-concept">Concept</button>
         <button type="button" role="tab" class="in-t" id="tab-check" aria-selected="false" aria-controls="pane-check">Check yourself</button>
       </div>
-      <div class="in-pane" role="tabpanel" id="pane-step" aria-labelledby="tab-step"><p class="in-empty">Start the walkthrough to inspect each step: what is on the desk, the tool call and its arguments, what came back, where the evidence came from, and the events recorded.</p></div>
+      <div class="in-pane" role="tabpanel" id="pane-step" aria-labelledby="tab-step"><p class="in-empty">The trace of each step: what is on the desk, the proposed call and its arguments, what came back, where the evidence came from, and the events recorded. Public inputs and results only; no hidden reasoning is shown because none is recorded.</p></div>
       <div class="in-pane" role="tabpanel" id="pane-concept" aria-labelledby="tab-concept" hidden><p class="in-empty">Select anything in the scene, or a concept in the list, to see what it does at three depths and where the analogy stops.</p></div>
       <div class="in-pane" role="tabpanel" id="pane-check" aria-labelledby="tab-check" hidden></div>
       <div class="in-lens" id="atl-lenspanel" hidden></div>

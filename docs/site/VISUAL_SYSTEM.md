@@ -199,6 +199,9 @@ tests/atlas/ (engine 18, registry 16, ui 85)   tests/learn/ (structure 11, ui 15
 docs/atlas/, docs/site/     briefs, status, coverage, verification, this file
 ```
 
+## 10a. Scene registry and chapters (added 2026-10-03)
+`content/scenes.json` locks the five primary scenes (atlas-workshop, shams-autonomy, production-review, enterprise-clarity, architectural-judgment) to their meaning, cast, objects and real routes, and defines the cast, object language and edge legend. `content/atlas/scenarios/damaged-order.json` carries five reading chapters (The question, The evidence, The proposal, The boundary, The receipt) and a chapter on every step; the atlas draws them as a cobalt thread rail. See `docs/site/HANDOFF_2077_STATUS.md`.
+
 ## 11. Open points worth assessing
 
 - The Learn page hero has no drawing of its own; its scene band is the atlas preview image. Playbooks, Tools and Writing pages carry the layout but no vignettes yet.
