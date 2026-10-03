@@ -1,0 +1,25 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero idea-hero">
+    <p class="eyebrow"><a href="/learn/">Learn AI</a> · <a href="/learn/?idea={{ID}}#map">On the map</a> · {{CLUSTER}} · idea {{IDX}} of {{NIDEAS}}</p>
+    <h1>{{LABEL}}</h1>
+    <p class="lede">{{PLAIN}}</p>
+    <div class="cta"><button type="button" class="btn solid" id="idea-got" aria-pressed="false">I get this</button> {{SEE}} {{DEEPER}}</div>
+  </div>
+</div>
+
+<div class="band"><div class="wrap"><section id="depths">
+  <div class="idea-depths">{{DEPTHS}}</div>
+  <div class="idea-rel">
+    <div><p class="sec-label">Builds on</p><div class="chips">{{FROM}}</div></div>
+    <div><p class="sec-label">Leads to</p><div class="chips">{{TO}}</div></div>
+    <div>{{ONPATH}}</div>
+  </div>
+  <p class="ln-note">Marking "I get this" is self-reported and stays in this browser. The same mark shows on the map.</p>
+</section></div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+<script type="application/json" id="paths-data">{{PATHSJSON}}</script>
+<script src="/paths.js" defer></script>

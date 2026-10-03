@@ -18,6 +18,7 @@ from pathlib import Path
 
 import markdown  # pip install markdown
 import atlas_build
+import learn_build
 
 ROOT = Path(__file__).parent
 SITE = "https://khalidshams.com"
@@ -258,7 +259,7 @@ def build_search_index(pages, graph, posts):
             out.append(entry)
     if graph:
         for i in graph["ideas"]:
-            out.append({"u": f"/learn/?idea={i['id']}#map", "p": "Learn AI", "t": i["label"], "s": i["plain"] + " " + i["picture"] + " " + i["deep"], "k": "idea", "c": i["cluster"]})
+            out.append({"u": f"/learn/ideas/{i['id']}/", "p": "Learn AI", "t": i["label"], "s": i["plain"] + " " + i["picture"] + " " + i["deep"], "k": "idea", "c": i["cluster"]})
     for p in posts:
         body = re.sub(r"<[^>]+>", " ", p.body_html or "")
         out.append({"u": p.url, "p": "Writing", "t": p.title, "s": " ".join((p.summary + " " + body).split())[:600], "k": "post", "d": p.date_long})
@@ -280,6 +281,14 @@ def build():
     live = visible(posts)
     masthead, footer = tpl("masthead.html"), tpl("footer.html")
     n_ideas_all = len(json.loads((ROOT / "content" / "learn" / "graph.json").read_text(encoding="utf-8"))["ideas"])
+    # ---- learn structure: guided paths, idea pages, the architect route (validated; errors stop the build)
+    lgraph, lpaths, lroutes = learn_build.load()
+    lerrs = learn_build.validate(lgraph, lpaths, lroutes, set(), None)
+    if lerrs: raise SystemExit("Learn structure errors:\n  " + "\n  ".join(lerrs))
+    by_idea = {i["id"]: i for i in lgraph["ideas"]}
+    doors_full = learn_build.render_doors(lpaths, by_idea)
+    doors_compact = learn_build.render_doors(lpaths, by_idea, compact=True)
+    paths_json_s = learn_build.paths_json(lpaths, by_idea)
 
     # ---- post pages
     for p in live:
@@ -359,7 +368,7 @@ def build():
         canonical=f"{SITE}/tools/"), encoding="utf-8")
 
     home = fill(tpl("home.html"), NIDEASCAP=num_words(n_ideas_all).capitalize(), WRITING=writing, MASTHEAD=masthead,
-                PLAYBOOKS="\n".join(pb_card(o) for o in pbs))
+                PLAYBOOKS="\n".join(pb_card(o) for o in pbs), DOORS=doors_compact, PATHSJSON=paths_json_s)
     (DIST / "index.html").write_text(page(home, title="Khalid Shams · Principal Solutions Architect",
         description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
         canonical=SITE + "/", og_type="profile"), encoding="utf-8")
@@ -401,7 +410,8 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/method/", f"{SITE}/playbooks/"] + [pb.abs_url for pb in load_playbooks()]
+    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}/method/", f"{SITE}/playbooks/"]
+            + [f"{SITE}/learn/paths/{x['id']}/" for x in learn_build.load()[1]["paths"]] + [f"{SITE}/learn/ideas/{x['id']}/" for x in learn_build.load()[0]["ideas"]] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -409,6 +419,7 @@ def build():
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
     # ---- method page
     mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer)
+    mp = mp.replace("{{PAGENAV}}", learn_build.page_nav(mp))
     (DIST / "method").mkdir(exist_ok=True)
     (DIST / "method" / "index.html").write_text(page(mp, title="The SHAMS Method · Khalid Shams",
         description="Where AI belongs in your enterprise and how to keep it safe: an interactive map of your estate, the autonomy ladder, and the eight gates between a demo and a system.",
@@ -425,7 +436,7 @@ def build():
     }
     atlas_stats = None
     for m in atlas_build.SCENES:
-        a_html, a_svg, a_stats = atlas_build.render_scene(m["id"], tpl("atlas.html"), masthead=masthead, footer=footer, graph_ids=graph_ids)
+        a_html, a_svg, a_stats = atlas_build.render_scene(m["id"], tpl("atlas.html"), masthead=masthead, footer=footer, graph_ids=graph_ids, extra={"PATHSJSON": paths_json_s})
         out_dir = DIST / m["out"]; out_dir.mkdir(parents=True, exist_ok=True)
         t_, d_ = ATLAS_META[m["id"]]
         (out_dir / "index.html").write_text(page(a_html, title=t_, description=d_, canonical=f"{SITE}/{m['out']}/"), encoding="utf-8")
@@ -438,11 +449,38 @@ def build():
     # ---- learn page
     n_ideas = len(graph["ideas"])
     lp = fill(tpl("learn.html"), MASTHEAD=masthead, FOOTER=footer, NIDEAS=num_words(n_ideas), NIDEASCAP=num_words(n_ideas).capitalize(), NIDEASN=str(n_ideas), ATLASN=str(atlas_registry),
-              GRAPH=json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
+              GRAPH=json.dumps(graph, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"), DOORS=doors_full, PATHSJSON=paths_json_s)
+    lp = lp.replace("{{PAGENAV}}", learn_build.page_nav(lp))
     (DIST / "learn").mkdir(exist_ok=True)
     (DIST / "learn" / "index.html").write_text(page(lp, title="Learn AI · Khalid Shams",
         description=f"Learn AI the way it learns: an interactive map of {n_ideas} ideas with three depths each, the seven-layer AI stack (where MCP, agents and guardrails actually sit), model vs chatbot vs workflow vs agent, the agentic loop, multi-agent patterns, prompts vs hooks, and the questions beginners ask.",
         canonical=f"{SITE}/learn/"), encoding="utf-8")
+
+    # ---- guided paths, one page per idea, the architect route
+    atlas_where = {}
+    for m in atlas_build.SCENES:
+        sc_ = atlas_build.load_scenario(m["id"]); cons = atlas_build.scene_concepts(m["draw"](), sc_)
+        for c in atlas_build.load()[0]["concepts"]:
+            if c["id"] in cons and c.get("mapId") and c["mapId"] not in atlas_where:
+                atlas_where[c["mapId"]] = {"href": f"{sc_['page']['route']}?focus={c['id']}", "title": sc_["title"]}
+    for pth in lpaths["paths"]:
+        out = DIST / "learn" / "paths" / pth["id"]; out.mkdir(parents=True, exist_ok=True)
+        body = learn_build.render_path(tpl("path.html"), pth, lpaths, by_idea, masthead=masthead, footer=footer)
+        (out / "index.html").write_text(page(body, title=f"Path {pth['n']}: {pth['title']} · Learn AI · Khalid Shams",
+            description=f"Guided path {pth['n']} of 6. {pth['promise']} About {pth['minutes']} minutes, {len(pth['stops'])} stops.",
+            canonical=f"{SITE}/learn/paths/{pth['id']}/").replace("<body>", f'<body data-path="{pth["id"]}">', 1), encoding="utf-8")
+    for i in lgraph["ideas"]:
+        out = DIST / "learn" / "ideas" / i["id"]; out.mkdir(parents=True, exist_ok=True)
+        body = learn_build.render_idea(tpl("idea.html"), i, lgraph, lpaths, by_idea, atlas_where, masthead=masthead, footer=footer)
+        (out / "index.html").write_text(page(body, title=f"{i['label']} · Learn AI · Khalid Shams",
+            description=f"{i['plain']} {i['picture']}", canonical=f"{SITE}/learn/ideas/{i['id']}/").replace("<body>", f'<body data-stop="idea:{i["id"]}">', 1), encoding="utf-8")
+    ap = learn_build.render_architect(tpl("architect.html"), lroutes, lpaths, by_idea, masthead=masthead, footer=footer)
+    ap = ap.replace("{{PAGENAV}}", learn_build.page_nav(ap))
+    (DIST / "architect").mkdir(exist_ok=True)
+    (DIST / "architect" / "index.html").write_text(page(ap, title="Architect · what are you building? · Khalid Shams",
+        description="Say what you are building and get the route: what to learn first, what to watch run, the gate to decide it, the playbook, the number to check and a worked example. Plus a brief builder for the design review.",
+        canonical=f"{SITE}/architect/"), encoding="utf-8")
+    print(f"learn structure: {len(lpaths['paths'])} paths, {len(lgraph['ideas'])} idea pages, {len(lroutes['situations'])} architect situations")
 
     # ---- 404 (CloudFront custom error response points here)
     nf = fill(tpl("404.html"), MASTHEAD=masthead, FOOTER=footer)
@@ -460,7 +498,8 @@ def build():
     (DIST / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
 
     # ---- search index
-    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/learn/atlas/", DIST / "learn" / "atlas" / "index.html"), ("/learn/atlas/how-models-are-made/", DIST / "learn" / "atlas" / "how-models-are-made" / "index.html"), ("/method/", DIST / "method" / "index.html"),
+    pages = [("/", DIST / "index.html"), ("/learn/", DIST / "learn" / "index.html"), ("/learn/atlas/", DIST / "learn" / "atlas" / "index.html"), ("/learn/atlas/how-models-are-made/", DIST / "learn" / "atlas" / "how-models-are-made" / "index.html"), ("/architect/", DIST / "architect" / "index.html"), ("/method/", DIST / "method" / "index.html")] + \
+            [(f"/learn/paths/{x['id']}/", DIST / "learn" / "paths" / x["id"] / "index.html") for x in lpaths["paths"]] + [
              ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
             [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]

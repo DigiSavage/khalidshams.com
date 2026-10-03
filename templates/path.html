@@ -1,0 +1,31 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero path-hero">
+    <p class="eyebrow"><a href="/learn/">Learn AI</a> · Guided path {{N}} of 6</p>
+    <h1>{{TITLE}}</h1>
+    <p class="lede"><b>When you finish:</b> {{PROMISE}}</p>
+    <div class="hero-note path-meta">
+      <p><span class="sec-label">About {{MINUTES}} minutes</span> · {{TOTAL}} stops, {{IDEAS}} of them ideas from the map · <span id="path-meter">progress is kept on this device</span> · <span id="path-understood"></span></p>
+      <p class="path-track" aria-hidden="true"><i id="path-fill"></i></p>
+    </div>
+    <div class="cta"><a class="btn solid" id="path-go" href="{{FIRST}}">Start at stop 1</a> <a class="btn" href="/learn/#start">All paths</a></div>
+  </div>
+</div>
+
+<div class="band"><div class="wrap"><section id="stops">
+  <div class="sec-head">
+    <p class="sec-label">The stops, in order</p>
+    <div>
+      <h2>Each stop is one page. Read it, picture it, mark it, move on.</h2>
+      <p class="intro">Ideas open on their own page with three depths. Atlas stops open the interactive lesson at the right step and count as done when you follow the run to its end. Sections count when you have read them.</p>
+    </div>
+  </div>
+  {{STOPS}}
+  <p class="path-nav">{{NAV}}</p>
+</section></div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+<script type="application/json" id="paths-data">{{PATHSJSON}}</script>
+<script src="/paths.js" defer></script>

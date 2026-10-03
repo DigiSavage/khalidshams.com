@@ -1,0 +1,57 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero arch-hero">
+    <p class="eyebrow">For architects · what are you building?</p>
+    <h1>Say what you are building. <em>Get the route.</em></h1>
+    <p class="lede">{{INTRO}}</p>
+    <div class="cta"><a class="btn solid" href="#situations">Choose a situation</a> <a class="btn" href="#brief">Build your brief</a> <a class="btn" href="/method/">The SHAMS Method</a></div>
+  </div>
+</div>
+{{PAGENAV}}
+
+<div class="band" id="situations"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">{{NSIT}} situations</p>
+    <div>
+      <h2>Each one is a route, not a reading list.</h2>
+      <p class="intro">Learn first, watch it run, decide, build, check the number, and a worked example from the atlas. The rung is where the situation usually sits on the autonomy ladder; the gates are the ones that decide it.</p>
+    </div>
+  </div>
+  <div class="routes">{{ROUTES}}</div>
+</section></div></div>
+
+<div class="band" id="brief"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">Brief builder</p>
+    <div>
+      <h2>Four answers, one checklist for the design review.</h2>
+      <p class="intro">{{BRIEFINTRO}}</p>
+    </div>
+  </div>
+  <div class="bb">
+    <form class="bb-form" id="bb-form">
+      <label class="bb-sit">Closest situation <select id="bb-sit">{{SITOPTS}}</select></label>
+      {{QUESTIONS}}
+      <p class="bb-actions"><button type="button" class="btn solid" id="bb-copy">Copy the brief</button> <span class="bb-copied" id="bb-copied" aria-live="polite"></span></p>
+    </form>
+    <div class="bb-out" id="bb-out" aria-live="polite"></div>
+  </div>
+  <p class="ln-note">The brief is generated from the routes on this page. It is a starting checklist, not a review. Future versions will take more about your estate and return an architecture outline; the data model behind this page is built for that.</p>
+</section></div></div>
+
+<div class="band" id="next"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">Where next</p>
+    <div>
+      <h2>When the route is clear, the method keeps it honest.</h2>
+      <p class="intro">The estate map shows where AI can go in what you already run. The ladder says how much autonomy the estate underneath can carry. The eight gates stand between a demo and a system.</p>
+    </div>
+  </div>
+  <div class="cta"><a class="btn solid" href="/method/#map">The estate map</a> <a class="btn" href="/method/#gate-check">Run the gate check</a> <a class="btn" href="/playbooks/">The six playbooks</a> <a class="btn" href="/learn/atlas/">The SHAMS AI Atlas</a></div>
+</section></div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+<script type="application/json" id="routes-data">{{ROUTESJSON}}</script>
+<script src="/architect.js" defer></script>

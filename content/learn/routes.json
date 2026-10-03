@@ -1,0 +1,85 @@
+{
+ "version": "2026.10.3",
+ "intro": "Pick the situation closest to yours. Each one is a short route through the site: what to learn first, what to watch, the decision to make, the build to follow, the number to check, and a worked example. The brief builder below turns your answers into a checklist you can take into a design review.",
+ "kinds": {"learn": "Learn first", "watch": "Watch it run", "decide": "Decide", "build": "Build", "check": "Check the number", "example": "Worked example"},
+ "situations": [
+  {"id": "assistant", "title": "Add an assistant to a product you already run", "when": "Users ask questions, the assistant answers from your docs or data, and a person still presses the buttons.",
+   "rung": 1, "gates": ["g1", "g4", "g6"],
+   "steps": [
+    {"kind": "learn", "label": "What a language model does", "href": "/learn/paths/what-a-model-does/", "why": "Context, tokens and hallucination are the three things that will bite first."},
+    {"kind": "learn", "label": "Retrieval (RAG)", "href": "/learn/ideas/rag/", "why": "Your facts come from retrieval, not from the model."},
+    {"kind": "watch", "label": "The policy specialist retrieves, with provenance", "href": "/learn/atlas/?design=team&step=10", "why": "Every answer cites the passage it came from."},
+    {"kind": "decide", "label": "Gate 04: where does every fact come from?", "href": "/method/#g4", "why": "Grounding is the gate an assistant lives or dies by."},
+    {"kind": "build", "label": "Playbook: Data & AI platform", "href": "/playbooks/data-platform/", "why": "Governed data is what makes retrieval trustworthy."},
+    {"kind": "check", "label": "Availability and recovery budget", "href": "/tools/availability/", "why": "An assistant that is down is a support ticket, not a feature."},
+    {"kind": "example", "label": "The damaged-order case, one-agent design", "href": "/learn/atlas/?step=9", "why": "Policy on the desk, cited, before a reply is drafted."}
+   ]},
+  {"id": "act-on-records", "title": "Let an agent act on customer records", "when": "Refunds, tickets, orders, accounts. The agent proposes and sometimes executes writes that cost money or trust.",
+   "rung": 3, "gates": ["g2", "g3", "g5", "g8"],
+   "steps": [
+    {"kind": "learn", "label": "Running it safely", "href": "/learn/paths/running-it-safely/", "why": "Identity, checks in code, approval and the kill switch."},
+    {"kind": "watch", "label": "A refund denied before execution", "href": "/learn/atlas/?x=denyRefund&step=10", "why": "The gate decides, whatever the model said."},
+    {"kind": "watch", "label": "A planted instruction blocked by a check", "href": "/learn/atlas/?x=injection&step=10", "why": "Assume injected text will be followed; design so it cannot do harm."},
+    {"kind": "decide", "label": "Gate 05: is every write typed, validated, idempotent and reversible?", "href": "/method/#g5", "why": "The write path is the whole risk."},
+    {"kind": "build", "label": "Playbook: Agentic AI", "href": "/playbooks/agentic-ai/", "why": "The questions first, then the build in order."},
+    {"kind": "check", "label": "Availability and recovery budget", "href": "/tools/availability/", "why": "Decide the recovery time before the first incident."},
+    {"kind": "example", "label": "The damaged-order case: $84 refund, over the $50 approval line", "href": "/learn/atlas/?step=11", "why": "Allowed for this identity, routed to a person, verified against records."}
+   ]},
+  {"id": "back-office", "title": "Automate a back-office process end to end", "when": "A multi-step process with handoffs, documents and systems of record, where today a person carries the context.",
+   "rung": 2, "gates": ["g1", "g2", "g7"],
+   "steps": [
+    {"kind": "learn", "label": "Four questions decide whether an agent is the right call", "href": "/learn/#decide", "why": "Most of these processes want a workflow with a model inside, not an agent."},
+    {"kind": "learn", "label": "What makes it an agent", "href": "/learn/paths/what-makes-an-agent/", "why": "Know the loop before you buy one."},
+    {"kind": "watch", "label": "Coordinator and specialist: a bounded work order", "href": "/learn/atlas/?design=team&step=8", "why": "What a specialist is given, and what it is not."},
+    {"kind": "decide", "label": "Gate 07: what does a run cost at ten times the volume?", "href": "/method/#g7", "why": "Back-office volumes make per-run cost the architecture."},
+    {"kind": "build", "label": "Playbook: Application modernization", "href": "/playbooks/app-modernization/", "why": "The process usually lives in a system that needs an API first."},
+    {"kind": "check", "label": "Availability and recovery budget", "href": "/tools/availability/", "why": "What the process can tolerate when the agent is down."},
+    {"kind": "example", "label": "Budget exhausted: a bounded exit", "href": "/learn/atlas/?x=tightBudget", "why": "A run that stops on its limit and hands off is the design working."}
+   ]},
+  {"id": "knowledge", "title": "Put a knowledge system on company documents", "when": "Search and answers over policies, contracts, manuals. The hard part is who may see what, and proving where an answer came from.",
+   "rung": 1, "gates": ["g3", "g4", "g6"],
+   "steps": [
+    {"kind": "learn", "label": "Embeddings", "href": "/learn/ideas/embed/", "why": "How 'similar' is computed, and why two models' vectors do not mix."},
+    {"kind": "learn", "label": "Retrieval (RAG)", "href": "/learn/ideas/rag/", "why": "Owned, versioned, permission-filtered sources."},
+    {"kind": "watch", "label": "Retrieval with provenance, in the flagship lesson", "href": "/learn/atlas/?step=8", "why": "The passage, its owner and its review date arrive together."},
+    {"kind": "decide", "label": "Gate 03: what may the agent see, per user, enforced by the platform?", "href": "/method/#g3", "why": "A document index that ignores permissions is a breach waiting to happen."},
+    {"kind": "build", "label": "Playbook: Data & AI platform", "href": "/playbooks/data-platform/", "why": "Someone owns each layer."},
+    {"kind": "check", "label": "Gate check", "href": "/method/#gate-check", "why": "Score the design before the first index is built."},
+    {"kind": "example", "label": "No covering policy found: the run asks a person", "href": "/learn/atlas/?x=noEvidence", "why": "What a knowledge system should do when it has no evidence."}
+   ]},
+  {"id": "multi-agent", "title": "Coordinate several agents", "when": "A coordinator that delegates to specialists. The question is what each one owns and how much the coordination costs.",
+   "rung": 3, "gates": ["g2", "g3", "g7"],
+   "steps": [
+    {"kind": "learn", "label": "Multi-agent systems", "href": "/learn/ideas/multi/", "why": "Hub and spoke, and why a mesh does not scale."},
+    {"kind": "watch", "label": "Coordinator and policy specialist", "href": "/learn/atlas/?design=team", "why": "A work order out, a structured result back, and a specialist that cannot refund."},
+    {"kind": "decide", "label": "Gate 02: what does each agent own, where does control pass, where does a human sit?", "href": "/method/#g2", "why": "Ownership is the design."},
+    {"kind": "check", "label": "Coordination cost: n(n-1)/2 against n-1", "href": "/method/?agents=6#ag-cost", "why": "Count the links before you count the agents."},
+    {"kind": "build", "label": "Playbook: Agentic AI", "href": "/playbooks/agentic-ai/", "why": "Multi-agent workflows in Azure AI Foundry over governed data."},
+    {"kind": "example", "label": "The specialist's permissions are configuration, not nature", "href": "/learn/atlas/?design=team&focus=specialist", "why": "A separate context is not a separate permission set."}
+   ]},
+  {"id": "decide", "title": "Decide whether AI belongs here at all", "when": "Leadership is asking what you have, where AI would pay off first, and what has to be true before you let it act.",
+   "rung": 0, "gates": ["g1", "g8"],
+   "steps": [
+    {"kind": "learn", "label": "Should we build one?", "href": "/learn/paths/should-we-build-one/", "why": "The questions, the ladder and the gates, in order."},
+    {"kind": "decide", "label": "The estate map: where AI can go", "href": "/method/#map", "why": "Six layers you already have, seven places AI can go."},
+    {"kind": "decide", "label": "The autonomy ladder", "href": "/method/#ladder", "why": "Pick the rung the estate underneath can support."},
+    {"kind": "check", "label": "Run the gate check", "href": "/method/#gate-check", "why": "A score and a record you can take into the room."},
+    {"kind": "build", "label": "The six playbooks", "href": "/playbooks/", "why": "What a principal architect is asked to own, each with the questions first."},
+    {"kind": "example", "label": "One request, every gate it crosses", "href": "/learn/atlas/", "why": "Fifteen steps that show where each decision sits."}
+   ]}
+ ],
+ "brief": {
+  "intro": "Answer four questions. The brief lists the gates, lessons and checks that apply to your system. Nothing leaves your browser.",
+  "questions": [
+   {"id": "writes", "q": "Will it execute actions that change records, money or messages?", "yes": "It executes writes", "no": "It only reads and advises",
+    "yes_adds": {"gates": ["g5", "g8"], "lessons": ["/learn/paths/running-it-safely/"], "watch": ["/learn/atlas/?x=denyRefund&step=10"], "rung_min": 2}},
+   {"id": "customer_data", "q": "Will it see data about identifiable people or tenants?", "yes": "Yes, personal or tenant data", "no": "No, public or internal reference data only",
+    "yes_adds": {"gates": ["g3"], "lessons": ["/learn/ideas/identity/"], "watch": ["/learn/atlas/?design=team&focus=specialist"]}},
+   {"id": "untrusted", "q": "Will it read content it does not control (email, web pages, uploads, tickets)?", "yes": "Yes, untrusted content", "no": "No, only governed sources",
+    "yes_adds": {"gates": ["g4"], "lessons": ["/learn/ideas/injection/"], "watch": ["/learn/atlas/?x=injection&step=10"]}},
+   {"id": "multi", "q": "Will more than one agent be involved?", "yes": "Yes, a coordinator and specialists", "no": "No, one agent",
+    "yes_adds": {"gates": ["g2"], "lessons": ["/learn/ideas/multi/"], "watch": ["/learn/atlas/?design=team"], "check": ["/method/?agents=4#ag-cost"]}}
+  ],
+  "always": {"gates": ["g1", "g6", "g7"], "lessons": ["/learn/ideas/evals/", "/learn/ideas/cost/"], "check": ["/method/#gate-check"]}
+ }
+}

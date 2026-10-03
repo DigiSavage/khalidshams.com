@@ -1,0 +1,291 @@
+{
+ "version": "2026.10.3",
+ "doors": [
+  {
+   "id": "new",
+   "title": "I'm new to this",
+   "sub": "Six short paths, in order. Each one ends with something you can picture and explain.",
+   "cta": "Start path 1"
+  },
+  {
+   "id": "architect",
+   "title": "I design systems",
+   "sub": "Say what you are building. Get the lesson to watch, the gate to run, the playbook and a worked example.",
+   "cta": "Choose a situation",
+   "href": "/architect/"
+  },
+  {
+   "id": "explore",
+   "title": "Explore freely",
+   "sub": "The living map, the two atlas lessons, the stack, the questions people ask. Go anywhere; progress is kept.",
+   "cta": "Open the map",
+   "href": "/learn/#map"
+  }
+ ],
+ "paths": [
+  {
+   "id": "what-is-ai",
+   "n": 1,
+   "title": "What AI is, really",
+   "minutes": 20,
+   "promise": "You can say what makes a system 'AI', where machine learning and language models sit inside it, and why the data it learned from matters.",
+   "stops": [
+    {
+     "idea": "ai"
+    },
+    {
+     "idea": "ml"
+    },
+    {
+     "idea": "deep"
+    },
+    {
+     "idea": "algorithm"
+    },
+    {
+     "idea": "model"
+    },
+    {
+     "idea": "data"
+    },
+    {
+     "idea": "bias"
+    },
+    {
+     "section": "/learn/#stack",
+     "key": "sec:stack",
+     "label": "The stack in seven layers",
+     "sub": "Every AI word you have heard lives in exactly one of them."
+    }
+   ]
+  },
+  {
+   "id": "how-machines-learn",
+   "n": 2,
+   "title": "How a machine learns",
+   "minutes": 25,
+   "promise": "You can follow one model from raw text to a released version, and explain what training actually changes.",
+   "stops": [
+    {
+     "idea": "training"
+    },
+    {
+     "idea": "parameters"
+    },
+    {
+     "idea": "neuron"
+    },
+    {
+     "idea": "nn"
+    },
+    {
+     "idea": "backprop"
+    },
+    {
+     "atlas": "/learn/atlas/how-models-are-made/",
+     "done": "model-making:released",
+     "label": "Follow one model from text to release",
+     "sub": "The second atlas lesson. Fifteen steps; try the three ways it can be held back."
+    },
+    {
+     "idea": "supervised"
+    },
+    {
+     "idea": "finetune"
+    },
+    {
+     "idea": "alignment"
+    }
+   ]
+  },
+  {
+   "id": "what-a-model-does",
+   "n": 3,
+   "title": "What a language model does",
+   "minutes": 20,
+   "promise": "You can explain tokens, context and attention well enough to know why a model forgets, drifts and sometimes makes things up.",
+   "stops": [
+    {
+     "idea": "token"
+    },
+    {
+     "idea": "embed"
+    },
+    {
+     "idea": "attention"
+    },
+    {
+     "idea": "transformer"
+    },
+    {
+     "idea": "llm"
+    },
+    {
+     "idea": "context"
+    },
+    {
+     "idea": "prompt"
+    },
+    {
+     "idea": "sysprompt"
+    },
+    {
+     "idea": "hallucination"
+    },
+    {
+     "atlas": "/learn/atlas/?step=5",
+     "done": "damaged-order:completed",
+     "label": "Watch a model propose, not act",
+     "sub": "Step 5 of the flagship lesson, then follow the run to the end."
+    }
+   ]
+  },
+  {
+   "id": "what-makes-an-agent",
+   "n": 4,
+   "title": "What makes it an agent",
+   "minutes": 25,
+   "promise": "You can tell a model, a chatbot, a workflow and an agent apart, and describe the loop an agent runs.",
+   "stops": [
+    {
+     "section": "/learn/#kinds",
+     "key": "sec:kinds",
+     "label": "Model, chatbot, workflow, agent",
+     "sub": "Four kinds that get called the same thing."
+    },
+    {
+     "idea": "agent"
+    },
+    {
+     "idea": "tools"
+    },
+    {
+     "idea": "mcp"
+    },
+    {
+     "idea": "memory"
+    },
+    {
+     "idea": "rag"
+    },
+    {
+     "section": "/learn/#loop",
+     "key": "sec:loop",
+     "label": "The agentic loop",
+     "sub": "Four stations, one exit."
+    },
+    {
+     "atlas": "/learn/atlas/",
+     "done": "damaged-order:completed",
+     "label": "Follow one request through a governed system",
+     "sub": "The flagship lesson, start to verified completion."
+    },
+    {
+     "idea": "multi"
+    }
+   ]
+  },
+  {
+   "id": "running-it-safely",
+   "n": 5,
+   "title": "Running it safely",
+   "minutes": 25,
+   "promise": "You can name what stops an agent doing harm, and tell a prompt from a rule.",
+   "stops": [
+    {
+     "section": "/learn/#enforce",
+     "key": "sec:enforce",
+     "label": "A prompt is a request. A check in code is a rule.",
+     "sub": "The enforcement question."
+    },
+    {
+     "idea": "guardrails"
+    },
+    {
+     "idea": "identity"
+    },
+    {
+     "atlas": "/learn/atlas/?x=denyRefund&step=10",
+     "done": "damaged-order:denied",
+     "label": "Watch a refund get denied before execution",
+     "sub": "The gate refuses; the run ends as denied, not failed."
+    },
+    {
+     "idea": "injection"
+    },
+    {
+     "atlas": "/learn/atlas/?x=injection&step=10",
+     "done": "damaged-order:blocked",
+     "label": "Watch a planted instruction get blocked",
+     "sub": "The model follows it; the check in code does not."
+    },
+    {
+     "idea": "hitl"
+    },
+    {
+     "idea": "traces"
+    },
+    {
+     "idea": "cost"
+    },
+    {
+     "idea": "kill"
+    },
+    {
+     "idea": "evals"
+    }
+   ]
+  },
+  {
+   "id": "should-we-build-one",
+   "n": 6,
+   "title": "Should we build one?",
+   "minutes": 20,
+   "promise": "You can run the questions that decide whether an agent is the right call, and name the gates it has to pass.",
+   "stops": [
+    {
+     "section": "/learn/#decide",
+     "key": "sec:decide",
+     "label": "Four questions decide it",
+     "sub": "Most teams should answer 'not yet' to the last one."
+    },
+    {
+     "idea": "when"
+    },
+    {
+     "idea": "ladder"
+    },
+    {
+     "section": "/method/#ladder",
+     "key": "sec:m-ladder",
+     "label": "The autonomy ladder",
+     "sub": "Five rungs. Each one needs more of the estate underneath it."
+    },
+    {
+     "idea": "gates"
+    },
+    {
+     "section": "/method/#gates",
+     "key": "sec:m-gates",
+     "label": "The eight gates",
+     "sub": "Between a demo and a system."
+    },
+    {
+     "idea": "shams"
+    },
+    {
+     "idea": "dataplat"
+    },
+    {
+     "idea": "foundations"
+    },
+    {
+     "section": "/method/#gate-check",
+     "key": "sec:m-gate-check",
+     "label": "Run the gate check",
+     "sub": "Score a system you know against the eight gates."
+    }
+   ]
+  }
+ ]
+}

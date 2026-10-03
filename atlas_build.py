@@ -179,7 +179,7 @@ def scene_concepts(svg: str, scenario: dict) -> list[str]:
     return seen
 
 
-def render_scene(sid: str, tpl: str, *, masthead: str, footer: str, graph_ids: set[str]):
+def render_scene(sid: str, tpl: str, *, masthead: str, footer: str, graph_ids: set[str], extra: dict | None = None):
     concepts, sources, checks, _ = load()
     scenario = load_scenario(sid)
     meta = next(m for m in SCENES if m["id"] == sid)
@@ -235,6 +235,7 @@ def render_scene(sid: str, tpl: str, *, masthead: str, footer: str, graph_ids: s
            "CRUMB": esc(pg["crumb"]), "H1": esc(pg["h1"]), "H1EM": esc(pg["h1em"]), "LABEL": esc(pg["label"]), "FOLLOW": esc(pg["follow"]),
            "READY": esc(pg["ready"]), "INTRO": esc(pg["intro"]), "DESIGNSEG": DESIGN_SEG if pg["designs"] else "", "LEGEND": legend,
            "OUTCOMESINTRO": esc(pg["outcomesIntro"]), "OTHERS": others, "SCENETITLE": esc(scenario["title"])}
+    rep.update(extra or {})
     out = tpl
     for k, v in rep.items():
         out = out.replace("{{" + k + "}}", v)

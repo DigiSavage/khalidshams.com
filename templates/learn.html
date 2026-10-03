@@ -1,19 +1,28 @@
 {{MASTHEAD}}
 <div class="wrap">
   <div class="hero learn-hero">
-    <p class="eyebrow">Learn AI · a living map for people who are new to it</p>
+    <p class="eyebrow">Learn AI · guided paths, a living map and two illustrated lessons</p>
     <h1>Learn AI the way <em>it</em> learns.</h1>
     <p class="lede">AI is a web of ideas, not a glossary. This page lays out the {{NIDEAS}} ideas that matter as neurons on a map, from what a model is to when an agent is the right call: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
     <div class="cta">
-      <a class="btn solid" href="/learn/atlas/">The SHAMS AI Atlas</a>
+      <a class="btn solid" href="#start">Start here</a>
+      <a class="btn" href="/architect/">I design systems</a>
       <a class="btn" href="#map">Explore the map</a>
-      <a class="btn" href="#stack">The stack in layers</a>
-      <a class="btn" href="#kinds">LLM vs agent</a>
-      <a class="btn" href="#decide">When to build an agent</a>
-      <a class="btn" href="#faq">Questions people ask</a>
     </div>
   </div>
 </div>
+{{PAGENAV}}
+
+<div class="band" id="start"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">Start here</p>
+    <div>
+      <h2>Three doors. Pick the one that sounds like you.</h2>
+      <p class="intro">New to this: six short guided paths, in order, each ending with something you can picture and explain. Designing a system: say what you are building and get the route. Or wander: the map, the lessons and the stack are all open, and your progress is kept either way.</p>
+    </div>
+  </div>
+  {{DOORS}}
+</section></div></div>
 
 <div class="band" id="atlas"><div class="wrap"><section class="atlas-call">
   <div class="sec-head">
@@ -41,13 +50,13 @@
       <div class="ln-meter"><span id="ln-count">0 / {{NIDEASN}} understood</span><span class="ln-track"><i id="ln-fill"></i></span></div>
       <label for="ln-circuit" class="visually-hidden">Guided circuit</label>
       <select id="ln-circuit">
-        <option value="">Free roam</option>
-        <option value="chat">Circuit: What is a chatbot doing?</option>
-        <option value="learn">Circuit: How does a machine learn?</option>
-        <option value="agent">Circuit: What makes it an agent?</option>
-        <option value="trust">Circuit: When should I trust it?</option>
-        <option value="decide">Circuit: Should we build an agent?</option>
-        <option value="operate">Circuit: Running it safely</option>
+        <option value="">Follow a path on the map (optional)</option>
+        <option value="chat">Map path: What is a chatbot doing?</option>
+        <option value="learn">Map path: How does a machine learn?</option>
+        <option value="agent">Map path: What makes it an agent?</option>
+        <option value="trust">Map path: When should I trust it?</option>
+        <option value="decide">Map path: Should we build an agent?</option>
+        <option value="operate">Map path: Running it safely</option>
       </select>
       <button class="btn ln-next" id="ln-next" type="button" hidden>Next stop →</button>
       <span class="ln-spacer"></span>
@@ -334,6 +343,8 @@
 <div class="band"><div class="wrap">
 {{FOOTER}}
 </div></div>
+<script type="application/json" id="paths-data">{{PATHSJSON}}</script>
+<script src="/paths.js" defer></script>
 
 <script>
 (function(){
@@ -386,7 +397,7 @@ function render(){
   document.querySelectorAll(".ln-depths button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.d===depth));
   $("ln-body").textContent=n[depth];
   chips(E.filter(e=>e[1]===cur).map(e=>e[0]),$("ln-from"));chips(E.filter(e=>e[0]===cur).map(e=>e[1]),$("ln-to"));
-  const dp=$("ln-deeper");if(n.link){dp.innerHTML='Go deeper: <a href="'+n.link.href+'">'+n.link.label+' →</a>'}else{dp.innerHTML=""}
+  const dp=$("ln-deeper");dp.innerHTML='<a href="/learn/ideas/'+cur+'/">Open the lesson page →</a>'+(n.link?' · <a href="'+n.link.href+'">'+n.link.label+' →</a>':"");
   const m=$("ln-mark"),on=learned.has(cur);m.setAttribute("aria-pressed",on);m.textContent=on?"Understood ✓":"I get this";
   paint();
 }

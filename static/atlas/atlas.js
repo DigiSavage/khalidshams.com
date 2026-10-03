@@ -26,6 +26,7 @@
   var PG = SC.page || {}, FL = E.flagsOf(SC);
   var HERE = ((DATA.scenes || []).filter(function (m) { return m.id === DATA.here; })[0] || { concepts: conceptIds }).concepts;
   var st = E.parseState(location.search, SC, conceptIds);
+  var PATHQ = (new URLSearchParams(location.search).get("path") || "").replace(/[^a-z0-9-]/g, "");
   var run = null, idx = -1, playing = null, tab = "step", whole = false;
   var VB0 = { x: 0, y: 22, w: 1280, h: 772 }, vb = Object.assign({}, VB0);
 
@@ -34,11 +35,11 @@
 
   /* ---------------- progress (local only, never in URLs) ---------------- */
   var PKEY = "ks-atlas-v1";
-  var prog = { visited: [], understood: [], passed: [] };
+  var prog = { visited: [], understood: [], passed: [], lessons: [] };
   try {
     var raw = JSON.parse(localStorage.getItem(PKEY) || "null");
-    if (raw && Array.isArray(raw.visited) && Array.isArray(raw.understood) && Array.isArray(raw.passed)) prog = raw;
-  } catch (e) { prog = { visited: [], understood: [], passed: [] }; }
+    if (raw && Array.isArray(raw.visited) && Array.isArray(raw.understood) && Array.isArray(raw.passed)) { prog = raw; if (!Array.isArray(prog.lessons)) prog.lessons = []; }
+  } catch (e) { prog = { visited: [], understood: [], passed: [], lessons: [] }; }
   var learned = [];   // the Learn map's existing self-report key, read only
   try { learned = JSON.parse(localStorage.getItem("ks-learn") || "[]"); if (!Array.isArray(learned)) learned = []; } catch (e) { learned = []; }
   function saveProg() { try { localStorage.setItem(PKEY, JSON.stringify(prog)); } catch (e) {} }
@@ -48,7 +49,7 @@
   /* ---------------- URL state ---------------- */
   function urlState(push) {
     var s = Object.assign({}, st, { step: idx < 0 ? 0 : idx + 1 });
-    var url = location.pathname + E.serializeState(s, SC) + location.hash;
+    var url = location.pathname + E.serializeState(s, SC) + (PATHQ ? (E.serializeState(s, SC) ? "&" : "?") + "path=" + PATHQ : "") + location.hash;
     try { (push ? history.pushState : history.replaceState).call(history, null, "", url); } catch (e) {}
   }
   window.addEventListener("popstate", function () {
@@ -221,6 +222,7 @@
     lastIdx = idx;
     renderInspector(step);
     if (step) step.concepts.forEach(function (c) { mark("visited", c); });
+    if (step && step.outcome) mark("lessons", SC.id + ":" + step.outcome);   // a run followed to its end counts for the guided paths
   }
 
   /* ---------------- inspector ---------------- */
