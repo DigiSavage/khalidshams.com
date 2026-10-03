@@ -1,0 +1,477 @@
+[
+ {
+  "check": "loads without console errors",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "default run reaches verified completion",
+  "ok": true,
+  "detail": "completed"
+ },
+ {
+  "check": "outcome banner says verified completion",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "goal criteria ticked",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "browser back restores picture view",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "denied gate shows a cross (non-colour cue)",
+  "ok": true,
+  "detail": "'\u2715'"
+ },
+ {
+  "check": "blocked edge drawn to the gate only",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "denied run ends as 'denied', no refund slot",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "planted note visible on the Orders record",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "check plate shows a cross and the refund gate shows nothing",
+  "ok": true,
+  "detail": "('\u2715', '')"
+ },
+ {
+  "check": "injection run ends as 'blocked'",
+  "ok": true,
+  "detail": "blocked"
+ },
+ {
+  "check": "planted note hidden when the condition is off",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "sub-parts select their own concepts (instructions, tokens)",
+  "ok": true,
+  "detail": "('sysprompt', 'token')"
+ },
+ {
+  "check": "no page errors (injection)",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "check": "chapter rail marks the boundary chapter at the read check",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "chapter jump keeps design, condition, selection; lands on this run's first receipt step",
+  "ok": true,
+  "detail": "exec_handoff_denied"
+ },
+ {
+  "check": "a denied run never shows the receipt chapter as success",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "recorded approval is labelled as a replay event in the trace",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "inspector's first tab is the trace",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "operators carry a software-metaphor label",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "chapter rail is compact",
+  "ok": true,
+  "detail": "76px"
+ },
+ {
+  "check": "no page errors (chapters)",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "check": "specialist shows a filled work order",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "inspector shows structured result with evidence",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "clicking the specialist opens its concept",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "architecture view keeps step and selection",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "corrupt progress storage is tolerated",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "Harden lens highlights gates, MCP and the specialist",
+  "ok": true,
+  "detail": "13"
+ },
+ {
+  "check": "passing a check records it separately from 'understood'",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "SVG export downloads the current view",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "expand fills the viewport",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "Escape exits and restores scroll and focus",
+  "ok": true,
+  "detail": "y=300"
+ },
+ {
+  "check": "keyboard: Enter and ArrowRight advance steps (reduced motion)",
+  "ok": true,
+  "detail": "1"
+ },
+ {
+  "check": "SVG objects are not individual tab stops",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "1920x1080 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1920 "
+ },
+ {
+  "check": "1920x1080 light: stage gets most of the width",
+  "ok": true,
+  "detail": "0.64"
+ },
+ {
+  "check": "1920x1080 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1920 "
+ },
+ {
+  "check": "1920x1080 dark: stage gets most of the width",
+  "ok": true,
+  "detail": "0.64"
+ },
+ {
+  "check": "2560x1080 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=2560 "
+ },
+ {
+  "check": "2560x1080 light: stage gets most of the width",
+  "ok": true,
+  "detail": "0.66"
+ },
+ {
+  "check": "2560x1080 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=2560 "
+ },
+ {
+  "check": "2560x1080 dark: stage gets most of the width",
+  "ok": true,
+  "detail": "0.66"
+ },
+ {
+  "check": "1440x900 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1440 "
+ },
+ {
+  "check": "1440x900 light: stage gets most of the width",
+  "ok": true,
+  "detail": "0.71"
+ },
+ {
+  "check": "1440x900 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1440 "
+ },
+ {
+  "check": "1440x900 dark: stage gets most of the width",
+  "ok": true,
+  "detail": "0.71"
+ },
+ {
+  "check": "1280x800 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1280 "
+ },
+ {
+  "check": "1280x800 light: stage gets most of the width",
+  "ok": true,
+  "detail": "0.68"
+ },
+ {
+  "check": "1280x800 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1280 "
+ },
+ {
+  "check": "1280x800 dark: stage gets most of the width",
+  "ok": true,
+  "detail": "0.68"
+ },
+ {
+  "check": "768x1024 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=768 "
+ },
+ {
+  "check": "768x1024 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=768 "
+ },
+ {
+  "check": "430x932 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=430 "
+ },
+ {
+  "check": "430x932 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=430 "
+ },
+ {
+  "check": "390x844 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=390 "
+ },
+ {
+  "check": "390x844 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=390 "
+ },
+ {
+  "check": "360x740 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=360 "
+ },
+ {
+  "check": "360x740 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=360 "
+ },
+ {
+  "check": "320x640 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=320 "
+ },
+ {
+  "check": "320x640 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=320 "
+ },
+ {
+  "check": "model lesson: no design toggle, its own follow label",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "model lesson: default run is released after three passing criteria",
+  "ok": true,
+  "detail": "released ['\u2713', '\u2713', '\u2713']"
+ },
+ {
+  "check": "model lesson: skewed data is held back on the by-group criterion",
+  "ok": true,
+  "detail": "held_back ['', '', '\u2715']"
+ },
+ {
+  "check": "model lesson: skewed bars shown only under that condition",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "model lesson: attention panel and adjust station select their concepts",
+  "ok": true,
+  "detail": "('attention', 'backprop')"
+ },
+ {
+  "check": "model lesson: the released model links to the flagship scene",
+  "ok": true,
+  "detail": ""
+ },
+ {
+  "check": "model lesson: rail lists only this lesson's concepts",
+  "ok": true,
+  "detail": "22"
+ },
+ {
+  "check": "no page errors (model lesson)",
+  "ok": true,
+  "detail": "[]"
+ },
+ {
+  "check": "model lesson 1920x1080 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1920 "
+ },
+ {
+  "check": "model lesson 1920x1080 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1920 "
+ },
+ {
+  "check": "model lesson 1280x800 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1280 "
+ },
+ {
+  "check": "model lesson 1280x800 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=1280 "
+ },
+ {
+  "check": "model lesson 768x1024 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=768 "
+ },
+ {
+  "check": "model lesson 768x1024 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=768 "
+ },
+ {
+  "check": "model lesson 390x844 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=390 "
+ },
+ {
+  "check": "model lesson 390x844 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=390 "
+ },
+ {
+  "check": "model lesson 320x640 light: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=320 "
+ },
+ {
+  "check": "model lesson 320x640 dark: no horizontal overflow, no errors",
+  "ok": true,
+  "detail": "scrollWidth=320 "
+ },
+ {
+  "check": "regression / @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression / @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /learn/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /learn/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /method/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /method/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /playbooks/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /playbooks/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /playbooks/agentic-ai/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /playbooks/agentic-ai/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /tools/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /tools/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /tools/availability/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /tools/availability/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "regression /writing/ @1380",
+  "ok": true,
+  "detail": "sw=1380 "
+ },
+ {
+  "check": "regression /writing/ @390",
+  "ok": true,
+  "detail": "sw=390 "
+ },
+ {
+  "check": "site search lists the atlas",
+  "ok": true,
+  "detail": ""
+ }
+]

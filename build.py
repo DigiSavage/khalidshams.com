@@ -19,6 +19,7 @@ from pathlib import Path
 import markdown  # pip install markdown
 import atlas_build
 import learn_build
+from art_assets import validate_art
 import vignettes
 
 ROOT = Path(__file__).parent
@@ -286,6 +287,8 @@ def build():
     lgraph, lpaths, lroutes = learn_build.load()
     lerrs = learn_build.validate(lgraph, lpaths, lroutes, set(), None)
     lerrs += learn_build.validate_scenes(json.loads((ROOT / "content" / "scenes.json").read_text(encoding="utf-8")))
+    lerrs += validate_art(json.loads((ROOT / "content" / "art.json").read_text(encoding="utf-8")),
+                          {c["id"] for c in atlas_build.load()[0]["concepts"]}, ROOT / "static")
     if lerrs: raise SystemExit("Learn structure errors:\n  " + "\n  ".join(lerrs))
     by_idea = {i["id"]: i for i in lgraph["ideas"]}
     doors_full = learn_build.render_doors(lpaths, by_idea)

@@ -4,7 +4,7 @@ Same vocabulary as the flagship scene (atlas_scene.py): explicit fallback fills,
 Architecture layer per object, typed edges, solid figures for people. Sub-parts that teach their own
 concept carry data-sc. Numbers drawn here are illustrative.
 """
-from atlas_scene import E, T, path, rect, circ, person, obj, abox, W, H
+from atlas_scene import E, T, path, rect, circ, person, obj, abox, etch, W, H
 
 DEFS = ('<defs>'
         '<marker id="ar-ctrl" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1F45C8" class="mk-ctrl"/></marker>'
@@ -19,7 +19,7 @@ def ellipse(cx, cy, rx, ry, cls="ln", **kw):
 
 def dial(x, y, a):
     """A small parameter dial; a is the needle end offset."""
-    return circ(x, y, 15, "card") + path(f"M{x} {y} L{x + a[0]} {y + a[1]}", "acc") + circ(x, y, 2.5, "ink")
+    return circ(x, y, 15, "card") + circ(x, y, 11, "thin") + path(f"M{x-10} {y-10} l3 3 M{x} {y-14} v4 M{x+10} {y-10} l-3 3", "ln") + path(f"M{x} {y} L{x + a[0]} {y + a[1]}", "acc") + circ(x, y, 2.5, "ink")
 
 
 def scene():
@@ -45,6 +45,7 @@ def scene():
         for i, (w, h) in enumerate([(10, 34), (14, 30), (8, 36), (12, 28), (16, 32), (9, 35), (13, 29), (10, 33), (15, 31), (8, 34), (12, 30), (11, 36)]):
             if x + w > 228: break
             shelves += rect(x, y0 + 40 - h, w, h, "accf" if (i + r) % 5 == 2 else "card", rx=1)
+            shelves += path(f"M{x+3} {y0+44-h} v{h-8}", "thin")
             x += w + 3
     even = [40, 36, 32, 30, 28]; skew = [62, 14, 10, 8, 6]
     def bars(hs, cls):
@@ -101,6 +102,7 @@ def scene():
     net += f'<g data-sc="deep">{path("M496 150 H491 V404 H496", "ln")}{T(474, 284, "×N", "t-m", font_size="11")}</g>'
     net += (rect(500, 418, 190, 46, "card", rx=4) + T(508, 434, "SCORES FOR THE NEXT TOKEN", "t-m", font_size="9") +
             T(508, 454, "cracked .12 · broken .09", "t-c", font_size="11"))
+    net += "".join(etch(506, y, 178, 4, 7) for y in (144, 232, 320, 408))
     o.append(obj("network", "transformer", net, abox(500, 80, 190, 384, "Transformer", "N x (attention + MLP)\nresidual stream\n\noutput: probability\nfor every token in\nthe vocabulary"), ["measure"]))
 
     # ---------------- parameter dials
@@ -126,7 +128,7 @@ def scene():
     lp += (f'<g data-sc="backprop">' + rect(566, 572, 122, 58, "accf", rx=4) + T(576, 592, "ADJUST", "t-m", font_size="10") +
            T(576, 612, "backpropagate", "t-s", font_size="12") + "</g>")
     lp += path("M420 601 H430", "ln", marker_end="url(#ar-ctrl)") + path("M552 601 H562", "ln", marker_end="url(#ar-ctrl)")
-    lp += path("M627 632 C 627 652, 360 652, 360 634", "dash", marker_end="url(#ar-ctrl)") + T(494, 650, "again", "t-s", "middle", font_size="12")
+    lp += path("M627 632 C 627 656, 360 656, 360 634", "dash", marker_end="url(#ar-ctrl)") + T(494, 648, "again", "t-s", "middle", font_size="12")
     lp += f'<g data-sc="algorithm">{rect(302, 658, 270, 24, "card", rx=3)}{T(312, 675, "RECIPE v3 · predict, compare, adjust", "t-c", font_size="11")}</g>'
     o.append(obj("loop", "training", lp, abox(290, 540, 410, 150, "Training job", "forward pass, loss, backward pass,\noptimizer step; checkpoints saved\non a schedule"), ["measure"]))
 
@@ -143,6 +145,7 @@ def scene():
     ck = (path("M912 84 H1046 L1058 96 V146 H912 Z", "card") + rect(924, 98, 46, 34, "accf", rx=3) +
           T(982, 108, "CHECKPOINT", "t-m", font_size="10") + T(982, 128, "base-v0", "t-c", font_size="13") +
           T(912, 166, "architecture + learned parameters", "t-s", font_size="11"))
+    ck += etch(918, 136, 130, 6, 6)
     o.append(obj("checkpoint", "checkpoint", ck, abox(912, 84, 146, 62, "Checkpoint", "weights + config"), ["sustain"]))
 
     # ---------------- fine-tuning with supervised pairs
