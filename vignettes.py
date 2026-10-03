@@ -4,7 +4,20 @@ Same rules as the atlas: explicit fallback fills so a vignette renders anywhere,
 `.vig` CSS in base.html, solid figures are people, outline figures are software, cobalt is focus, gold is cost, dashed
 lines are boundaries. Each vignette is a function returning the inner SVG for a 320 x 180 viewBox.
 """
-from atlas_scene import T, path, rect, circ, person, operator, E
+from atlas_scene import T as atlas_T, path, rect as atlas_rect, circ, person, operator, etch, E
+
+
+def rect(x, y, w, h, cls="card", rx=4, **kw):
+    surface = atlas_rect(x, y, w, h, cls, rx, **kw)
+    if cls in ("card", "sunk", "top") and w >= 40 and h >= 32:
+        surface += etch(x+4, y+h-5, w-8, 3, 6)
+    return surface
+
+def T(x, y, text, cls="t-b", anchor="start", **kw):
+    if cls == "t-m":
+        kw.setdefault("letter_spacing", "0.35")
+    return atlas_T(x, y, text, cls, anchor, **kw)
+
 
 VB = (320, 180)
 
@@ -17,13 +30,13 @@ def gate(x, y, mark="", cls="t-c"):
 
 
 def doc(x, y, w=26, h=32, lines=3, cls="card"):
-    d = rect(x, y, w, h, cls, rx=2)
+    d = path(f"M{x+3} {y+3} H{x+w+2} V{y+h+2} H{x+3} Z", "thin") + rect(x, y, w, h, cls, rx=2)
     for i in range(lines): d += path(f"M{x + 5} {y + 8 + i * 7} H{x + w - 5 - (6 if i == lines - 1 else 0)}", "thin")
     return d
 
 
 def station(x, y, w, h, title):
-    return rect(x, y, w, h, "sunk", rx=4) + T(x + 8, y + 15, title, "t-m", font_size="9")
+    return rect(x, y, w, h, "sunk", rx=4) + etch(x+4, y+h-6, w-8, 3, 5) + T(x + 8, y + 15, title, "t-m", font_size="9")
 
 
 # ---------------------------------------------------------------- scenes
@@ -31,15 +44,15 @@ def request():
     """One request through a governed system: person, desk, model, gate, service. The site's signature strip."""
     s = person(34, 128, 0.62) + T(34, 150, "Requester", "t-s", "middle", font_size="10")
     s += rect(86, 30, 150, 124, "dash", rx=8) + T(94, 44, "RUNTIME", "t-m", font_size="8")
-    s += operator(132, 128, 0.62)
+    s += operator(132, 128, 0.62) + T(132, 166, "software metaphor", "t-s", "middle", font_size="7")
     s += path("M100 134 L164 134 L168 150 L96 150 Z", "top")   # the desk
     for i in range(3): s += rect(104 + i * 20, 138, 14, 9, "accf" if i < 2 else "dash", rx=1)
     s += rect(180, 52, 48, 40, "sunk", rx=5) + rect(186, 58, 20, 14, "card", rx=2) + path("M189 70 A7 7 0 0 1 203 70", "ln") + path("M196 70 L200 64", "acc") + T(186, 86, "MODEL", "t-m", font_size="7.5")
     s += rect(96, 52, 68, 36, "card", rx=3) + T(102, 65, "GOAL", "t-m", font_size="8") + T(102, 80, "Resolve A-1042", "t-h", font_size="8.5")
     s += gate(252, 100, "✓") + T(252, 66, "GATE", "t-m", "middle", font_size="8")
     s += rect(282, 76, 32, 48, "sunk", rx=3) + rect(288, 86, 20, 10, "card", rx=1) + rect(288, 100, 20, 10, "card", rx=1) + T(298, 136, "Service", "t-s", "middle", font_size="10")
-    s += path("M52 110 C 70 100, 80 90, 96 76", "ln", marker_end="url(#vg-ar)") + path("M164 70 L178 70", "ln")
-    s += path("M166 150 C 200 150, 220 120, 240 104", "acc", stroke_dasharray="6 4") + path("M262 100 L280 100", "acc", stroke_dasharray="6 4")
+    s += path("M52 110 C 70 100, 80 90, 96 76", "ln", marker_end="url(#vg-data)") + path("M164 70 L178 70", "ln")
+    s += path("M166 150 C 200 150, 220 120, 240 104", "acc", stroke_dasharray="6 4") + path("M262 114 L280 114", "acc", stroke_dasharray="6 4")
     return s
 
 
@@ -74,7 +87,8 @@ def door_explore():
     """The map: ideas as nodes, a few lit."""
     pts = [(40, 60), (90, 110), (120, 40), (170, 90), (210, 140), (240, 50), (290, 100), (60, 150), (150, 150)]
     links = [(0, 1), (1, 2), (2, 3), (3, 4), (3, 5), (5, 6), (4, 6), (1, 7), (7, 8), (8, 4), (0, 2)]
-    s = "".join(path(f"M{pts[a][0]} {pts[a][1]} L{pts[b][0]} {pts[b][1]}", "thin") for a, b in links)
+    s = rect(16, 18, 294, 154, "dash", rx=8) + T(24, 30, "IDEAS · CONNECTIONS", "t-m", font_size="7")
+    s += "".join(path(f"M{pts[a][0]} {pts[a][1]} L{pts[b][0]} {pts[b][1]}", "thin") for a, b in links)
     for i, (x, y) in enumerate(pts):
         s += circ(x, y, 7 if i in (3, 5) else 5, "accf" if i in (1, 3, 5) else "card")
     s += T(170, 76, "agent", "t-c", "middle", font_size="9") + T(240, 36, "guardrails", "t-c", "middle", font_size="9")
@@ -89,21 +103,21 @@ def assistant():
         s += rect(x, 110, 50, 30, "accf" if i < 2 else "dash", rx=3) + T(x + 25, 131, lab, "t-s", "middle", font_size="8.5")
     s += rect(236, 60, 68, 52, "sunk", rx=5) + rect(244, 68, 26, 18, "card", rx=2) + path("M247 84 A10 10 0 0 1 267 84", "ln") + path("M257 84 L263 75", "acc") + T(244, 104, "MODEL", "t-m", font_size="8")
     s += doc(60, 36, 28, 40, 4) + T(96, 50, "returns-policy v7", "t-c", font_size="8.5") + T(96, 62, "owner · reviewed", "t-s", font_size="8")
-    s += path("M74 78 L74 108", "ln", marker_end="url(#vg-ar)")
+    s += path("M74 78 L74 108", "ln", marker_end="url(#vg-data)")
     s += path("M226 120 C 232 120, 232 100, 236 96", "ln")
     return s
 
 
 def act():
     """An agent acting on records: a proposal, the check plate, the gate, approval, the service."""
-    s = rect(14, 56, 96, 50, "card", rx=3) + T(22, 70, "PROPOSED OPERATION", "t-m", font_size="7") + T(22, 86, "issue_refund 84.00", "t-c", font_size="8.5") + T(22, 99, "evidence: note, policy", "t-s", font_size="8")
+    s = rect(14, 56, 96, 50, "card", rx=3) + T(22, 70, "PROPOSAL", "t-m", font_size="7") + T(22, 86, "issue_refund 84.00", "t-c", font_size="7.5") + T(22, 99, "evidence: note, policy", "t-s", font_size="8")
     s += rect(124, 70, 58, 22, "card", rx=3) + path("M130 76 L135 74 L140 76 V81 Q140 85 135 87 Q130 85 130 81 Z", "ln") + T(144, 85, "CHECK", "t-m", font_size="7") + T(172, 85, "✓", "t-c", "middle", font_size="11", font_weight="600")
     s += path("M110 81 L122 81", "acc", stroke_dasharray="5 3")
     s += gate(212, 81, "⏸") + path("M184 81 L200 81", "acc", stroke_dasharray="5 3")
     s += path("M212 108 C 212 130, 240 140, 262 142", "acc", stroke_dasharray="2 4")
-    s += person(284, 150, 0.55) + T(284, 170, "Approval", "t-s", "middle", font_size="9")
+    s += person(278, 150, 0.55, pose="pause") + T(278, 170, "Review pending", "t-s", "middle", font_size="9")
     s += rect(266, 30, 44, 44, "sunk", rx=3) + rect(274, 40, 28, 8, "card", rx=1) + rect(274, 54, 28, 8, "card", rx=1) + T(288, 22, "REFUNDS", "t-m", "middle", font_size="7.5")
-    s += path("M222 72 C 240 60, 250 56, 264 54", "acc", stroke_dasharray="5 3")
+    s += path("M212 26 V54 M212 108 V156", "dash") + T(150, 148, "not executed", "t-s", "middle", font_size="8")
     return s
 
 
@@ -112,6 +126,7 @@ def backoffice():
     s = rect(24, 40, 100, 50, "card", rx=3) + path("M32 54 H90 M32 66 H78 M32 78 H84", "thin") + rect(94, 48, 24, 20, "accf", rx=2) + T(74, 104, "DISPATCH BOARD", "t-m", "middle", font_size="7.5")
     s += path("M124 66 C 150 66, 160 110, 180 116", "acc", stroke_dasharray="6 4", marker_end="url(#vg-ar)") + T(150, 82, "work order", "t-c", "middle", font_size="8")
     s += station(180, 96, 112, 66, "SPECIALIST") + operator(206, 156, 0.5) + rect(230, 112, 50, 40, "card", rx=2) + path("M236 122 H272 M236 132 H266 M236 142 H270", "thin")
+    s += T(236, 174, "software metaphor", "t-s", "middle", font_size="7")
     s += rect(236, 36, 60, 40, "card", rx=3) + T(244, 50, "HAND-OFF", "t-m", font_size="7") + path("M244 68 H288 L284 74 H248 Z", "sunk")
     s += path("M290 128 C 300 110, 300 90, 286 78", "acc", stroke_dasharray="6 4", marker_end="url(#vg-ar)")
     return s
@@ -125,8 +140,8 @@ def knowledge():
         for i, (w, h) in enumerate([(7, 24), (10, 20), (6, 26), (9, 18), (11, 22), (7, 25), (9, 20), (8, 24)]):
             s += rect(x, y0 + 28 - h, w, h, "accf" if (i + r) % 4 == 1 else "card", rx=1); x += w + 2
     s += gate(170, 96, "✓") + T(170, 60, "PERMISSION", "t-m", "middle", font_size="7") + T(170, 70, "FILTER", "t-m", "middle", font_size="7")
-    s += path("M138 96 L158 96", "ln") + path("M182 96 L206 96", "ln", marker_end="url(#vg-ar)")
-    s += rect(212, 66, 92, 60, "card", rx=3) + T(220, 80, "PASSAGE", "t-m", font_size="7") + path("M220 90 H294 M220 99 H286 M220 108 H290", "thin") + T(220, 121, "source · owner · date", "t-c", font_size="7.5")
+    s += path("M138 96 L158 96", "ln") + path("M182 104 V116 H206", "ln", marker_end="url(#vg-data)")
+    s += rect(212, 66, 92, 60, "card", rx=3) + T(220, 80, "PASSAGE", "t-m", font_size="7") + path("M220 90 H294 M220 99 H286 M220 108 H290", "thin") + T(220, 121, "source · owner · date", "t-c", font_size="6")
     return s
 
 
@@ -138,6 +153,7 @@ def multi():
     s += circ(cx, cy, 22, "accf") + operator(cx, cy + 14, 0.42) + T(cx, cy + 40, "coordinator", "t-c", "middle", font_size="8.5") + T(cx, cy + 50, "software metaphor", "t-s", "middle", font_size="6.5")
     for x, y in pts:
         s += circ(x, y, 15, "card") + operator(x, y + 10, 0.3)
+        s += T(x, y-18, "software metaphor", "t-s", "middle", font_size="5")
     s += T(60, 72, "retrieve only", "t-s", "middle", font_size="7.5") + T(260, 72, "refunds: no", "t-s", "middle", font_size="7.5")
     s += T(160, 170, "n − 1 links, not n(n − 1)/2", "t-m", "middle", font_size="8")
     return s
@@ -161,7 +177,7 @@ def cluster_foundations():
     s += E("ellipse", "sunk", cx=120, cy=100, rx=76, ry=52) + T(120, 62, "MACHINE LEARNING", "t-m", "middle", font_size="8")
     s += E("ellipse", "card", cx=120, cy=110, rx=52, ry=34) + T(120, 90, "DEEP LEARNING", "t-m", "middle", font_size="8")
     s += E("ellipse", "accf", cx=120, cy=120, rx=26, ry=14) + T(120, 124, "LLM", "t-c", "middle", font_size="10")
-    s += rect(236, 60, 66, 70, "card", rx=3) + T(238, 54, "DATA", "t-m", font_size="7.5")
+    s += rect(236, 60, 76, 70, "card", rx=3) + T(238, 54, "DATA", "t-m", font_size="7.5")
     x = 242
     for i, (w, h) in enumerate([(8, 40), (11, 34), (7, 44), (10, 30), (12, 38), (7, 42)]):
         s += rect(x, 120 - h, w, h, "accf" if i % 3 == 1 else "card", rx=1); x += w + 2
@@ -173,7 +189,7 @@ def cluster_learning():
     for i, (lab, sub) in enumerate((("PREDICT", "'arrived ___'"), ("COMPARE", "loss 2.12"), ("ADJUST", "backprop"))):
         x = 38 + i * 58
         s += rect(x, 62, 50, 36, "accf" if i == 2 else "card", rx=3) + T(x + 6, 76, lab, "t-m", font_size="7") + T(x + 6, 90, sub, "t-c" if i == 1 else "t-s", font_size="8")
-        if i < 2: s += path(f"M{x + 50} 80 L{x + 58} 80", "ln", marker_end="url(#vg-ar)")
+        if i < 2: s += path(f"M{x + 50} 80 L{x + 58} 80", "ln", marker_end="url(#vg-data)")
     s += path("M200 100 C 200 124, 60 124, 60 102", "dash", marker_end="url(#vg-ar)") + T(130, 132, "again", "t-s", "middle", font_size="8")
     s += rect(230, 40, 70, 90, "card", rx=3) + T(232, 34, "LOSS", "t-m", font_size="7.5") + path("M238 122 H294 M238 122 V50", "thin") + path("M240 54 C 256 100, 270 112, 292 118", "ln") + path("M240 58 C 258 102, 272 112, 292 114", "acc", stroke_dasharray="4 3")
     for i, (dx, dy) in enumerate(((100, 152), (130, 152), (160, 152), (190, 152))):
@@ -215,7 +231,7 @@ def cluster_operate():
     s += path("M70 56 L132 56", "acc", stroke_dasharray="5 3", marker_end="url(#vg-ar)") + path("M70 104 L132 104", "acc", stroke_dasharray="5 3", marker_end="url(#vg-ar)")
     s += rect(190, 40, 46, 32, "sunk", rx=3) + T(213, 60, "service", "t-s", "middle", font_size="8")
     s += rect(30, 44, 36, 24, "accf", rx=2) + T(48, 59, "id", "t-c", "middle", font_size="9")
-    s += rect(240, 86, 64, 44, "card", rx=3) + T(248, 100, "BUDGET", "t-m", font_size="7") + path("M254 122 A14 14 0 0 1 282 122", "ln") + path("M268 122 L276 112", "gold") + T(290, 122, "7/10", "t-c", font_size="8")
+    s += rect(240, 86, 64, 44, "card", rx=3) + T(248, 100, "BUDGET", "t-m", font_size="7") + path("M254 122 A14 14 0 0 1 282 122", "ln") + path("M268 122 L276 112", "gold") + T(285, 122, "7/10", "t-c", font_size="6.5")
     s += rect(30, 150, 274, 22, "card", rx=3) + T(36, 164, "EVENT TRAIL", "t-m", font_size="7") + "".join(rect(110 + i * 14, 156, 3, 10, "ink" if i not in (5, 9) else "accf", rx=1) for i in range(13))
     return s
 
@@ -240,12 +256,12 @@ def estate():
     nodes = {"web": (60, 76, "Storefront"), "api": (120, 76, "Order API"), "db": (90, 126, "Orders DB"), "bill": (246, 70, "Billing"), "ledger": (246, 124, "Ledger")}
     for k, (x, y, lab) in nodes.items():
         s += rect(x - 26, y - 11, 52, 22, "accf" if k == "api" else "card", rx=3) + T(x, y + 4, lab, "t-s", "middle", font_size="8")
-    s += path("M86 76 L94 76", "ln", marker_end="url(#vg-ar)") + path("M120 87 L96 115", "ln", marker_end="url(#vg-ar)")
-    s += path("M146 76 C 170 76, 190 70, 220 70", "ln", marker_end="url(#vg-ar)")
-    s += path("M246 81 L246 113", "ln", marker_end="url(#vg-ar)")
-    s += path("M116 126 C 160 140, 190 136, 220 124", "dash", marker_end="url(#vg-ar)") + circ(168, 134, 8, "goldf") + T(168, 137, "?", "t-h", "middle", font_size="10")
+    s += path("M86 76 L94 76", "ln", marker_end="url(#vg-dep)") + path("M120 87 L96 115", "ln", marker_end="url(#vg-dep)")
+    s += path("M146 76 C 170 76, 190 70, 220 70", "ln", marker_end="url(#vg-dep)")
+    s += path("M246 81 L246 113", "ln", marker_end="url(#vg-dep)")
+    s += path("M116 126 C 160 140, 190 136, 220 124", "dash", marker_end="url(#vg-dep)") + circ(168, 134, 8, "goldf") + T(168, 137, "?", "t-h", "middle", font_size="10")
     s += T(100, 166, "unverified link: stays unknown", "t-s", "middle", font_size="7.5")
-    s += person(296, 172, 0.5) + T(232, 166, "blast radius: 3", "t-c", "middle", font_size="7.5")
+    s += person(286, 172, 0.5) + T(224, 166, "3 known links", "t-c", "middle", font_size="7.5")
     return s
 
 
@@ -255,7 +271,7 @@ def judgment():
     cols = [("A", 92), ("B", 148), ("C", 204)]
     for lab, x in cols:
         s += T(x, 68, lab, "t-h", "middle", font_size="9")
-    s += rect(128, 56, 40, 88, "accf", rx=3)
+    s += rect(128, 72, 40, 72, "accf", rx=3)
     rows = [("cost", ["\u2713", "\u2713", "\u2715"]), ("risk", ["\u2713", "\u2713", "\u2715"]), ("time", ["\u2713", "\u2715", "\u2715"]), ("fit", ["\u2715", "\u2713", "\u2713"])]
     for i, (lab, marks) in enumerate(rows):
         y = 84 + i * 16
@@ -278,7 +294,7 @@ SCENES = {
 }
 
 DEFS = ('<defs><marker id="vg-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">'
-        '<path d="M0 0L10 5L0 10z" fill="#1F45C8" class="mk-ctrl"/></marker></defs>')
+        '<path d="M0 0L10 5L0 10z" fill="#1F45C8" class="mk-ctrl"/></marker><marker id="vg-data" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4"><circle cx="5" cy="5" r="3" fill="#0E1012" class="mk-data"/></marker><marker id="vg-dep" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10" fill="none" stroke="#6B737A" class="mk-dep"/></marker></defs>')
 
 
 def vignette(key: str, cls: str = "", label: str | None = None) -> str:

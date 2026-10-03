@@ -328,7 +328,7 @@ body.has-pathbar{ padding-bottom:64px; }
 .vig .gold{ stroke:var(--gold); } .vig .goldf{ fill:var(--gold-soft); stroke:var(--gold); }
 .vig .ink{ fill:var(--ink); } .vig .dash{ stroke:var(--mute); }
 .vig .t-h{ fill:var(--ink); } .vig .t-b{ fill:var(--body); } .vig .t-s,.vig .t-m{ fill:var(--mute); } .vig .t-c{ fill:var(--blue); }
-.vig .mk-ctrl{ fill:var(--blue); }
+.vig .mk-ctrl{ fill:var(--blue); } .vig .mk-data{ fill:var(--ink); } .vig .mk-dep{ stroke:var(--mute); }
 .three-art{ display:grid; grid-template-rows:auto auto 1fr; }
 .three-art .three-vig{ margin:-4px 0 14px; border:1px solid var(--rule); background:var(--paper); border-radius:3px; }
 .door-art{ margin:-6px 0 4px; border:1px solid var(--rule); background:var(--paper); border-radius:3px; }
@@ -352,6 +352,48 @@ body.has-pathbar{ padding-bottom:64px; }
 .scene-copy .intro{ margin-top:14px; font-size:clamp(15.5px,1.15vw,17px); line-height:1.6; color:var(--body); max-width:var(--measure); }
 .scene-copy .cta{ margin-top:22px; }
 @media (max-width:980px){ .scene-grid{ grid-template-columns:1fr; } }
+
+/* Studio drawing finish: structural ink, quiet engraving, label-safe paper. */
+.vig .studio-etch{ stroke:var(--rule2); fill:none; }
+.vig .ln{ stroke-width:1.6; }
+.ln-region{ stroke:var(--rule2); stroke-width:1.2; stroke-dasharray:6 5; }
+.ln-understood{ display:none; stroke:var(--card); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.ln-node.lit .ln-understood{ display:block; }
+#ln-svg .ln-node .ln-halo{ fill:var(--sunk); stroke:var(--rule2); stroke-width:1; }
+.ln-box rect,.ln-box path{ stroke-linejoin:round; }
+.ln-fig .ln-box.ln-done rect{ stroke:var(--ink); }
+.ln-lab{ paint-order:stroke; stroke:var(--paper); stroke-width:5px; stroke-linejoin:round; }
+.ln-fig .ln-arrow.ln-control{ stroke:var(--blue); stroke-dasharray:7 5; }
+.ln-fig .ln-arrow.ln-data{ stroke:var(--ink); stroke-dasharray:none; }
+.ln-data-head{ fill:var(--ink); }
+.ln-control-head{ fill:var(--blue); }
+.m-domain,.m-owner{ font-family:var(--mono); font-size:12px; fill:var(--mute); }
+.m-domain{ fill:var(--ink); letter-spacing:1px; }
+.m-owner{ font-size:11px; }
+.m-lab{ paint-order:stroke; stroke:var(--paper); stroke-width:5px; stroke-linejoin:round; }
+.mapstage .m-zone .m-disc{ fill:var(--blue-soft); stroke:var(--ink); stroke-width:1.6; }
+.mapstage .m-zone .m-ic{ fill:var(--blue); }
+.mapstage .m-zone.sel .m-disc{ fill:var(--blue); stroke:var(--ink); }
+.mapstage .m-zone.sel .m-ic{ fill:var(--paper); }
+.mapstage .m-node.dim{ opacity:.5; }
+.m-line.selected{ stroke:var(--blue); stroke-width:3; opacity:1; stroke-dasharray:2 4; }
+.panel button.chip{ text-align:left; font:inherit; cursor:pointer; }
+.panel button.chip:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+.ag-node-label{ font-family:var(--mono); font-size:8px; fill:var(--ink); }
+.ag-instrument{ fill:none; stroke:var(--ink); stroke-width:1.2; stroke-linejoin:round; }
+.ag-stn.on .ag-instrument{ stroke:var(--paper); }
+.ag-etch{ fill:none; stroke:var(--rule2); stroke-width:.8; }
+#ag-svg .ag-core rect{ fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+#ag-svg .ag-core.on rect{ fill:var(--blue-soft); stroke:var(--blue); }
+#ag-svg .ag-pin{ fill:var(--ink); stroke:none; }
+#ag-svg .ag-stn rect{ fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+#ag-svg .ag-stn.on rect{ fill:var(--blue); stroke:var(--blue); }
+#ag-svg.sus .ag-stn rect{ stroke:var(--blue); }
+#ag-svg .ag-arc{ stroke:var(--blue); stroke-width:1.8; stroke-dasharray:7 4; }
+#ag-svg .ag-ah{ fill:var(--blue); }
+#ag-svg .ag-ring{ stroke:var(--rule2); stroke-dasharray:6 5; }
+.ag-halo{ stroke-dasharray:6 5; }
+.ag-ln-h{ stroke-dasharray:6 4; }
 
 /* ---------- site header ---------- */
 html{ scroll-padding-top:72px; }
