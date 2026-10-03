@@ -107,7 +107,7 @@ class Built(unittest.TestCase):
 
     def test_internal_links_in_atlas_resolve(self):
         html = self.page("learn/atlas/index.html") + self.page("learn/atlas/how-models-are-made/index.html") + self.page("learn/index.html")
-        for href in set(re.findall(r'href="(/[^"#?]*)', html)):
+        for href in set(re.findall(r'href="(/[^"#?\']*)"', html)):   # real attributes only, not JS string templates
             p = DIST / href.lstrip("/")
             ok = p.exists() or (p / "index.html").exists()
             self.assertTrue(ok, href)
