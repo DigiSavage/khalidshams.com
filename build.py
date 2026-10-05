@@ -378,6 +378,15 @@ def build():
         description="Khalid Shams, Principal Solutions Architect in Phoenix, Arizona. Enterprise cloud, data & AI, and agentic systems for regulated, multi-tenant and mission-critical environments.",
         canonical=SITE + "/", og_type="profile"), encoding="utf-8")
 
+    # ---- illustrated library: a visible home for every reusable drawing
+    illustrated = fill(tpl("illustrated.html"), MASTHEAD=masthead, FOOTER=footer)
+    illustrated = illustrated.replace("{{PAGENAV}}", learn_build.page_nav(illustrated))
+    (DIST / "illustrated").mkdir(exist_ok=True)
+    (DIST / "illustrated" / "index.html").write_text(page(illustrated,
+        title="Architecture in pictures · Khalid Shams",
+        description="A free illustrated library of systems, dependencies, decisions, operations and AI. Open a drawing, follow a lesson, or inspect a working diagram.",
+        canonical=f"{SITE}/illustrated/"), encoding="utf-8")
+
     # ---- writing index
     items = "\n".join(
         f'''      <div class="item">
@@ -415,7 +424,7 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}/method/", f"{SITE}/playbooks/"]
+    urls = ([f"{SITE}/", f"{SITE}/illustrated/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}/method/", f"{SITE}/playbooks/"]
             + [f"{SITE}/learn/paths/{x['id']}/" for x in learn_build.load()[1]["paths"]] + [f"{SITE}/learn/ideas/{x['id']}/" for x in learn_build.load()[0]["ideas"]] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
@@ -508,6 +517,7 @@ def build():
              ("/playbooks/", DIST / "playbooks" / "index.html")] + [(pb.url, DIST / "playbooks" / pb.slug / "index.html") for pb in pbs] + \
             [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]
+    pages.append(("/illustrated/", DIST / "illustrated" / "index.html"))
     idx = build_search_index([pg for pg in pages if pg[1].exists()], graph, live)
     (DIST / "search.json").write_text(json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"search index: {len(idx)} entries")

@@ -24,6 +24,18 @@ Verified `/Users/khalidlens/Development/khalidshams-atlas`, origin `https://gith
 
 The KS identity, light/dark tokens and all SVG viewBoxes are retained. No warmer-paper token change was made. Both Atlas Architecture layers were compared against fetched main and are byte-identical. Original Atlas IDs, data-o, data-c, data-sc, data-e and classes were compared and preserved.
 
+## Visible integration across the site
+
+The revised drawings were present inside existing lessons, but Method still opened with a long text introduction and the full collection had no public entry point. This follow-up places existing illustrations where readers arrive and where they make a decision:
+
+- Home, Learn and Method now have a large drawing directly after the headline, before the introductory prose on phones, with a link to the illustrated library.
+- Method places the estate, autonomy, production-review and judgment illustrations beside their map, ladder, gates and record sections. Existing interactive diagrams, controls and anchors remain in place.
+- `/illustrated/` displays all 18 distinct vignette drawings (19 keys, with `Decide` aliasing `decide`), both full studio scenes in light and dark, and links to every interactive drawing family. Each picture leads to its working lesson or reference. The collection begins with estate architecture, ownership, decisions and operations.
+- Desktop submenus, the phone drawer, the sitemap and search index include the library. All its local links and section targets are checked against the build.
+- No new raster art is claimed. The previously unavailable studies listed below remain unavailable; this integrates the completed SVG work.
+
+Additional evidence: `docs/site/evidence/codex/integration/` contains 48 screenshots of real page placements at 390 and 1920 in both themes, plus `checks.json`. The new check exercises widths 360, 390, 430, 768, 1440, 1920 and a 720 by 450 viewport at scale 2. It verifies visible drawings, theme-specific studio image loading, keyboard navigation, layout and script errors. Sticky navigation is hidden only within element screenshot capture, not during interaction checks or in the product.
+
 ## Missing art, exact intake paths
 
 None of the eight approved studies was found in the repository. Current-output screenshots are evidence of the build, not substitutes for those studies. `content/scenes.json` continues to say `awaiting-study`.
@@ -77,22 +89,24 @@ A direct Atlas run passed 95 checks. Subsequent runs hit intermittent external f
 .venv/bin/python tests/site/run_cached.py tests/atlas/ui_check.py http://localhost:8767 work/final-shots/atlas
 .venv/bin/python tests/site/run_cached.py tests/learn/ui_check.py http://localhost:8767 work/final-shots/learn
 .venv/bin/python tests/site/run_cached.py tests/site/illustrated_check.py http://localhost:8767 docs/site/evidence/codex
+.venv/bin/python tests/site/run_cached.py tests/site/integration_check.py http://localhost:8767 docs/site/evidence/codex/integration
 ```
 
 ### Final results
 
 | Check | Result |
 | --- | --- |
-| Static build | Passed: both Atlas lessons, six paths, 44 idea pages, 315 search entries |
+| Static build | Passed: both Atlas lessons, six paths, 44 idea pages, 342 search entries |
 | Atlas engine | 18 passed |
 | Atlas registry and Learn structure | 29 passed |
 | Art intake validation | 5 passed |
 | Atlas browser suite | 95 passed |
 | Learn and site browser suite | 186 passed |
 | Focused studio browser suite | 180 passed |
-| Total automated assertions/tests | 513 passed, zero failed |
+| Integrated drawing browser suite | 213 passed |
+| Total automated assertions/tests | 726 passed, zero failed |
 | Public punctuation scan | Clean |
 | Git diff whitespace check | Clean |
-| Evidence | 64 JPEGs, desktop/phone and light/dark, plus machine-readable check results |
+| Evidence | 112 JPEGs: 64 drawing checks and 48 real page placements, plus machine-readable check results |
 
 The focused suite verifies keyboard dependency inspection, one selected dependency, industry risk re-weighting, mesh/hub arithmetic at twelve agents, component selection, the understood check mark and saved key, circuit stepping, Society zoom, and search arrival highlights. The additional layout matrix covers both lessons, Method and Learn in both themes at every requested width and the 200 percent equivalent. All 19 vignette keys pass SVG text-bound checks.
