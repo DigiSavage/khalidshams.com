@@ -69,14 +69,14 @@ with sync_playwright() as pw:
                         page.wait_for_function("selector => [...document.querySelectorAll(selector)].filter(i=>i.getBoundingClientRect().top < innerHeight && i.getBoundingClientRect().bottom > 0).every(i=>i.complete && i.naturalWidth>0)", arg=f'#studios img.ap-{theme}')
                     check(label+' both studio images render in the correct theme', page.locator('#studios img:visible').count()==2 and page.locator(f'#studios img.ap-{theme}:visible').count()==2)
                     if width in (390,1920):
-                        for section in ('architecture','studios','systems','foundations','routes'):
+                        for section in ('drawing-vocabulary','studios','systems','foundations','routes'):
                             page.locator('#'+section).screenshot(style=".site-head,.pagenav{visibility:hidden!important}", path=str(OUT/f'library-{section}-{width}-{theme}.jpg'),type='jpeg',quality=82)
                 else:
-                    check(label+' introduction drawing is visible', page.locator('.hero-drawing svg').is_visible())
+                    check(label+' introduction drawing is visible', page.locator('.hero-drawing .studio-art img:visible').is_visible())
                     if width in (390,1920):
                         page.locator('.visual-hero').screenshot(style=".site-head,.pagenav{visibility:hidden!important}", path=str(OUT/f'{name}-intro-{width}-{theme}.jpg'),type='jpeg',quality=82)
                     if name == 'method':
-                        check(label+' illustrations accompany all four references', page.locator('.section-picture svg:visible').count()==4)
+                        check(label+' illustrations accompany all four references', page.locator('.section-picture .studio-art img:visible').count()==4)
                         if width in (390,1920):
                             for section in ('map','ladder','gates','record'):
                                 page.locator('#'+section+' .illustrated-head').screenshot(style=".site-head,.pagenav{visibility:hidden!important}", path=str(OUT/f'method-{section}-{width}-{theme}.jpg'),type='jpeg',quality=82)
@@ -85,7 +85,7 @@ with sync_playwright() as pw:
             page.locator('#drawing-estate .drawing-image').focus()
             page.keyboard.press('Enter')
             page.wait_for_url('**/method/#map')
-            check(f'Library keyboard navigation {width} {theme}', page.locator('#map .section-picture svg').is_visible())
+            check(f'Library keyboard navigation {width} {theme}', page.locator('#map .section-picture .studio-art img:visible').is_visible())
             context.close()
     browser.close()
 (OUT/'checks.json').write_text(json.dumps(results,indent=2))

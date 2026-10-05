@@ -24,38 +24,32 @@ Verified `/Users/khalidlens/Development/khalidshams-atlas`, origin `https://gith
 
 The KS identity, light/dark tokens and all SVG viewBoxes are retained. No warmer-paper token change was made. Both Atlas Architecture layers were compared against fetched main and are byte-identical. Original Atlas IDs, data-o, data-c, data-sc, data-e and classes were compared and preserved.
 
-## Visible integration across the site
+## Recovered originals and visible integration
 
-The revised drawings were present inside existing lessons, but Method still opened with a long text introduction and the full collection had no public entry point. This follow-up places existing illustrations where readers arrive and where they make a decision:
+The missing art was recovered on 4 October from the separate ChatGPT conversation **Enhance Visuals Dramatically**. Its cloud checkout had not pushed the artwork to GitHub. The earlier local implementation therefore contained SVG improvements but none of the finished rich illustrations the user expected. This correction integrates the original art, rather than treating SVG refinements as substitutes.
 
-- Home, Learn and Method now have a large drawing directly after the headline, before the introductory prose on phones, with a link to the illustrated library.
-- Method places the estate, autonomy, production-review and judgment illustrations beside their map, ladder, gates and record sections. Existing interactive diagrams, controls and anchors remain in place.
-- `/illustrated/` displays all 18 distinct vignette drawings (19 keys, with `Decide` aliasing `decide`), both full studio scenes in light and dark, and links to every interactive drawing family. Each picture leads to its working lesson or reference. The collection begins with estate architecture, ownership, decisions and operations.
-- Desktop submenus, the phone drawer, the sitemap and search index include the library. All its local links and section targets are checked against the build.
-- No new raster art is claimed. The previously unavailable studies listed below remain unavailable; this integrates the completed SVG work.
+All 22 original PNGs are preserved locally under the ignored `art-src/recovered/`. Six are references or superseded drafts. The selected 16 originals form the eight light/dark pairs below. Images 1, 2 and 3 contain baked text and are not placed; images 5, 6 and 7 are superseded by corrected workshop/autonomy compositions. No new creative image generation was needed after recovery.
 
-Additional evidence: `docs/site/evidence/codex/integration/` contains 48 screenshots of real page placements at 390 and 1920 in both themes, plus `checks.json`. The new check exercises widths 360, 390, 430, 768, 1440, 1920 and a 720 by 450 viewport at scale 2. It verifies visible drawings, theme-specific studio image loading, keyboard navigation, layout and script errors. Sticky navigation is hidden only within element screenshot capture, not during interaction checks or in the product.
+| Study | Original series images, light / dark | Actual placement |
+| --- | --- | --- |
+| atlas-workshop | 4 / 22 | Home workshop band, Atlas lesson introduction, illustrated library |
+| shams-autonomy | 20 / 21 | Method autonomy ladder, illustrated library |
+| production-review | 8 / 11 | Home first situation, Method gates, illustrated library |
+| enterprise-clarity | 9 / 10 | Home second situation, Method introduction and estate map, illustrated library |
+| architectural-judgment | 13 / 12 | Home introduction and third situation, Method decision record, illustrated library |
+| thread-2077 | 16 / 17 | Atlas reading-thread section, illustrated library |
+| workbench-objects | 18 / 19 | Learn introduction, illustrated library |
+| approval-mobile | 14 / 15 | Atlas reading-thread section, illustrated library |
 
-## Missing art, exact intake paths
+Each pair is exported to `static/art/<scene>/` at desktop 1600, compact 960, mobile 720 and thumbnail 320 pixels wide. All 64 WebPs are declared in `content/art.json`, totaling 8,040,658 bytes. The original composition is preserved without cropping. Desktop exports upscale the 1536-wide landscape or 1024/1086-wide portrait originals to meet the brief; this adds no source detail. Dark art is independently authored, never inverted. `docs/site/ART_PROVENANCE.json` records source-series selection, original dimensions and SHA-256 hashes. `tools/export_studio_art.py` reproduces the exports from the local PNGs with Pillow.
 
-None of the eight approved studies was found in the repository. Current-output screenshots are evidence of the build, not substitutes for those studies. `content/scenes.json` continues to say `awaiting-study`.
+`art_assets.illustration()` builds responsive images with intrinsic dimensions, alt text, native lazy loading, authored theme pairs and live captions. Explicit site theme preferences override the operating system. Requested but incomplete study pairs fail the build. The manifest validator checks metadata, canonical paths, file existence, WebP headers, concept IDs, duplicate variants, dimensions and the no-baked-text declaration. File-header and metadata validation do not replace visual inspection.
 
-Each row below is missing **all eight files** named after the table, for 64 missing WebP exports in total:
+Home, Learn and Method show the finished art directly after their headlines. Home situation cards retain the original line diagrams inside keyboard-accessible disclosures. Method's estate, ladder, gates and record illustrations sit beside the real references. The Atlas has a rich workshop introduction with a direct link to the lesson controls, followed by the existing functional SVG scene. Its separate reading-thread and portrait illustrations explain navigation and review without claiming a runtime state. Amounts, step numbers, outcomes and controls remain live HTML/SVG. Expanded and printed lesson views omit the decorative introduction.
 
-| Study | Required directory |
-| --- | --- |
-| Full workshop | `static/art/atlas-workshop/` |
-| Autonomy | `static/art/shams-autonomy/` |
-| Production review | `static/art/production-review/` |
-| Enterprise clarity | `static/art/enterprise-clarity/` |
-| Architectural judgment | `static/art/architectural-judgment/` |
-| Follow the thread / 2077 | `static/art/thread-2077/` |
-| Human-free workbench objects | `static/art/workbench-objects/` |
-| Approval on mobile | `static/art/approval-mobile/` |
+`/illustrated/#architecture`, the exact preview URL raised by the user, now opens the eight original studies. The same page retains all 18 distinct SVG vignettes, both full technical studio scenes and links to every interactive drawing family. Desktop and phone navigation, sitemap and search include the library. The scene registry now marks the primary studies `integrated`.
 
-Required names in **each** directory: `desktop-light.webp`, `desktop-dark.webp`, `compact-light.webp`, `compact-dark.webp`, `mobile-light.webp`, `mobile-dark.webp`, `thumb-light.webp`, `thumb-dark.webp`. Target widths are 1600, 960, 720 and 320 respectively. PNG masters are also unavailable and belong under the now-ignored `art-src/`, never in the committed reference collection.
-
-Added `content/art.json` with an honest empty asset list. Build validation checks required metadata, recognized scene/variant/theme, canonical path, file existence and WebP header, atlas concept IDs, duplicate variants, alt text, and `text_in_image: false`. Text-bearing references cannot pass intake. This is an intake gate, not automatic placement. Crops, pixel dimensions, illustration-only content and separately authored dark art still need visual review when real assets arrive. No placeholder art or invented alt text for unseen art was placed.
+Fresh evidence in `docs/site/evidence/codex/art/` shows all eight studies, Atlas introduction/thread and Home situation placements at 390 and 1920 in both themes. Updated `integration/` screenshots show the real Home, Learn and Method placements. Browser checks load and decode each visible image across the full viewport matrix, verify theme overrides and confirm the Atlas still starts. The preview was also reloaded and visually inspected in the user's in-app browser: the rich artwork is visibly present.
 
 ## Reconciliation and limits
 
@@ -63,7 +57,7 @@ Added `content/art.json` with an honest empty asset list. Build validation check
 - The model-making brief says the rater is the only person. Existing source and the visual system also explicitly identify a release owner. Both established human roles were preserved; no training machinery was personified.
 - The estate map contains layer and AI-use dependencies, not discovered customer systems or actual owner names. The new grouping states that owners must be established in review. Its potential impact list is calculated from those declared dependencies, without claiming a verified operational blast radius.
 - `prompt vs hook` is an HTML comparison rather than a separate SVG in the source; its diagram-adjacent section is included in the visual evidence and its technical copy is unchanged.
-- Actual study placement, approved crop matching, the reference mobile composition and a study-matched scrolling chapter layout cannot be completed without the studies. The existing focus/pan model remains.
+- All eight studies are integrated. The Atlas keeps its step-driven reading and focus/pan model. The new vertical thread is a static illustration beside live reading guidance; no scroll hijacking or alternate execution timeline was introduced.
 - Complex maps deliberately retain pan/zoom or a corresponding HTML inspector on phones. A whole-scene thumbnail cannot make every small label readable; focus views and live HTML provide the reading detail.
 
 ## Verification
@@ -90,23 +84,25 @@ A direct Atlas run passed 95 checks. Subsequent runs hit intermittent external f
 .venv/bin/python tests/site/run_cached.py tests/learn/ui_check.py http://localhost:8767 work/final-shots/learn
 .venv/bin/python tests/site/run_cached.py tests/site/illustrated_check.py http://localhost:8767 docs/site/evidence/codex
 .venv/bin/python tests/site/run_cached.py tests/site/integration_check.py http://localhost:8767 docs/site/evidence/codex/integration
+.venv/bin/python tests/site/run_cached.py tests/site/art_check.py http://localhost:8767 docs/site/evidence/codex/art
 ```
 
 ### Final results
 
 | Check | Result |
 | --- | --- |
-| Static build | Passed: both Atlas lessons, six paths, 44 idea pages, 342 search entries |
+| Static build | Passed: both Atlas lessons, six paths, 44 idea pages, 356 search entries |
 | Atlas engine | 18 passed |
 | Atlas registry and Learn structure | 29 passed |
-| Art intake validation | 5 passed |
+| Art intake validation and renderer | 8 passed |
 | Atlas browser suite | 95 passed |
 | Learn and site browser suite | 186 passed |
 | Focused studio browser suite | 180 passed |
 | Integrated drawing browser suite | 213 passed |
-| Total automated assertions/tests | 726 passed, zero failed |
+| Recovered art browser suite | 197 passed |
+| Total automated assertions/tests | 926 passed, zero failed |
 | Public punctuation scan | Clean |
 | Git diff whitespace check | Clean |
-| Evidence | 112 JPEGs: 64 drawing checks and 48 real page placements, plus machine-readable check results |
+| Evidence | 160 JPEGs: 64 original drawing checks, 52 integration placements (including 4 historical library captures) and 44 recovered-art captures, plus machine-readable results |
 
 The focused suite verifies keyboard dependency inspection, one selected dependency, industry risk re-weighting, mesh/hub arithmetic at twelve agents, component selection, the understood check mark and saved key, circuit stepping, Society zoom, and search arrival highlights. The additional layout matrix covers both lessons, Method and Learn in both themes at every requested width and the 200 percent equivalent. All 19 vignette keys pass SVG text-bound checks.

@@ -320,6 +320,32 @@ body.has-pathbar{ padding-bottom:64px; }
 .bb-rung{ margin-top:8px; font-size:14.5px; color:var(--body); } .bb-rung b{ color:var(--ink); }
 
 
+
+/* Finished illustrations accompany the live diagrams. No inverted theme copies. */
+.studio-art{display:block;position:relative;width:100%;background:var(--card);}
+.studio-art img{display:block;width:100%;height:auto;max-width:100%;}
+.studio-art .art-dark{display:none;}
+:root[data-theme="dark"] .studio-art .art-light{display:none;}
+:root[data-theme="dark"] .studio-art .art-dark{display:block;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .studio-art .art-light{display:none;} :root:not([data-theme="light"]) .studio-art .art-dark{display:block;}}
+.art-diagram{margin:12px 0;}
+.art-diagram summary{cursor:pointer;color:var(--blue);font-size:13px;padding:8px 0;}
+.art-caption{display:block;padding:10px 14px;font:12px/1.5 var(--sans);color:var(--body);border-top:1px solid var(--rule);}
+.art-study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start;}
+.art-study{min-width:0;border:1px solid var(--rule2);background:var(--card);}
+.art-study a{display:block;}
+.atlas-art-intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;margin:0 0 28px;padding:20px;border:1px solid var(--rule2);background:var(--card);}
+.atlas-art-intro h2{font:clamp(26px,3vw,42px)/1.12 var(--display);margin:10px 0 16px;}
+.atlas-art-intro p{max-width:60ch;}
+.atlas-art-intro .atlas-art-image{max-width:640px;}
+.art-reading-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;max-width:1100px;margin:auto;align-items:start;}
+.art-reading-grid figure{margin:0;}
+.art-reading-grid figcaption{padding:14px 0;font-size:14px;}
+.is-expanded .atlas-art-intro{display:none;}
+#atl-toolbar{scroll-margin-top:90px;}
+@media(max-width:767px){.art-study-grid,.atlas-art-intro,.art-reading-grid{grid-template-columns:minmax(0,1fr);}.atlas-art-intro{padding:12px;gap:18px;}.art-study-grid{gap:24px;}}
+@media print{.atlas-art-intro,.art-reading-grid{display:none;}}
+
 /* ---------- vignettes: the atlas's drawing vocabulary, themed by the site tokens ---------- */
 .vig{ display:block; width:100%; height:auto; max-width:100%; }
 .vig .ln{ stroke:var(--ink); } .vig .thin{ stroke:var(--rule2); }
@@ -355,7 +381,7 @@ body.has-pathbar{ padding-bottom:64px; }
 
 /* Illustrated library and drawings at the point of use. */
 .hero-drawing{ display:block; margin-top:24px; border:1px solid var(--rule2); background:var(--card); color:var(--body); max-width:640px; }
-.hero-drawing > span{ display:block; padding:14px 20px; border-top:1px solid var(--rule); font-size:14px; }
+.hero-drawing > span:not(.studio-art){ display:block; padding:14px 20px; border-top:1px solid var(--rule); font-size:14px; }
 .hero-drawing b{ display:block; color:var(--blue); font-weight:500; margin-top:5px; }
 .drawing-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:24px; }
 .drawing-card{ min-width:0; border:1px solid var(--rule2); background:var(--card); }

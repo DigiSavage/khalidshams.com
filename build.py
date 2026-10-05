@@ -19,7 +19,7 @@ from pathlib import Path
 import markdown  # pip install markdown
 import atlas_build
 import learn_build
-from art_assets import validate_art
+from art_assets import validate_art, illustration
 import vignettes
 
 ROOT = Path(__file__).parent
@@ -192,6 +192,7 @@ def tpl(name: str) -> str:
 def fill(s: str, **kw) -> str:
     for k, v in kw.items():
         s = s.replace("{{" + k + "}}", v)
+    s = re.sub(r"\{\{ART:([a-z0-9-]+)(:eager)?\}\}", lambda m: illustration(json.loads((ROOT / "content/art.json").read_text()), m.group(1), eager=bool(m.group(2))), s)
     return re.sub(r"\{\{VIG:([A-Za-z-]+)\}\}", lambda m: vignettes.vignette(m.group(1), "three-vig"), s)
 
 

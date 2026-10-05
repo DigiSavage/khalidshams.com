@@ -30,6 +30,9 @@ def validate_art(manifest, concepts, static):
                 valid = False
         if asset.get("text_in_image") is not False:
             errors.append(f"{prefix}: text_in_image must be false; text-bearing studies are references only")
+        for dimension in ("width", "height"):
+            if dimension in asset and (type(asset[dimension]) is not int or asset[dimension] <= 0):
+                errors.append(f"{prefix}: {dimension} must be a positive integer")
         ids = asset.get("concepts")
         if not isinstance(ids, list) or not ids or any(not isinstance(c, str) or c not in concepts for c in ids):
             errors.append(f"{prefix}: concepts must be a nonempty list of atlas concept ids")
@@ -55,3 +58,33 @@ def validate_art(manifest, concepts, static):
             if header[:4] != b"RIFF" or header[8:12] != b"WEBP":
                 errors.append(f"{prefix}: expected a WebP file")
     return errors
+
+
+def illustration(manifest, scene, *, eager=False):
+    """Render a complete themed, responsive study; never silently omit requested art."""
+    from html import escape
+    assets = {(a['variant'], a['theme']): a for a in manifest['assets'] if a['scene'] == scene}
+    missing = {(v, t) for v in VARIANTS for t in THEMES} - assets.keys()
+    if missing:
+        raise ValueError(f'art {scene}: missing variants {sorted(missing)}')
+    if any(type(a.get(d)) is not int or a[d] <= 0 for a in assets.values() for d in ("width", "height")):
+        raise ValueError(f"art {scene}: placed illustrations require positive width and height")
+    pictures = []
+    for theme in ('light', 'dark'):
+        asset = assets['desktop', theme]
+        srcset = ', '.join(f'{assets[v, theme]["file"]} {assets[v, theme]["width"]}w'
+                           for v in ('thumb', 'mobile', 'compact', 'desktop'))
+        pictures.append(f'<img class="art-{theme}" src="{escape(assets["compact", theme]["file"])}" '
+                        f'srcset="{escape(srcset)}" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1099px) 90vw, 50vw" '
+                        f'width="{asset["width"]}" height="{asset["height"]}" '
+                        f'alt="{escape(asset["alt"])}" loading="{"eager" if eager else "lazy"}" decoding="async">')
+    labels = {
+        'atlas-workshop': 'Outline operator: software metaphor · ⏸ Review boundary',
+        'production-review': 'Outline operator: software metaphor · ⏸ Proposal awaiting review',
+        'approval-mobile': 'Outline operator: software metaphor · ⏸ Proposal awaiting review',
+        'thread-2077': 'Outline operators: software metaphor · Reading order, not runtime flow',
+        'shams-autonomy': '⏸ Control boundary · Higher is not automatically better',
+        'workbench-objects': '⏸ Control boundary · Instruments represent software components',
+    }
+    caption = f'<span class="art-caption">{labels[scene]}</span>' if scene in labels else ''
+    return f'<span class="studio-art" data-art-scene="{escape(scene)}">'+''.join(pictures)+caption+'</span>'

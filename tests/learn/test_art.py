@@ -3,7 +3,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from art_assets import validate_art
+from art_assets import validate_art, illustration, VARIANTS, THEMES
 
 
 class ArtTests(unittest.TestCase):
@@ -54,6 +54,30 @@ class ArtTests(unittest.TestCase):
         errors = " ".join(self.errors())
         self.assertIn("unknown scene", errors)
         self.assertIn("alt must be", errors)
+
+    def test_incomplete_placed_study_fails(self):
+        with self.assertRaisesRegex(ValueError, "missing variants"):
+            illustration({"assets": [self.asset]}, "production-review")
+
+    def test_dimensions_must_be_positive_integers(self):
+        for value in (0, -1, True, '720'):
+            self.asset['width'] = value
+            self.assertIn('width must be', ' '.join(self.errors()))
+
+    def test_renderer_escapes_alt_and_includes_authored_theme_pairs(self):
+        assets = [dict(self.asset, variant=v, theme=t, width=720, height=480,
+                       file=f'/art/production-review/{v}-{t}.webp', alt='A "proposal" <pending>')
+                  for v in VARIANTS for t in THEMES]
+        rendered = illustration({'assets': assets}, 'production-review', eager=True)
+        self.assertIn('&quot;proposal&quot; &lt;pending&gt;', rendered)
+        self.assertIn('software metaphor', rendered)
+        self.assertEqual(rendered.count('<img '), 2)
+        for theme in THEMES:
+            self.assertIn(f'desktop-{theme}.webp 720w', rendered)
+        self.assertIn('loading="eager"', rendered)
+        assets[0].pop('height')
+        with self.assertRaisesRegex(ValueError, 'positive width and height'):
+            illustration({'assets': assets}, 'production-review')
 
 
 if __name__ == "__main__":
