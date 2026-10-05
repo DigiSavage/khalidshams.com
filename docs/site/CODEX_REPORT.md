@@ -1,5 +1,7 @@
 # Illustrated studio implementation
 
+Update, 5 October: the concept-by-concept follow-up now carries finished art into matching existing cards and improves the native diagrams in place. All 1,076 current checks pass. The extended illustration set remains partly blocked by the built-in image service: four new light masters are saved, with 18 remaining masters outstanding. See [CONCEPT_ART_STATUS.md](CONCEPT_ART_STATUS.md) for exact coverage, files and limitations. The original eight studies below remain fully integrated.
+
 Base: `e69d950` on `main`. Branch: `codex/illustrated-studio`.
 
 This pass develops the reusable drawing language for a broad principal architecture resource: systems, dependencies, ownership, trade-offs, operations and AI. The Atlas remains one learning area within that wider purpose. No learning gains or user testing are claimed.

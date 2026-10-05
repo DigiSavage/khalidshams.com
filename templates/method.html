@@ -601,6 +601,7 @@ var qp=new URLSearchParams(location.search).get('move');if(qp){var c=document.qu
   var core=el('g',{class:'m-core'}),title=el('text',{x:500,y:18,'text-anchor':'middle'});title.textContent='Your estate';core.appendChild(title);svg.insertBefore(core,gL);
   ZONES.forEach(function(z){ Object.keys(z.needs).forEach(function(l){ var ln=el('path',{fill:'none',class:'m-line',  'data-z':z.id,'data-l':l,'stroke-width':0.6+z.needs[l]*0.7}); gL.appendChild(ln); lines.push({z:z.id,l:l,el:ln}); }); });
   function mk(id){ var n=nodes[id]; var g=el('g',{class:'m-node m-'+n.t,'data-id':id,tabindex:0,role:'button','aria-label':n.d.name}); var r=n.t==='layer'?30:38;
+    g.appendChild(el('path',{d:'M-24 16 L0 29 L24 16 V22 L0 35 L-24 22 Z',class:'m-mount',fill:'#EFEFEC',stroke:'#C6C6BF','aria-hidden':'true'}));
     g.appendChild(el('circle',{r:r+6,class:'m-risk'})); g.appendChild(el('circle',{r:r,class:'m-disc'}));
     var lab=el('text',{'text-anchor':'middle',y:r+18,class:'m-lab'}); var parts=n.d.name.split(' & '); 
     if(parts.length>1){ var t1=el('tspan',{x:0,dy:0}); t1.textContent=parts[0]+' &'; var t2=el('tspan',{x:0,dy:15}); t2.textContent=parts[1]; lab.appendChild(t1); lab.appendChild(t2);} else { lab.textContent=n.d.name; }

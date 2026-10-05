@@ -88,3 +88,29 @@ def illustration(manifest, scene, *, eager=False):
     }
     caption = f'<span class="art-caption">{labels[scene]}</span>' if scene in labels else ''
     return f'<span class="studio-art" data-art-scene="{escape(scene)}">'+''.join(pictures)+caption+'</span>'
+
+
+# Only reuse a finished study when it depicts the concept being taught.
+# Unmatched families retain their live drawing until their own art pair is ready.
+CONCEPT_STUDIES = {
+    "request": "atlas-workshop", "door-architect": "architectural-judgment",
+    "assistant": "workbench-objects", "act-on-records": "production-review",
+    "knowledge": "workbench-objects", "decide": "shams-autonomy",
+    "Decide": "shams-autonomy", "Agents": "atlas-workshop",
+    "Operate": "workbench-objects", "estate": "enterprise-clarity",
+    "judgment": "architectural-judgment",
+}
+
+
+def concept_visual(key, diagram, cls=""):
+    """Enhance the existing card position without replacing its technical drawing."""
+    import json
+    from html import escape
+    scene = CONCEPT_STUDIES.get(key)
+    if scene is None:
+        return diagram
+    manifest = json.loads((Path(__file__).parent / "content/art.json").read_text())
+    return (f'<div class="concept-visual {escape(cls)}" data-concept-visual="{escape(key)}">'
+            + illustration(manifest, scene)
+            + '<details class="concept-details"><summary>Read the concept diagram</summary>'
+            + diagram + '</details></div>')

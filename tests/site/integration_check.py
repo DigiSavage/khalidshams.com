@@ -63,11 +63,21 @@ with sync_playwright() as pw:
                 check(label+' no horizontal overflow', page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
                 if name == 'library':
                     keys = set(page.locator('[data-drawing]').evaluate_all('(nodes)=>nodes.map(n=>n.dataset.drawing)'))
-                    check(label+' every distinct vignette is visible', keys == set(SCENES)-{'Decide'} and all(page.locator(f'[data-drawing="{key}"] svg').is_visible() for key in keys))
+                    all_readable = keys == set(SCENES)-{'Decide'}
+                    for key in keys:
+                        card = page.locator(f'[data-drawing="{key}"]')
+                        disclosure = card.locator('.concept-details')
+                        if disclosure.count():
+                            all_readable &= card.locator('.studio-art img:visible').is_visible()
+                            disclosure.locator('summary').focus()
+                            page.keyboard.press('Enter')
+                        all_readable &= card.locator('svg').is_visible()
+                        if disclosure.count(): disclosure.locator('summary').click()
+                    check(label+' every concept picture and its live diagram are accessible', all_readable)
                     for scene in page.locator('#studios img:visible').all():
                         scene.scroll_into_view_if_needed()
-                        page.wait_for_function("selector => [...document.querySelectorAll(selector)].filter(i=>i.getBoundingClientRect().top < innerHeight && i.getBoundingClientRect().bottom > 0).every(i=>i.complete && i.naturalWidth>0)", arg=f'#studios img.ap-{theme}')
-                    check(label+' both studio images render in the correct theme', page.locator('#studios img:visible').count()==2 and page.locator(f'#studios img.ap-{theme}:visible').count()==2)
+                        scene.evaluate('(image)=>image.decode()')
+                    check(label+' both studio images render in the correct theme', page.locator('#studios img:visible').count()==2 and page.locator(f'#studios img.ap-{theme}:visible, #studios img.art-{theme}:visible').count()==2)
                     if width in (390,1920):
                         for section in ('drawing-vocabulary','studios','systems','foundations','routes'):
                             page.locator('#'+section).screenshot(style=".site-head,.pagenav{visibility:hidden!important}", path=str(OUT/f'library-{section}-{width}-{theme}.jpg'),type='jpeg',quality=82)

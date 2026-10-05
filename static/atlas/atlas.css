@@ -236,7 +236,7 @@
 .atlas-scene .edge.denied .ep{ stroke:var(--warn); stroke-dasharray:3 5; }
 .atlas-scene .edge.denied .mk-ctrl{ fill:var(--warn); }
 .atlas-scene .obj{ transition:opacity .35s; cursor:pointer; }
-.atlas-scene .obj:not([data-c="requester"]):not([data-c="owner"]):not([data-c="approver"]):not([data-c="agent"]) > .pic{ filter:drop-shadow(3px 3px 0 var(--rule)); }
+.atlas-scene .studio-side{ stroke-width:.8; pointer-events:none; }
 .atlas.has-step .atlas-scene .obj{ opacity:.5; }
 .atlas.has-step .atlas-scene .obj.focus,.atlas.has-step .atlas-scene .obj.keep{ opacity:1; }
 .atlas-scene .obj.muted{ opacity:.22 !important; }

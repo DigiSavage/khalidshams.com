@@ -6,7 +6,13 @@ from __future__ import annotations
 import html, json, re
 from pathlib import Path
 
-from vignettes import vignette, SCENES
+from vignettes import vignette as diagram, SCENES
+from art_assets import concept_visual
+
+
+def vignette(key, cls=""):
+    return concept_visual(key, diagram(key, cls), cls)
+
 
 ROOT = Path(__file__).parent
 LDIR = ROOT / "content" / "learn"

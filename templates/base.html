@@ -347,6 +347,8 @@ body.has-pathbar{ padding-bottom:64px; }
 @media print{.atlas-art-intro,.art-reading-grid{display:none;}}
 
 /* ---------- vignettes: the atlas's drawing vocabulary, themed by the site tokens ---------- */
+.ln-mount,.m-mount{fill:var(--sunk);stroke:var(--rule2);stroke-width:1;pointer-events:none;}
+.vig .studio-side{ stroke-width:.7; pointer-events:none; }
 .vig{ display:block; width:100%; height:auto; max-width:100%; }
 .vig .ln{ stroke:var(--ink); } .vig .thin{ stroke:var(--rule2); }
 .vig .card{ fill:var(--card); stroke:var(--ink); } .vig .sunk{ fill:var(--sunk); stroke:var(--ink); } .vig .top{ fill:var(--sunk); stroke:var(--ink); }
@@ -366,6 +368,12 @@ body.has-pathbar{ padding-bottom:64px; }
   .hero .hero-art + .cta{ grid-row:4; }
   .path-hero .path-meta{ grid-row:3; } .path-hero .hero-art{ grid-row:4; } .path-hero .hero-art + .cta{ grid-row:5; }
 }
+/* Rich concept pictures occupy the same card/hero position as their diagram. */
+.concept-visual{min-width:0;}
+.concept-details{border-top:1px solid var(--rule2);background:var(--card);}
+.concept-details summary{padding:12px 16px;color:var(--blue);font:13px/1.4 var(--sans);cursor:pointer;}
+.concept-details .vig{margin:0;border:0;max-width:none;}
+.concept-details[open] summary{border-bottom:1px solid var(--rule);}
 /* the home scene band */
 .home-scene{ background:var(--card); }
 .scene-grid{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:clamp(24px,4vw,64px); align-items:center; }

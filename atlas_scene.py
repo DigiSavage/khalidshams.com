@@ -5,6 +5,7 @@ renders correctly on its own, e.g. when exported. Site CSS overrides them with t
 Each object has a Picture layer (.pic) and an Architecture layer (.arch) at the same position.
 """
 from html import escape
+import re
 
 W, H = 1280, 800
 
@@ -104,9 +105,35 @@ def operator(x, y, s=1.0):
     ])
 
 
+
+def relief(svg):
+    """Give picture-layer instruments real side faces; leave labels and hooks intact.
+
+    Only solid rectangular objects receive depth. Dashed boundaries, empty slots,
+    state marks and Architecture-layer boxes must retain their original meaning.
+    """
+    def raised(match):
+        tag = match.group(0)
+        attrs = dict(re.findall(r'([\w-]+)="([^"]*)"', tag))
+        classes = attrs.get('class', '').split()
+        if not set(classes) & {'card', 'sunk', 'top', 'accf'} or any(k.startswith('data-') for k in attrs):
+            return tag
+        try:
+            x, y, w, h = (float(attrs[k]) for k in ('x', 'y', 'width', 'height'))
+        except (KeyError, ValueError):
+            return tag
+        if w < 18 or h < 16 or 'slot-doc' in classes:
+            return tag
+        d = min(4, w * .08, h * .09)
+        side = path(f'M{x+w} {y+d} L{x+w+d} {y} V{y+h+d} L{x+w} {y+h} Z', 'sunk studio-side')
+        foot = path(f'M{x} {y+h} L{x+d} {y+h+d} H{x+w+d} L{x+w} {y+h} Z', 'top studio-side')
+        return '<g class="studio-object">' + side + foot + tag + '</g>'
+    return re.sub(r'<rect\b[^>]*/>', raised, svg)
+
+
 def obj(oid, concept, pic, arch, lens, label=None):
     return (f'<g class="obj" id="o-{oid}" data-o="{oid}" data-c="{concept}" data-lens="{" ".join(lens)}">'
-            f'<g class="pic">{pic}</g><g class="arch">{arch}</g></g>')
+            f'<g class="pic">{relief(pic)}</g><g class="arch">{arch}</g></g>')
 
 
 def abox(x, y, w, h, title, sub="", ports=()):

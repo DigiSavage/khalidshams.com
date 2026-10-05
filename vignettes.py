@@ -4,7 +4,7 @@ Same rules as the atlas: explicit fallback fills so a vignette renders anywhere,
 `.vig` CSS in base.html, solid figures are people, outline figures are software, cobalt is focus, gold is cost, dashed
 lines are boundaries. Each vignette is a function returning the inner SVG for a 320 x 180 viewBox.
 """
-from atlas_scene import T as atlas_T, path, rect as atlas_rect, circ, person, operator, etch, E
+from atlas_scene import T as atlas_T, path, rect as atlas_rect, circ, person, operator, etch, E, relief
 
 
 def rect(x, y, w, h, cls="card", rx=4, **kw):
@@ -56,42 +56,62 @@ def request():
     return s
 
 
+def book(x, y, w=38, h=28, selected=False):
+    """A small open book, with visible paper edges and a cobalt bookmark."""
+    half = w / 2
+    c = "accf" if selected else "card"
+    s = path(f"M{x} {y+3} Q{x+half/2} {y-2} {x+half} {y+3} Q{x+w-half/2} {y-2} {x+w} {y+3} V{y+h} Q{x+w-half/2} {y+h-4} {x+half} {y+h+1} Q{x+half/2} {y+h-4} {x} {y+h} Z", c)
+    s += path(f"M{x+half} {y+3} V{y+h+1} M{x} {y+h+3} Q{x+half/2} {y+h-1} {x+half} {y+h+4} Q{x+w-half/2} {y+h-1} {x+w} {y+h+3}", "ln", stroke_width=".8")
+    for row in (8, 13, 18):
+        s += path(f"M{x+4} {y+row} Q{x+half/2} {y+row-2} {x+half-4} {y+row} M{x+half+4} {y+row} Q{x+w-half/2} {y+row-2} {x+w-4} {y+row}", "thin", stroke_width=".6")
+    return s
+
+
 def door_new():
-    """A guided path: numbered stops, the first two done, a document on its way to the third."""
-    s = ""
-    pts = [(30, 120), (80, 70), (140, 110), (200, 60), (255, 110), (300, 70)]
-    for i in range(len(pts) - 1):
-        (x1, y1), (x2, y2) = pts[i], pts[i + 1]
-        s += path(f"M{x1} {y1} C {x1 + 25} {y1}, {x2 - 25} {y2}, {x2} {y2}", "acc" if i < 2 else "dash")
-    for i, (x, y) in enumerate(pts):
-        s += circ(x, y, 13, "accf" if i < 2 else "card") + T(x, y + 5, str(i + 1), "t-c" if i >= 2 else "t-h", "middle", font_size="12", font_weight="600")
-    s += doc(104, 72, 22, 26, 2, "accf")
-    s += T(30, 158, "Path 1", "t-m", "middle", font_size="8") + T(300, 108, "Path 6", "t-m", "middle", font_size="8")
+    """Six learning stations, in the same order, without pretending progress is earned."""
+    pts = [(42, 115), (85, 57), (138, 115), (183, 57), (232, 115), (279, 57)]
+    s = T(20, 22, "SIX PATHS · ONE STEP AT A TIME", "t-m", font_size="8")
+    for (x, y), (nx, ny) in zip(pts, pts[1:]):
+        s += path(f"M{x} {y+22} C{x+25} {y+22} {nx-25} {ny+22} {nx} {ny+22}", "acc", stroke_width="3")
+    for i,(x,y) in enumerate(pts):
+        s += rect(x-23,y+13,46,20,"sunk",rx=2)
+        s += book(x-19,y-9,38,25,selected=i==0)
+        s += circ(x,y+31,9,"accf" if i==0 else "card") + T(x,y+34,str(i+1),"t-c","middle",font_size="10",font_weight="600")
+    s += T(20,174,"Start with the first book. Build from there.","t-s",font_size="9")
     return s
 
 
 def door_architect():
-    """Gates on the runtime wall, each with its decision, and a person who signs."""
-    s = path("M150 20 V160", "dash")
-    for i, (mark, cls) in enumerate([("✓", "t-c"), ("⏸", "t-c"), ("✕", "t-c")]):
-        y = 50 + i * 44
-        s += gate(150, y, mark, cls) + path(f"M70 {y} L132 {y}", "acc", stroke_dasharray="6 4", marker_end="url(#vg-ar)")
-        s += T(62, y + 3, f"Gate 0{i + 2}", "t-m", "end", font_size="7.5")
-    s += rect(190, 60, 70, 46, "card", rx=3) + T(198, 74, "PROPOSED", "t-m", font_size="7") + T(198, 88, "issue_refund", "t-c", font_size="9") + rect(198, 93, 40, 9, "dash", rx=2)
-    s += person(290, 138, 0.6) + T(290, 160, "Approver", "t-s", "middle", font_size="10")
-    s += T(226, 36, "WHAT ARE YOU BUILDING?", "t-m", "middle", font_size="7.5")
+    """A review bench faces three decision gates. Gate states remain explicit."""
+    s = T(20,22,"WHAT ARE YOU BUILDING?","t-m",font_size="8")
+    s += path("M160 35 V151","dash")
+    for i,mark in enumerate(("✓","⏸","✕")):
+        y=48+i*40
+        s += rect(18,y-8,86,26,"card",rx=2) + T(25,y+8,f"Gate 0{i+2}","t-m",font_size="8")
+        s += path(f"M106 {y+5} H136","acc",stroke_dasharray="5 3",marker_end="url(#vg-ar)")
+        s += rect(144,y-10,8,30,"sunk",rx=1) + rect(184,y-10,8,30,"sunk",rx=1)
+        s += rect(152,y-5,32,20,"accf",rx=1) + T(168,y+10,mark,"t-c","middle",font_size="14")
+    s += person(258,137,.75,pose="pause")
+    s += path("M221 138 H305 L310 154 H216 Z","top")
+    s += doc(228,105,43,36,2) + T(249,128,"PROPOSED","t-m","middle",font_size="6")
+    s += T(22,174,"Check the boundary before the action.","t-s",font_size="9")
     return s
 
 
 def door_explore():
-    """The map: ideas as nodes, a few lit."""
-    pts = [(40, 60), (90, 110), (120, 40), (170, 90), (210, 140), (240, 50), (290, 100), (60, 150), (150, 150)]
-    links = [(0, 1), (1, 2), (2, 3), (3, 4), (3, 5), (5, 6), (4, 6), (1, 7), (7, 8), (8, 4), (0, 2)]
-    s = rect(16, 18, 294, 154, "dash", rx=8) + T(24, 30, "IDEAS · CONNECTIONS", "t-m", font_size="7")
-    s += "".join(path(f"M{pts[a][0]} {pts[a][1]} L{pts[b][0]} {pts[b][1]}", "thin") for a, b in links)
-    for i, (x, y) in enumerate(pts):
-        s += circ(x, y, 7 if i in (3, 5) else 5, "accf" if i in (1, 3, 5) else "card")
-    s += T(170, 76, "agent", "t-c", "middle", font_size="9") + T(240, 36, "guardrails", "t-c", "middle", font_size="9")
+    """An open atlas on a drafting board. Routes still connect ideas, not services."""
+    s = T(20,22,"IDEAS · CONNECTIONS","t-m",font_size="8")
+    s += rect(24,40,272,118,"top",rx=3) + rect(33,47,253,103,"card",rx=2)
+    s += path("M159 48 V149","thin")
+    pts=[(58,74),(104,117),(133,67),(175,106),(216,131),(236,70),(270,110),(63,139)]
+    links=[(0,1),(0,2),(1,2),(2,3),(1,7),(3,4),(3,5),(5,6),(4,6)]
+    for a,b in links:
+        x,y=pts[a];u,v=pts[b]
+        s += path(f"M{x} {y} Q{(x+u)/2} {min(y,v)-10} {u} {v}","acc" if (a,b) in [(0,2),(2,3),(3,5)] else "thin")
+    for i,(x,y) in enumerate(pts):
+        s += circ(x,y,8,"accf" if i in (0,2,3,5) else "card") + circ(x,y,2,"ink")
+    s += T(175,91,"agent","t-c","middle",font_size="8") + T(236,56,"guardrails","t-c","middle",font_size="8")
+    s += T(20,174,"Choose an idea. Follow its connections.","t-s",font_size="9")
     return s
 
 
@@ -303,4 +323,4 @@ def vignette(key: str, cls: str = "", label: str | None = None) -> str:
     w, h = VB
     aria = f'role="img" aria-label="{label}"' if label else 'aria-hidden="true"'
     klass = ("vig " + cls).strip()
-    return f'<svg class="{klass}" viewBox="0 0 {w} {h}" {aria} xmlns="http://www.w3.org/2000/svg">{DEFS}{SCENES[key]()}</svg>'
+    return f'<svg class="{klass}" viewBox="0 0 {w} {h}" {aria} xmlns="http://www.w3.org/2000/svg">{DEFS}{relief(SCENES[key]())}</svg>'

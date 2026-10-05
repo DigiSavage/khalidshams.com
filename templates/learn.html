@@ -371,6 +371,7 @@ const edges=E.map(([a,b])=>{const A=nodes[a],B=nodes[b],mx=(A.x+B.x)/2,my=(A.y+B
   const cx=mx-dy/len*k,cy=my+dx/len*k;const p=el("path",{d:`M${A.x} ${A.y} Q${cx} ${cy} ${B.x} ${B.y}`,class:"ln-edge"},gE);return{a,b,p}});
 Object.values(nodes).forEach(n=>{
   const g=el("g",{class:"ln-node",transform:`translate(${n.x} ${n.y})`,tabindex:0,role:"button","aria-label":n.label},gN);
+  el("path",{d:"M-14 7 L0 15 L14 7 V12 L0 20 L-14 12 Z",class:"ln-mount",fill:"#EFEFEC",stroke:"#C6C6BF","aria-hidden":"true"},g);
   el("circle",{r:16,class:"ln-halo"},g);el("circle",{r:8,class:"ln-core"},g);
   const t=el("text",{y:30},g);
   const words=n.label.split(" ");let rows=[""];
