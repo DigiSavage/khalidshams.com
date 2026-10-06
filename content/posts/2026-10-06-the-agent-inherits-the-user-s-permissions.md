@@ -1,10 +1,10 @@
 ---
 title: "The agent inherits the user's permissions"
 date: 2026-10-06
-status: approved
+status: published
 tag: security
 summary: "The most important design decision in an enterprise AI system isn't the model."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7513327593031483393/
 ---
 
 The most important design decision in an enterprise AI system isn't the model.
