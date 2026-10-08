@@ -21,6 +21,7 @@ import atlas_build
 import learn_build
 from art_assets import validate_art, illustration
 import vignettes
+import delivery_build
 
 ROOT = Path(__file__).parent
 SITE = "https://khalidshams.com"
@@ -276,6 +277,7 @@ def build():
     static = ROOT / "static"
     if static.exists():
         shutil.copytree(static, DIST, dirs_exist_ok=True)
+    delivery_build.write_assets(DIST)
     images = ROOT / "content" / "images"
     if images.exists():
         shutil.copytree(images, DIST / "images", dirs_exist_ok=True)
@@ -433,7 +435,8 @@ def build():
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
     # ---- method page
-    mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer)
+    mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer,
+              DELIVERY_OVERVIEW=delivery_build.overview(), HUMAN_COORDINATION=delivery_build.human_coordination())
     mp = mp.replace("{{PAGENAV}}", learn_build.page_nav(mp))
     (DIST / "method").mkdir(exist_ok=True)
     (DIST / "method" / "index.html").write_text(page(mp, title="The SHAMS Method · Khalid Shams",

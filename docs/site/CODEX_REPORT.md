@@ -1,5 +1,14 @@
 # Illustrated studio implementation
 
+## AI delivery field guide · 2026-10-07
+
+Added the requested “Building AI systems: stack, structure and scale” companion within Method before the existing component inspector. Five readable component cards explain models, retrieval, tools/MCP, skills/workflows and agents, with limits and primary-source links. Human-team coordination has its own keyboard-operable control beside the existing agent-network discussion. It counts possible undirected links, identifies quadratic growth, and makes no productivity prediction. Ownership, handoffs and measured outcomes replace the absolute claim about small teams.
+
+Learn links to the guide from the stack section. The illustrated library has a field-guide preview, full explanation links and light/dark SVG downloads. Both posters are generated during the ordinary static build from `delivery_build.py`, which also supplies the webpage content. The original supplied raster is a content reference, not an edited or published asset. The existing SHAMS poster remains available. No new image generation or runtime service is needed. The SVGs retain selectable text, explicit colours, accessible descriptions and mathematical network drawings.
+
+Validation: build succeeds with 382 search entries; 39 Python, 180 focused drawing and 213 integration checks pass. The dedicated 96-check browser suite covers five component cards, counts from 2 to 12 people, independent agent controls, keyboard operation, theme overrides, actual downloads, Learn navigation, library placement, SVG text bounds, no-JavaScript content and search entries. Screenshots were reviewed on phone and desktop in both themes; graph edge contrast was increased after review. Existing interaction hooks and workflows are unchanged.
+
+
 ## Release validation · 2026-10-07
 
 The owner explicitly authorized publishing the completed updates, superseding the earlier instruction to stop at the pull request. The illustration branch was combined with main at `69f43c5`, preserving the publisher's post metadata. No workflow changes were made. The fresh build contains 377 search entries and all 64 illustration exports. All 1,076 checks passed again: 18 engine, 39 Python, 95 Atlas browser, 186 Learn browser, 180 focused drawing, 213 integration, 197 original art and 148 concept-flow checks. Phone screenshots were visually reviewed in light and dark. This records the pre-deployment gate; deployment success must be verified independently after merge.
