@@ -1,10 +1,10 @@
 ---
 title: "Where I put the human"
 date: 2026-10-08
-status: approved
+status: published
 tag: healthcare
 summary: "I architected an EMR holding 250+ patient records, and it changed where I put the human."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7514060131815485441/
 ---
 
 I architected an EMR that now holds 250+ active patient records, and it changed how I think about AI.
