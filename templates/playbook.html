@@ -5,7 +5,8 @@
     <p class="eyebrow">Playbook {{NUM}} · {{KICKER}}</p>
     <h1>{{TITLE}}</h1>
     <p class="lede">{{SUMMARY}}</p>
-    <div class="pb-stack"><span class="sec-label">Tools in this build</span><div class="chips">{{STACK}}</div></div>
+    <div class="pb-stack"><span class="sec-label">Tools in this build</span><p class="pb-tool-hint">Tap a tool for a quick explanation.</p><div class="chips">{{STACK}}</div></div>
+    {{TOOL_DEFINITIONS}}
     <div class="pb-jump">{{JUMP}}</div>
   </div>
 </div>
@@ -43,6 +44,7 @@
 {{FOOTER}}
 </div></div>
 <script>
+(function(){function openDefinition(){var hit=document.getElementById(location.hash.slice(1)),target=hit&&hit.closest('.pb-definition');if(target){document.querySelectorAll('.pb-definition:popover-open').forEach(function(p){if(p!==target)p.hidePopover();});if(!target.matches(':popover-open'))target.showPopover();}}window.addEventListener('hashchange',openDefinition);openDefinition();})();
 (function(){var links=[].slice.call(document.querySelectorAll('.pb-nav a[href^="#"]'));var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
 if(!('IntersectionObserver' in window)||!secs.length)return;var cur=null;
 function mark(id){if(cur===id)return;cur=id;links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}
