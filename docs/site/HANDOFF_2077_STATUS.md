@@ -1,5 +1,7 @@
 # SHAMS Atlas 2077 handoff: implementation status · 2026-10-03
 
+Update, 4 October: the original studies were recovered from the separate image-generation conversation and are now integrated on `codex/illustrated-studio`. All 64 responsive WebP exports and their manifest are present. See [CODEX_REPORT.md](CODEX_REPORT.md) for current placements, source provenance and verification. The entries below document the earlier handoff before recovery.
+
 Reconciled against the handoff brief, the repository and the live site. Rendered evidence is in `docs/site/evidence/` (screenshots of the build, not art studies).
 
 ## Source status, stated plainly

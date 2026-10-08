@@ -1,0 +1,1067 @@
+[
+  {
+    "check": "Every library destination and anchor resolves in the build",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library is in the sitemap",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "Drawing titles appear in search",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 360 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 360 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 360 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 360 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 360 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 360 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 390 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 390 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 390 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 390 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 390 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 390 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 430 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 430 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 430 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 430 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 430 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 430 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 768 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 768 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 768 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 768 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 768 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 768 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 1440 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 1440 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1440 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1440 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 1440 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 1440 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 1920 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 light scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 1920 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1920 light scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1920 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 1920 light scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 light scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 light scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 light scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 1920 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 light scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 light scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 light scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 720 light scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 light scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 light scale2 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 light scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 720 light scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 720 light scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 720 light scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 720 light scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 light scale2 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 light scale2 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 light scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 720 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 360 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 360 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 360 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 360 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 360 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 360 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 360 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 360 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 360 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 390 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 390 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 390 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 390 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 390 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 390 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 390 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 390 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 390 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 430 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 430 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 430 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 430 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 430 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 430 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 430 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 430 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 430 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 768 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 768 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 768 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 768 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 768 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 768 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 768 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 768 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 768 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1440 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 1440 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1440 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 1440 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1440 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1440 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 1440 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1440 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 1440 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 1920 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 1920 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 dark scale1 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 1920 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 1920 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1920 dark scale1 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 1920 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 1920 dark scale1 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 dark scale1 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 dark scale1 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 1920 dark scale1 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 1920 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 dark scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 dark scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "home 720 dark scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "method 720 dark scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 dark scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 dark scale2 illustrations accompany all four references",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "method 720 dark scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn 720 dark scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 720 dark scale2 introduction drawing is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "learn 720 dark scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "library 720 dark scale2 no horizontal overflow",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 dark scale2 every concept picture and its live diagram are accessible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 dark scale2 both studio images render in the correct theme",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "library 720 dark scale2 no script errors",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "Library keyboard navigation 720 dark",
+    "ok": true,
+    "detail": ""
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "base": "e69d950",
+  "engine": 18,
+  "registry_and_structure": 29,
+  "art_validation": 5,
+  "atlas_ui": 95,
+  "site_ui": 186,
+  "studio_ui": 180,
+  "failed": 0,
+  "screenshots": 112,
+  "external_fonts": "Unmodified responses cached by tests/site/run_cached.py; site resources not cached.",
+  "integration_ui": 213,
+  "total": 726,
+  "search_entries": 342
+}

@@ -1,0 +1,902 @@
+[
+  {
+    "check": "/learn/atlas/?step=10 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "atlas-stage 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "chapters 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "approval-trace 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "model-stage 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/method/ 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "agent-loop 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "topologies 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "estate-map 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/ 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn-map 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "decision-tree 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "loop-strip 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "hub-spoke 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "prompt-hook 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/ 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "home-situations 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/architect/ 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "architect-situations 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/__studio_review.html 1920-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "vignettes 1920-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "vignette label bounds 1920-light",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "no JavaScript errors 1920-light",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "atlas-stage 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "chapters 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "approval-trace 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "model-stage 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/method/ 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "agent-loop 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "topologies 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "estate-map 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/ 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn-map 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "decision-tree 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "loop-strip 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "hub-spoke 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "prompt-hook 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/ 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "home-situations 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/architect/ 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "architect-situations 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/__studio_review.html 1920-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "vignettes 1920-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "vignette label bounds 1920-dark",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "no JavaScript errors 1920-dark",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "atlas-stage 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "chapters 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "approval-trace 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "model-stage 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/method/ 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "agent-loop 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "topologies 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "estate-map 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/ 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn-map 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "decision-tree 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "loop-strip 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "hub-spoke 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "prompt-hook 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/ 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "home-situations 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/architect/ 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "architect-situations 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/__studio_review.html 390-light layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "vignettes 390-light exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "vignette label bounds 390-light",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "no JavaScript errors 390-light",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "atlas-stage 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "chapters 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "approval-trace 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "model-stage 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/method/ 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "agent-loop 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "topologies 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "estate-map 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/ 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "learn-map 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "decision-tree 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "loop-strip 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "hub-spoke 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "prompt-hook 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/ 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "home-situations 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/architect/ 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "architect-situations 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/__studio_review.html 390-dark layout",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "vignettes 390-dark exists",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "vignette label bounds 390-dark",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "no JavaScript errors 390-dark",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "keyboard dependency exposes potential blast radius",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "one selected dependency is visible",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "industry weighting retains risk outlines",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "topology arithmetic at twelve agents",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "component selection mcp",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "component selection rag",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "component selection memory",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "component selection llm",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "component selection skills",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "understanding has a non-colour mark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "understanding retains ks-learn",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "circuit stepping retained",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "seventh cluster is inspectable",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "search arrival has highlights",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/?step=10 360 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 360 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 360 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 360 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 360 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 360 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 360 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 360 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 360 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 360 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 390 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 390 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 390 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 390 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 390 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 390 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 390 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 390 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 390 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 390 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 430 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 430 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 430 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 430 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 430 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 430 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 430 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 430 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 430 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 430 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 768 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 768 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 768 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 768 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 768 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 768 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 768 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 768 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 768 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 768 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 1440 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 1440 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1440 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 1440 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 1440 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 1440 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 1440 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1440 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 1440 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 1440 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 1920 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 1920 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1920 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 1920 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 1920 light scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 1920 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 1920 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 1920 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 1920 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 1920 dark scale1",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 720 light scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 720 light",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 720 light scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 720 light scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 720 light scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/atlas/?step=10 720 dark scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "chapter rail compact 720 dark",
+    "ok": true,
+    "detail": ""
+  },
+  {
+    "check": "/learn/atlas/how-models-are-made/?step=8 720 dark scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/method/ 720 dark scale2",
+    "ok": true,
+    "detail": []
+  },
+  {
+    "check": "/learn/ 720 dark scale2",
+    "ok": true,
+    "detail": []
+  }
+]

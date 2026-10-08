@@ -320,7 +320,35 @@ body.has-pathbar{ padding-bottom:64px; }
 .bb-rung{ margin-top:8px; font-size:14.5px; color:var(--body); } .bb-rung b{ color:var(--ink); }
 
 
+
+/* Finished illustrations accompany the live diagrams. No inverted theme copies. */
+.studio-art{display:block;position:relative;width:100%;background:var(--card);}
+.studio-art img{display:block;width:100%;height:auto;max-width:100%;}
+.studio-art .art-dark{display:none;}
+:root[data-theme="dark"] .studio-art .art-light{display:none;}
+:root[data-theme="dark"] .studio-art .art-dark{display:block;}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .studio-art .art-light{display:none;} :root:not([data-theme="light"]) .studio-art .art-dark{display:block;}}
+.art-diagram{margin:12px 0;}
+.art-diagram summary{cursor:pointer;color:var(--blue);font-size:13px;padding:8px 0;}
+.art-caption{display:block;padding:10px 14px;font:12px/1.5 var(--sans);color:var(--body);border-top:1px solid var(--rule);}
+.art-study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;align-items:start;}
+.art-study{min-width:0;border:1px solid var(--rule2);background:var(--card);}
+.art-study a{display:block;}
+.atlas-art-intro{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:32px;align-items:center;margin:0 0 28px;padding:20px;border:1px solid var(--rule2);background:var(--card);}
+.atlas-art-intro h2{font:clamp(26px,3vw,42px)/1.12 var(--display);margin:10px 0 16px;}
+.atlas-art-intro p{max-width:60ch;}
+.atlas-art-intro .atlas-art-image{max-width:640px;}
+.art-reading-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;max-width:1100px;margin:auto;align-items:start;}
+.art-reading-grid figure{margin:0;}
+.art-reading-grid figcaption{padding:14px 0;font-size:14px;}
+.is-expanded .atlas-art-intro{display:none;}
+#atl-toolbar{scroll-margin-top:90px;}
+@media(max-width:767px){.art-study-grid,.atlas-art-intro,.art-reading-grid{grid-template-columns:minmax(0,1fr);}.atlas-art-intro{padding:12px;gap:18px;}.art-study-grid{gap:24px;}}
+@media print{.atlas-art-intro,.art-reading-grid{display:none;}}
+
 /* ---------- vignettes: the atlas's drawing vocabulary, themed by the site tokens ---------- */
+.ln-mount,.m-mount{fill:var(--sunk);stroke:var(--rule2);stroke-width:1;pointer-events:none;}
+.vig .studio-side{ stroke-width:.7; pointer-events:none; }
 .vig{ display:block; width:100%; height:auto; max-width:100%; }
 .vig .ln{ stroke:var(--ink); } .vig .thin{ stroke:var(--rule2); }
 .vig .card{ fill:var(--card); stroke:var(--ink); } .vig .sunk{ fill:var(--sunk); stroke:var(--ink); } .vig .top{ fill:var(--sunk); stroke:var(--ink); }
@@ -328,7 +356,7 @@ body.has-pathbar{ padding-bottom:64px; }
 .vig .gold{ stroke:var(--gold); } .vig .goldf{ fill:var(--gold-soft); stroke:var(--gold); }
 .vig .ink{ fill:var(--ink); } .vig .dash{ stroke:var(--mute); }
 .vig .t-h{ fill:var(--ink); } .vig .t-b{ fill:var(--body); } .vig .t-s,.vig .t-m{ fill:var(--mute); } .vig .t-c{ fill:var(--blue); }
-.vig .mk-ctrl{ fill:var(--blue); }
+.vig .mk-ctrl{ fill:var(--blue); } .vig .mk-data{ fill:var(--ink); } .vig .mk-dep{ stroke:var(--mute); }
 .three-art{ display:grid; grid-template-rows:auto auto 1fr; }
 .three-art .three-vig{ margin:-4px 0 14px; border:1px solid var(--rule); background:var(--paper); border-radius:3px; }
 .door-art{ margin:-6px 0 4px; border:1px solid var(--rule); background:var(--paper); border-radius:3px; }
@@ -340,6 +368,12 @@ body.has-pathbar{ padding-bottom:64px; }
   .hero .hero-art + .cta{ grid-row:4; }
   .path-hero .path-meta{ grid-row:3; } .path-hero .hero-art{ grid-row:4; } .path-hero .hero-art + .cta{ grid-row:5; }
 }
+/* Rich concept pictures occupy the same card/hero position as their diagram. */
+.concept-visual{min-width:0;}
+.concept-details{border-top:1px solid var(--rule2);background:var(--card);}
+.concept-details summary{padding:12px 16px;color:var(--blue);font:13px/1.4 var(--sans);cursor:pointer;}
+.concept-details .vig{margin:0;border:0;max-width:none;}
+.concept-details[open] summary{border-bottom:1px solid var(--rule);}
 /* the home scene band */
 .home-scene{ background:var(--card); }
 .scene-grid{ display:grid; grid-template-columns:minmax(0,7fr) minmax(0,5fr); gap:clamp(24px,4vw,64px); align-items:center; }
@@ -352,6 +386,80 @@ body.has-pathbar{ padding-bottom:64px; }
 .scene-copy .intro{ margin-top:14px; font-size:clamp(15.5px,1.15vw,17px); line-height:1.6; color:var(--body); max-width:var(--measure); }
 .scene-copy .cta{ margin-top:22px; }
 @media (max-width:980px){ .scene-grid{ grid-template-columns:1fr; } }
+
+/* Illustrated library and drawings at the point of use. */
+.hero-drawing{ display:block; margin-top:24px; border:1px solid var(--rule2); background:var(--card); color:var(--body); max-width:640px; }
+.hero-drawing > span:not(.studio-art){ display:block; padding:14px 20px; border-top:1px solid var(--rule); font-size:14px; }
+.hero-drawing b{ display:block; color:var(--blue); font-weight:500; margin-top:5px; }
+.drawing-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:24px; }
+.drawing-card{ min-width:0; border:1px solid var(--rule2); background:var(--card); }
+.drawing-image{ display:block; background:var(--paper); border-bottom:1px solid var(--rule); }
+.drawing-copy{ padding:clamp(18px,2vw,28px); }
+.drawing-copy h3{ font:400 clamp(25px,2.2vw,34px)/1.15 var(--serif); }
+.drawing-copy p{ margin:12px 0 18px; font-size:15px; max-width:var(--measure); }
+.drawing-copy > a{ font-weight:500; font-size:14px; }
+.studio-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+.studio-grid .scene-art{ display:block; border:0; border-bottom:1px solid var(--rule); border-radius:0; }
+.drawing-links{ display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:0 32px; }
+.drawing-links a{ padding:20px 0; border-top:1px solid var(--rule2); font-weight:500; }
+.drawing-links span{ display:block; margin-top:6px; color:var(--body); font-size:14px; font-weight:300; }
+.drawing-legend{ margin-top:36px; padding:20px; border-left:2px solid var(--blue); background:var(--blue-soft); max-width:var(--measure); }
+.illustrated-head{ grid-template-columns:minmax(240px,3fr) minmax(0,7fr); column-gap:clamp(24px,4vw,64px); row-gap:16px; }
+.illustrated-head > .sec-label{ grid-column:1; grid-row:1; }
+.section-picture{ grid-column:1; grid-row:2; margin:0; border:1px solid var(--rule2); background:var(--card); }
+.section-picture figcaption{ padding:12px 16px; border-top:1px solid var(--rule); font-size:13px; line-height:1.5; }
+.illustrated-head > div{ grid-column:2; grid-row:1 / span 2; display:block; }
+.illustrated-head > div .intro{ margin-top:20px; }
+@media (min-width:1100px){
+  .visual-hero h1{ grid-row:2; }
+  .visual-hero .hero-drawing{ grid-column:1; grid-row:3 / span 3; max-width:none; }
+}
+@media (max-width:767px){
+  .studio-grid,.illustrated-head{ grid-template-columns:minmax(0,1fr); }
+  .illustrated-head > .sec-label,.illustrated-head > div,.section-picture{ grid-column:1; grid-row:auto; }
+}
+
+/* Studio drawing finish: structural ink, quiet engraving, label-safe paper. */
+.vig .studio-etch{ stroke:var(--rule2); fill:none; }
+.vig .ln{ stroke-width:1.6; }
+.ln-region{ stroke:var(--rule2); stroke-width:1.2; stroke-dasharray:6 5; }
+.ln-understood{ display:none; stroke:var(--card); stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.ln-node.lit .ln-understood{ display:block; }
+#ln-svg .ln-node .ln-halo{ fill:var(--sunk); stroke:var(--rule2); stroke-width:1; }
+.ln-box rect,.ln-box path{ stroke-linejoin:round; }
+.ln-fig .ln-box.ln-done rect{ stroke:var(--ink); }
+.ln-lab{ paint-order:stroke; stroke:var(--paper); stroke-width:5px; stroke-linejoin:round; }
+.ln-fig .ln-arrow.ln-control{ stroke:var(--blue); stroke-dasharray:7 5; }
+.ln-fig .ln-arrow.ln-data{ stroke:var(--ink); stroke-dasharray:none; }
+.ln-data-head{ fill:var(--ink); }
+.ln-control-head{ fill:var(--blue); }
+.m-domain,.m-owner{ font-family:var(--mono); font-size:12px; fill:var(--mute); }
+.m-domain{ fill:var(--ink); letter-spacing:1px; }
+.m-owner{ font-size:11px; }
+.m-lab{ paint-order:stroke; stroke:var(--paper); stroke-width:5px; stroke-linejoin:round; }
+.mapstage .m-zone .m-disc{ fill:var(--blue-soft); stroke:var(--ink); stroke-width:1.6; }
+.mapstage .m-zone .m-ic{ fill:var(--blue); }
+.mapstage .m-zone.sel .m-disc{ fill:var(--blue); stroke:var(--ink); }
+.mapstage .m-zone.sel .m-ic{ fill:var(--paper); }
+.mapstage .m-node.dim{ opacity:.5; }
+.m-line.selected{ stroke:var(--blue); stroke-width:3; opacity:1; stroke-dasharray:2 4; }
+.panel button.chip{ text-align:left; font:inherit; cursor:pointer; }
+.panel button.chip:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+.ag-node-label{ font-family:var(--mono); font-size:8px; fill:var(--ink); }
+.ag-instrument{ fill:none; stroke:var(--ink); stroke-width:1.2; stroke-linejoin:round; }
+.ag-stn.on .ag-instrument{ stroke:var(--paper); }
+.ag-etch{ fill:none; stroke:var(--rule2); stroke-width:.8; }
+#ag-svg .ag-core rect{ fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+#ag-svg .ag-core.on rect{ fill:var(--blue-soft); stroke:var(--blue); }
+#ag-svg .ag-pin{ fill:var(--ink); stroke:none; }
+#ag-svg .ag-stn rect{ fill:var(--card); stroke:var(--ink); stroke-width:1.6; }
+#ag-svg .ag-stn.on rect{ fill:var(--blue); stroke:var(--blue); }
+#ag-svg.sus .ag-stn rect{ stroke:var(--blue); }
+#ag-svg .ag-arc{ stroke:var(--blue); stroke-width:1.8; stroke-dasharray:7 4; }
+#ag-svg .ag-ah{ fill:var(--blue); }
+#ag-svg .ag-ring{ stroke:var(--rule2); stroke-dasharray:6 5; }
+.ag-halo{ stroke-dasharray:6 5; }
+.ag-ln-h{ stroke-dasharray:6 4; }
 
 /* ---------- site header ---------- */
 html{ scroll-padding-top:72px; }

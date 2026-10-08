@@ -1,0 +1,1220 @@
+{
+  "assets": [
+    {
+      "scene": "atlas-workshop",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/atlas-workshop/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/atlas-workshop/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/atlas-workshop/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/atlas-workshop/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/atlas-workshop/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/atlas-workshop/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/atlas-workshop/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "atlas-workshop",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/atlas-workshop/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "concepts": [
+        "requester",
+        "owner",
+        "agent",
+        "context",
+        "authorization",
+        "approver"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/shams-autonomy/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/shams-autonomy/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/shams-autonomy/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/shams-autonomy/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/shams-autonomy/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/shams-autonomy/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/shams-autonomy/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "shams-autonomy",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/shams-autonomy/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "concepts": [
+        "owner",
+        "authorization",
+        "guardrails"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "production-review",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/production-review/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "production-review",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/production-review/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "production-review",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/production-review/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "production-review",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/production-review/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "production-review",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/production-review/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "production-review",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/production-review/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "production-review",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/production-review/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "production-review",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/production-review/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization",
+        "verification"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/enterprise-clarity/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/enterprise-clarity/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/enterprise-clarity/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/enterprise-clarity/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/enterprise-clarity/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/enterprise-clarity/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/enterprise-clarity/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "enterprise-clarity",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/enterprise-clarity/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "concepts": [
+        "owner",
+        "service",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/architectural-judgment/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/architectural-judgment/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/architectural-judgment/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/architectural-judgment/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/architectural-judgment/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/architectural-judgment/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/architectural-judgment/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "architectural-judgment",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/architectural-judgment/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "concepts": [
+        "owner",
+        "verification",
+        "budget"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/approval-mobile/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 2133
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/approval-mobile/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/approval-mobile/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 960
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/approval-mobile/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 427
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/approval-mobile/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 2133
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/approval-mobile/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 1280
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/approval-mobile/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 960
+    },
+    {
+      "scene": "approval-mobile",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/approval-mobile/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.",
+      "concepts": [
+        "agent",
+        "approver",
+        "authorization"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 427
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/thread-2077/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 2400
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/thread-2077/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 1440
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/thread-2077/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 1080
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/thread-2077/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 480
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/thread-2077/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 2400
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/thread-2077/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 1440
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/thread-2077/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 1080
+    },
+    {
+      "scene": "thread-2077",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/thread-2077/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.",
+      "concepts": [
+        "requester",
+        "retrieval",
+        "agent",
+        "authorization",
+        "observability"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 480
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "desktop",
+      "theme": "light",
+      "file": "/art/workbench-objects/desktop-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "compact",
+      "theme": "light",
+      "file": "/art/workbench-objects/compact-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "mobile",
+      "theme": "light",
+      "file": "/art/workbench-objects/mobile-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "thumb",
+      "theme": "light",
+      "file": "/art/workbench-objects/thumb-light.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "ivory paper",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "desktop",
+      "theme": "dark",
+      "file": "/art/workbench-objects/desktop-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 1600,
+      "height": 1067
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "compact",
+      "theme": "dark",
+      "file": "/art/workbench-objects/compact-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 960,
+      "height": 640
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "mobile",
+      "theme": "dark",
+      "file": "/art/workbench-objects/mobile-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 720,
+      "height": 480
+    },
+    {
+      "scene": "workbench-objects",
+      "variant": "thumb",
+      "theme": "dark",
+      "file": "/art/workbench-objects/thumb-dark.webp",
+      "purpose": "Text-free illustration beside live HTML and SVG explanations",
+      "crop": "full composition; no content removed",
+      "background": "charcoal studio",
+      "alt": "A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.",
+      "concepts": [
+        "context",
+        "retrieval",
+        "model",
+        "authorization",
+        "service"
+      ],
+      "text_in_image": false,
+      "width": 320,
+      "height": 213
+    }
+  ]
+}

@@ -5,6 +5,7 @@ renders correctly on its own, e.g. when exported. Site CSS overrides them with t
 Each object has a Picture layer (.pic) and an Architecture layer (.arch) at the same position.
 """
 from html import escape
+import re
 
 W, H = 1280, 800
 
@@ -61,11 +62,33 @@ def circ(x, y, r, cls="ln", **kw): return E("circle", cls, cx=x, cy=y, r=r, **kw
 
 
 # ---------------------------------------------------------------- figures
-def person(x, y, s=1.0, label=None, sub=None):
-    """A real human: solid silhouette."""
-    o = [circ(x, y - 66 * s, 11 * s, "ink"),
-         path(f"M{x-17*s} {y} V{y-34*s} C{x-17*s} {y-48*s} {x-9*s} {y-52*s} {x} {y-52*s} "
-              f"C{x+9*s} {y-52*s} {x+17*s} {y-48*s} {x+17*s} {y-34*s} V{y} Z", "ink")]
+def etch(x, y, w, h=6, step=5):
+    """Sparse engraving in a reserved margin, never a texture over the labels."""
+    return path(" ".join(f"M{i} {y+h} l{h} {-h}" for i in range(int(x), int(x+w-h), step)),
+                "thin studio-etch", stroke_width="0.7", aria_hidden="true")
+
+
+def person(x, y, s=1.0, label=None, sub=None, pose="review"):
+    """A real human: solid coat, profile and hands. Poses share one figure grammar."""
+    drawing = [
+        path("M-18 0 L-16 -33 Q-15 -47 -5 -50 L6 -50 Q18 -45 19 -31 L22 0 Z", "ink"),
+        path("M-5 -51 V-58 H5 V-49 L0 -44 Z", "card"),
+        path("M-10 -68 Q-11 -81 0 -80 Q12 -80 11 -66 L14 -62 L9 -60 Q7 -51 -1 -54 Q-10 -56 -10 -68 Z", "card"),
+        path("M-11 -66 Q-15 -79 -3 -83 Q9 -85 13 -73 L6 -73 L1 -77 L-4 -69 L-4 -62 L-10 -63 Z", "ink"),
+        path("M3 -69 L8 -70 M5 -58 L9 -59", "ln", stroke_width="1"),
+        circ(7, -66, 1, "ink"),
+        path("M-10 -43 L-3 -31 L1 -43 M-8 -25 L-5 -5", "thin", stroke_width="0.8"),
+    ]
+    if pose == "hold":
+        drawing += [path("M-15 -34 Q-19 -15 0 -17 L20 -23", "ln", stroke_width="7"),
+                    path("M14 -24 L24 -27 L27 -22 L17 -19 Z", "card")]
+    elif pose == "pause":
+        drawing += [path("M13 -36 L27 -27 L31 -47", "ln", stroke_width="7"),
+                    path("M28 -45 L27 -58 Q29 -61 31 -57 L33 -61 L36 -60 L36 -46 Z", "card")]
+    else:
+        drawing += [path("M12 -37 L23 -25 L31 -32", "ln", stroke_width="7"),
+                    path("M28 -35 L37 -38 L40 -33 L31 -29 Z", "card")]
+    o = [f'<g transform="translate({x} {y}) scale({s})">' + "".join(drawing) + '</g>']
     if label: o.append(T(x, y + 22, label, "t-h", "middle"))
     if sub: o.append(T(x, y + 40, sub, "t-s", "middle"))
     return "".join(o)
@@ -77,12 +100,40 @@ def operator(x, y, s=1.0):
         circ(x, y - 40 * s, 14 * s, "card"),
         path(f"M{x-24*s} {y} C{x-24*s} {y-16*s} {x-14*s} {y-22*s} {x} {y-22*s} C{x+14*s} {y-22*s} {x+24*s} {y-16*s} {x+24*s} {y}", "card"),
         E("polygon", "accf", points=f"{x-6*s},{y-12*s} {x},{y-16*s} {x+6*s},{y-12*s} {x+6*s},{y-5*s} {x},{y-1*s} {x-6*s},{y-5*s}"),
+        path(f"M{x-7*s} {y-42*s} h{14*s} M{x-7*s} {y-36*s} h{8*s}", "thin"),
+        path(f"M{x-20*s} {y-3*s} l{6*s} {-7*s} M{x+20*s} {y-3*s} l{-6*s} {-7*s}", "ln"),
     ])
+
+
+
+def relief(svg):
+    """Give picture-layer instruments real side faces; leave labels and hooks intact.
+
+    Only solid rectangular objects receive depth. Dashed boundaries, empty slots,
+    state marks and Architecture-layer boxes must retain their original meaning.
+    """
+    def raised(match):
+        tag = match.group(0)
+        attrs = dict(re.findall(r'([\w-]+)="([^"]*)"', tag))
+        classes = attrs.get('class', '').split()
+        if not set(classes) & {'card', 'sunk', 'top', 'accf'} or any(k.startswith('data-') for k in attrs):
+            return tag
+        try:
+            x, y, w, h = (float(attrs[k]) for k in ('x', 'y', 'width', 'height'))
+        except (KeyError, ValueError):
+            return tag
+        if w < 18 or h < 16 or 'slot-doc' in classes:
+            return tag
+        d = min(4, w * .08, h * .09)
+        side = path(f'M{x+w} {y+d} L{x+w+d} {y} V{y+h+d} L{x+w} {y+h} Z', 'sunk studio-side')
+        foot = path(f'M{x} {y+h} L{x+d} {y+h+d} H{x+w+d} L{x+w} {y+h} Z', 'top studio-side')
+        return '<g class="studio-object">' + side + foot + tag + '</g>'
+    return re.sub(r'<rect\b[^>]*/>', raised, svg)
 
 
 def obj(oid, concept, pic, arch, lens, label=None):
     return (f'<g class="obj" id="o-{oid}" data-o="{oid}" data-c="{concept}" data-lens="{" ".join(lens)}">'
-            f'<g class="pic">{pic}</g><g class="arch">{arch}</g></g>')
+            f'<g class="pic">{relief(pic)}</g><g class="arch">{arch}</g></g>')
 
 
 def abox(x, y, w, h, title, sub="", ports=()):
@@ -127,8 +178,11 @@ def scene():
                  rect(40, 82, 116, 50, "card", rx=3) + T(50, 102, "Owns the goal", "t-s") + T(50, 120, "and the policy", "t-s"),
                  abox(22, 82, 160, 190, "Owner", "policy + success\ncriteria (signed)"), ["scope", "sustain"]))
     o.append(obj("requester", "requester",
-                 person(98, 600, 1.0, "Requester", "Customer, order A-1042") +
-                 rect(28, 392, 150, 92, "card", rx=3) + T(38, 414, "TASK BRIEF", "t-m") + T(38, 436, "Lamp arrived cracked.", "t-b") +
+                 person(80, 600, 1.0, pose="hold") +
+                 path("M106 542 L130 542 L141 566 H96 Z", "card") +
+                 path("M118 542 L113 552 L124 556 L117 565 M118 567 V583 M106 586 H131", "ln") +
+                 T(98, 622, "Requester", "t-h", "middle") + T(98, 640, "Customer, order A-1042", "t-s", "middle") +
+                 rect(28, 392, 150, 92, "card", rx=3) + T(38, 414, "TASK BRIEF", "t-m") + T(38, 436, "Lamp arrived cracked.", "t-b", font_size="12.5") +
                  T(38, 455, "Order A-1042.", "t-b") + T(38, 474, "Photos sent Tuesday.", "t-s"),
                  abox(22, 392, 160, 230, "Client app", "authenticated\ncustomer session\nPOST /support"), ["scope"]))
     # ---------------- left column inside runtime: skills, memory, retrieval
@@ -136,20 +190,22 @@ def scene():
               rect(292, 104, 22, 80, "card", rx=2) + path("M251 112 V176 M277 112 V176 M303 112 V176", "thin") +
               f'<g transform="rotate(-8 340 150)">{rect(318, 100, 46, 66, "card", rx=2)}{path("M324 114 H356 M324 124 H352 M324 134 H354", "acc")}</g>' +
               T(228, 82, "PROCEDURE BINDER", "t-m") + T(228, 214, "Damaged item v3", "t-s"))
+    binder += etch(234, 188, 126)
     o.append(obj("skills", "skills", binder, abox(222, 70, 152, 150, "Skill package", "SKILL.md + scripts\nloaded on match"), ["measure", "sustain"]))
     cab = (rect(236, 262, 124, 110, "sunk", rx=3) + path("M236 298 H360 M236 334 H360", "ln") +
            rect(282, 276, 32, 8, "card", rx=2) + rect(282, 312, 32, 8, "card", rx=2) + rect(282, 348, 32, 8, "card", rx=2) +
            path("M246 252 L298 244 L350 252 V262 H246 Z", "card") + path("M298 244 V262", "thin") +
            T(228, 238, "NOTES CABINET", "t-m") + T(228, 390, "29 Sep · photos ×2", "t-s"))
+    cab += etch(242, 362, 110)
     o.append(obj("memory", "memory", cab, abox(222, 226, 152, 172, "Memory store", "per-customer notes\nscoped reads\nfreshness check"), ["anchor", "harden"]))
     shelf = [rect(232, 426, 132, 170, "sunk", rx=3), path("M232 482 H364 M232 538 H364", "ln")]
     xs = [(240, 12, 44), (255, 10, 48), (268, 14, 42), (285, 11, 46), (299, 12, 44), (314, 10, 40), (327, 13, 47), (343, 12, 44)]
     for row, y0 in enumerate([430, 486, 542]):
         for j, (x, w, h) in enumerate(xs):
             cls = "accf" if (row == 1 and j == 4) else "card"
-            shelf.append(rect(x, y0 + 50 - h, w, h, cls, rx=1))
+            shelf.append(rect(x, y0 + 50 - h, w, h, cls, rx=1) + path(f"M{x+3} {y0+54-h} v{h-10}", "thin"))
     shelf.append(T(228, 416, "POLICY LIBRARY", "t-m"))
-    shelf.append(T(228, 614, "owned · versioned · filtered", "t-s"))
+    shelf.append(T(228, 614, "owned · versioned · filtered", "t-s", font_size="10.5"))
     o.append(obj("retrieval", "retrieval", "".join(shelf), abox(222, 402, 152, 220, "Retrieval service", "policy index\npermission filter\nprovenance on hits"), ["anchor"]))
     # ---------------- goal card + dispatch board
     goal = (rect(400, 80, 160, 112, "card", rx=3) + circ(480, 80, 5, "ink") + T(412, 104, "GOAL", "t-m") +
@@ -165,13 +221,13 @@ def scene():
     eng = (rect(722, 72, 176, 140, "sunk", rx=8) + rect(736, 88, 66, 50, "card", rx=4) +
            path("M745 130 A24 24 0 0 1 793 130", "ln") + path("M769 130 L784 108", "acc") + circ(769, 130, 3, "ink") +
            rect(816, 92, 66, 16, "card", rx=3) + rect(816, 116, 66, 16, "card", rx=3) +
-           T(736, 160, "MODEL", "t-m") + T(736, 180, "replaceable · version pinned", "t-s") +
+           T(736, 160, "MODEL", "t-m") + T(736, 180, "replaceable · pinned", "t-s", font_size="12") +
            path("M898 168 H912", "ln"))
     eng += (f'<g class="tokens" data-sc="token">' + "".join(rect(736 + i * 21, 196, 17, 12, "accf", rx=2, **{"data-tk": str(i)}) for i in range(7)) + '</g>')
     eng += f'<text class="t-c proposal" x="736" y="232" fill="#1F45C8" font-family="IBM Plex Mono, ui-monospace, monospace" font-size="13"></text>'
     o.append(obj("model", "model", eng, abox(722, 72, 176, 166, "LLM API", "messages in\ncontent + stop_reason out\nmodel id pinned", [(722, 150), (898, 150)]), ["measure", "sustain"]))
     # ---------------- operator behind the context tray
-    op = operator(640, 300, 1.7) + T(640, 206, "AGENT LOOP", "t-m", "middle") + T(640, 222, "software metaphor", "t-s", "middle", font_size="10")
+    op = operator(640, 300, 1.7) + T(640, 180, "AGENT LOOP", "t-m", "middle") + T(640, 196, "software metaphor", "t-s", "middle", font_size="10")
     o.append(obj("agent", "agent", op, abox(578, 208, 124, 62, "Agent loop", "orchestrator code"), ["scope", "harden", "measure", "sustain"]))
     # ---------------- context tray with slots
     tray = [path("M396 286 L834 286 L842 432 L388 432 Z", "top"), T(412, 304, "CONTEXT · THIS CALL ONLY", "t-m")]
@@ -180,7 +236,7 @@ def scene():
         sc = {"instructions": "sysprompt", "request": "prompt", "reply": "hallucination"}.get(k)
         tray.append(f'<g class="slot" data-slot="{k}"' + (f' data-sc="{sc}"' if sc else '') + '>' + rect(x, y, 96, 50, "dash", rx=4) +
                     rect(x + 40, y + 6, 16, 20, "card slot-doc", rx=2) + T(x + 48, y + 42, lab, "t-s", "middle") + '</g>')
-    tray.append(path("M380 432 H850 V446 H380 Z", "sunk"))
+    tray.append(path("M380 432 H850 V446 H380 Z", "sunk") + etch(386, 436, 456, 6, 8))
     o.append(obj("context", "context", "".join(tray), abox(388, 286, 454, 146, "Context assembly", "prompt builder: instructions, request,\nloaded skill, notes, passages, results"), ["anchor"]))
     # ---------------- tool dock + MCP ports
     dock = (rect(852, 286, 62, 146, "sunk", rx=4) + T(852, 446, "TOOLS", "t-m") +
@@ -212,7 +268,7 @@ def scene():
                    path("M1099 113 H1118 M1099 118 H1116 M1099 123 H1112", "thin", transform="rotate(-6 1109 117)") + '</g>')
         o.append(obj(sid, "service", st, abox(976, sy, 290, 104, f"MCP server · {title.lower()}", "tools/list, tools/call\nown authorization", [(976, sy + 52)]), ["harden", "sustain"]))
     # ---------------- approver
-    appr = (person(1020, 636, 0.95) + rect(1066, 530, 196, 84, "card", rx=3) + T(1076, 550, "PROPOSED OPERATION", "t-m") +
+    appr = (person(1020, 636, 0.95, pose="pause") + rect(1066, 530, 196, 84, "card", rx=3) + T(1076, 550, "PROPOSED OPERATION", "t-m") +
             T(1076, 572, "issue_refund 84.00", "t-c") + f'<g class="stamp">{rect(1076, 582, 104, 24, "dash", rx=3)}<text class="stamp-t" x="1128" y="599" text-anchor="middle" fill="#1F45C8" font-family="IBM Plex Sans, sans-serif" font-size="13" font-weight="600">awaiting</text></g>' +
             T(1020, 660, "Human approval", "t-h", "middle") + T(1020, 678, "Duty supervisor", "t-s", "middle"))
     o.append(obj("approver", "approver", appr, abox(976, 530, 290, 150, "Approval workflow", "human task queue\ndecision recorded"), ["harden", "scope"]))

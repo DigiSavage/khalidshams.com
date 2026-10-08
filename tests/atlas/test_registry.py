@@ -128,5 +128,22 @@ class Built(unittest.TestCase):
             self.assertIsNone(re.search("—|–| -- ", self.page(p)), p)
 
 
+class DrawingSurface(unittest.TestCase):
+    def test_relief_preserves_stateful_rectangles_and_empty_boundaries(self):
+        shapes = [atlas_scene.rect(10, 20, 80, 40, 'dash'),
+                  atlas_scene.rect(10, 20, 80, 40, 'card', **{'data-slot': 'request'}),
+                  atlas_scene.rect(10, 20, 80, 40, 'card slot-doc')]
+        for shape in shapes:
+            self.assertEqual(atlas_scene.relief(shape), shape)
+
+    def test_relief_keeps_original_front_and_click_identity(self):
+        front = atlas_scene.rect(10, 20, 80, 40, 'card', id='instrument')
+        raised = atlas_scene.relief(front)
+        self.assertIn(front, raised)
+        self.assertEqual(raised.count('id="instrument"'), 1)
+        self.assertIn('studio-side', raised)
+        self.assertEqual(raised.count('<rect'), 1)
+
+
 if __name__ == "__main__":
     unittest.main()

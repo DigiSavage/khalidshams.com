@@ -1,0 +1,176 @@
+{
+  "source": "Enhance Visuals Dramatically, recovered from the original 22-image conversation series on 2026-10-04",
+  "processing": "Full composition resized and exported as WebP. Light and dark are separately authored originals. Desktop exports are 1600 pixels wide as specified in the brief; this upscales the original masters. No redrawing, inversion or text added.",
+  "selected": [
+    {
+      "scene": "atlas-workshop",
+      "theme": "light",
+      "original_series_image": 4,
+      "source_sha256": "87c805ddf6e4c20485b9cded80b2e1214656f3945f8685ced252f11fc9123799",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "atlas-workshop",
+      "theme": "dark",
+      "original_series_image": 22,
+      "source_sha256": "637092a3f59ba49a28debbd0f38f0b0f62aaa5a7706aeeb170fe5e2dc7fe9daf",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "shams-autonomy",
+      "theme": "light",
+      "original_series_image": 20,
+      "source_sha256": "9dd0e71496e0322f93a6de6c0a6f71a24ba69188066268a60eb26c011868b266",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "shams-autonomy",
+      "theme": "dark",
+      "original_series_image": 21,
+      "source_sha256": "09b228676230ac9756609c120db3ecceb438ffc99e5a32d5605d149169b8bc6b",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "production-review",
+      "theme": "light",
+      "original_series_image": 8,
+      "source_sha256": "1de998571000c52b518e2f3ad6ef25ec3da249ab4ba2e353f7bbc46d5693196b",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "production-review",
+      "theme": "dark",
+      "original_series_image": 11,
+      "source_sha256": "8625658b785065fd13b0670584d38d1666fd97f50777cce06c82cf56e5211af5",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "enterprise-clarity",
+      "theme": "light",
+      "original_series_image": 9,
+      "source_sha256": "891ca98ebca40a532a26091e6d169c12fc529d9491ab7851124c7c881b49e404",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "enterprise-clarity",
+      "theme": "dark",
+      "original_series_image": 10,
+      "source_sha256": "2ef63ace1578a90690b7884a0a4df7c4399066ccd45ddea5fa35717d073387f8",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "architectural-judgment",
+      "theme": "light",
+      "original_series_image": 13,
+      "source_sha256": "a95536351b284a3be41df0b488bc148e3ee84c3ff23bcb5779465191a3a17bc1",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "architectural-judgment",
+      "theme": "dark",
+      "original_series_image": 12,
+      "source_sha256": "0ded0853781a6ebec0573f0c6a9c5a91ffa7b633592e03ac86de2fa3fd27ba65",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "approval-mobile",
+      "theme": "light",
+      "original_series_image": 14,
+      "source_sha256": "8fd8d5a1f5952b095c773e0c74ba31f839a81ec1045c6ef167f7f6f9d7437ba2",
+      "original_size": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "scene": "approval-mobile",
+      "theme": "dark",
+      "original_series_image": 15,
+      "source_sha256": "7a2666257e72e16d1691e7d19f2ef0bb82eb69fd328b200cd53ddf76848c91e9",
+      "original_size": [
+        1086,
+        1448
+      ]
+    },
+    {
+      "scene": "thread-2077",
+      "theme": "light",
+      "original_series_image": 16,
+      "source_sha256": "3a345f7b2808adae4592fc9bc704d9970244169a81156beee9d2489dd73b6c9e",
+      "original_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "scene": "thread-2077",
+      "theme": "dark",
+      "original_series_image": 17,
+      "source_sha256": "5b5426ab86bc16b830856f885b091fae9ad5d76fea18df58ab2cb66e01d70696",
+      "original_size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "scene": "workbench-objects",
+      "theme": "light",
+      "original_series_image": 18,
+      "source_sha256": "2e32542218ca9c0a5c5bc6c7d73e3dd48db4f2e4e2ead41da4e9b66b99b0afa9",
+      "original_size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "scene": "workbench-objects",
+      "theme": "dark",
+      "original_series_image": 19,
+      "source_sha256": "3f6e80ce5111999cd49c1e0e1eedc1fc5b416937973e0232929bb13ba32221e4",
+      "original_size": [
+        1536,
+        1024
+      ]
+    }
+  ],
+  "reference_only_series_images": [
+    1,
+    2,
+    3
+  ],
+  "superseded_series_images": [
+    5,
+    6,
+    7
+  ]
+}

@@ -1,0 +1,594 @@
+[
+  {
+    "check": "ai retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "ai uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "data retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "data uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "algorithm retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "algorithm uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "model retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "model uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "bias retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "bias uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "ml retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "ml uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "training retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "training uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "supervised retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "supervised uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "parameters retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "parameters uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "neuron retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "neuron uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "nn retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "nn uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "backprop retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "backprop uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "deep retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "deep uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "finetune retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "finetune uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "token retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "token uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "embed retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "embed uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "attention retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "attention uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "transformer retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "transformer uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "alignment retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "alignment uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "llm retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "llm uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "prompt retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "prompt uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "context retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "context uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "hallucination retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "hallucination uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "rag retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "rag uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "sysprompt retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "sysprompt uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "agent retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "agent uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "multi retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "multi uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "tools retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "tools uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "mcp retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "mcp uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "memory retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "memory uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "evals retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "evals uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "guardrails retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "guardrails uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "identity retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "identity uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "injection retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "injection uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "traces retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "traces uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "cost retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "cost uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "hitl retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "hitl uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "kill retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "kill uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "when retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "when uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "ladder retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "ladder uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "gates retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "gates uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "shams retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "shams uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "dataplat retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "dataplat uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "foundations retains its diagram and progress control",
+    "ok": true
+  },
+  {
+    "check": "foundations uses the registered concept illustration when ready",
+    "ok": true
+  },
+  {
+    "check": "home-doors 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "home-doors 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "Home door destinations 390 light",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "architect 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-path 390 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-path 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "studios 390 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "home-doors 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "home-doors 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "Home door destinations 1920 light",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-path 1920 light diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-path 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "studios 1920 light layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "home-doors 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "home-doors 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "Home door destinations 390 dark",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "architect 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-path 390 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-path 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "studios 390 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "home-doors 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "home-doors 1920 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "Home door destinations 1920 dark",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "learn-doors 1920 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "architect 1920 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-idea 1920 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "agent-path 1920 dark diagram opens by keyboard",
+    "ok": true
+  },
+  {
+    "check": "agent-path 1920 dark layout and scripts",
+    "ok": true
+  },
+  {
+    "check": "studios 1920 dark layout and scripts",
+    "ok": true
+  }
+]

@@ -1,8 +1,9 @@
 {{MASTHEAD}}
 <div class="wrap">
-  <div class="hero learn-hero">
+  <div class="hero visual-hero learn-hero">
     <p class="eyebrow">Learn AI · guided paths, a living map and two illustrated lessons</p>
     <h1>Learn AI the way <em>it</em> learns.</h1>
+    <a class="hero-drawing" href="/illustrated/">{{ART:workbench-objects:eager}}<span>Build a picture of the ideas before learning the vocabulary. <b>Explore the illustrated library →</b></span></a>
     <p class="lede">AI is a web of ideas, not a glossary. This page lays out the {{NIDEAS}} ideas that matter as neurons on a map, from what a model is to when an agent is the right call: touch one and it fires into the ideas it depends on. Every idea is written three ways, so a curious parent and a new product manager can read the same map and stop at different depths. Below the map: where each idea sits in the stack, what separates a chatbot from an agent, how an agent actually thinks, and the questions people ask me most.</p>
     <div class="cta">
       <a class="btn solid" href="#start">Start here</a>
@@ -174,24 +175,25 @@
   </div>
   <figure class="ln-fig">
     <svg viewBox="0 0 1000 600" role="img" aria-labelledby="dec-title">
+      <defs><marker id="ln-data-dot" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5"><circle cx="5" cy="5" r="3" fill="#0E1012" class="ln-data-head" stroke="#0E1012" stroke-width="1.4"/></marker><marker id="ln-control-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1F45C8" class="ln-control-head" stroke="#0E1012" stroke-width="1.4"/></marker></defs>
       <title id="dec-title">Decision tree: is the task one step, do the steps repeat, does a person act on the answer, can you afford the controls; leading to model, workflow, assistant, agent, or assistant for now</title>
-      <g class="ln-box ln-dia"><path d="M190 30 L370 85 L190 140 L10 85 Z"/><text x="190" y="79" class="ln-h" text-anchor="middle">Is it one step?</text><text x="190" y="101" class="ln-s" text-anchor="middle">Text in, text out, nothing else.</text></g>
-      <path d="M370 85 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="77" class="ln-lab" text-anchor="middle">yes</text>
-      <g class="ln-box ln-done"><rect x="470" y="40" width="240" height="90" rx="4"/><text x="490" y="70" class="ln-h">Use a model</text><text x="490" y="94" class="ln-s">One call to the API.</text><text x="490" y="112" class="ln-s">Keep it simple.</text></g>
-      <path d="M190 140 V170" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="162" class="ln-lab">no</text>
-      <g class="ln-box ln-dia"><path d="M190 170 L370 225 L190 280 L10 225 Z"/><text x="190" y="219" class="ln-h" text-anchor="middle">Do the steps repeat?</text><text x="190" y="241" class="ln-s" text-anchor="middle">Same path every time, known in advance.</text></g>
-      <path d="M370 225 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="217" class="ln-lab" text-anchor="middle">yes</text>
-      <g class="ln-box ln-done"><rect x="470" y="180" width="240" height="90" rx="4"/><text x="490" y="210" class="ln-h">Build a workflow</text><text x="490" y="234" class="ln-s">A person draws the path.</text><text x="490" y="252" class="ln-s">AI does some of the steps.</text></g>
-      <path d="M190 280 V310" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="302" class="ln-lab">no</text>
-      <g class="ln-box ln-dia"><path d="M190 310 L370 365 L190 420 L10 365 Z"/><text x="190" y="359" class="ln-h" text-anchor="middle">Does a person act on it?</text><text x="190" y="381" class="ln-s" text-anchor="middle">The value is the answer, not the action.</text></g>
-      <path d="M370 365 H470" class="ln-arrow" marker-end="url(#ah)"/><text x="420" y="357" class="ln-lab" text-anchor="middle">yes</text>
-      <g class="ln-box ln-done"><rect x="470" y="320" width="240" height="90" rx="4"/><text x="490" y="350" class="ln-h">Build an assistant</text><text x="490" y="374" class="ln-s">Grounded in your documents.</text><text x="490" y="392" class="ln-s">Autonomy ladder level 1.</text></g>
-      <path d="M190 420 V450" class="ln-arrow" marker-end="url(#ah)"/><text x="202" y="442" class="ln-lab">no</text>
-      <g class="ln-box ln-dia"><path d="M190 450 L370 505 L190 560 L10 505 Z"/><text x="190" y="499" class="ln-h" text-anchor="middle">Can you afford the controls?</text><text x="190" y="521" class="ln-s" text-anchor="middle">Typed actions, evaluation, traces,</text><text x="190" y="539" class="ln-s" text-anchor="middle">a cost ceiling, an off switch.</text></g>
-      <path d="M370 505 H470" class="ln-arrow ln-tool" marker-end="url(#ah)"/><text x="420" y="497" class="ln-lab ln-labtool" text-anchor="middle">yes</text>
-      <g class="ln-box ln-hub"><rect x="470" y="460" width="240" height="90" rx="4"/><text x="490" y="490" class="ln-h">Build an agent</text><text x="490" y="514" class="ln-s">Start at level 2: it drafts, a person</text><text x="490" y="532" class="ln-s">approves. Earn levels 3 and 4.</text></g>
-      <path d="M710 505 H750" class="ln-arrow ln-end" marker-end="url(#ah)"/><text x="730" y="497" class="ln-lab ln-labend" text-anchor="middle">no</text>
-      <g class="ln-box "><rect x="750" y="460" width="240" height="90" rx="4"/><text x="770" y="490" class="ln-h">Assistant, for now</text><text x="770" y="514" class="ln-s">Build the controls first. The eight</text><text x="770" y="532" class="ln-s">gates are the list. Then come back.</text></g>
+      <g class="ln-box ln-dia"><path fill="#FFFFFF" d="M190 30 L370 85 L190 140 L10 85 Z" stroke="#0E1012" stroke-width="1.4"/><text x="190" y="79" class="ln-h" text-anchor="middle">Is it one step?</text><text x="190" y="101" class="ln-s" text-anchor="middle">Text in, text out, nothing else.</text></g>
+      <path fill="none" d="M370 85 H470" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="420" y="77" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect fill="#FFFFFF" x="470" y="40" width="240" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="490" y="70" class="ln-h">Use a model</text><text x="490" y="94" class="ln-s">One call to the API.</text><text x="490" y="112" class="ln-s">Keep it simple.</text></g>
+      <path fill="none" d="M190 140 V170" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="202" y="162" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path fill="#FFFFFF" d="M190 170 L370 225 L190 280 L10 225 Z" stroke="#0E1012" stroke-width="1.4"/><text x="190" y="219" class="ln-h" text-anchor="middle">Do the steps repeat?</text><text x="190" y="241" class="ln-s" text-anchor="middle">Same path every time, known in advance.</text></g>
+      <path fill="none" d="M370 225 H470" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="420" y="217" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect fill="#FFFFFF" x="470" y="180" width="240" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="490" y="210" class="ln-h">Build a workflow</text><text x="490" y="234" class="ln-s">A person draws the path.</text><text x="490" y="252" class="ln-s">AI does some of the steps.</text></g>
+      <path fill="none" d="M190 280 V310" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="202" y="302" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path fill="#FFFFFF" d="M190 310 L370 365 L190 420 L10 365 Z" stroke="#0E1012" stroke-width="1.4"/><text x="190" y="359" class="ln-h" text-anchor="middle">Does a person act on it?</text><text x="190" y="381" class="ln-s" text-anchor="middle">The value is the answer, not the action.</text></g>
+      <path fill="none" d="M370 365 H470" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="420" y="357" class="ln-lab" text-anchor="middle">yes</text>
+      <g class="ln-box ln-done"><rect fill="#FFFFFF" x="470" y="320" width="240" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="490" y="350" class="ln-h">Build an assistant</text><text x="490" y="374" class="ln-s">Grounded in your documents.</text><text x="490" y="392" class="ln-s">Autonomy ladder level 1.</text></g>
+      <path fill="none" d="M190 420 V450" class="ln-arrow" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="202" y="442" class="ln-lab">no</text>
+      <g class="ln-box ln-dia"><path fill="#FFFFFF" d="M190 450 L370 505 L190 560 L10 505 Z" stroke="#0E1012" stroke-width="1.4"/><text x="190" y="499" class="ln-h" text-anchor="middle">Can you afford the controls?</text><text x="190" y="521" class="ln-s" text-anchor="middle">Typed actions, evaluation, traces,</text><text x="190" y="539" class="ln-s" text-anchor="middle">a cost ceiling, an off switch.</text></g>
+      <path fill="none" d="M370 505 H470" class="ln-arrow ln-tool" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="420" y="497" class="ln-lab ln-labtool" text-anchor="middle">yes</text>
+      <g class="ln-box ln-hub"><rect fill="#FFFFFF" x="470" y="460" width="240" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="490" y="490" class="ln-h">Build an agent</text><text x="490" y="514" class="ln-s">Start at level 2: it drafts, a person</text><text x="490" y="532" class="ln-s">approves. Earn levels 3 and 4.</text></g>
+      <path fill="none" d="M710 505 H750" class="ln-arrow ln-end" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="730" y="497" class="ln-lab ln-labend" text-anchor="middle">no</text>
+      <g class="ln-box "><rect fill="#FFFFFF" x="750" y="460" width="240" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="770" y="490" class="ln-h">Assistant, for now</text><text x="770" y="514" class="ln-s">Build the controls first. The eight</text><text x="770" y="532" class="ln-s">gates are the list. Then come back.</text></g>
       <text x="500" y="590" class="ln-lab" text-anchor="middle">Each box to the right is one rung up the autonomy ladder.</text>
     </svg>
     <figcaption>
@@ -214,23 +216,23 @@
   <figure class="ln-fig">
     <svg viewBox="0 0 1000 440" role="img" aria-labelledby="loop-title">
       <title id="loop-title">The agentic loop: send request, model responds, check the stop reason, run the tool and repeat, or finish</title>
-      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" class="ln-ah"/></marker></defs>
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path fill="#0E1012" d="M0 0L10 5L0 10z" class="ln-ah" stroke="#0E1012" stroke-width="1.4"/></marker></defs>
       <!-- station 1 -->
-      <g class="ln-box"><rect x="40" y="40" width="250" height="120" rx="4"/><text x="60" y="68" class="ln-st">Station 1</text><text x="60" y="96" class="ln-h">Your code sends the request</text><text x="60" y="120" class="ln-s">The whole conversation so far, as a list of</text><text x="60" y="140" class="ln-s">messages, plus the tools it may use.</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="40" y="40" width="250" height="120" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="60" y="68" class="ln-st">Station 1</text><text x="60" y="96" class="ln-h">Your code sends the request</text><text x="60" y="120" class="ln-s">The whole conversation so far, as a list of</text><text x="60" y="140" class="ln-s">messages, plus the tools it may use.</text></g>
       <!-- station 2 -->
-      <g class="ln-box"><rect x="710" y="40" width="250" height="120" rx="4"/><text x="730" y="68" class="ln-st">Station 2</text><text x="730" y="96" class="ln-h">The model responds</text><text x="730" y="120" class="ln-s">Text, or a request to use a tool, and a</text><text x="730" y="140" class="ln-s">stop reason that says which.</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="710" y="40" width="250" height="120" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="730" y="68" class="ln-st">Station 2</text><text x="730" y="96" class="ln-h">The model responds</text><text x="730" y="120" class="ln-s">Text, or a request to use a tool, and a</text><text x="730" y="140" class="ln-s">stop reason that says which.</text></g>
       <!-- station 3 diamond -->
-      <g class="ln-box ln-dia"><path d="M500 190 L620 270 L500 350 L380 270 Z"/><text x="500" y="262" class="ln-h" text-anchor="middle">Station 3</text><text x="500" y="284" class="ln-s" text-anchor="middle">Check the stop reason</text></g>
+      <g class="ln-box ln-dia"><path fill="#FFFFFF" d="M500 190 L620 270 L500 350 L380 270 Z" stroke="#0E1012" stroke-width="1.4"/><text x="500" y="262" class="ln-h" text-anchor="middle">Station 3</text><text x="500" y="284" class="ln-s" text-anchor="middle">Check the stop reason</text></g>
       <!-- station 4 -->
-      <g class="ln-box"><rect x="40" y="300" width="250" height="110" rx="4"/><text x="60" y="328" class="ln-st">Station 4</text><text x="60" y="356" class="ln-h">Run the tool</text><text x="60" y="380" class="ln-s">Validate the arguments, execute, append</text><text x="60" y="400" class="ln-s">the result to the messages. Go round again.</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="40" y="300" width="250" height="110" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="60" y="328" class="ln-st">Station 4</text><text x="60" y="356" class="ln-h">Run the tool</text><text x="60" y="380" class="ln-s">Validate the arguments, execute, append</text><text x="60" y="400" class="ln-s">the result to the messages. Go round again.</text></g>
       <!-- done -->
-      <g class="ln-box ln-done"><rect x="710" y="300" width="250" height="110" rx="4"/><text x="730" y="328" class="ln-st">Exit</text><text x="730" y="356" class="ln-h">Done</text><text x="730" y="380" class="ln-s">The stop reason was "end turn".</text><text x="730" y="400" class="ln-s">Return the answer to the person.</text></g>
+      <g class="ln-box ln-done"><rect fill="#FFFFFF" x="710" y="300" width="250" height="110" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="730" y="328" class="ln-st">Exit</text><text x="730" y="356" class="ln-h">Done</text><text x="730" y="380" class="ln-s">The stop reason was "end turn".</text><text x="730" y="400" class="ln-s">Return the answer to the person.</text></g>
       <!-- arrows -->
-      <path d="M290 100 H710" class="ln-arrow" marker-end="url(#ah)"/><text x="500" y="90" class="ln-lab" text-anchor="middle">request</text>
-      <path d="M835 160 V200 Q835 270 620 270" class="ln-arrow" marker-end="url(#ah)"/><text x="760" y="245" class="ln-lab" text-anchor="middle">response</text>
-      <path d="M380 270 Q165 270 165 300" class="ln-arrow ln-tool" marker-end="url(#ah)"/><text x="260" y="258" class="ln-lab ln-labtool" text-anchor="middle">tool use</text>
-      <path d="M500 350 V380 Q500 400 530 400 H710" class="ln-arrow ln-end" marker-end="url(#ah)"/><text x="620" y="390" class="ln-lab ln-labend" text-anchor="middle">end turn</text>
-      <path d="M40 355 H18 V100 H38" class="ln-arrow ln-tool" marker-end="url(#ah)"/><text x="12" y="228" class="ln-lab ln-labtool" text-anchor="middle" transform="rotate(-90 12 228)">loop again</text>
+      <path fill="none" d="M290 100 H710" class="ln-arrow ln-data" marker-end="url(#ln-data-dot)" stroke="#0E1012" stroke-width="1.4"/><text x="500" y="90" class="ln-lab" text-anchor="middle">request</text>
+      <path fill="none" d="M835 160 V200 Q835 270 620 270" class="ln-arrow ln-data" marker-end="url(#ln-data-dot)" stroke="#0E1012" stroke-width="1.4"/><text x="760" y="245" class="ln-lab" text-anchor="middle">response</text>
+      <path fill="none" d="M380 270 Q165 270 165 300" class="ln-arrow ln-tool ln-control" marker-end="url(#ln-control-arrow)" stroke="#0E1012" stroke-width="1.4"/><text x="260" y="258" class="ln-lab ln-labtool" text-anchor="middle">tool use</text>
+      <path fill="none" d="M500 350 V380 Q500 400 530 400 H710" class="ln-arrow ln-end" marker-end="url(#ah)" stroke="#0E1012" stroke-width="1.4"/><text x="620" y="390" class="ln-lab ln-labend" text-anchor="middle">end turn</text>
+      <path fill="none" d="M40 355 H18 V100 H38" class="ln-arrow ln-tool ln-control" marker-end="url(#ln-control-arrow)" stroke="#0E1012" stroke-width="1.4"/><text x="12" y="228" class="ln-lab ln-labtool" text-anchor="middle" transform="rotate(-90 12 228)">loop again</text>
     </svg>
     <figcaption>
       <div class="ln-anti"><p class="sec-label">Ways people break the loop</p>
@@ -252,16 +254,16 @@
     <svg viewBox="0 0 1000 500" role="img" aria-labelledby="hub-title">
       <title id="hub-title">A coordinator agent in the centre sending tasks to a search agent, an analysis agent, and a synthesis agent, and receiving results back</title>
       <text x="500" y="26" class="ln-lab" text-anchor="middle">Each specialist has its own isolated context. It cannot see the others' work.</text>
-      <g class="ln-box ln-hub"><rect x="350" y="215" width="300" height="130" rx="4"/><text x="500" y="243" class="ln-st" text-anchor="middle">Coordinator</text><text x="500" y="271" class="ln-h" text-anchor="middle">Owns the goal</text><text x="500" y="297" class="ln-s" text-anchor="middle">Breaks the goal into work, routes it,</text><text x="500" y="317" class="ln-s" text-anchor="middle">aggregates what comes back, and decides</text><text x="500" y="337" class="ln-s" text-anchor="middle">when the goal is met.</text></g>
-      <g class="ln-box"><rect x="30" y="40" width="260" height="100" rx="4"/><text x="50" y="66" class="ln-st">Specialist</text><text x="50" y="94" class="ln-h">Search agent</text><text x="50" y="120" class="ln-s">Tools: search, fetch a page</text></g>
-      <g class="ln-box"><rect x="710" y="40" width="260" height="100" rx="4"/><text x="730" y="66" class="ln-st">Specialist</text><text x="730" y="94" class="ln-h">Analysis agent</text><text x="730" y="120" class="ln-s">Tools: read a document, extract</text></g>
-      <g class="ln-box"><rect x="370" y="400" width="260" height="90" rx="4"/><text x="390" y="426" class="ln-st">Specialist</text><text x="390" y="454" class="ln-h">Synthesis agent</text><text x="390" y="478" class="ln-s">Tools: write, verify</text></g>
-      <path d="M376 226 L296 126" class="ln-arrow" marker-end="url(#ah)"/><text x="348" y="170" class="ln-lab" text-anchor="end">task</text>
-      <path d="M274 144 L354 244" class="ln-arrow ln-back" marker-end="url(#ah)"/><text x="296" y="214" class="ln-lab ln-labback" text-anchor="end">results</text>
-      <path d="M646 244 L726 144" class="ln-arrow" marker-end="url(#ah)"/><text x="698" y="208" class="ln-lab" text-anchor="start">task</text>
-      <path d="M704 126 L624 226" class="ln-arrow ln-back" marker-end="url(#ah)"/><text x="652" y="170" class="ln-lab ln-labback" text-anchor="end">results</text>
-      <path d="M480 345 V400" class="ln-arrow" marker-end="url(#ah)"/><text x="470" y="378" class="ln-lab" text-anchor="end">task</text>
-      <path d="M520 400 V345" class="ln-arrow ln-back" marker-end="url(#ah)"/><text x="530" y="378" class="ln-lab ln-labback">results</text>
+      <g class="ln-box ln-hub"><rect fill="#FFFFFF" x="350" y="215" width="300" height="130" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="500" y="243" class="ln-st" text-anchor="middle">Coordinator</text><text x="500" y="271" class="ln-h" text-anchor="middle">Owns the goal</text><text x="500" y="297" class="ln-s" text-anchor="middle">Breaks the goal into work, routes it,</text><text x="500" y="317" class="ln-s" text-anchor="middle">aggregates what comes back, and decides</text><text x="500" y="337" class="ln-s" text-anchor="middle">when the goal is met.</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="30" y="40" width="260" height="100" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="50" y="66" class="ln-st">Specialist</text><text x="50" y="94" class="ln-h">Search agent</text><text x="50" y="120" class="ln-s">Tools: search, fetch a page</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="710" y="40" width="260" height="100" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="730" y="66" class="ln-st">Specialist</text><text x="730" y="94" class="ln-h">Analysis agent</text><text x="730" y="120" class="ln-s">Tools: read a document, extract</text></g>
+      <g class="ln-box"><rect fill="#FFFFFF" x="370" y="400" width="260" height="90" rx="4" stroke="#0E1012" stroke-width="1.4"/><text x="390" y="426" class="ln-st">Specialist</text><text x="390" y="454" class="ln-h">Synthesis agent</text><text x="390" y="478" class="ln-s">Tools: write, verify</text></g>
+      <path fill="none" d="M376 226 L296 126" class="ln-arrow ln-control" marker-end="url(#ln-control-arrow)" stroke="#0E1012" stroke-width="1.4"/><text x="348" y="170" class="ln-lab" text-anchor="end">task</text>
+      <path fill="none" d="M274 144 L354 244" class="ln-arrow ln-back ln-data" marker-end="url(#ln-data-dot)" stroke="#0E1012" stroke-width="1.4"/><text x="296" y="214" class="ln-lab ln-labback" text-anchor="end">results</text>
+      <path fill="none" d="M646 244 L726 144" class="ln-arrow ln-control" marker-end="url(#ln-control-arrow)" stroke="#0E1012" stroke-width="1.4"/><text x="698" y="208" class="ln-lab" text-anchor="start">task</text>
+      <path fill="none" d="M704 126 L624 226" class="ln-arrow ln-back ln-data" marker-end="url(#ln-data-dot)" stroke="#0E1012" stroke-width="1.4"/><text x="652" y="170" class="ln-lab ln-labback" text-anchor="end">results</text>
+      <path fill="none" d="M480 345 V400" class="ln-arrow ln-control" marker-end="url(#ln-control-arrow)" stroke="#0E1012" stroke-width="1.4"/><text x="470" y="378" class="ln-lab" text-anchor="end">task</text>
+      <path fill="none" d="M520 400 V345" class="ln-arrow ln-back ln-data" marker-end="url(#ln-data-dot)" stroke="#0E1012" stroke-width="1.4"/><text x="530" y="378" class="ln-lab ln-labback">results</text>
     </svg>
     <figcaption>
       <div class="ln-anti"><p class="sec-label">The common mistake</p>
@@ -351,19 +353,31 @@
 const G={{GRAPH}};const N=G.ideas,E=G.edges,CIRCUITS=G.circuits;
 const nodes={};N.forEach(n=>nodes[n.id]=Object.assign({},n));
 const ns="http://www.w3.org/2000/svg",svg=document.getElementById("ln-svg");if(!svg)return;
-const el=(t,a,p)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
+const el=(t,a,p)=>{const e=document.createElementNS(ns,t);if(["rect","circle","path","ellipse","polygon"].includes(t))e.setAttribute("fill",t==="path"?"none":"#FFFFFF");for(const k in a)e.setAttribute(k,a[k]);(p||svg).appendChild(e);return e};
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 let learned=new Set();try{learned=new Set(JSON.parse(localStorage.getItem("ks-learn")||"[]"))}catch(e){}
 const save=()=>{try{localStorage.setItem("ks-learn",JSON.stringify([...learned]))}catch(e){}};
-const CL=[["Foundations",40,0,330,24],["Learning",440,0,900,24],["Language",720,0,1180,24],["Agents",1200,0,1500,24],["Operate",1520,0,1800,24],["Decide",1520,460,1800,478]];
-CL.forEach(([t,x,,,y])=>{const g=el("text",{x,y,class:"ln-cl"});g.textContent=t});
+// Separate work boards keep cluster boundaries and labels out of one another.
+const CL=["Foundations","Learning","Language","Agents","Operate","Decide","Society"];
+CL.forEach((cluster,index)=>{
+  const members=Object.values(nodes).filter(n=>n.cluster===cluster), society=index===6;
+  const x=society?20:20+(index%3)*590,y=society?710:20+Math.floor(index/3)*340;
+  el("rect",{x,y,width:society?1740:560,height:society?80:320,rx:10,class:"ln-region",fill:"none"});
+  el("text",{x:x+16,y:y+23,class:"ln-cl"}).textContent=cluster;
+  members.forEach((n,i)=>{n.x=society?580+i*590:x+95+(i%3)*180;n.y=society?741:y+76+Math.floor(i/3)*86});
+});
 const gE=el("g",{}),gS=el("g",{}),gN=el("g",{});
 const edges=E.map(([a,b])=>{const A=nodes[a],B=nodes[b],mx=(A.x+B.x)/2,my=(A.y+B.y)/2,dx=B.x-A.x,dy=B.y-A.y,len=Math.hypot(dx,dy),k=len*.12;
   const cx=mx-dy/len*k,cy=my+dx/len*k;const p=el("path",{d:`M${A.x} ${A.y} Q${cx} ${cy} ${B.x} ${B.y}`,class:"ln-edge"},gE);return{a,b,p}});
 Object.values(nodes).forEach(n=>{
   const g=el("g",{class:"ln-node",transform:`translate(${n.x} ${n.y})`,tabindex:0,role:"button","aria-label":n.label},gN);
+  el("path",{d:"M-14 7 L0 15 L14 7 V12 L0 20 L-14 12 Z",class:"ln-mount",fill:"#EFEFEC",stroke:"#C6C6BF","aria-hidden":"true"},g);
   el("circle",{r:16,class:"ln-halo"},g);el("circle",{r:8,class:"ln-core"},g);
-  const t=el("text",{y:30},g);t.textContent=n.label;n.g=g;
+  const t=el("text",{y:30},g);
+  const words=n.label.split(" ");let rows=[""];
+  words.forEach(w=>{let i=rows.length-1;if((rows[i]+" "+w).trim().length>22)rows.push(w);else rows[i]=(rows[i]+" "+w).trim()});
+  rows.forEach((row,i)=>{el("tspan",{x:0,dy:i?17:0},t).textContent=row});
+  el("path",{d:"M-4 0 L-1 3 L5 -4",class:"ln-understood",fill:"none","aria-hidden":"true"},g);n.g=g;
   g.addEventListener("click",()=>select(n.id,true));
   g.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();select(n.id,true)}});
 });
@@ -381,7 +395,7 @@ function flash(id){const g=nodes[id].g;g.classList.remove("flash");void g.getBBo
 let cur="ai",depth="plain",circuit=null,step=0;
 const $=i=>document.getElementById(i);
 function paint(){
-  Object.values(nodes).forEach(n=>{n.g.classList.toggle("lit",learned.has(n.id));n.g.classList.toggle("sel",n.id===cur)});
+  Object.values(nodes).forEach(n=>{n.g.classList.toggle("lit",learned.has(n.id));n.g.setAttribute("aria-label",n.label+(learned.has(n.id)?", understood":""));n.g.classList.toggle("sel",n.id===cur)});
   const path=circuit?CIRCUITS[circuit]:null;
   edges.forEach(e=>{const strong=learned.has(e.a)&&learned.has(e.b);
     const inPath=path&&path.some((x,i)=>i<path.length-1&&((x===e.a&&path[i+1]===e.b)||(x===e.b&&path[i+1]===e.a)));
@@ -413,13 +427,11 @@ function setVB(b){svg.setAttribute("viewBox",b.join(" "));}
 function zoomTo(b){if(reduce){vb=b;setVB(b);return}const from=vb.slice(),t0=performance.now();(function st(now){const k=Math.min(1,(now-t0)/450),e=1-Math.pow(1-k,3);vb=from.map((v,i)=>v+(b[i]-v)*e);setVB(vb);if(k<1)requestAnimationFrame(st)})(t0);}
 function bbox(c){const ns=Object.values(nodes).filter(n=>n.cluster===c);if(!ns.length)return FULL;let x0=Math.min(...ns.map(n=>n.x))-90,x1=Math.max(...ns.map(n=>n.x))+90,y0=Math.min(...ns.map(n=>n.y))-70,y1=Math.max(...ns.map(n=>n.y))+70;
   let w=x1-x0,h=y1-y0;const r=1800/800;if(w/h<r){const nw=h*r;x0-=(nw-w)/2;w=nw}else{const nh=w/r;y0-=(nh-h)/2;h=nh}return [x0,y0,w,h];}
-const clBox=$("ln-clusters");const clusters=["All","Foundations","Learning","Language","Agents","Operate","Decide"];
+const clBox=$("ln-clusters");const clusters=["All","Foundations","Learning","Language","Agents","Operate","Decide","Society"];
 clusters.forEach(c=>{const b=document.createElement("button");b.type="button";b.textContent=c;b.setAttribute("aria-pressed",c==="All");b.onclick=()=>{[].forEach.call(clBox.children,x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");
   Object.values(nodes).forEach(n=>n.g.classList.toggle("dim",c!=="All"&&n.cluster!==c));edges.forEach(e=>e.p.classList.toggle("dim",c!=="All"&&!(nodes[e.a].cluster===c&&nodes[e.b].cluster===c)));const mw=svg.parentNode;mw.classList.toggle("zoomed",c!=="All");mw.scrollLeft=0;zoomTo(c==="All"?FULL:bbox(c));};clBox.appendChild(b)});
 render();
 const qp=new URLSearchParams(location.search).get("idea");if(qp&&nodes[qp]){select(qp,true);const cb=[].find.call(clBox.children,x=>x.textContent===nodes[qp].cluster);if(cb)cb.click();}
-if(!reduce){let touched=false;svg.addEventListener("pointerdown",()=>touched=true,{once:true});
-  const ids=Object.keys(nodes);setTimeout(()=>fire("ai",2),700);
-  setInterval(()=>{if(document.hidden)return;const pool=learned.size>2?[...learned]:ids;fire(pool[Math.floor(Math.random()*pool.length)],touched?1:2)},3600);}
+// Motion follows a reader action only; there is no decorative background loop.
 })();
 </script>
