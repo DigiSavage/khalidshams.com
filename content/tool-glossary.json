@@ -1,0 +1,282 @@
+{
+  "Azure Landing Zones": {
+    "what": "A repeatable Azure foundation for identity, networking, governance and subscriptions.",
+    "remember": "The prepared site before you construct the buildings.",
+    "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/"
+  },
+  "Management groups": {
+    "what": "Folders above Azure subscriptions that let you apply shared governance across them.",
+    "remember": "The organisation chart for your subscriptions.",
+    "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview"
+  },
+  "Azure Policy": {
+    "what": "Rules that audit or enforce how Azure resources are configured.",
+    "remember": "Guardrails for what can be built and how.",
+    "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview"
+  },
+  "Bicep / Terraform": {
+    "what": "Infrastructure-as-code tools that describe resources so deployments can be reviewed and repeated. Bicep targets Azure; Terraform uses providers for many platforms.",
+    "remember": "A version-controlled construction plan.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/overview"
+  },
+  "Hub and spoke": {
+    "what": "A network design with shared connectivity in a hub and separate workload networks in spokes.",
+    "remember": "A central interchange serving separate neighbourhoods.",
+    "url": "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke"
+  },
+  "Azure SQL elastic pools": {
+    "what": "Multiple Azure SQL databases sharing a bounded pool of compute resources, useful when their demand varies.",
+    "remember": "Separate apartments sharing a utility budget.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-overview"
+  },
+  "AKS": {
+    "what": "Azure Kubernetes Service runs a managed Kubernetes control plane for container workloads. You still own workload configuration and operations.",
+    "remember": "A managed control tower for your container fleet.",
+    "url": "https://learn.microsoft.com/en-us/azure/aks/what-is-aks"
+  },
+  "App Service": {
+    "what": "Managed hosting for web applications and APIs, with platform features such as scaling and deployment slots.",
+    "remember": "A managed home for a web app.",
+    "url": "https://learn.microsoft.com/en-us/azure/app-service/overview"
+  },
+  "Container Apps": {
+    "what": "Managed container hosting for services and jobs, with scaling options and less direct cluster administration.",
+    "remember": "Run the container without operating your own Kubernetes cluster.",
+    "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+  },
+  "Azure Monitor": {
+    "what": "Collects and analyses metrics, logs and traces, and supports alerts about your systems.",
+    "remember": "The instrument panel and alarm system.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview"
+  },
+  "Cost Management": {
+    "what": "Tools for analysing cloud spending, allocating costs and setting budget alerts. An alert does not automatically stop spending.",
+    "remember": "The spending dashboard, not a hard spending lock.",
+    "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management"
+  },
+  "Azure Migrate": {
+    "what": "Discovery, assessment and migration tooling for planning and moving workloads to Azure.",
+    "remember": "Survey the estate, then plan the move.",
+    "url": "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview"
+  },
+  "Azure Site Recovery": {
+    "what": "Replicates supported workloads and orchestrates disaster-recovery failover. Recovery still needs planning and testing.",
+    "remember": "A rehearsed route to a recovery site.",
+    "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
+  },
+  "Entra ID": {
+    "what": "Microsoft's cloud identity service for authenticating users and workloads and managing access.",
+    "remember": "The identity desk that checks who you are.",
+    "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis"
+  },
+  "Azure AI Foundry": {
+    "what": "The earlier name for Microsoft Foundry, a platform for developing, evaluating and operating AI applications and agents.",
+    "remember": "An AI development workshop with evaluation and management tools.",
+    "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-foundry"
+  },
+  "Azure AI Search": {
+    "what": "A managed search service for indexing and retrieving information, including keyword and vector search.",
+    "remember": "The retrieval catalogue, not the model that writes the answer.",
+    "url": "https://learn.microsoft.com/en-us/azure/search/search-what-is-azure-search"
+  },
+  "Microsoft Fabric": {
+    "what": "An analytics platform bringing together data engineering, integration, warehousing and business intelligence.",
+    "remember": "A shared workshop for the data-to-insight journey.",
+    "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/microsoft-fabric-overview"
+  },
+  "Azure Functions": {
+    "what": "Runs event-driven code without requiring you to manage the underlying servers directly.",
+    "remember": "Small pieces of code triggered by events.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+  },
+  "API Management": {
+    "what": "A managed gateway and management layer for publishing APIs and applying policies to their traffic.",
+    "remember": "The controlled front door to your APIs.",
+    "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts"
+  },
+  "Key Vault": {
+    "what": "Stores and controls access to secrets, cryptographic keys and certificates.",
+    "remember": "A locked cabinet for application credentials.",
+    "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+  },
+  "Application Insights": {
+    "what": "Application performance monitoring within Azure Monitor, using telemetry to investigate requests, dependencies and failures.",
+    "remember": "Follow a request to see where it slowed down or failed.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+  },
+  "Purview": {
+    "what": "Microsoft's family of data governance, security and compliance capabilities, including discovery and classification.",
+    "remember": "Know what data you have and how it should be handled.",
+    "url": "https://learn.microsoft.com/en-us/purview/purview"
+  },
+  "Sentinel": {
+    "what": "Microsoft's security monitoring and investigation platform, bringing together security signals and incident response.",
+    "remember": "The security operations desk.",
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+  },
+  "Service Map": {
+    "what": "A legacy Azure service that mapped connections between machines and processes. Service Map retired on 30 September 2025; consult current migration guidance for new designs.",
+    "remember": "An old dependency map, not a current service recommendation.",
+    "url": "https://learn.microsoft.com/en-us/previous-versions/azure/azure-monitor/vm/service-map"
+  },
+  "Azure SQL Managed Instance": {
+    "what": "A managed SQL Server-compatible database service intended to ease migrations that need instance-level capabilities.",
+    "remember": "Much of the SQL Server experience, with more platform management.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview"
+  },
+  "PostgreSQL Flexible Server": {
+    "what": "Azure's managed PostgreSQL service, with configurable compute, maintenance and availability options.",
+    "remember": "PostgreSQL with Azure handling more of the infrastructure.",
+    "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/overview"
+  },
+  "Azure Arc": {
+    "what": "Extends Azure management and governance to supported resources outside Azure, including servers and Kubernetes clusters.",
+    "remember": "Bring outside resources onto the same management map.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-arc/overview"
+  },
+  "Azure VMware Solution": {
+    "what": "Runs VMware environments on dedicated Azure infrastructure to support migration and integration scenarios.",
+    "remember": "A VMware estate hosted inside Azure.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-vmware/introduction"
+  },
+  "Azure Backup": {
+    "what": "Protects supported workloads with managed backup and restore capabilities.",
+    "remember": "Recovery copies you can restore and test.",
+    "url": "https://learn.microsoft.com/en-us/azure/backup/backup-overview"
+  },
+  "OneLake": {
+    "what": "Fabric's shared logical data lake for analytics data across the organisation.",
+    "remember": "One shared lake, organised into separate workspaces.",
+    "url": "https://learn.microsoft.com/en-us/fabric/onelake/onelake-overview"
+  },
+  "Data Factory": {
+    "what": "Microsoft data integration tooling for moving and transforming data through pipelines. Azure Data Factory and Fabric Data Factory are related offerings.",
+    "remember": "The scheduled delivery routes for your data.",
+    "url": "https://learn.microsoft.com/en-us/azure/data-factory/introduction"
+  },
+  "Lakehouse & Warehouse": {
+    "what": "A lakehouse combines file-based storage with analytics capabilities; a warehouse provides a structured SQL analytics experience.",
+    "remember": "Two ways to organise data for analysis.",
+    "url": "https://learn.microsoft.com/en-us/fabric/fundamentals/decision-guide-lakehouse-warehouse"
+  },
+  "Semantic models": {
+    "what": "Shared definitions of relationships, measures and business concepts used by analytics reports.",
+    "remember": "The agreed business vocabulary behind the numbers.",
+    "url": "https://learn.microsoft.com/en-us/power-bi/connect-data/service-datasets-understand"
+  },
+  "Power BI": {
+    "what": "Tools for modelling, visualising and sharing business data through reports and dashboards.",
+    "remember": "The view that turns data into questions you can answer.",
+    "url": "https://learn.microsoft.com/en-us/power-bi/fundamentals/power-bi-overview"
+  },
+  "Azure SQL": {
+    "what": "A family of managed SQL offerings on Azure, including Azure SQL Database and Managed Instance.",
+    "remember": "SQL databases with different levels of platform management.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-sql/azure-sql-iaas-vs-paas-what-is-overview"
+  },
+  "Event Hubs": {
+    "what": "A managed event-stream ingestion service for high-volume data from applications and devices.",
+    "remember": "The intake pipe for a continuous stream of events.",
+    "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about"
+  },
+  "Conditional Access": {
+    "what": "Entra policies that use signals such as user, device and risk to decide access requirements.",
+    "remember": "Access rules that consider the circumstances.",
+    "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+  },
+  "PIM": {
+    "what": "Privileged Identity Management enables controlled, time-limited activation of elevated access.",
+    "remember": "Borrow the administrator badge only when you need it.",
+    "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+  },
+  "Defender for Cloud": {
+    "what": "Cloud security posture management and workload protection capabilities.",
+    "remember": "Check the security configuration and watch for threats.",
+    "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction"
+  },
+  "Private Link": {
+    "what": "Private connectivity to supported services through private endpoints in your virtual network.",
+    "remember": "A private entrance to a service; identity checks still apply.",
+    "url": "https://learn.microsoft.com/en-us/azure/private-link/private-link-overview"
+  },
+  "Python": {
+    "what": "A general-purpose programming language used for applications, automation and data work.",
+    "remember": "The language used to write the instructions.",
+    "url": "https://docs.python.org/3/tutorial/"
+  },
+  "FastAPI": {
+    "what": "A Python framework for building web APIs using type hints, with request validation and API documentation support.",
+    "remember": "A structured way to turn Python functions into an API.",
+    "url": "https://fastapi.tiangolo.com/"
+  },
+  "TypeScript": {
+    "what": "JavaScript with a type system that helps catch mistakes during development; types do not validate runtime input by themselves.",
+    "remember": "A development-time check on the shapes of your data.",
+    "url": "https://www.typescriptlang.org/docs/handbook/intro.html"
+  },
+  "React / Next.js": {
+    "what": "React builds component-based interfaces. Next.js adds an application framework around React, including routing and rendering features.",
+    "remember": "React supplies interface pieces; Next.js organises the application.",
+    "url": "https://nextjs.org/docs"
+  },
+  "PostgreSQL": {
+    "what": "An open-source relational database with SQL, transactions and extensibility.",
+    "remember": "A structured store that keeps related records consistent.",
+    "url": "https://www.postgresql.org/about/"
+  },
+  "MongoDB": {
+    "what": "A document database that stores records as flexible, JSON-like documents.",
+    "remember": "Keep related fields together in a document.",
+    "url": "https://www.mongodb.com/docs/manual/introduction/"
+  },
+  "Entra ID / OAuth 2.0": {
+    "what": "Entra ID is an identity provider. OAuth 2.0 is a protocol for delegated access; OpenID Connect adds authentication on top.",
+    "remember": "Who you are and what access an application is granted are related but distinct.",
+    "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols"
+  },
+  "AWS": {
+    "what": "Amazon Web Services provides cloud services for computing, storage, databases and other infrastructure needs.",
+    "remember": "A cloud platform offering building blocks for applications.",
+    "url": "https://aws.amazon.com/what-is-aws/"
+  },
+  "S3": {
+    "what": "Amazon Simple Storage Service stores objects in buckets, commonly used for files, backups and static website assets.",
+    "remember": "An object store, not a relational database.",
+    "url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html"
+  },
+  "GitHub Actions": {
+    "what": "Automates repository workflows such as building, testing and deploying code.",
+    "remember": "The repeatable checklist that runs when code changes.",
+    "url": "https://docs.github.com/en/actions/about-github-actions/understanding-github-actions"
+  },
+  "OpenTelemetry": {
+    "what": "Open standards and tooling for producing and exporting traces, metrics and logs.",
+    "remember": "A common language for application telemetry, not the storage backend.",
+    "url": "https://opentelemetry.io/docs/what-is-opentelemetry/"
+  },
+  "Microsoft Entra ID": {
+    "what": "Microsoft's cloud identity service for authenticating users and workloads and managing access.",
+    "remember": "The identity desk that checks who you are.",
+    "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis"
+  },
+  "Microsoft Sentinel": {
+    "what": "Microsoft's security monitoring and investigation platform, bringing together security signals and incident response.",
+    "remember": "The security operations desk.",
+    "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+  },
+  "Azure Container Apps": {
+    "what": "Managed container hosting for services and jobs, with scaling options and less direct cluster administration.",
+    "remember": "Run the container without operating your own Kubernetes cluster.",
+    "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+  },
+  "Monitor": {
+    "what": "Collects and analyses metrics, logs and traces, and supports alerts about your systems.",
+    "remember": "The instrument panel and alarm system.",
+    "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/fundamentals/overview"
+  },
+  "Site Recovery": {
+    "what": "Replicates supported workloads and orchestrates disaster-recovery failover. Recovery still needs planning and testing.",
+    "remember": "A rehearsed route to a recovery site.",
+    "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
+  }
+}

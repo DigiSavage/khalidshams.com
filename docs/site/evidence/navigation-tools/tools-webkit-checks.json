@@ -1,0 +1,726 @@
+[
+  {
+    "check": "390 agentic-ai all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Entra ID explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Azure AI Foundry explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Azure AI Search explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Microsoft Fabric explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Azure Functions explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai API Management explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Key Vault explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Application Insights explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai Sentinel explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 agentic-ai no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure Migrate explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Service Map explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure Landing Zones explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization AKS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure SQL Managed Instance explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization PostgreSQL Flexible Server explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure Arc explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure VMware Solution explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Azure Backup explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Site Recovery explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 app-modernization no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Microsoft Fabric explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform OneLake explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Data Factory explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Lakehouse & Warehouse explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Semantic models explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Power BI explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Azure SQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform PostgreSQL Flexible Server explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Event Hubs explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform Azure AI Search explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 data-platform no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Microsoft Entra ID explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Conditional Access explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance PIM explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Azure Policy explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Management groups explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Defender for Cloud explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Key Vault explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Private Link explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Microsoft Sentinel explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Azure Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 security-identity-governance no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure Landing Zones explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Management groups explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure Policy explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Bicep / Terraform explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Hub and spoke explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure SQL elastic pools explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant AKS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Cost Management explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure Migrate explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant Azure Site Recovery explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 cloud-foundations-multitenant no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering Python explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering FastAPI explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering TypeScript explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering React / Next.js explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering PostgreSQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering MongoDB explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering Azure SQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering Entra ID / OAuth 2.0 explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering Azure Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering AWS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering S3 explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering GitHub Actions explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering Application Insights explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering OpenTelemetry explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "390 fullstack-product-engineering no page overflow",
+    "ok": true
+  },
+  {
+    "check": "390 keyboard closes and returns focus",
+    "ok": true
+  },
+  {
+    "check": "390 outside click dismisses explanation",
+    "ok": true
+  },
+  {
+    "check": "390 search deep link opens its definition",
+    "ok": true
+  },
+  {
+    "check": "390 no script errors",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Entra ID explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Azure AI Foundry explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Azure AI Search explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Microsoft Fabric explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Azure Functions explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai API Management explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Key Vault explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Application Insights explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai Sentinel explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 agentic-ai no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure Migrate explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Service Map explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure Landing Zones explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization AKS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure SQL Managed Instance explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization PostgreSQL Flexible Server explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure Arc explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure VMware Solution explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Azure Backup explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Site Recovery explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 app-modernization no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Microsoft Fabric explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform OneLake explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Data Factory explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Lakehouse & Warehouse explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Semantic models explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Power BI explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Azure SQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform PostgreSQL Flexible Server explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Event Hubs explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform Azure AI Search explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 data-platform no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Microsoft Entra ID explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Conditional Access explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance PIM explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Azure Policy explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Management groups explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Defender for Cloud explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Key Vault explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Private Link explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Microsoft Sentinel explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Azure Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance Purview explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 security-identity-governance no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure Landing Zones explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Management groups explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure Policy explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Bicep / Terraform explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Hub and spoke explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure SQL elastic pools explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant AKS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure Monitor explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Cost Management explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure Migrate explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant Azure Site Recovery explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 cloud-foundations-multitenant no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering all tools have controls",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering Python explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering FastAPI explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering TypeScript explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering React / Next.js explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering PostgreSQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering MongoDB explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering Azure SQL explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering Entra ID / OAuth 2.0 explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering Azure Container Apps explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering App Service explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering AWS explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering S3 explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering GitHub Actions explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering Application Insights explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering OpenTelemetry explanation opens in place",
+    "ok": true
+  },
+  {
+    "check": "1440 fullstack-product-engineering no page overflow",
+    "ok": true
+  },
+  {
+    "check": "1440 keyboard closes and returns focus",
+    "ok": true
+  },
+  {
+    "check": "1440 outside click dismisses explanation",
+    "ok": true
+  },
+  {
+    "check": "1440 search deep link opens its definition",
+    "ok": true
+  },
+  {
+    "check": "1440 no script errors",
+    "ok": true
+  },
+  {
+    "check": "Native explanation works without JavaScript",
+    "ok": true
+  }
+]

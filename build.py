@@ -22,6 +22,7 @@ import learn_build
 from art_assets import validate_art, illustration
 import vignettes
 import delivery_build
+import tool_glossary
 
 ROOT = Path(__file__).parent
 SITE = "https://khalidshams.com"
@@ -335,15 +336,17 @@ def build():
                 f'<span class="pb-t">{esc(pb.title)}</span><span class="pb-s">{esc(pb.summary)}</span>'
                 f'<span class="chips">{chips}</span><span class="pb-go">Read the playbook →</span></a>')
     if pbs:
+        glossary = json.loads((ROOT / 'content/tool-glossary.json').read_text(encoding='utf-8'))
         (DIST / "playbooks").mkdir(exist_ok=True)
         for i, pb in enumerate(pbs):
             nxt = pbs[(i + 1) % len(pbs)]
             toc = "\n".join(f'      <a href="#{hid}">{esc(name)}</a>' for hid, name in pb.toc)
             jump = "".join(f'<a class="btn{" solid" if j == 0 else ""}" href="#{hid}">{esc(name)}</a>'
                            for j, (hid, name) in enumerate(pb.toc[:3]))
+            tool_chips, tool_definitions = tool_glossary.render(pb.stack, glossary)
             body = fill(tpl("playbook.html"), MASTHEAD=masthead, FOOTER=footer, NUM=pb.nn, TOTAL=f"{len(pbs):02d}",
                         KICKER=esc(pb.kicker), TITLE=esc(pb.title), SUMMARY=esc(pb.summary),
-                        STACK="".join(f'<span class="chip">{esc(t)}</span>' for t in pb.stack), JUMP=jump, TOC=toc,
+                        STACK=tool_chips, TOOL_DEFINITIONS=tool_definitions, JUMP=jump, TOC=toc,
                         CONTENT=pb.body_html, NEXT_TITLE=esc(nxt.title), NEXT_SUMMARY=esc(nxt.summary),
                         NEXT_URL=nxt.url, NEXT_NUM=nxt.nn,
                         SIBLINGS="\n".join(pb_card(o, pb) for o in pbs if o.slug != pb.slug))

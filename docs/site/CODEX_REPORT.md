@@ -1,5 +1,14 @@
 # Illustrated studio implementation
 
+## Menu arrows and playbook tool explanations · 2026-10-08
+
+Each mobile menu arrow is now a separate 44-pixel button with its own accessible label, controlled submenu and expanded state. It toggles without navigating or closing the drawer. The section summary keeps its established first-activation expansion and second-activation navigation. The button sits outside the native summary, avoiding nested interactive controls. Native details remain the fallback without JavaScript.
+
+All 56 tool labels across the six playbooks now open short definitions, memory aids and official documentation links. Native popovers support Close, Escape, outside dismissal and focus return; opening a definition does not change pages. Search deep links open the matching definition. The glossary is checked at build time for missing entries and required fields. The Service Map definition identifies its retirement and Azure AI Foundry identifies the current Microsoft Foundry name. All 51 distinct documentation URLs returned HTTP 200 during verification.
+
+Validation: 39 Python checks, 103 menu checks in each of Chromium and WebKit, and 181 tool-help checks in each browser passed, 607 total. Phone and desktop screenshots were reviewed. Popovers were also checked without JavaScript. WebKit automation is not a claim of testing on a physical iPhone or with VoiceOver. The build contains 458 search entries, including the newly date-visible post. Evidence is under `evidence/navigation-tools/`. No workflows or backend recovery work changed.
+
+
 ## AI delivery field guide · 2026-10-07
 
 Added the requested “Building AI systems: stack, structure and scale” companion within Method before the existing component inspector. Five readable component cards explain models, retrieval, tools/MCP, skills/workflows and agents, with limits and primary-source links. Human-team coordination has its own keyboard-operable control beside the existing agent-network discussion. It counts possible undirected links, identifies quadratic growth, and makes no productivity prediction. Ownership, handoffs and measured outcomes replace the absolute claim about small teams.

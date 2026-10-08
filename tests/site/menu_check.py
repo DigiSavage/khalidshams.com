@@ -17,7 +17,7 @@ def check(name, ok):
 
 
 with sync_playwright() as pw:
-    browser = pw.chromium.launch()
+    browser = getattr(pw, sys.argv[3] if len(sys.argv) > 3 else 'chromium').launch()
     for theme in ('light', 'dark'):
         context = browser.new_context(viewport={'width': 390, 'height': 844},
                                       has_touch=True, color_scheme=theme, reduced_motion='reduce')
@@ -36,6 +36,19 @@ with sync_playwright() as pw:
                   group.evaluate('(g) => g.open') and page.url == BASE + start)
             if destination == '/learn/':
                 page.screenshot(path=str(OUT / f'learn-menu-{theme}.png'))
+            arrow = group.locator('..').locator('.dr-toggle')
+            box = arrow.bounding_box()
+            check(f'{theme} {destination} arrow is a separate accessible touch target',
+                  box['width'] >= 44 and box['height'] >= 44 and
+                  arrow.get_attribute('aria-expanded') == 'true' and
+                  page.locator('#' + arrow.get_attribute('aria-controls')).count() == 1)
+            arrow.tap()
+            check(f'{theme} {destination} arrow collapses without navigating or closing drawer',
+                  not group.evaluate('(g)=>g.open') and arrow.get_attribute('aria-expanded') == 'false' and
+                  page.url == BASE + start and page.locator('#drawer').is_visible())
+            arrow.tap()
+            check(f'{theme} {destination} arrow reopens without navigating',
+                  group.evaluate('(g)=>g.open') and arrow.get_attribute('aria-expanded') == 'true' and page.url == BASE + start)
             summary.tap()
             page.wait_for_url(BASE + destination)
             check(f'{theme} {destination} second tap navigates and closes drawer',
@@ -44,6 +57,13 @@ with sync_playwright() as pw:
             page.goto(BASE + '/privacy/')
             page.locator('.sh-burger').click()
             summary = page.locator('.dr-group[data-href="/learn/"] summary')
+            arrow = summary.locator('../..').locator('.dr-toggle')
+            arrow.press(key)
+            check(f'{theme} {key} arrow expands without navigating',
+                  arrow.get_attribute('aria-expanded') == 'true' and page.url == BASE + '/privacy/')
+            arrow.press(key)
+            check(f'{theme} {key} arrow collapses without navigating',
+                  arrow.get_attribute('aria-expanded') == 'false' and page.url == BASE + '/privacy/')
             summary.focus()
             summary.press(key)
             check(f'{theme} {key} expands Learn', summary.locator('..').evaluate('(g) => g.open'))
