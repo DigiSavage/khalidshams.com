@@ -1,5 +1,12 @@
 # Illustrated studio implementation
 
+## Release validation · 2026-10-07
+
+The owner explicitly authorized publishing the completed updates, superseding the earlier instruction to stop at the pull request. The illustration branch was combined with main at `69f43c5`, preserving the publisher's post metadata. No workflow changes were made. The fresh build contains 377 search entries and all 64 illustration exports. All 1,076 checks passed again: 18 engine, 39 Python, 95 Atlas browser, 186 Learn browser, 180 focused drawing, 213 integration, 197 original art and 148 concept-flow checks. Phone screenshots were visually reviewed in light and dark. This records the pre-deployment gate; deployment success must be verified independently after merge.
+
+The release includes the original eight finished illustration pairs and the completed native drawing improvements. Four new unpaired light masters and 18 missing concept masters remain outside this release, as listed in `CONCEPT_ART_STATUS.md`. Earlier no-merge/no-deployment statements below describe the prior handoff state.
+
+
 Update, 5 October: the concept-by-concept follow-up now carries finished art into matching existing cards and improves the native diagrams in place. All 1,076 current checks pass. The extended illustration set remains partly blocked by the built-in image service: four new light masters are saved, with 18 remaining masters outstanding. See [CONCEPT_ART_STATUS.md](CONCEPT_ART_STATUS.md) for exact coverage, files and limitations. The original eight studies below remain fully integrated.
 
 Base: `e69d950` on `main`. Branch: `codex/illustrated-studio`.
