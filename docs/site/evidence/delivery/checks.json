@@ -1,0 +1,386 @@
+[
+  {
+    "check": "light 390 five readable components",
+    "ok": true
+  },
+  {
+    "check": "light 390 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "light 390 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "light 390 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "light 390 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "light 390 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "light 390 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "light 390 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "light 390 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "light 390 download works",
+    "ok": true
+  },
+  {
+    "check": "light 390 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "light 390 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 390 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "light 390 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "light 390 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 768 five readable components",
+    "ok": true
+  },
+  {
+    "check": "light 768 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "light 768 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "light 768 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "light 768 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "light 768 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "light 768 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "light 768 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "light 768 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "light 768 download works",
+    "ok": true
+  },
+  {
+    "check": "light 768 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "light 768 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 768 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "light 768 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "light 768 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 1440 five readable components",
+    "ok": true
+  },
+  {
+    "check": "light 1440 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "light 1440 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "light 1440 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "light 1440 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "light 1440 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "light 1440 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "light 1440 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "light 1440 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "light 1440 download works",
+    "ok": true
+  },
+  {
+    "check": "light 1440 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "light 1440 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 1440 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "light 1440 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "light 1440 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light poster labels stay inside page",
+    "ok": true
+  },
+  {
+    "check": "light poster retains selectable text and source link",
+    "ok": true
+  },
+  {
+    "check": "dark 390 five readable components",
+    "ok": true
+  },
+  {
+    "check": "dark 390 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 390 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 390 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 390 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 390 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 390 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "dark 390 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "dark 390 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "dark 390 download works",
+    "ok": true
+  },
+  {
+    "check": "dark 390 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "dark 390 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 390 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "dark 390 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "dark 390 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 768 five readable components",
+    "ok": true
+  },
+  {
+    "check": "dark 768 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 768 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 768 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 768 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 768 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 768 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "dark 768 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "dark 768 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "dark 768 download works",
+    "ok": true
+  },
+  {
+    "check": "dark 768 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "dark 768 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 768 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "dark 768 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "dark 768 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 five readable components",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 2 people, 1 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 3 people, 3 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 6 people, 15 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 10 people, 45 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 12 people, 66 connections",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 human control leaves agent count alone",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 keyboard updates human count",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 poster follows theme",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 download works",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 explicit theme overrides OS",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 method fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 Learn link reaches guide",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 library preview and links",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark poster labels stay inside page",
+    "ok": true
+  },
+  {
+    "check": "dark poster retains selectable text and source link",
+    "ok": true
+  },
+  {
+    "check": "No-JS example remains meaningful",
+    "ok": true
+  },
+  {
+    "check": "Guide and human-team section are searchable",
+    "ok": true
+  }
+]
