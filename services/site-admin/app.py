@@ -58,7 +58,9 @@ def handler(e,context=None):
     try:
         if not hmac.compare_digest(e['headers'].get('x-site-origin',''),secret()):return response(403,{'error':'Site origin required'})
         if method not in {'GET','POST','PATCH','PUT','DELETE'}:return response(405,{'error':'Method not allowed'})
-        if method!='GET' and e['headers'].get('origin')!=origin:return response(403,{'error':'Same-origin request required'})
+        # The existing site CDN maps 403 to its public S3 error page. Treat an
+        # invalid request origin as bad input so API denials retain JSON/no-store.
+        if method!='GET' and e['headers'].get('origin')!=origin:return response(400,{'error':'Same-origin request required'})
         if method=='GET' and p=='/api/auth/start':
             limited(e,'login',20,3600);url,c=AUTH.start();return redirect(url,[c])
         if method=='GET' and p=='/api/auth/callback':

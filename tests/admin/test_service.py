@@ -53,7 +53,10 @@ class ServiceTests(unittest.TestCase):
             self.assertEqual(r['statusCode'],401);self.assertIn('no-store',r['headers']['Cache-Control'])
     def test_origin_and_csrf_denied(self):
         self.assertEqual(self.request('/api/config',headers={'X-Site-Origin':'wrong'})['statusCode'],403)
-        self.assertEqual(self.request('/api/admin/settings','PUT',{},owner=True,headers={'Origin':'https://evil.example'})['statusCode'],403)
+        denied=self.request('/api/admin/settings','PUT',{},owner=True,headers={'Origin':'https://evil.example'})
+        self.assertEqual(denied['statusCode'],400)
+        self.assertIn('no-store',denied['headers']['Cache-Control'])
+        self.assertIn('application/json',denied['headers']['Content-Type'])
         self.assertEqual(self.request('/api/admin/settings','PUT',{},owner=True,headers={'X-Csrf-Token':'bad'})['statusCode'],401)
     def test_jwt_rejections(self):
         for changes in [dict(exp=int(time.time())-20),dict(iss='other'),dict(token_use='id'),dict(client_id='wrong'),dict(scope='openid'),{'cognito:groups':[]}]:
