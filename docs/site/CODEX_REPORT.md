@@ -1,6 +1,6 @@
 # Admin and authored mobile follow-up · 2026-10-12
 
-Enterprise Studio is live through PR #9 and deployment 38298640673. The follow-up implementation on `codex/site-admin-mobile` adds ten authored portrait assets, composition-aware delivery, a private serverless control room, consented metrics and a persisted contact inbox. See [ADMIN_RELEASE_REPORT.md](ADMIN_RELEASE_REPORT.md) for the 1,392-check local gate, screenshots and the exact live infrastructure prerequisites. The mobile release is live through PR #10 and deployment 38302607517, with 749 live browser checks passing. Backend activation and owner MFA remain pending the correct AWS provisioning account.
+Enterprise Studio is live through PR #9 and deployment 38298640673. The follow-up implementation on `codex/site-admin-mobile` adds ten authored portrait assets, composition-aware delivery, a private serverless control room, consented metrics and a persisted contact inbox. See [ADMIN_RELEASE_REPORT.md](ADMIN_RELEASE_REPORT.md) for the 1,392-check local gate, screenshots and the exact live infrastructure prerequisites. The mobile release is live through PR #10 and deployment 38302607517, with 749 live browser checks passing. The backend is now deployed in the correct AWS account, with 32 live API checks passing and marked-record persistence/exclusion verified. Owner password/MFA enrollment and authenticated acceptance remain pending.
 
 # Enterprise agent studio · 12 October 2026
 

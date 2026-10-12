@@ -1,0 +1,44 @@
+[
+  {
+    "route": "contact",
+    "width": 390,
+    "overflow": false,
+    "page_errors": [],
+    "text": "A CONVERSATION, WITH CONTEXT\n\nWhat are you\ntrying to build?\n\nTell me the problem, what you have tried, and where you are stuck. Please leave out passwords, medical records and confidential customer material.\n\nReady. Your message goes to my private website inbox.\n\nYour name\nEmail\nCompany, optional\nTopic\nArchitecture\nCloud and platforms\nAI systems\nSpeaking and teaching\nSomething else\nMessage\nLeave this blank\n\nWhen the inbox is available, submitting stores these details so I can review and reply. Privacy and retention.\n\nSend inquiry\n\nPrefer a direct message? Email me or find me on LinkedIn. Those messages do not appear in the website inbox."
+  },
+  {
+    "route": "login",
+    "width": 390,
+    "overflow": false,
+    "page_errors": [],
+    "text": "KHALID SHAMS \u00b7 OWNER ACCESS\n\nA quiet place\nto see the work.\n\nSite insights, reader inquiries and the health of this learning library. Private to the site owner.\n\nContinue to managed owner sign-in. You will return here after authentication and MFA.\n\nSign in securely\n\nManaged authentication \u00b7 MFA required\n\nReturn to the public library \u2192"
+  },
+  {
+    "route": "admin",
+    "width": 390,
+    "overflow": false,
+    "page_errors": [],
+    "text": "KHALID SHAMS \u00b7 PRIVATE CONTROL ROOM\n\nThe library.\nThe people it reaches.\n\nYour owner session has expired. Sign in again.\n\nOwner sign-in \u2192\n\nAmerica/Phoenix \u00b7 Observed, never assumed"
+  },
+  {
+    "route": "contact",
+    "width": 1440,
+    "overflow": false,
+    "page_errors": [],
+    "text": "A CONVERSATION, WITH CONTEXT\n\nWhat are you\ntrying to build?\n\nTell me the problem, what you have tried, and where you are stuck. Please leave out passwords, medical records and confidential customer material.\n\nReady. Your message goes to my private website inbox.\n\nYour name\nEmail\nCompany, optional\nTopic\nArchitecture\nCloud and platforms\nAI systems\nSpeaking and teaching\nSomething else\nMessage\nLeave this blank\n\nWhen the inbox is available, submitting stores these details so I can review and reply. Privacy and retention.\n\nSend inquiry\n\nPrefer a direct message? Email me or find me on LinkedIn. Those messages do not appear in the website inbox."
+  },
+  {
+    "route": "login",
+    "width": 1440,
+    "overflow": false,
+    "page_errors": [],
+    "text": "KHALID SHAMS \u00b7 OWNER ACCESS\n\nA quiet place\nto see the work.\n\nSite insights, reader inquiries and the health of this learning library. Private to the site owner.\n\nContinue to managed owner sign-in. You will return here after authentication and MFA.\n\nSign in securely\n\nManaged authentication \u00b7 MFA required\n\nReturn to the public library \u2192"
+  },
+  {
+    "route": "admin",
+    "width": 1440,
+    "overflow": false,
+    "page_errors": [],
+    "text": "KHALID SHAMS \u00b7 PRIVATE CONTROL ROOM\n\nThe library.\nThe people it reaches.\n\nYour owner session has expired. Sign in again.\n\nOwner sign-in \u2192\n\nAmerica/Phoenix \u00b7 Observed, never assumed"
+  }
+]

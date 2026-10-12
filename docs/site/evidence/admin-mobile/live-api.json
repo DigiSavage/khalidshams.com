@@ -1,0 +1,148 @@
+[
+  {
+    "path": "/api/config",
+    "status": 200,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "available": true,
+      "collection": true,
+      "version": 1
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Miss from cloudfront"
+    }
+  },
+  {
+    "path": "/api/auth/session",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "path": "/api/admin/settings",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "path": "/api/admin/insights",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "path": "/api/admin/inquiries",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "path": "/api/admin/export?kind=inquiries",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "path": "/api/admin/unknown",
+    "status": 401,
+    "checks": {
+      "status": true,
+      "json": true,
+      "private_no_store": true,
+      "not_cached": true
+    },
+    "body": {
+      "error": "Owner sign-in required. Your session may have expired."
+    },
+    "headers": {
+      "Content-Type": "application/json",
+      "Cache-Control": "no-store, private, max-age=0",
+      "X-Cache": "Error from cloudfront"
+    }
+  },
+  {
+    "check": "marked inquiry accepted after persistence",
+    "status": 201,
+    "id": "005f7552-71c7-4829-8d26-2dc2e6281f9e"
+  },
+  {
+    "check": "same inquiry retry deduplicated",
+    "status": 200
+  },
+  {
+    "check": "marked event accepted",
+    "status": 200,
+    "event_id": "969f9789-2051-4307-8fe9-7d275723fc62"
+  },
+  {
+    "check": "event retry deduplicated",
+    "status": 200
+  }
+]
