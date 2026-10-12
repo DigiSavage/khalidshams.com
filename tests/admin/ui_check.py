@@ -12,6 +12,16 @@ class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*a,**kw):super().__init__(*a,directory=str(ROOT/'dist'),**kw)
     def log_message(self,*a):pass
     def do_GET(self):
+        if self.path=='/__fixture__/enrollment':
+            import auth
+            f.auth.idp.admin_get_user.return_value['UserMFASettingList']=[]
+            f.store.put('sessions',dict(pk='enrollment#'+auth.digest('fixture-enrollment'),sk='0',access=f.token(scope='site-admin/owner aws.cognito.signin.user.admin'),sub='owner-id',csrf='fixture-enrollment-csrf',ttl=int(time.time())+600))
+            f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+            def verify(**kwargs):
+                f.auth.idp.admin_get_user.return_value['UserMFASettingList']=['SOFTWARE_TOKEN_MFA']
+                return {'Status':'SUCCESS'}
+            f.auth.idp.verify_software_token.side_effect=verify
+            self.send_response(204);self.send_header('Set-Cookie','__Host-ks-enrollment=fixture-enrollment; Path=/; HttpOnly; SameSite=Lax; Secure');self.end_headers();return
         if self.path=='/__fixture__/login':
             f.login();self.send_response(204);self.send_header('Set-Cookie','__Host-ks-session='+f.sid+'; Path=/; HttpOnly; SameSite=Lax; Secure');self.end_headers();return
         if self.path.startswith('/api/'):return self.api()
@@ -35,6 +45,18 @@ def check(label,ok):
     results.append({'check':label,'ok':bool(ok)});print(('PASS ' if ok else 'FAIL ')+label,flush=True)
 with sync_playwright() as pw:
     browser=pw.chromium.launch()
+    for width in (390,1380):
+        c=browser.new_context(viewport={'width':width,'height':900});c.request.get(BASE+'/__fixture__/enrollment');p=c.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
+        p.goto(BASE+'/login/?setup=mfa');p.locator('#mfa-start').click();p.locator('#mfa-key-area').wait_for(state='visible')
+        check(f'enrollment is separate from private data {width}',c.request.get(BASE+'/api/admin/inquiries').status==401)
+        check(f'enrollment key visible after explicit action {width}',p.locator('#mfa-key').inner_text()=='FIXTUREKEYONLY')
+        check(f'enrollment no overflow {width}',p.evaluate('document.documentElement.scrollWidth<=innerWidth'))
+        p.screenshot(path=str(OUT/f'enrollment-{width}.png'),full_page=True)
+        p.locator('#mfa-code').fill('123456');p.locator('#mfa-form button').click();p.wait_for_url(BASE+'/admin/')
+        p.wait_for_function("document.querySelector('#admin-status').textContent.includes('observations loaded')")
+        check(f'verified enrollment opens dashboard {width}',p.locator('#admin-app').is_visible())
+        check(f'enrollment no script errors {width}',not errors);c.close()
+    c=browser.new_context();p=c.new_page();p.goto(BASE+'/login/?error=signin');p.locator('#owner-signin').wait_for(state='visible');check('callback failure explains sign-in instead of blaming code countdown','does not mean its countdown expired' in p.locator('#login-status').inner_text());c.close()
     # An unauthenticated shell must never reveal records or pretend to be authenticated.
     c=browser.new_context();p=c.new_page();p.goto(BASE+'/admin/');p.wait_for_function("document.querySelector('#admin-status').textContent.includes('expired')")
     check('unauthenticated admin remains locked',p.locator('#admin-app').is_hidden());check('private response is no-store','no-store' in c.request.get(BASE+'/api/admin/inquiries').headers['cache-control']);c.close()

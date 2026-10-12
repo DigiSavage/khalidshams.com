@@ -1,3 +1,13 @@
+## Owner enrollment correction, 12 October 2026
+
+Live attempts returned from Cognito to the site callback, but the directory still reported no enabled software MFA factor. The previous implementation discarded the valid first-factor login and displayed a generic expired-session error. The OAuth client also lacked the reserved self-service scope used by Cognito authenticator enrollment.
+
+The correction introduces a ten-minute enrollment-only HttpOnly cookie following validated PKCE/state/nonce, matching token subjects and live owner-group checks. It grants no dashboard, inquiry or analytics access. The owner explicitly requests a setup key and verifies a six-digit code. The server verifies the factor with Cognito, enables its preference, rechecks live owner/MFA state, consumes the setup session, then issues the normal private session. Setup keys and codes are not logged or persisted by the application. CSRF, same-origin validation, source and session attempt limits, and private/no-store responses apply. An already enrolled owner cannot use this flow to rotate their authenticator.
+
+The client requests `aws.cognito.signin.user.admin` for self-service MFA operations on the signed-in Cognito account. This does not grant AWS account administration or alter the Lambda IAM role. Callback validation failures return to a usable sign-in page instead of raw expired-session JSON. The UI clearly distinguishes the setup key, rotating code and sign-in session.
+
+Validation and post-deployment results are recorded with the correction PR. Live owner acceptance is still required; fixture success is not a claim that the owner's real factor is enrolled.
+
 # Admin, inquiries, measurement and mobile release
 
 ## Release state

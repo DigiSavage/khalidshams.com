@@ -8,7 +8,7 @@ import boto3,jwt
 from moto import mock_aws
 from cryptography.hazmat.primitives.asymmetric import rsa
 import app
-from auth import Auth,Unauthorized,digest
+from auth import Auth,Unauthorized,EnrollmentRequired,digest
 from storage import Store
 from contracts import Invalid,event,inquiry,spreadsheet
 from metrics import aggregate
@@ -97,6 +97,56 @@ class ServiceTests(unittest.TestCase):
         r=self.request('/api/admin/analytics','DELETE',raw|{'confirm':f'DELETE ANALYTICS {today} {today}'},owner=True);self.assertEqual(json.loads(r['body'])['deleted'],1)
         self.assertEqual(json.loads(self.request('/api/events','POST',{'events':[view]})['body'])['duplicates'],1)
         self.assertEqual(self.f.store.events(view['at']-1,int(time.time())+1)[0],[])
+    def setup_enrollment(self):
+        import io
+        self.f.auth.idp.admin_get_user.return_value['UserMFASettingList']=[]
+        url,jar=self.f.auth.start();q=parse_qs(urlsplit(url).query)
+        tokens={'id_token':self.f.token(token_use='id',aud='fixture',nonce=q['nonce'][0]),'access_token':self.f.token(scope='site-admin/owner aws.cognito.signin.user.admin')}
+        with patch('auth.urlopen',return_value=io.StringIO(json.dumps(tokens))):
+            r=self.request('/api/auth/callback',q={'state':q['state'][0],'code':'fixture'},headers={'Cookie':jar.split(';')[0]})
+        self.assertEqual(r['statusCode'],303);self.assertTrue(r['headers']['Location'].endswith('/login/?setup=mfa'))
+        enrollment=r['multiValueHeaders']['Set-Cookie'][0].split(';')[0]
+        self.assertTrue(enrollment.startswith('__Host-ks-enrollment='))
+        self.assertFalse(any(c.startswith('__Host-ks-session=') for c in r['multiValueHeaders']['Set-Cookie']))
+        status=self.request('/api/auth/enrollment',headers={'Cookie':enrollment})
+        csrf=json.loads(status['body'])['csrf']
+        return {'Cookie':enrollment,'X-CSRF-Token':csrf}
+    def test_enrollment_cannot_read_private_data_and_requires_csrf(self):
+        headers=self.setup_enrollment()
+        self.assertEqual(self.request('/api/admin/inquiries',headers=headers)['statusCode'],401)
+        self.assertEqual(self.request('/api/auth/enrollment/start','POST',{},headers={**headers,'X-CSRF-Token':'wrong'})['statusCode'],401)
+        self.f.auth.idp.associate_software_token.assert_not_called()
+        self.f.auth.idp.admin_list_groups_for_user.return_value={'Groups':[]}
+        self.assertEqual(self.request('/api/auth/enrollment',headers=headers)['statusCode'],401)
+    def test_enrollment_verifies_factor_before_issuing_session(self):
+        headers=self.setup_enrollment()
+        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+        r=self.request('/api/auth/enrollment/start','POST',{},headers=headers)
+        self.assertEqual(json.loads(r['body'])['secret'],'FIXTUREKEYONLY');self.assertIn('no-store',r['headers']['Cache-Control'])
+        def verify(**kwargs):
+            self.assertEqual(kwargs,{'Session':'fixture-association','UserCode':'123456'})
+            self.f.auth.idp.admin_get_user.return_value['UserMFASettingList']=['SOFTWARE_TOKEN_MFA']
+            return {'Status':'SUCCESS'}
+        self.f.auth.idp.verify_software_token.side_effect=verify
+        r=self.request('/api/auth/enrollment/verify','POST',{'code':'123456'},headers=headers)
+        self.assertEqual(r['statusCode'],200);self.assertTrue(json.loads(r['body'])['verified'])
+        self.f.auth.idp.set_user_mfa_preference.assert_called_once()
+        session=r['multiValueHeaders']['Set-Cookie'][0].split(';')[0]
+        self.assertEqual(self.request('/api/auth/session',headers={'Cookie':session})['statusCode'],200)
+        self.assertEqual(self.request('/api/auth/enrollment/verify','POST',{'code':'123456'},headers=headers)['statusCode'],401)
+    def test_bad_enrollment_code_never_opens_dashboard(self):
+        from botocore.exceptions import ClientError
+        headers=self.setup_enrollment()
+        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+        self.request('/api/auth/enrollment/start','POST',{},headers=headers)
+        self.f.auth.idp.verify_software_token.side_effect=ClientError({'Error':{'Code':'CodeMismatchException','Message':'fixture'}},'VerifySoftwareToken')
+        r=self.request('/api/auth/enrollment/verify','POST',{'code':'123456'},headers=headers)
+        self.assertEqual(r['statusCode'],400);self.assertNotIn('multiValueHeaders',r)
+        self.assertIn('did not match',r['body']);self.f.auth.idp.set_user_mfa_preference.assert_not_called()
+        self.assertEqual(self.request('/api/auth/session',headers=headers)['statusCode'],401)
+    def test_invalid_callback_returns_signin_help_not_expired_json(self):
+        r=self.request('/api/auth/callback',q={'code':'expired','state':'expired'})
+        self.assertEqual(r['statusCode'],303);self.assertTrue(r['headers']['Location'].endswith('/login/?error=signin'))
     def test_session_expiry_logout(self):
         self.assertEqual(self.request('/api/auth/session',owner=True)['statusCode'],200)
         self.assertEqual(self.request('/api/auth/logout','POST',{},owner=True)['statusCode'],200)

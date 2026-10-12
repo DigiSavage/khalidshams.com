@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 import boto3
 from botocore.exceptions import ClientError
 from contracts import Invalid,event as validate_event,inquiry,body,text,uid,STATUSES,spreadsheet
-from auth import Auth,Unauthorized,cookies,cookie,digest
+from auth import Auth,Unauthorized,EnrollmentRequired,cookies,cookie,digest
 from storage import Store
 from metrics import aggregate
 
@@ -64,7 +64,21 @@ def handler(e,context=None):
         if method=='GET' and p=='/api/auth/start':
             limited(e,'login',20,3600);url,c=AUTH.start();return redirect(url,[c])
         if method=='GET' and p=='/api/auth/callback':
-            return redirect(origin+'/admin/',[AUTH.callback(e),cookie('login','',0)])
+            try:return redirect(origin+'/admin/',[AUTH.callback(e),cookie('login','',0),cookie('enrollment','',0)])
+            except EnrollmentRequired as setup:return redirect(origin+'/login/?setup=mfa',[setup.jar,cookie('login','',0)])
+            except Unauthorized:return redirect(origin+'/login/?error=signin',[cookie('login','',0)])
+        if p=='/api/auth/enrollment' and method=='GET':
+            row,_=AUTH.enrollment(e);return response(200,{'csrf':row['csrf'],'expires':row['ttl']})
+        if p=='/api/auth/enrollment/start' and method=='POST':
+            limited(e,'mfa-setup',10,3600);body(e)
+            return response(200,{'secret':AUTH.begin_enrollment(e)})
+        if p=='/api/auth/enrollment/verify' and method=='POST':
+            limited(e,'mfa-verify',20,3600);raw=body(e)
+            try:jar=AUTH.finish_enrollment(e,raw.get('code'))
+            except ClientError as error:
+                if error.response['Error']['Code']=='CodeMismatchException':return response(400,{'error':'That code did not match. Use the latest code from the setup key shown here.'})
+                raise
+            return response(200,{'verified':True},cookies_=[jar,cookie('enrollment','',0)])
         cfg=settings()
         if p=='/api/config' and method=='GET':return response(200,{'available':True,'collection':cfg['collection'],'version':1})
         if p=='/api/contact/challenge' and method=='GET':
