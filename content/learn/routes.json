@@ -69,7 +69,7 @@
    ]}
  ],
  "brief": {
-  "intro": "Answer four questions. The brief lists the gates, lessons and checks that apply to your system. Nothing leaves your browser.",
+  "intro": "Answer four questions. The brief lists the gates, lessons and checks that apply to your system. Your answers stay in your browser.",
   "questions": [
    {"id": "writes", "q": "Will it execute actions that change records, money or messages?", "yes": "It executes writes", "no": "It only reads and advises",
     "yes_adds": {"gates": ["g5", "g8"], "lessons": ["/learn/paths/running-it-safely/"], "watch": ["/learn/atlas/?x=denyRefund&step=10"], "rung_min": 2}},
