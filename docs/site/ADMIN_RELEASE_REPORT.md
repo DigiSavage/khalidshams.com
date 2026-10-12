@@ -1,3 +1,11 @@
+## Cognito setup response correction, 12 October 2026
+
+The live setup-key request failed with a sanitized `KeyError` in the enrollment handler. Cognito's access-token-authorized `AssociateSoftwareToken` response can contain only `SecretCode`; the implementation incorrectly required a challenge `Session`. Association now records only that setup started, and verification uses the same server-held access token. Neither the secret nor the submitted code is stored. Existing owner, MFA, CSRF, expiry and attempt-limit checks still apply.
+
+Regression fixtures now use the documented response without `Session`, and assert that verification uses `AccessToken`. The corrected fixture reproduced the production failure before the implementation change. Verification before association and incorrect codes remain denied. The backend unit suite passes 26 tests, the integrated browser suite passes 65 checks at 390 and 1380 pixels, and the site build passes with 490 search entries. Deployment results are recorded in the correction PR. Real owner enrollment remains pending the owner's private setup and code entry.
+
+Reference: [AWS AssociateSoftwareToken](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AssociateSoftwareToken.html) and [VerifySoftwareToken](https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_VerifySoftwareToken.html).
+
 ## Owner enrollment correction, 12 October 2026
 
 Live attempts returned from Cognito to the site callback, but the directory still reported no enabled software MFA factor. The previous implementation discarded the valid first-factor login and displayed a generic expired-session error. The OAuth client also lacked the reserved self-service scope used by Cognito authenticator enrollment.

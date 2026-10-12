@@ -16,7 +16,7 @@ class Handler(SimpleHTTPRequestHandler):
             import auth
             f.auth.idp.admin_get_user.return_value['UserMFASettingList']=[]
             f.store.put('sessions',dict(pk='enrollment#'+auth.digest('fixture-enrollment'),sk='0',access=f.token(scope='site-admin/owner aws.cognito.signin.user.admin'),sub='owner-id',csrf='fixture-enrollment-csrf',ttl=int(time.time())+600))
-            f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+            f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY'}
             def verify(**kwargs):
                 f.auth.idp.admin_get_user.return_value['UserMFASettingList']=['SOFTWARE_TOKEN_MFA']
                 return {'Status':'SUCCESS'}
