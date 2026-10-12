@@ -1,6 +1,6 @@
 # Owner sign-in correction
 
-The repeated expired-code reports exposed an incomplete MFA enrollment handoff. The correction adds an isolated owner-only enrollment flow and actionable callback errors. See ADMIN_RELEASE_REPORT.md for the security boundary and pending live acceptance.
+The repeated expired-code reports exposed an incomplete MFA enrollment handoff. The correction adds an isolated owner-only enrollment flow and actionable callback errors. The subsequent setup-key failure was traced to requiring a Cognito challenge Session in an access-token flow. Association and verification now consistently use the access token, with realistic response fixtures. See ADMIN_RELEASE_REPORT.md for the security boundary and pending live acceptance.
 
 # Admin and authored mobile follow-up · 2026-10-12
 

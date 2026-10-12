@@ -82,13 +82,14 @@ class Auth:
         row,_=self.enrollment(event,True)
         if not self.store.rate(row['pk']+'#begin',3,600):raise Unauthorized()
         result=self.idp.associate_software_token(AccessToken=row['access'])
-        row['setup_session']=result['Session'];self.store.put('sessions',row)
+        # Access-token enrollment does not require Cognito's challenge Session.
+        row['setup_started']=True;self.store.put('sessions',row)
         return result['SecretCode']
     def finish_enrollment(self,event,code):
         row,claims=self.enrollment(event,True)
-        if not isinstance(code,str) or len(code)!=6 or not code.isascii() or not code.isdigit() or not row.get('setup_session'):raise Unauthorized()
+        if not isinstance(code,str) or len(code)!=6 or not code.isascii() or not code.isdigit() or not row.get('setup_started'):raise Unauthorized()
         if not self.store.rate(row['pk']+'#verify',5,600):raise Unauthorized()
-        result=self.idp.verify_software_token(Session=row['setup_session'],UserCode=code)
+        result=self.idp.verify_software_token(AccessToken=row['access'],UserCode=code)
         if result.get('Status')!='SUCCESS':raise Unauthorized()
         self.idp.set_user_mfa_preference(AccessToken=row['access'],SoftwareTokenMfaSettings={'Enabled':True,'PreferredMfa':True})
         self.owner(claims)

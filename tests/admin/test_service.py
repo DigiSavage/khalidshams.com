@@ -120,11 +120,14 @@ class ServiceTests(unittest.TestCase):
         self.assertEqual(self.request('/api/auth/enrollment',headers=headers)['statusCode'],401)
     def test_enrollment_verifies_factor_before_issuing_session(self):
         headers=self.setup_enrollment()
-        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+        self.assertEqual(self.request('/api/auth/enrollment/verify','POST',{'code':'123456'},headers=headers)['statusCode'],401)
+        self.f.auth.idp.verify_software_token.assert_not_called()
+        # Cognito's AccessToken flow returns SecretCode without a Session.
+        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY'}
         r=self.request('/api/auth/enrollment/start','POST',{},headers=headers)
         self.assertEqual(json.loads(r['body'])['secret'],'FIXTUREKEYONLY');self.assertIn('no-store',r['headers']['Cache-Control'])
         def verify(**kwargs):
-            self.assertEqual(kwargs,{'Session':'fixture-association','UserCode':'123456'})
+            self.assertEqual(kwargs,{'AccessToken':self.f.auth.idp.associate_software_token.call_args.kwargs['AccessToken'],'UserCode':'123456'})
             self.f.auth.idp.admin_get_user.return_value['UserMFASettingList']=['SOFTWARE_TOKEN_MFA']
             return {'Status':'SUCCESS'}
         self.f.auth.idp.verify_software_token.side_effect=verify
@@ -137,7 +140,7 @@ class ServiceTests(unittest.TestCase):
     def test_bad_enrollment_code_never_opens_dashboard(self):
         from botocore.exceptions import ClientError
         headers=self.setup_enrollment()
-        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY','Session':'fixture-association'}
+        self.f.auth.idp.associate_software_token.return_value={'SecretCode':'FIXTUREKEYONLY'}
         self.request('/api/auth/enrollment/start','POST',{},headers=headers)
         self.f.auth.idp.verify_software_token.side_effect=ClientError({'Error':{'Code':'CodeMismatchException','Message':'fixture'}},'VerifySoftwareToken')
         r=self.request('/api/auth/enrollment/verify','POST',{'code':'123456'},headers=headers)
