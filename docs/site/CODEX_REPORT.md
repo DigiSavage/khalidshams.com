@@ -1,3 +1,7 @@
+# Enterprise agent studio · 12 October 2026
+
+An additive enterprise design journey is ready on `codex/enterprise-agent-studio`. See [ENTERPRISE_STUDIO_REPORT.md](ENTERPRISE_STUDIO_REPORT.md) for scope, source checks, 782 passing checks, evidence and limits. This work does not publish the site.
+
 # Illustrated studio implementation
 
 ## Menu arrows and playbook tool explanations · 2026-10-08

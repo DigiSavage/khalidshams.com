@@ -17,6 +17,16 @@ def check(name, ok, detail=""):
     results.append((name, bool(ok), detail)); print(("PASS " if ok else "FAIL ") + name + (f"  ({detail})" if detail else ""))
 
 
+async def svg_visible(locator):
+    # Chromium 134 can report a bounding box for a display:none SVG group with
+    # nested studio-object groups. Check ancestor display as well as visibility.
+    displayed = await locator.evaluate("""e => {
+        for (let n=e; n; n=n.parentElement) if (getComputedStyle(n).display === 'none') return false;
+        return true;
+    }""")
+    return displayed and await locator.is_visible()
+
+
 async def page(b, w, h, scheme="light", motion="no-preference"):
     ctx = await b.new_context(viewport={"width": w, "height": h}, color_scheme=scheme, reduced_motion=motion, accept_downloads=True)
     pg = await ctx.new_page(); errs = []
@@ -71,7 +81,7 @@ async def main():
         st = await pg.evaluate("window.__atlas.state()")
         check("injection run ends as 'blocked'", st["outcome"] == "blocked", st["outcome"])
         await pg.goto(A); await pg.wait_for_selector('#atlas[data-ready="true"]')
-        check("planted note hidden when the condition is off", not await pg.locator(".inj-note").is_visible())
+        check("planted note hidden when the condition is off", not await svg_visible(pg.locator(".inj-note")))
         await pg.click('.slot[data-slot="instructions"]'); await pg.wait_for_timeout(150)
         f1 = (await pg.evaluate("window.__atlas.state()"))["st"]["focus"]
         await pg.click(".tokens"); await pg.wait_for_timeout(150)
@@ -174,7 +184,7 @@ async def main():
         st = await pg.evaluate("window.__atlas.state()")
         marks = await pg.eval_on_selector_all(".st-mark", "els => els.map(e => e.textContent)")
         check("model lesson: skewed data is held back on the by-group criterion", st["outcome"] == "held_back" and marks[2] == "✕" and marks[0] == "", f"{st['outcome']} {marks}")
-        check("model lesson: skewed bars shown only under that condition", await pg.locator(".bars-skew").is_visible() and not await pg.locator(".bars-even").is_visible())
+        check("model lesson: skewed bars shown only under that condition", await svg_visible(pg.locator(".bars-skew")) and not await svg_visible(pg.locator(".bars-even")))
         await pg.screenshot(path=str(SHOTS / "11-model-skew-1440.png"))
         await pg.goto(M); await pg.wait_for_selector('#atlas[data-ready="true"]')
         await pg.click('[data-sc="attention"] >> nth=0'); await pg.wait_for_timeout(150)
