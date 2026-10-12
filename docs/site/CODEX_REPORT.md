@@ -1,3 +1,7 @@
+# Admin and authored mobile follow-up · 2026-10-12
+
+Enterprise Studio is live through PR #9 and deployment 38298640673. The follow-up implementation on `codex/site-admin-mobile` adds ten authored portrait assets, composition-aware delivery, a private serverless control room, consented metrics and a persisted contact inbox. See [ADMIN_RELEASE_REPORT.md](ADMIN_RELEASE_REPORT.md) for the 1,391-check local gate, screenshots and the exact live infrastructure prerequisites. Backend activation and owner MFA are tracked separately from static publication.
+
 # Enterprise agent studio · 12 October 2026
 
 An additive enterprise design journey is ready on `codex/enterprise-agent-studio`. See [ENTERPRISE_STUDIO_REPORT.md](ENTERPRISE_STUDIO_REPORT.md) for scope, source checks, 782 passing checks, evidence and limits. The owner subsequently authorized publication. The patch is imported and the fresh integrated 782-check gate passes; see the release section of the Studio report.

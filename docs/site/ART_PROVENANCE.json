@@ -172,5 +172,135 @@
     5,
     6,
     7
-  ]
+  ],
+  "mobile_compositions": {
+    "created": "2026-10-12",
+    "generator": "Built-in image generator",
+    "processing": "Ten separately authored portrait compositions referenced the existing studies. Dark scenes were authored with charcoal surfaces and task lighting, not inverted. Full 1024x1536 masters exported to WebP, quality 82, method 6. Existing desktop, compact and thumbnail files preserved.",
+    "selected": [
+      {
+        "scene": "atlas-workshop",
+        "theme": "light",
+        "source": "art-src/mobile/atlas-workshop-light.png",
+        "source_sha256": "50c3f6553941e8d59731ef98aff8302f7af4ef80e9953ee5a626ee0a090ca3d2",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/atlas-workshop/mobile-light.webp",
+        "file_sha256": "d11a66aa7d20466afd8b6acb87ec9ca5bfcd382ca5dfb9b11a7cb36ea62b6efd"
+      },
+      {
+        "scene": "atlas-workshop",
+        "theme": "dark",
+        "source": "art-src/mobile/atlas-workshop-dark.png",
+        "source_sha256": "769cb25e10b866f27bcdab9c2868c575bf73f72a99c3ec872981f312f9724fbd",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/atlas-workshop/mobile-dark.webp",
+        "file_sha256": "f3d53704bbc566e12bdb0d9da5f7d534ae04e2003639fad846cc157ed855d99f"
+      },
+      {
+        "scene": "shams-autonomy",
+        "theme": "light",
+        "source": "art-src/mobile/shams-autonomy-light.png",
+        "source_sha256": "17a57fcef34dd1e7b910afb395fca6c01d6962148e9dcfada4f819de2f81455c",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/shams-autonomy/mobile-light.webp",
+        "file_sha256": "cb1de36fceca7d80d842492563868c4ed11a0ee104c307fe22c5a2d1ab61725f"
+      },
+      {
+        "scene": "shams-autonomy",
+        "theme": "dark",
+        "source": "art-src/mobile/shams-autonomy-dark.png",
+        "source_sha256": "ea6cec2d6ecd5d36f8a5196f8eaa3f126b411777b4e007398bd724e0d27aaf8b",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/shams-autonomy/mobile-dark.webp",
+        "file_sha256": "65d31f04809ccaf2296d790d098de27a49017d39a461e8ef7c006c8fc662a89e"
+      },
+      {
+        "scene": "production-review",
+        "theme": "light",
+        "source": "art-src/mobile/production-review-light.png",
+        "source_sha256": "df90bf8d148f2f147491f052aee8b8f840e0c41fe123777992cc1e759dfa23d2",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/production-review/mobile-light.webp",
+        "file_sha256": "cca53b36bf873e9c972c204960693f80ecf9878a6ba6cbe70f1de55499db0eb1"
+      },
+      {
+        "scene": "production-review",
+        "theme": "dark",
+        "source": "art-src/mobile/production-review-dark.png",
+        "source_sha256": "0dca3c48dfd0bb352bae4bb8d819b19d6157e55e24f4460e708b5266d7f28b5a",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/production-review/mobile-dark.webp",
+        "file_sha256": "bb7ef6d3a155a07befcfee186294e9b8b1e3be7e2de00359e0c7ac1bdc210466"
+      },
+      {
+        "scene": "enterprise-clarity",
+        "theme": "light",
+        "source": "art-src/mobile/enterprise-clarity-light.png",
+        "source_sha256": "01b07ff428f1cb64cd4fbc7d4dfdd18fd78dc5146d34619cc4131f2e6e827513",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/enterprise-clarity/mobile-light.webp",
+        "file_sha256": "a29ea3c139cfbc61cc606707cb166ac33a4e74d70367223fafde5cd4d4fa7183"
+      },
+      {
+        "scene": "enterprise-clarity",
+        "theme": "dark",
+        "source": "art-src/mobile/enterprise-clarity-dark.png",
+        "source_sha256": "9d54d13b44b8833e8000ed4fd7d98defc179e8c35c186e849db1d0f4b3f61766",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/enterprise-clarity/mobile-dark.webp",
+        "file_sha256": "894b4e44ff98de05a9e2218258332c1153cba7db16bd585a9e5fb7b92408eb9a"
+      },
+      {
+        "scene": "architectural-judgment",
+        "theme": "light",
+        "source": "art-src/mobile/architectural-judgment-light.png",
+        "source_sha256": "5d49d821d7976d59b3f8ffad517ca9e437131d8305f384bab1e14474a1cc6068",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/architectural-judgment/mobile-light.webp",
+        "file_sha256": "faed9b5b238b14ea8985814c57e8e4059e2b07d7faef2853fc7ad4988fc442a1"
+      },
+      {
+        "scene": "architectural-judgment",
+        "theme": "dark",
+        "source": "art-src/mobile/architectural-judgment-dark.png",
+        "source_sha256": "6e1148b725ef54939d5d5696093bfb150816647d0283c72e6bc2cacbcc148b71",
+        "original_size": [
+          1024,
+          1536
+        ],
+        "file": "/art/architectural-judgment/mobile-dark.webp",
+        "file_sha256": "8210641b4dfd48c8953d8b081b7f4742b272a9fb6717b113c14cb0f28b6ab3aa"
+      }
+    ],
+    "superseded_drafts": [
+      "exec-4842cd6f-5b83-4498-8f9d-ab5d4f008bae.png (comparison sliders removed in selected revision)"
+    ]
+  }
 }

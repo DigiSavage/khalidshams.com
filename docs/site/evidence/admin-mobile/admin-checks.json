@@ -1,0 +1,218 @@
+[
+  {
+    "check": "unauthenticated admin remains locked",
+    "ok": true
+  },
+  {
+    "check": "private response is no-store",
+    "ok": true
+  },
+  {
+    "check": "empty owner dashboard 390 light",
+    "ok": true
+  },
+  {
+    "check": "no overflow 390 light",
+    "ok": true
+  },
+  {
+    "check": "pages is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "journeys is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "inquiries is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "health is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "settings is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "overview is keyboard-focusable and opens 390 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 light",
+    "ok": true
+  },
+  {
+    "check": "empty owner dashboard 390 dark",
+    "ok": true
+  },
+  {
+    "check": "no overflow 390 dark",
+    "ok": true
+  },
+  {
+    "check": "pages is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "journeys is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "inquiries is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "health is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "settings is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "overview is keyboard-focusable and opens 390 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 dark",
+    "ok": true
+  },
+  {
+    "check": "empty owner dashboard 1380 light",
+    "ok": true
+  },
+  {
+    "check": "no overflow 1380 light",
+    "ok": true
+  },
+  {
+    "check": "pages is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "journeys is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "inquiries is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "health is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "settings is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "overview is keyboard-focusable and opens 1380 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 light",
+    "ok": true
+  },
+  {
+    "check": "empty owner dashboard 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "no overflow 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "pages is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "journeys is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "inquiries is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "health is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "settings is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "overview is keyboard-focusable and opens 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "contact success reflects persisted record",
+    "ok": true
+  },
+  {
+    "check": "stored XSS is displayed as inert text",
+    "ok": true
+  },
+  {
+    "check": "inbox update persists",
+    "ok": true
+  },
+  {
+    "check": "expiry clears previously visible private records",
+    "ok": true
+  },
+  {
+    "check": "declined consent sends no events",
+    "ok": true
+  },
+  {
+    "check": "explicit consent persists marked observations",
+    "ok": true
+  },
+  {
+    "check": "analytics payload omits form values and query strings",
+    "ok": true
+  },
+  {
+    "check": "revocation removes random identifiers",
+    "ok": true
+  },
+  {
+    "check": "consent can be revoked while the backend is unavailable",
+    "ok": true
+  },
+  {
+    "check": "revocation reaches other open tabs",
+    "ok": true
+  },
+  {
+    "check": "owner exclusion prevents collection",
+    "ok": true
+  },
+  {
+    "check": "gpc exclusion prevents collection",
+    "ok": true
+  },
+  {
+    "check": "failed event delivery retries the same event ID",
+    "ok": true
+  },
+  {
+    "check": "admin and login excluded from sitemap and search",
+    "ok": true
+  },
+  {
+    "check": "private shells have noindex",
+    "ok": true
+  },
+  {
+    "check": "private fixture records absent from dist",
+    "ok": true
+  }
+]

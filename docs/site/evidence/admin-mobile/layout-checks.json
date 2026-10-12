@@ -1,0 +1,50 @@
+[
+  {
+    "check": "production-review light portrait space reserved before load",
+    "ok": true
+  },
+  {
+    "check": "production-review light decoded image keeps reserved geometry",
+    "ok": true
+  },
+  {
+    "check": "production-review light manual theme retains portrait geometry",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy light portrait space reserved before load",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy light decoded image keeps reserved geometry",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy light manual theme retains portrait geometry",
+    "ok": true
+  },
+  {
+    "check": "production-review dark portrait space reserved before load",
+    "ok": true
+  },
+  {
+    "check": "production-review dark decoded image keeps reserved geometry",
+    "ok": true
+  },
+  {
+    "check": "production-review dark manual theme retains portrait geometry",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy dark portrait space reserved before load",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy dark decoded image keeps reserved geometry",
+    "ok": true
+  },
+  {
+    "check": "shams-autonomy dark manual theme retains portrait geometry",
+    "ok": true
+  }
+]

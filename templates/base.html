@@ -324,10 +324,8 @@ body.has-pathbar{ padding-bottom:64px; }
 /* Finished illustrations accompany the live diagrams. No inverted theme copies. */
 .studio-art{display:block;position:relative;width:100%;background:var(--card);}
 .studio-art img{display:block;width:100%;height:auto;max-width:100%;}
-.studio-art .art-dark{display:none;}
-:root[data-theme="dark"] .studio-art .art-light{display:none;}
-:root[data-theme="dark"] .studio-art .art-dark{display:block;}
-@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .studio-art .art-light{display:none;} :root:not([data-theme="light"]) .studio-art .art-dark{display:block;}}
+.studio-art picture{display:block}.studio-art img{aspect-ratio:var(--art-desktop-ratio);object-fit:contain;}
+@media(max-width:767px){.studio-art img{aspect-ratio:var(--art-mobile-ratio);}.home-scene .studio-art,#situations .studio-art,.ladder-art .studio-art{border-left:2px solid var(--blue);}}
 .art-diagram{margin:12px 0;}
 .art-diagram summary{cursor:pointer;color:var(--blue);font-size:13px;padding:8px 0;}
 .art-caption{display:block;padding:10px 14px;font:12px/1.5 var(--sans);color:var(--body);border-top:1px solid var(--rule);}
@@ -1336,6 +1334,9 @@ section .pq{ margin-top:clamp(30px,4vw,48px); padding-bottom:0; }
 
 </style>
 <script src="/search.js" defer></script>
+<link rel="stylesheet" href="/admin/admin.css">
+<script src="/art-direction.js" defer></script>
+<script src="/analytics.js" defer></script>
 </head>
 <body>
 {{BODY}}

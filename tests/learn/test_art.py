@@ -71,10 +71,13 @@ class ArtTests(unittest.TestCase):
         rendered = illustration({'assets': assets}, 'production-review', eager=True)
         self.assertIn('&quot;proposal&quot; &lt;pending&gt;', rendered)
         self.assertIn('software metaphor', rendered)
-        self.assertEqual(rendered.count('<img '), 2)
+        self.assertEqual(rendered.count('<img '), 1)
         for theme in THEMES:
             self.assertIn(f'desktop-{theme}.webp 720w', rendered)
         self.assertIn('loading="eager"', rendered)
+        self.assertIn('<picture', rendered)
+        self.assertIn('(max-width: 767px)', rendered)
+        self.assertNotIn('mobile-light.webp 720w', rendered)
         assets[0].pop('height')
         with self.assertRaisesRegex(ValueError, 'positive width and height'):
             illustration({'assets': assets}, 'production-review')
