@@ -31,12 +31,16 @@ class Store:
         except ClientError as e:
             if e.response['Error']['Code']=='ConditionalCheckFailedException':return False
             raise
-    def query(self,table,pk,limit=2000):
-        result=[];start=None;scanned=0
+    def query(self,table,pk,limit=2000,byte_limit=1500000):
+        result=[];start=None;scanned=0;size=0
         while len(result)<limit and scanned<limit:
             response=self.tables[table].query(KeyConditionExpression=Key('pk').eq(pk),Limit=min(500,limit-scanned),ConsistentRead=True,**({'ExclusiveStartKey':start} if start else {}))
             scanned+=response.get('ScannedCount',len(response['Items']))
-            result.extend(x for x in response['Items'] if x.get('ttl',0)>int(time.time()))
+            for row in response['Items']:
+                if row.get('ttl',0)<=int(time.time()):continue
+                size+=len(json.dumps(row,default=str).encode())
+                if size>byte_limit:return result,True
+                result.append(row)
             start=response.get('LastEvaluatedKey')
             if not start:break
         return result,bool(start)

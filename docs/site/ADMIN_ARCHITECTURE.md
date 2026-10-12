@@ -57,3 +57,5 @@ No mailbox integration exists. Email replies are drafts opened in the owner's em
 ## Isolation and failure behavior
 
 The test server under `tests/admin/` uses moto tables and signed fixture JWTs; its fixture login route is never packaged with Lambda or copied to `dist`. It is not a production authentication bypass. The production dashboard has no sample counts. If backend configuration is missing, telemetry stays off, the contact form points to existing email/LinkedIn alternatives, and the owner shell explains that the service is unavailable.
+
+Queries also cap serialized returned rows at 1.5 MB per partition query and flag partial coverage, protecting Lambda/API response and memory limits even when records have lengthy notes. Total internal note text per inquiry is limited to 20,000 characters, in addition to individual note and history-count bounds.

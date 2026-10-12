@@ -1,0 +1,14 @@
+[
+  {
+    "route": "/login/",
+    "text": "Owner sign-in is not available yet. The public library is fully available."
+  },
+  {
+    "route": "/admin/",
+    "text": "The private service is not connected yet. The public library remains available."
+  },
+  {
+    "route": "/contact/",
+    "text": "The website form is unavailable. Please use email or LinkedIn below."
+  }
+]

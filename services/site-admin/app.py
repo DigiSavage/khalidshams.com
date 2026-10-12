@@ -136,7 +136,7 @@ def handler(e,context=None):
             if method=='PATCH':
                 if type(raw.get('revision')) is not int or set(raw)-{'status','note','revision'} or not isinstance(raw.get('status',row['status']),str) or raw.get('status',row['status']) not in STATUSES or raw.get('revision')!=row['revision']:raise Invalid('Reload this inquiry before editing')
                 status=raw.get('status',row['status']);note=text(raw.get('note',''),0,2000)
-                if len(row['history'])>=100 or len(row['notes'])>=100:raise Invalid('History limit reached')
+                if len(row['history'])>=100 or len(row['notes'])>=100 or sum(len(n['text']) for n in row['notes'])+len(note)>20000:raise Invalid('Inquiry history or note storage limit reached')
                 if status!=row['status']:row['history'].append(dict(at=now,status=status))
                 if note:row['notes'].append(dict(at=now,text=note))
                 rev=row['revision'];row['revision']=rev+1;row['status']=status

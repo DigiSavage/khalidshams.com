@@ -59,3 +59,5 @@ Illustrative monthly scenario, not an invoice or spending cap: 100,000 API reque
 - Cognito Lite/Essentials has a 10,000 MAU account/organization free tier for eligible direct/social sign-ins. Verify shared usage and tier; do not assume every account has unused allowance. Email delivery can add charges. [AWS Cognito pricing](https://aws.amazon.com/cognito/pricing/).
 
 Those variable components are roughly $1.65/month under the stated assumptions, excluding CloudFront, storage, PITR, logs/metrics, artifact versions, data transfer, taxes and abuse. Actual retained volume and API traffic must be measured after launch. Set a site-specific AWS Budget alert through the owner's approved billing process; a budget alert does not stop spending. This deployment does not silently change account-wide budgets or billing controls.
+
+Queries also cap serialized returned rows at 1.5 MB per partition query and flag partial coverage, protecting Lambda/API response and memory limits even when records have lengthy notes. Total internal note text per inquiry is limited to 20,000 characters, in addition to individual note and history-count bounds.

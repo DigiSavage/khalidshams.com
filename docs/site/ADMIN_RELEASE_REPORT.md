@@ -8,7 +8,11 @@ This follow-up branch is `codex/site-admin-mobile`. It preserves the original `c
 
 The repository implementation is complete enough for deployment and integration testing. **The admin application is not yet declared operational:** a signed-in Safari session was inspected, but its AWS account did not contain the site's CloudFront distribution. No resources were created in that other account. The exact remaining infrastructure action is to use an authorized session in the account owning `E14OT21V7ATYP1`, run the reviewed deployment package, then let the owner complete Cognito password setup and MFA. Live authorization, persistence, logging configuration and test-data exclusion must then be verified.
 
-Static publication and its exact deployment evidence will be recorded below after release. Public shells remain honest when the API is unavailable: no fake dashboard data, no telemetry collection, no false contact success.
+The mobile improvements and public shells are published through [PR #10](https://github.com/DigiSavage/khalidshams.com/pull/10), merge `6eca9154df470a7e097bd6005f3a41f1ba017696`, successful [deployment 38302607517](https://github.com/DigiSavage/khalidshams.com/actions/runs/38302607517) at 2026-10-12 20:12 UTC. Public shells remain honest when the API is unavailable: no fake dashboard data, no telemetry collection, no false contact success.
+
+Live release acceptance: 518/518 art checks and 231/231 Enterprise Studio checks. Every one of the ten mobile WebPs matched the repository bytes by SHA256. `/login`, `/login/`, `/admin/` and `/contact/` return 200; login/admin have noindex. `/api/config` returns 404 because the new API has not been provisioned. Browser checks confirm the private dashboard stays locked and contact submission stays disabled with working direct-contact alternatives. This is a verified static release, not a claim of operational backend completion.
+
+A final source safeguard bounds query response data to 1.5 MB and total inquiry notes to 20,000 characters, with explicit partial/error states. The Linux ARM64 Python 3.12 dependency package also built successfully. Backend live acceptance remains blocked solely on the correct provisioning account and subsequent owner authentication setup.
 
 ## Implemented behavior
 
@@ -31,7 +35,7 @@ Static publication and its exact deployment evidence will be recorded below afte
 | Learn browser matrix | 186/186 |
 | Menu navigation | 103/103 |
 | Delivery playbook checks | 96/96 |
-| Auth, API persistence, metrics, retention, infrastructure unit tests | 21 passed |
+| Auth, API persistence, metrics, retention, infrastructure unit tests | 22 passed |
 | Engagement timing and referrer Node tests | 4 passed |
 | Admin/contact/consent browser integration | 54/54 |
 | Extended mobile art matrix | 518/518 |
