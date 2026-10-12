@@ -84,19 +84,12 @@ python tools/export_enterprise_preview.py
 
 The page is a deterministic teaching experience and proposed reference architecture, not a production agent builder. It does not provision Azure, invoke Anthropic, process customer documents, train a model or provide measured enterprise outcomes. Acceptance criteria and service mappings need validation for the client's actual estate. The simulation demonstrates selected known failure cases, not exhaustive prompt-injection detection or a security guarantee.
 
-No user testing, learning gains, Safari/Firefox compatibility or screen-reader audit is claimed. The diagrams and copy are reviewable additions using the current visual language. This branch is for review; no merge or deployment is included.
+No user testing, learning gains, Safari/Firefox compatibility or screen-reader audit is claimed. The diagrams and copy are reviewable additions using the current visual language. The owner has authorized merge and publication after fresh integrated verification.
 
-## Delivery status
+## Integrated release verification · 12 October 2026
 
-The implementation is committed locally on `codex/enterprise-agent-studio`. Push could not authenticate in this workspace. The connected GitHub app also returned HTTP 403, `Resource not accessible by integration`, for branch creation. No remote branch or pull request was created, and nothing was published.
+Imported the supplied patch after verifying SHA-256 `a271b4a4bd000cafb34c593dfc1dbe19f599dff95229ad9d238b88712276763c`. The original author is preserved. The patch applied cleanly to current main `1dde9b4`. The feature branch is pushed successfully with the current GitHub CLI identity; the prior environment's authentication limitation does not apply here.
 
-The handoff includes an offline HTML preview and a Git patch containing code, tests, documentation and visual evidence. In an authenticated checkout, apply the patch on a review branch based on current `main`, run the commands above, then push the branch and open a pull request. Do not push the change directly to `main`.
+Fresh integrated results: 28 Node tests, 43 Python tests, 231 Enterprise browser checks, 95 Atlas, 186 Learn, 103 menu and 96 delivery checks, totaling 782 named checks. Playwright 1.63.0 with its bundled Chromium was used, with unmodified cached Google Font responses. Reviewed phone and desktop screenshots in both themes. The narrow SVG ancestor-visibility correction preserves the existing assertions. Public punctuation and diff whitespace checks are clean. No workflows, publisher metadata or original patch files changed. The optional offline export is absent from the production payload.
 
-```bash
-git fetch origin
-git switch -c codex/enterprise-agent-studio origin/main
-git am /path/to/enterprise-agent-studio.patch
-git push -u origin codex/enterprise-agent-studio
-```
-
-If that branch already exists in the receiving checkout, inspect it before applying the patch; do not overwrite it. If `main` has advanced, resolve any integration conflicts and rerun the tests before review.
+This records the pre-merge gate. Deployment and live verification are recorded separately after the workflow completes; local passing tests alone do not establish publication.

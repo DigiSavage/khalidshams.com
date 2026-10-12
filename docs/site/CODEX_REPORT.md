@@ -1,6 +1,6 @@
 # Enterprise agent studio · 12 October 2026
 
-An additive enterprise design journey is ready on `codex/enterprise-agent-studio`. See [ENTERPRISE_STUDIO_REPORT.md](ENTERPRISE_STUDIO_REPORT.md) for scope, source checks, 782 passing checks, evidence and limits. This work does not publish the site.
+An additive enterprise design journey is ready on `codex/enterprise-agent-studio`. See [ENTERPRISE_STUDIO_REPORT.md](ENTERPRISE_STUDIO_REPORT.md) for scope, source checks, 782 passing checks, evidence and limits. The owner subsequently authorized publication. The patch is imported and the fresh integrated 782-check gate passes; see the release section of the Studio report.
 
 # Illustrated studio implementation
 
