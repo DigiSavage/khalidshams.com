@@ -17,6 +17,9 @@ studies={
 'approval-mobile':(14,15,'A human reviewer holds a proposal beside an outline software operator, an evidence tray and a closed gate.',['agent','approver','authorization']),
 'thread-2077':(16,17,'A cobalt reading thread connects five workshop vignettes: question, evidence, proposal, boundary and receipt.',['requester','retrieval','agent','authorization','observability']),
 'workbench-objects':(18,19,'A human-free studio of context trays, evidence shelves, instruments, a closed gate and service cabinets.',['context','retrieval','model','authorization','service'])}
+existing=json.loads((r/'content/art.json').read_text())
+existing_provenance=json.loads((r/'docs/site/ART_PROVENANCE.json').read_text())
+authored_mobile={a['scene']+':'+a['theme']:a for a in existing['assets'] if a['variant']=='mobile' and a.get('height',0)>a.get('width',0)}
 assets=[]; provenance=[]
 for scene,(light,dark,alt,concepts) in studies.items():
     dest=r/'static/art'/scene; dest.mkdir(parents=True,exist_ok=True)
@@ -28,10 +31,18 @@ for scene,(light,dark,alt,concepts) in studies.items():
         im=Image.open(source).convert('RGB')
         provenance.append({'scene':scene,'theme':theme,'original_series_image':num,'source_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'original_size':list(im.size)})
         for variant,width in [('desktop',1600),('compact',960),('mobile',720),('thumb',320)]:
+            if variant=='mobile' and scene+':'+theme in authored_mobile:
+                asset=authored_mobile[scene+':'+theme]
+                target=r/'static'/asset['file'].lstrip('/')
+                with Image.open(target) as portrait:
+                    if portrait.size != (asset['width'],asset['height']):
+                        raise SystemExit(f'Authored mobile dimensions changed: {target}')
+                assets.append(asset.copy())
+                continue
             size=(width,round(im.height*width/im.width))
             out=im.resize(size,Image.Resampling.LANCZOS)
             file=dest/f'{variant}-{theme}.webp'; out.save(file,'WEBP',quality=82,method=6)
             assets.append(dict(scene=scene,variant=variant,theme=theme,file='/'+str(file.relative_to(r/'static')),purpose='Text-free illustration beside live HTML and SVG explanations',crop='full composition; no content removed',background='ivory paper' if theme=='light' else 'charcoal studio',alt=alt,concepts=concepts,text_in_image=False,width=size[0],height=size[1]))
 (r/'content/art.json').write_text(json.dumps({'assets':assets},indent=2)+'\n')
-(r/'docs/site/ART_PROVENANCE.json').write_text(json.dumps({'source':'Enhance Visuals Dramatically, recovered from the original 22-image conversation series on 2026-10-04','processing':'Full composition resized and exported as WebP. Light and dark are separately authored originals. Desktop exports are 1600 pixels wide as specified in the brief; this upscales the original masters. No redrawing, inversion or text added.','selected':provenance,'reference_only_series_images':[1,2,3],'superseded_series_images':[5,6,7]},indent=2)+'\n')
+(r/'docs/site/ART_PROVENANCE.json').write_text(json.dumps({'source':'Enhance Visuals Dramatically, recovered from the original 22-image conversation series on 2026-10-04','processing':'Full composition resized and exported as WebP. Light and dark are separately authored originals. Desktop exports are 1600 pixels wide as specified in the brief; this upscales the original masters. No redrawing, inversion or text added.','selected':provenance,'reference_only_series_images':[1,2,3],'superseded_series_images':[5,6,7], **({'mobile_compositions':existing_provenance['mobile_compositions']} if 'mobile_compositions' in existing_provenance else {})},indent=2)+'\n')
 print(len(assets),'WebP assets',sum(p.stat().st_size for p in (r/'static/art').rglob('*.webp')),'bytes')

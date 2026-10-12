@@ -47,10 +47,10 @@
       "variant": "mobile",
       "theme": "light",
       "file": "/art/atlas-workshop/mobile-light.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "ivory paper",
-      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "alt": "Three vertically connected workshop stations: a requester and damaged lamp beside evidence, a bounded software workbench, then a human reviewer beside a closed gate and an empty result tray.",
       "concepts": [
         "requester",
         "owner",
@@ -60,8 +60,8 @@
         "approver"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "atlas-workshop",
@@ -131,10 +131,10 @@
       "variant": "mobile",
       "theme": "dark",
       "file": "/art/atlas-workshop/mobile-dark.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "charcoal studio",
-      "alt": "A requester brings a damaged lamp to a workshop. A software operator works at a cobalt context tray while an owner and a reviewer oversee the boundary.",
+      "alt": "Three vertically connected workshop stations: a requester and damaged lamp beside evidence, a bounded software workbench, then a human reviewer beside a closed gate and an empty result tray.",
       "concepts": [
         "requester",
         "owner",
@@ -144,8 +144,8 @@
         "approver"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "atlas-workshop",
@@ -209,18 +209,18 @@
       "variant": "mobile",
       "theme": "light",
       "file": "/art/shams-autonomy/mobile-light.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "ivory paper",
-      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "alt": "Five vertically stacked platforms beside a human architect and an accountable owner. The second platform from the bottom is selected in cobalt; the upper platforms remain unselected.",
       "concepts": [
         "owner",
         "authorization",
         "guardrails"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "shams-autonomy",
@@ -281,18 +281,18 @@
       "variant": "mobile",
       "theme": "dark",
       "file": "/art/shams-autonomy/mobile-dark.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "charcoal studio",
-      "alt": "An architect inspects five ascending platforms while an owner reviews the controls beside a closed gate. A lower platform is selected.",
+      "alt": "Five vertically stacked platforms beside a human architect and an accountable owner. The second platform from the bottom is selected in cobalt; the upper platforms remain unselected.",
       "concepts": [
         "owner",
         "authorization",
         "guardrails"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "shams-autonomy",
@@ -355,10 +355,10 @@
       "variant": "mobile",
       "theme": "light",
       "file": "/art/production-review/mobile-light.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "ivory paper",
-      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "alt": "Evidence and a proposed operation lead down to a closed review boundary. A human reviewer pauses at the gate; the result tray beyond the boundary is empty.",
       "concepts": [
         "agent",
         "approver",
@@ -366,8 +366,8 @@
         "verification"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "production-review",
@@ -431,10 +431,10 @@
       "variant": "mobile",
       "theme": "dark",
       "file": "/art/production-review/mobile-dark.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "charcoal studio",
-      "alt": "An outline software operator offers a proposal to a human reviewer beside an evidence tray and a closed gate.",
+      "alt": "Evidence and a proposed operation lead down to a closed review boundary. A human reviewer pauses at the gate; the result tray beyond the boundary is empty.",
       "concepts": [
         "agent",
         "approver",
@@ -442,8 +442,8 @@
         "verification"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "production-review",
@@ -505,18 +505,18 @@
       "variant": "mobile",
       "theme": "light",
       "file": "/art/enterprise-clarity/mobile-light.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "ivory paper",
-      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "alt": "Three stacked system clusters, each with a human owner, are connected by cobalt routes. A visibly separated connection remains unresolved between clusters.",
       "concepts": [
         "owner",
         "service",
         "observability"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "enterprise-clarity",
@@ -577,18 +577,18 @@
       "variant": "mobile",
       "theme": "dark",
       "file": "/art/enterprise-clarity/mobile-dark.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "charcoal studio",
-      "alt": "Architects inspect miniature infrastructure models, untangling cobalt routes across a shared planning table.",
+      "alt": "Three stacked system clusters, each with a human owner, are connected by cobalt routes. A visibly separated connection remains unresolved between clusters.",
       "concepts": [
         "owner",
         "service",
         "observability"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "enterprise-clarity",
@@ -649,18 +649,18 @@
       "variant": "mobile",
       "theme": "light",
       "file": "/art/architectural-judgment/mobile-light.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "ivory paper",
-      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "alt": "Three alternative architectural models lead down to an architect comparing blank trade-off records, then to an accountable owner considering the recommendation. A cobalt thread connects the decision.",
       "concepts": [
         "owner",
         "verification",
         "budget"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "architectural-judgment",
@@ -721,18 +721,18 @@
       "variant": "mobile",
       "theme": "dark",
       "file": "/art/architectural-judgment/mobile-dark.webp",
-      "purpose": "Text-free illustration beside live HTML and SVG explanations",
-      "crop": "full composition; no content removed",
+      "purpose": "Phone illustration beside preserved live HTML and SVG explanations",
+      "crop": "Authored portrait composition; full frame, no content removed",
       "background": "charcoal studio",
-      "alt": "Architects compare three alternative system models and a blank recommendation record at a cobalt-accented table.",
+      "alt": "Three alternative architectural models lead down to an architect comparing blank trade-off records, then to an accountable owner considering the recommendation. A cobalt thread connects the decision.",
       "concepts": [
         "owner",
         "verification",
         "budget"
       ],
       "text_in_image": false,
-      "width": 720,
-      "height": 480
+      "width": 1024,
+      "height": 1536
     },
     {
       "scene": "architectural-judgment",

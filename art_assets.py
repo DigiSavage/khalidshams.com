@@ -69,15 +69,26 @@ def illustration(manifest, scene, *, eager=False):
         raise ValueError(f'art {scene}: missing variants {sorted(missing)}')
     if any(type(a.get(d)) is not int or a[d] <= 0 for a in assets.values() for d in ("width", "height")):
         raise ValueError(f"art {scene}: placed illustrations require positive width and height")
-    pictures = []
-    for theme in ('light', 'dark'):
-        asset = assets['desktop', theme]
-        srcset = ', '.join(f'{assets[v, theme]["file"]} {assets[v, theme]["width"]}w'
-                           for v in ('thumb', 'mobile', 'compact', 'desktop'))
-        pictures.append(f'<img class="art-{theme}" src="{escape(assets["compact", theme]["file"])}" '
-                        f'srcset="{escape(srcset)}" sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1099px) 90vw, 50vw" '
-                        f'width="{asset["width"]}" height="{asset["height"]}" '
-                        f'alt="{escape(asset["alt"])}" loading="{"eager" if eager else "lazy"}" decoding="async">')
+    desktop = assets['desktop', 'light']
+    mobile = assets['mobile', 'light']
+    sources = []
+    for theme in ('dark', 'light'):
+        m = assets['mobile', theme]
+        media = '(max-width: 767px)'
+        if theme == 'dark': media += ' and (prefers-color-scheme: dark)'
+        sources.append(f'<source data-art-theme="{theme}" data-art-composition="mobile" media="{media}" '
+                       f'srcset="{escape(m["file"])}" width="{m["width"]}" height="{m["height"]}">')
+    darkset = ', '.join(f'{assets[v, "dark"]["file"]} {assets[v, "dark"]["width"]}w' for v in ('thumb','compact','desktop'))
+    lightset = ', '.join(f'{assets[v, "light"]["file"]} {assets[v, "light"]["width"]}w' for v in ('thumb','compact','desktop'))
+    sizes = '(max-width: 1099px) 90vw, 50vw'
+    sources.append(f'<source data-art-theme="dark" data-art-composition="desktop" media="(prefers-color-scheme: dark)" srcset="{escape(darkset)}" sizes="{sizes}">')
+    pictures = ['<picture class="art-picture">'+''.join(sources)+
+                f'<img class="art-light" src="{escape(assets["compact", "light"]["file"])}" '
+                f'srcset="{escape(lightset)}" sizes="{sizes}" '
+                f'width="{desktop["width"]}" height="{desktop["height"]}" '
+                f'data-alt-mobile="{escape(mobile["alt"])}" data-alt-desktop="{escape(desktop["alt"])}" '
+                f'alt="{escape(mobile["alt"] if mobile["alt"] == desktop["alt"] else desktop["alt"])}" '
+                f'loading="{"eager" if eager else "lazy"}" decoding="async"></picture>']
     labels = {
         'atlas-workshop': 'Outline operator: software metaphor · ⏸ Review boundary',
         'production-review': 'Outline operator: software metaphor · ⏸ Proposal awaiting review',
@@ -87,7 +98,7 @@ def illustration(manifest, scene, *, eager=False):
         'workbench-objects': '⏸ Control boundary · Instruments represent software components',
     }
     caption = f'<span class="art-caption">{labels[scene]}</span>' if scene in labels else ''
-    return f'<span class="studio-art" data-art-scene="{escape(scene)}">'+''.join(pictures)+caption+'</span>'
+    return f'<span class="studio-art" data-art-scene="{escape(scene)}" style="--art-desktop-ratio:{desktop["width"]}/{desktop["height"]};--art-mobile-ratio:{mobile["width"]}/{mobile["height"]}">'+''.join(pictures)+caption+'</span>'
 
 
 # Only reuse a finished study when it depicts the concept being taught.

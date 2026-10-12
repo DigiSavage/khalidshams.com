@@ -24,13 +24,18 @@ def loaded(page, scope, theme):
 with sync_playwright() as pw:
     browser=pw.chromium.launch()
     for theme in ('light','dark'):
-        for w,h,scale in [(360,800,1),(390,844,1),(430,900,1),(768,1024,1),(1440,1000,1),(1920,1080,1),(720,450,2)]:
+        for w,h,scale in [(w,844,dpr) for w in (360,390,430) for dpr in (1,2,3)]+[(768,1024,1),(1440,1000,1),(1920,1080,1)]:
             ctx=browser.new_context(viewport=dict(width=w,height=h),device_scale_factor=scale,color_scheme=theme,reduced_motion='reduce')
-            page=ctx.new_page(); errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+            page=ctx.new_page(); errors=[];requests=[];page.on('request',lambda r:requests.append(r.url));page.on('pageerror',lambda e:errors.append(str(e)))
             label=f'{w} {theme} scale{scale}'
             for route,name,scope in [('/','home','body'),('/method/','method','body'),('/learn/','learn','body'),('/learn/atlas/','atlas','body'),('/illustrated/','library','#architecture')]:
+                requests.clear()
                 page.goto(BASE+route,wait_until='networkidle')
                 check(f'{name} {label} all placed originals decode in the selected theme',loaded(page,scope,theme))
+                images=page.locator(scope+' .studio-art img').evaluate_all('(ns)=>ns.map(n=>({src:n.currentSrc,w:n.clientWidth,h:n.clientHeight,nw:n.naturalWidth,nh:n.naturalHeight}))')
+                if w<768:
+                    check(f'{name} {label} mobile composition selected independently of density',all('/mobile-'+theme+'.webp' in i['src'] for i in images))
+                    check(f'{name} {label} no desktop artwork fetched',not any('/art/' in u and any('/'+v+'-' in u for v in ('desktop','compact','thumb')) for u in requests))
                 check(f'{name} {label} no horizontal overflow or script errors',page.evaluate('document.documentElement.scrollWidth<=innerWidth') and not errors,errors[:])
                 if name=='library':
                     check(f'library {label} all eight studies',set(page.locator('#architecture [data-art-scene]').evaluate_all('(ns)=>ns.map(n=>n.dataset.artScene)'))==scenes)
@@ -52,10 +57,15 @@ with sync_playwright() as pw:
             check(f'library {label} explicit theme overrides OS',loaded(page,'#architecture',other))
             ctx.close()
     # Images and their text equivalents also render without JavaScript.
-    ctx=browser.new_context(viewport=dict(width=390,height=844),java_script_enabled=False,color_scheme='light')
-    page=ctx.new_page();page.goto(BASE+'/illustrated/',wait_until='networkidle')
-    check('All eight text-free studies render without JavaScript',page.locator('#architecture .art-light:visible').count()==8)
-    ctx.close();browser.close()
+    for theme in ('light','dark'):
+        ctx=browser.new_context(viewport=dict(width=390,height=844),device_scale_factor=3,java_script_enabled=False,color_scheme=theme)
+        page=ctx.new_page();page.goto(BASE+'/illustrated/',wait_until='networkidle')
+        for img in page.locator('#architecture .studio-art img').all():img.scroll_into_view_if_needed()
+        page.wait_for_function("Array.from(document.querySelectorAll('#architecture .studio-art img')).every(i=>i.complete&&i.naturalWidth>0)")
+        sources=page.locator('#architecture .studio-art img').evaluate_all('(ns)=>ns.map(n=>n.currentSrc)')
+        check('All eight studies render without JavaScript '+theme,len(sources)==8 and all('/mobile-'+theme+'.webp' in u for u in sources))
+        ctx.close()
+    browser.close()
 (OUT/'checks.json').write_text(json.dumps(results,indent=2)+'\n')
 failed=sum(not x['ok'] for x in results)
 print(f'{len(results)-failed}/{len(results)} passed')

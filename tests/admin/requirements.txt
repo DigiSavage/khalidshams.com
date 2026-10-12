@@ -1,0 +1,4 @@
+-r ../../services/site-admin/requirements.txt
+moto[dynamodb,cognitoidp]==5.2.4
+cfn-lint==1.57.2
+playwright==1.63.0
