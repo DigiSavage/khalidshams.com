@@ -1,0 +1,70 @@
+[
+  {
+    "route": "/login",
+    "status": 200,
+    "noindex": true,
+    "private_fixture_absent": true
+  },
+  {
+    "route": "/login/",
+    "status": 200,
+    "noindex": true,
+    "private_fixture_absent": true
+  },
+  {
+    "route": "/admin/",
+    "status": 200,
+    "noindex": true,
+    "private_fixture_absent": true
+  },
+  {
+    "route": "/contact/",
+    "status": 200,
+    "noindex": false,
+    "private_fixture_absent": true
+  },
+  {
+    "route": "/api/config",
+    "status": 404
+  },
+  {
+    "file": "/art/atlas-workshop/mobile-light.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/atlas-workshop/mobile-dark.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/shams-autonomy/mobile-light.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/shams-autonomy/mobile-dark.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/production-review/mobile-light.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/production-review/mobile-dark.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/enterprise-clarity/mobile-light.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/enterprise-clarity/mobile-dark.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/architectural-judgment/mobile-light.webp",
+    "exact_bytes": true
+  },
+  {
+    "file": "/art/architectural-judgment/mobile-dark.webp",
+    "exact_bytes": true
+  }
+]

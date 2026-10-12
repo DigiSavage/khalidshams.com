@@ -136,6 +136,12 @@ class ServiceTests(unittest.TestCase):
             with self.subTest(change=change),self.assertRaises(Invalid):event(observation(**change),PAGES)
         self.assertEqual(self.request('/api/events','POST',{'events':[observation(name='engagement',value=10)]})['statusCode'],400)
         self.assertEqual(json.loads(self.request('/api/events','POST',{'events':[observation()]},owner=True)['body'])['excluded'],'owner')
+    def test_query_bytes_are_bounded_and_note_growth_is_limited(self):
+        now=int(time.time())
+        for n in range(3):self.f.store.put('audit',dict(pk='byte-fixture',sk=str(n),text='x'*1000,ttl=now+1000))
+        rows,partial=self.f.store.query('audit','byte-fixture',byte_limit=1500);self.assertEqual(len(rows),1);self.assertTrue(partial)
+        data=self.f.contact();self.request('/api/contact','POST',data);row=self.f.store.get('inquiries','inbox',data['id']);row['notes']=[dict(at=now,text='x'*2000) for _ in range(10)];self.f.store.put('inquiries',row)
+        r=self.request('/api/admin/inquiries/'+data['id'],'PATCH',{'revision':0,'note':'one more','status':'read'},owner=True);self.assertEqual(r['statusCode'],400)
     def test_rate_limits(self):
         for n in range(3):self.assertTrue(self.f.store.rate('test',3,60))
         self.assertFalse(self.f.store.rate('test',3,60))

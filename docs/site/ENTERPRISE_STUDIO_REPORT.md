@@ -1,5 +1,9 @@
 # Enterprise agent studio · 12 October 2026
 
+## Published release
+
+Published through [PR #9](https://github.com/DigiSavage/khalidshams.com/pull/9), merge `7b48126f989fc7f6bd19f968f2c729a9b19731c9`, with successful [deployment 38298640673](https://github.com/DigiSavage/khalidshams.com/actions/runs/38298640673). Live URL: https://khalidshams.com/architect/agent-studio/. The live browser suite passed 231/231 after initial publication and again after the mobile follow-up in deployment 38302607517.
+
 ## Purpose and placement
 
 The existing field guide explains components, and the Atlas follows a request. The new `/architect/agent-studio/` joins those ideas into a complete enterprise design journey: business outcome, architecture choice, authority, evidence, evaluation, release and operation.
@@ -16,7 +20,7 @@ This is an additive teaching page. It is linked from Home's workshop, the Archit
 - Inspect a public event trail and a code-native architecture drawing. Mobile defaults to an enlarged active region; the complete map remains one button away. Light and dark modes follow the existing tokens and artwork.
 - Compare Azure model deployment with Azure-hosted and Anthropic-hosted Claude in Foundry. The processing boundary, provider terms and integration capabilities must be checked for the exact deployment.
 - Diagnose source, extraction, model-behavior and enforcement failures. Guidance distinguishes RAG, conversation memory, prompt/tool changes, custom document training and supported language-model fine-tuning.
-- Download a text design record with choices, boundaries, tests, operating guidance and unresolved production decisions. The studio keeps inputs only in page memory and makes no model or cloud calls.
+- Download a text design record with choices, boundaries, tests, operating guidance and unresolved production decisions. The simulation keeps design inputs in page memory and makes no model or operational cloud calls. Optional site measurement can record allowlisted interaction counts after consent, never those inputs.
 
 ## Files
 
