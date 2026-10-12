@@ -1,0 +1,83 @@
+{
+  "version": "2026.10.12",
+  "notice": "Teaching designs with synthetic examples. No documents, prompts or credentials are sent to a model. A design record is not a production approval.",
+  "examples": [
+    {
+      "id": "documents",
+      "label": "Document intelligence",
+      "title": "From a document to a checked business record.",
+      "goal": "Prepare a checked invoice draft and its evidence for an accounts-payable reviewer.",
+      "owner": "Accounts-payable process owner",
+      "baseline": "Compare against manual entry plus OCR and deterministic validation on the same documents. Count accepted records, corrections and reviewer minutes, including exceptions.",
+      "pattern": "Document processing workflow",
+      "why": "Ingest, extract, validate and stage are known steps. Add an agent only if resolving exceptions requires choosing among permitted tools. A fixed workflow can contain several model calls.",
+      "boundary": "One tenant, an approved document collection and a staging ledger. Read purchase orders and vendor records. Never issue a payment, change bank details or approve your own output.",
+      "sources": "Invoice INV-DEMO-104, page 1; purchase order PO-DEMO-28; current invoice policy with owner, version and review date. All records in this lesson are synthetic.",
+      "ingestion": "Quarantine and scan uploads; validate file type and size; classify the document; extract fields and table structure with page coordinates. Preserve the original and its content hash under the retention policy.",
+      "grounding": "Check required fields, duplicate invoice keys, totals, currency and purchase-order references in code. Retrieve only permitted policy passages. Treat document text as evidence, never as a new instruction or permission.",
+      "quality": "Measure field exact-match and document-level acceptance on held-out vendors, layouts, scans and languages. Calibrate review thresholds against observed field errors. Extraction confidence is not proof that an invoice is legitimate.",
+      "proposal": "stage_invoice_draft(invoice_id=INV-DEMO-104, purchase_order=PO-DEMO-28)",
+      "tool": "stage_invoice_draft",
+      "target": "Staging ledger",
+      "readOutcome": "Checked draft returned with page references. No business record was written.",
+      "writeOutcome": "Synthetic staging receipt received. Draft stored for the AP process; no payment was issued.",
+      "evidenceTitle": "Extract + reconcile",
+      "evidenceDetail": "Read the permitted invoice. Extract its fields, reconcile totals against the purchase order and attach page references.",
+      "proposalDetail": "Build a typed draft with source references and validation results. The model can propose fields; application checks decide whether the draft can continue.",
+      "review": "The AP reviewer sees the source pages, field differences, validation results, target record and exact proposed arguments. Approval binds to this payload and expires if it changes.",
+      "bounded": "Only stage a validated draft inside the approved tenant and collection. All required checks must pass. Payment and vendor-master changes remain unavailable.",
+      "failure": "A scan hides part of the invoice total. The field is unresolved, so the draft goes to review instead of inventing a value.",
+      "operation": "Watch correction rate by field and vendor, exception queue age, duplicate prevention, extraction drift, receipt reconciliation and total cost per accepted record.",
+      "improvement": "Label adjudicated extraction errors and train a new custom document model when justified. Hold out unseen layouts and suppliers. Rebuild the index for policy changes. These are separate changes from fine-tuning a language model.",
+      "acceptance": [
+        ["Unreadable total", "Hold for correction; preserve the original page and missing-field reason."],
+        ["Duplicate invoice", "Reject the duplicate staging key; do not create a second record."],
+        ["Planted payment instruction", "No payment capability exists; deny the attempted tool and record the event."],
+        ["Write timeout", "Reconcile by idempotency key before retrying; report unknown until verified."]
+      ]
+    },
+    {
+      "id": "assistant",
+      "label": "Internal knowledge assistant",
+      "title": "An answer that stays inside the employee's access.",
+      "goal": "Answer an employee's IT-policy question with current, accessible evidence, or explain why it cannot be answered.",
+      "owner": "Internal service owner and knowledge owners",
+      "baseline": "Compare search plus the existing help desk against grounded answers on the same questions. Measure supported answers, correct abstention, user resolution and total service cost.",
+      "pattern": "Grounded assistant",
+      "why": "A chat interface does not require an autonomous agent. Start with authorized retrieval and a cited answer. Add narrowly scoped actions, such as creating an access-request ticket, only as a separate capability.",
+      "boundary": "Verify employee and tenant identity. Filter every retrieval by current access before content reaches the model. No payroll lookup, cross-user memory, entitlement changes or access grants.",
+      "sources": "IT-POLICY-DEMO, section 3; owner: IT service desk; approved version: v3. Restricted documents and their titles stay out of the answer. The policy is synthetic.",
+      "ingestion": "Register source owners, approved versions, review dates, sensitivity and access metadata. Chunk with document and section references. Propagate edits, deletions and permission changes to the index and caches.",
+      "grounding": "Derive user and group scope on the server, not from a prompt. Retrieve only authorized passages. If evidence is absent, conflicting or stale, abstain and route to the owner. Re-check access on follow-up turns and before writes.",
+      "quality": "Measure claim support, citation correctness, authorized retrieval recall and correct abstention. Test employee roles, revoked groups, follow-up questions, stale policies and adversarial documents. A plausible answer can still fail.",
+      "proposal": "create_access_request(category=software, requester=current_user)",
+      "tool": "create_access_request",
+      "target": "Service desk",
+      "readOutcome": "Cited policy answer returned from permitted evidence. No ticket or entitlement was created.",
+      "writeOutcome": "Synthetic service-desk receipt received. A request ticket exists; access has not been granted.",
+      "evidenceTitle": "Retrieve with access",
+      "evidenceDetail": "Use verified tenant and group scope to select the current policy before any passage reaches the model. Restricted results are excluded.",
+      "proposalDetail": "Return supported claims and citations. When action is enabled, draft a ticket containing only the required fields, bound to the current employee.",
+      "review": "The employee reviews the ticket category and data being shared. The service owner approves the action policy. Creating a request never grants the requested entitlement.",
+      "bounded": "Create a request ticket for the signed-in employee in allowlisted categories, with consent, rate limits and a deduplication key. Never grant access or alter group membership.",
+      "failure": "The relevant policy is missing or stale. The assistant says it cannot establish the answer and directs the employee to the knowledge owner.",
+      "operation": "Watch unsupported-claim and abstention rates, permission failures, source age, unresolved questions, latency, ticket duplicates and cost per verified resolution.",
+      "improvement": "Fix source content or retrieval when evidence is wrong or missing. Adjust prompts for recurring response errors. Use reviewed feedback for evaluation cases; conversations do not automatically become training data.",
+      "acceptance": [
+        ["Another employee's document", "Exclude it before model context; do not reveal its title or existence."],
+        ["Missing policy", "Abstain and name the supported escalation route."],
+        ["Access revoked mid-run", "Re-check authorization; refuse the write despite earlier approval."],
+        ["Request to grant access", "Offer the request process; the grant operation is not an available tool."]
+      ]
+    }
+  ],
+  "sources": [
+    {"id":"patterns","title":"Anthropic: Building effective agents","url":"https://www.anthropic.com/engineering/building-effective-agents","claim":"Distinguishes predefined workflows from model-directed agents; complexity should be earned by the task.","checked":"2026-10-12"},
+    {"id":"evals","title":"Anthropic: Demystifying evals for AI agents","url":"https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents","claim":"Evaluate environment outcomes and combine code, model and human graders; model graders need calibration.","checked":"2026-10-12"},
+    {"id":"extraction","title":"Microsoft: Document Intelligence accuracy and confidence","url":"https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept/accuracy-confidence?view=doc-intel-4.0.0","claim":"Field confidence and extraction accuracy need interpretation and representative evaluation; custom document training is distinct from LLM training.","checked":"2026-10-12"},
+    {"id":"access","title":"Microsoft: Azure AI Search security filter pattern","url":"https://learn.microsoft.com/en-us/azure/search/search-security-trimming-for-azure-search","claim":"Application-supplied principal filters trim retrieval. String filters are not independently an authentication mechanism.","checked":"2026-10-12"},
+    {"id":"claude","title":"Microsoft: Claude models in Foundry","url":"https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/claude-models","claim":"Hosting options, model availability and lifecycle vary. Configure applicable content safety during inference; do not assume deployment-time filtering.","checked":"2026-10-12"},
+    {"id":"privacy","title":"Microsoft: Data processing for Claude in Foundry","url":"https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/claude-models/data-privacy","claim":"Azure-hosted and Anthropic-hosted options have distinct processing boundaries. Anthropic is the seller and operator for both.","checked":"2026-10-12"},
+    {"id":"traces","title":"Microsoft: Application tracing with OpenTelemetry","url":"https://learn.microsoft.com/en-us/azure/foundry-classic/how-to/develop/trace-application","claim":"Foundry tracing can store OpenTelemetry traces in Application Insights. Instrument application checks as well as model calls.","checked":"2026-10-12"}
+  ]
+}

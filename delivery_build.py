@@ -55,7 +55,7 @@ def overview():
       <p class="intro">I start with the work, then choose the components and the people responsible for them. A useful model is one part of the system. Clear evidence, controlled actions and explicit handoffs turn it into something I can operate.</p>
       <p>These are five connected components, not a mandatory build sequence. The <a href="/learn/#stack">seven-layer architecture</a> explains where they sit. Retrieval and stored memory have different jobs; an agent is only needed when the next step must be chosen dynamically.</p>
       <ol class="delivery-components">{cards}</ol>
-      <div class="delivery-actions"><a href="#human-coordination">Explore human-team coordination →</a><a href="#ag-cost">Compare agent networks →</a></div>
+      <div class="delivery-actions"><a href="/architect/agent-studio/">Design an enterprise agent from start to operation →</a><a href="#human-coordination">Explore human-team coordination →</a><a href="#ag-cost">Compare agent networks →</a></div>
       <details class="delivery-download"><summary>View and download the one-page field guide</summary>
         <p>A scalable, text-selectable poster for design reviews. <a href="/building-ai-systems-light.svg" download>Download light SVG</a> · <a href="/building-ai-systems-dark.svg" download>Download dark SVG</a></p>
         <a class="delivery-poster" href="/building-ai-systems-light.svg" aria-label="Open the full-size Building AI systems field guide">
