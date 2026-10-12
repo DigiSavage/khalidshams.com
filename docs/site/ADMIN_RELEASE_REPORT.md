@@ -31,10 +31,11 @@ Static publication and its exact deployment evidence will be recorded below afte
 | Learn browser matrix | 186/186 |
 | Menu navigation | 103/103 |
 | Delivery playbook checks | 96/96 |
-| Auth, API persistence, metrics, retention, infrastructure unit tests | 19 passed |
+| Auth, API persistence, metrics, retention, infrastructure unit tests | 21 passed |
 | Engagement timing and referrer Node tests | 4 passed |
-| Admin/contact/consent browser integration | 52/52 |
+| Admin/contact/consent browser integration | 54/54 |
 | Extended mobile art matrix | 518/518 |
+| Reserved image geometry and manual-theme stability | 12/12 |
 | CloudFormation/SAM lint | Passed |
 
 Browser checks use Playwright 1.63.0 Chromium. The existing `tests/site/run_cached.py` supplies cached, unmodified Google Fonts responses; application HTML, scripts, artwork and API assertions are real. Admin integration runs the production handler with isolated in-memory AWS fixtures, not a mocked UI. No fixture route or record is shipped to `dist` or Lambda. Test deliberately induced storage failures produce a generic failure-category log, and do not report success.

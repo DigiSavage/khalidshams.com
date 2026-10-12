@@ -184,6 +184,14 @@
     "ok": true
   },
   {
+    "check": "consent can be revoked while the backend is unavailable",
+    "ok": true
+  },
+  {
+    "check": "revocation reaches other open tabs",
+    "ok": true
+  },
+  {
     "check": "owner exclusion prevents collection",
     "ok": true
   },

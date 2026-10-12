@@ -134,7 +134,7 @@ def handler(e,context=None):
                 if raw.get('confirm')!='DELETE '+id_:raise Invalid('Explicit confirmation required')
                 STORE.delete('inquiries','inbox',id_);STORE.audit('inquiry.deleted',id_,owner);return response(200,{'deleted':True})
             if method=='PATCH':
-                if set(raw)-{'status','note','revision'} or not isinstance(raw.get('status',row['status']),str) or raw.get('status',row['status']) not in STATUSES or raw.get('revision')!=row['revision']:raise Invalid('Reload this inquiry before editing')
+                if type(raw.get('revision')) is not int or set(raw)-{'status','note','revision'} or not isinstance(raw.get('status',row['status']),str) or raw.get('status',row['status']) not in STATUSES or raw.get('revision')!=row['revision']:raise Invalid('Reload this inquiry before editing')
                 status=raw.get('status',row['status']);note=text(raw.get('note',''),0,2000)
                 if len(row['history'])>=100 or len(row['notes'])>=100:raise Invalid('History limit reached')
                 if status!=row['status']:row['history'].append(dict(at=now,status=status))

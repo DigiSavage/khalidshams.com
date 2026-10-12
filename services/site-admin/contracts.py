@@ -31,7 +31,7 @@ def path(value, pages):
 def event(raw, pages, now=None):
     now = int(now or time.time())
     exact(raw, {'v','id','visitor','session','page','path','at','name','value','target','referrer','campaign','device','browser','consent','test'})
-    if raw.get('v') != 1 or raw.get('consent') is not True: raise Invalid('Consent and supported version required')
+    if type(raw.get('v')) is not int or raw.get('v') != 1 or raw.get('consent') is not True: raise Invalid('Consent and supported version required')
     result = {k:uid(raw.get(k)) for k in ('id','visitor','session','page')}
     result['path'] = path(raw.get('path'),pages)
     at=raw.get('at');name=raw.get('name');value=raw.get('value',0)

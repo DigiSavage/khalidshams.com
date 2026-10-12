@@ -77,6 +77,23 @@ class ServiceTests(unittest.TestCase):
         event_={'queryStringParameters':{'state':q['state'][0],'code':'fake'},'headers':{'cookie':'__Host-ks-login=wrong'}}
         with self.assertRaises(Unauthorized):self.f.auth.callback(event_)
         self.assertIsNone(self.f.store.get('sessions','login#'+digest(q['state'][0])))
+    def test_valid_callback_and_replay_denial(self):
+        import io
+        url,jar=self.f.auth.start();q=parse_qs(urlsplit(url).query);nonce=q['nonce'][0]
+        tokens={'id_token':self.f.token(token_use='id',aud='fixture',nonce=nonce),'access_token':self.f.token()}
+        e={'queryStringParameters':{'state':q['state'][0],'code':'fixture-code'},'headers':{'cookie':jar.split(';')[0]}}
+        with patch('auth.urlopen',return_value=io.StringIO(json.dumps(tokens))):session_cookie=self.f.auth.callback(e)
+        self.assertIn('HttpOnly',session_cookie);self.assertIn('Secure',session_cookie)
+        row=self.f.auth.session({'headers':{'cookie':session_cookie.split(';')[0]}});self.assertEqual(row['sub'],'owner-id')
+        with self.assertRaises(Unauthorized):self.f.auth.callback(e)
+    def test_explicit_analytics_deletion_prevents_retry_resurrection(self):
+        from datetime import datetime
+        from zoneinfo import ZoneInfo
+        view=observation();self.request('/api/events','POST',{'events':[view]});today=datetime.now(ZoneInfo('America/Phoenix')).date().isoformat();raw={'from':today,'to':today}
+        self.assertEqual(self.request('/api/admin/analytics','DELETE',raw,owner=True)['statusCode'],400)
+        r=self.request('/api/admin/analytics','DELETE',raw|{'confirm':f'DELETE ANALYTICS {today} {today}'},owner=True);self.assertEqual(json.loads(r['body'])['deleted'],1)
+        self.assertEqual(json.loads(self.request('/api/events','POST',{'events':[view]})['body'])['duplicates'],1)
+        self.assertEqual(self.f.store.events(view['at']-1,int(time.time())+1)[0],[])
     def test_session_expiry_logout(self):
         self.assertEqual(self.request('/api/auth/session',owner=True)['statusCode'],200)
         self.assertEqual(self.request('/api/auth/logout','POST',{},owner=True)['statusCode'],200)
