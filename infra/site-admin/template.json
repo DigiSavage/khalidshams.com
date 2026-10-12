@@ -320,7 +320,8 @@
         "AllowedOAuthScopes": [
           "openid",
           "email",
-          "site-admin/owner"
+          "site-admin/owner",
+          "aws.cognito.signin.user.admin"
         ],
         "SupportedIdentityProviders": [
           "COGNITO"
