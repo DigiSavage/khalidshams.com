@@ -12,3 +12,18 @@ class InfrastructureTests(unittest.TestCase):
   t=json.loads((ROOT/'infra/site-admin/template.json').read_text())['Resources'];pool=t['OwnerPool']['Properties'];self.assertEqual(pool['MfaConfiguration'],'ON');self.assertTrue(pool['AdminCreateUserConfig']['AllowAdminCreateUserOnly']);self.assertFalse(t['OwnerClient']['Properties']['GenerateSecret'])
   for n in ('Events','Inquiries','Audit','Sessions'):self.assertTrue(t[n]['Properties']['SSESpecification']['SSEEnabled']);self.assertTrue(t[n]['Properties']['TimeToLiveSpecification']['Enabled'])
   self.assertEqual(t['NoCache']['Properties']['CachePolicyConfig']['MaxTTL'],0);self.assertEqual(t['AppLogs']['Properties']['RetentionInDays'],14)
+ def test_assessment_permissions_are_separate_from_public_handlers(self):
+  template=json.loads((ROOT/'infra/site-admin/template.json').read_text());r=template['Resources']
+  table=r['Assessments']['Properties'];self.assertTrue(table['SSESpecification']['SSEEnabled']);self.assertTrue(table['PointInTimeRecoverySpecification']['PointInTimeRecoveryEnabled']);self.assertTrue(table['TimeToLiveSpecification']['Enabled'])
+  public=json.dumps(r['App']['Properties']['Policies']);self.assertNotIn('Assessments',public);self.assertNotIn('s3:GetObject',public)
+  private=r['DecisionRoom']['Properties'];statements=private['Policies'][0]['Statement']
+  session=next(s for s in statements if s['Resource']=={'Fn::GetAtt':['Sessions','Arn']});self.assertEqual(session['Action'],['dynamodb:GetItem'])
+  for forbidden in ('Events','Inquiries','Audit'):self.assertNotIn('"'+forbidden+'"',json.dumps(statements))
+  method=next(s for s in statements if 's3:GetObject' in s['Action']);self.assertEqual(set(method['Action']),{'s3:GetObject','s3:GetObjectVersion'});self.assertNotIn('*',json.dumps(method['Resource']))
+  assessment=next(s for s in statements if s['Resource']=={'Fn::GetAtt':['Assessments','Arn']});self.assertIn('dynamodb:ConditionCheckItem',assessment['Action'])
+  self.assertEqual(private['Environment']['Variables']['METHOD_VERSION_ID'],{'Ref':'MethodVersion'})
+  paths={e['Properties']['Path'] for e in private['Events'].values() if e['Type']=='Api'};self.assertEqual(paths,{'/api/admin/assessments','/api/admin/assessments/{proxy+}'})
+  self.assertEqual(private['Handler'],'decision_room.handler');self.assertEqual(private['Environment']['Variables']['SESSIONS_TABLE'],{'Ref':'Sessions'})
+ def test_packaging_updates_both_functions_without_mutating_source(self):
+  template=json.loads((ROOT/'infra/site-admin/template.json').read_text());result=deploy.package_template(template,'private-bucket','release.zip')
+  for name in ('App','DecisionRoom'):self.assertEqual(result['Resources'][name]['Properties']['CodeUri'],{'Bucket':'private-bucket','Key':'release.zip'});self.assertIsInstance(template['Resources'][name]['Properties']['CodeUri'],str)
