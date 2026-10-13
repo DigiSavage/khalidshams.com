@@ -2,7 +2,7 @@
 
 Implemented the private assessment workbench with an empty production starting state, evidence-linked findings, alternatives, counterarguments, explicit owner review and client-only exports. Case storage and methodology access use a separate Lambda role; the 49-question proprietary pack stays outside the public repository and build. Version conflicts, owner/MFA revocation, expiry and deletion races are enforced server-side. No sample clients or prefilled findings are shipped.
 
-Build, infrastructure lint and 176 focused tests/checks passed. Empty desktop/phone evidence is in `evidence/decision-room/`. See [DECISION_ROOM_RELEASE.md](DECISION_ROOM_RELEASE.md) for implementation, security boundaries, validation and deployment procedure. AWS sign-in is pending; the Decision Room is not yet deployed or claimed live. Existing public site and paid offer remain unchanged.
+Build, infrastructure lint and 176 focused tests/checks passed. Empty desktop/phone evidence is in `evidence/decision-room/`. The owner approved deployment and the backend completed successfully with all 18 read-only runtime checks passing, including zero production cases. See [DECISION_ROOM_RELEASE.md](DECISION_ROOM_RELEASE.md) for implementation, security boundaries, validation and deployment procedure. Static publication and live acceptance are tracked in [PR 16](https://github.com/DigiSavage/khalidshams.com/pull/16); authenticated browser acceptance awaits renewed owner sign-in. Existing public site and paid offer remain unchanged.
 
 # Architecture Decision Review · 2026-10-12
 

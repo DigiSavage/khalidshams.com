@@ -2,7 +2,9 @@
 
 ## Release state
 
-Prepared on `codex/decision-room` from main `479fd0e`. Deployment is pending AWS owner sign-in and review of the prepared CloudFormation change set. This document does not claim the new service is live.
+Prepared on `codex/decision-room` from main `479fd0e`. The owner explicitly approved deployment on 13 October 2026. The reviewed CloudFormation change set completed successfully, and all 18 read-only runtime checks passed before static publication. The deployed service has zero assessment cases. Static publication and subsequent live acceptance are tracked in [PR 16](https://github.com/DigiSavage/khalidshams.com/pull/16).
+
+Runtime verification confirmed the reviewed code archive, active dedicated handler, approved private method hash and version pin, 49 guidance questions, blocked public method access, dedicated empty table, TTL and point-in-time recovery, exact API integrations, read-only session access, exact-object method permission, no inquiry or telemetry permissions, and disabled API caching. It created no production records. Authenticated browser acceptance awaits the owner's renewed sign-in; local tests cover the write/review/export flow.
 
 The workbench supports the $950 Architecture Decision Review: one decision, recorded evidence, findings, alternatives, a recommendation and a reviewed client brief. Production starts with no cases. There is no demo-data import, score, inferred client outcome or generated recommendation. The owner writes and reviews the work.
 
