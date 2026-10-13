@@ -1,10 +1,10 @@
 ---
 title: "A landing zone is a political document"
 date: 2026-10-13
-status: approved
+status: published
 tag: cloud
 summary: "The subscriptions and policies are the easy part. A landing zone is really an agreement about who owns what."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7515872101145219072/
 ---
 
 A landing zone is a political document that happens to be implemented in Azure.
