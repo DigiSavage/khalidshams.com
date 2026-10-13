@@ -1,3 +1,7 @@
+# Architecture Decision Review · 2026-10-12
+
+Added the owner-approved $950 paid architecture review with an illustrative decision brief, explicit scope and an editable inquiry flow. The public library stays free and Stripe is deferred at the owner's request. Build and 249 automated checks pass. See [COMMERCIAL_REVIEW_RELEASE.md](COMMERCIAL_REVIEW_RELEASE.md) for validation, screenshots and payment boundaries.
+
 # Owner sign-in correction
 
 The repeated expired-code reports exposed an incomplete MFA enrollment handoff. The correction adds an isolated owner-only enrollment flow and actionable callback errors. The subsequent setup-key failure was traced to requiring a Cognito challenge Session in an access-token flow. Association and verification now consistently use the access token, with realistic response fixtures. See ADMIN_RELEASE_REPORT.md for the security boundary and pending live acceptance.

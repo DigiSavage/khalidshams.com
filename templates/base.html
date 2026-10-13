@@ -32,6 +32,44 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
+
+/* ---------- paid architecture review ---------- */
+.review-band{ background:var(--sunk); }
+.review-heading{ max-width:1100px; }
+.review-heading h2{ font-family:var(--display); font-weight:400; font-size:clamp(40px,5.2vw,78px); line-height:1.04; margin:22px 0; }
+.review-heading h2 em{ color:var(--blue); }
+.review-heading .intro{ max-width:var(--measure); }
+.review-layout{ display:grid; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr); gap:clamp(28px,5vw,80px); margin-top:44px; align-items:start; }
+.review-deliverable h3{ font-family:var(--display); font-weight:400; font-size:clamp(30px,3vw,44px); line-height:1.12; margin:12px 0 20px; }
+.review-deliverable > p{ max-width:var(--measure); }
+.review-sequence{ list-style:none; padding:0; margin:30px 0; }
+.review-sequence li{ display:grid; grid-template-columns:36px minmax(0,1fr); gap:18px; padding:22px 0; border-top:1px solid var(--rule2); }
+.review-index{ font-family:var(--mono); color:var(--blue); font-size:13px; padding-top:3px; }
+.review-sequence h4{ font-size:18px; font-weight:500; margin-bottom:8px; }
+.review-sequence p{ font-size:16px; }
+.review-engagement{ border:1px solid var(--rule2); border-top:3px solid var(--blue); background:var(--card); padding:clamp(22px,3vw,38px); }
+.review-price{ font-family:var(--display); color:var(--ink); font-size:76px; line-height:1.2; margin-top:16px; }
+.review-price span{ font-family:var(--mono); color:var(--mute); font-size:13px; letter-spacing:.08em; }
+.review-price-note,.review-caption{ font-size:13px; line-height:1.6; color:var(--mute); }
+.review-facts{ margin:24px 0; }
+.review-facts > div{ padding:15px 0; border-top:1px solid var(--rule); }
+.review-facts dt{ font-family:var(--mono); font-size:11px; color:var(--mute); letter-spacing:.08em; text-transform:uppercase; margin-bottom:5px; }
+.review-facts dd{ margin:0; font-size:15px; line-height:1.6; }
+.review-engagement .btn{ width:100%; text-align:center; }
+.review-engagement .review-caption{ margin-top:18px; }
+.review-example{ border:1px solid var(--rule2); background:var(--paper); }
+.review-example summary{ cursor:pointer; padding:20px; color:var(--ink); font-weight:500; }
+.review-example summary span{ display:block; color:var(--mute); font-size:12px; font-weight:400; margin-top:6px; }
+.review-paper{ border-top:1px solid var(--rule2); padding:clamp(20px,3vw,32px); }
+.review-paper h4{ font-family:var(--display); font-size:32px; line-height:1.15; font-weight:400; margin:18px 0; }
+.review-paper dl > div{ padding:16px 0; border-top:1px solid var(--rule); }
+.review-paper dt{ font-size:14px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+.review-paper dd{ font-size:15px; margin:0; }
+.review-proof{ border-top:1px solid var(--rule2); margin-top:40px; padding-top:22px; display:flex; flex-wrap:wrap; gap:16px 40px; justify-content:space-between; align-items:center; font-size:14px; }
+.review-proof p{ max-width:66ch; }
+.review-library{ margin-top:18px; font-size:13px; color:var(--mute); }
+@media(max-width:760px){ .review-layout{ grid-template-columns:minmax(0,1fr); } .review-engagement{ grid-row:1; } .review-heading h2 br{ display:none; } }
+
 /* ---------- tokens ---------- */
 :root{
   --paper:#F7F7F5; --card:#FFFFFF; --sunk:#EFEFEC;
