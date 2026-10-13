@@ -17,6 +17,21 @@
     "AuthDomainPrefix": {
       "Type": "String",
       "AllowedPattern": "[a-z0-9-]{8,50}"
+    },
+    "MethodBucket": {
+      "Type": "String",
+      "AllowedPattern": "[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]",
+      "Description": "Private versioned deployment bucket holding the owner-only methodology object"
+    },
+    "MethodKey": {
+      "Type": "String",
+      "Default": "methodology/decision-room.json",
+      "AllowedPattern": "methodology/[A-Za-z0-9._/-]+\\.json"
+    },
+    "MethodVersion": {
+      "Type": "String",
+      "MinLength": 1,
+      "Description": "Reviewed immutable S3 object version to activate for new assessments"
     }
   },
   "Resources": {
@@ -571,6 +586,204 @@
           }
         }
       }
+    },
+    "Assessments": {
+      "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "BillingMode": "PAY_PER_REQUEST",
+        "OnDemandThroughput": {
+          "MaxReadRequestUnits": 40,
+          "MaxWriteRequestUnits": 40
+        },
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "pk",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "sk",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "pk",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "sk",
+            "KeyType": "RANGE"
+          }
+        ],
+        "TimeToLiveSpecification": {
+          "AttributeName": "ttl",
+          "Enabled": true
+        },
+        "SSESpecification": {
+          "SSEEnabled": true
+        },
+        "PointInTimeRecoverySpecification": {
+          "PointInTimeRecoveryEnabled": true
+        }
+      }
+    },
+    "DecisionRoom": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "CodeUri": "../../services/site-admin/",
+        "Handler": "decision_room.handler",
+        "Runtime": "python3.12",
+        "Architectures": [
+          "arm64"
+        ],
+        "Timeout": 20,
+        "MemorySize": 256,
+        "ReservedConcurrentExecutions": 2,
+        "Environment": {
+          "Variables": {
+            "PUBLIC_ORIGIN": {
+              "Ref": "PublicOrigin"
+            },
+            "USER_POOL_ID": {
+              "Ref": "OwnerPool"
+            },
+            "CLIENT_ID": {
+              "Ref": "OwnerClient"
+            },
+            "AUTH_DOMAIN": {
+              "Fn::Sub": "https://${AuthDomainPrefix}.auth.${AWS::Region}.amazoncognito.com"
+            },
+            "RATE_SECRET": {
+              "Ref": "OriginSecret"
+            },
+            "SESSIONS_TABLE": {
+              "Ref": "Sessions"
+            },
+            "ASSESSMENTS_TABLE": {
+              "Ref": "Assessments"
+            },
+            "METHOD_BUCKET": {
+              "Ref": "MethodBucket"
+            },
+            "METHOD_KEY": {
+              "Ref": "MethodKey"
+            },
+            "METHOD_VERSION_ID": {
+              "Ref": "MethodVersion"
+            }
+          }
+        },
+        "Policies": [
+          {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem",
+                  "dynamodb:PutItem",
+                  "dynamodb:UpdateItem",
+                  "dynamodb:DeleteItem",
+                  "dynamodb:Query",
+                  "dynamodb:Scan",
+                  "dynamodb:BatchWriteItem",
+                  "dynamodb:ConditionCheckItem"
+                ],
+                "Resource": {
+                  "Fn::GetAtt": [
+                    "Assessments",
+                    "Arn"
+                  ]
+                }
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "dynamodb:GetItem"
+                ],
+                "Resource": {
+                  "Fn::GetAtt": [
+                    "Sessions",
+                    "Arn"
+                  ]
+                }
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "cognito-idp:AdminGetUser",
+                  "cognito-idp:AdminListGroupsForUser"
+                ],
+                "Resource": {
+                  "Fn::GetAtt": [
+                    "OwnerPool",
+                    "Arn"
+                  ]
+                }
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "secretsmanager:GetSecretValue"
+                ],
+                "Resource": {
+                  "Ref": "OriginSecret"
+                }
+              },
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "s3:GetObject",
+                  "s3:GetObjectVersion"
+                ],
+                "Resource": {
+                  "Fn::Sub": "arn:${AWS::Partition}:s3:::${MethodBucket}/${MethodKey}"
+                }
+              }
+            ]
+          }
+        ],
+        "Events": {
+          "Cases": {
+            "Type": "Api",
+            "Properties": {
+              "RestApiId": {
+                "Ref": "Api"
+              },
+              "Path": "/api/admin/assessments",
+              "Method": "ANY"
+            }
+          },
+          "CaseOperations": {
+            "Type": "Api",
+            "Properties": {
+              "RestApiId": {
+                "Ref": "Api"
+              },
+              "Path": "/api/admin/assessments/{proxy+}",
+              "Method": "ANY"
+            }
+          },
+          "Retention": {
+            "Type": "Schedule",
+            "Properties": {
+              "Schedule": "rate(15 minutes)",
+              "Enabled": true
+            }
+          }
+        }
+      }
+    },
+    "DecisionRoomLogs": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": {
+          "Fn::Sub": "/aws/lambda/${DecisionRoom}"
+        },
+        "RetentionInDays": 14
+      }
     }
   },
   "Outputs": {
@@ -602,6 +815,16 @@
     "OriginRequestPolicyId": {
       "Value": {
         "Ref": "ApiOriginPolicy"
+      }
+    },
+    "AssessmentTable": {
+      "Value": {
+        "Ref": "Assessments"
+      }
+    },
+    "DecisionRoomFunction": {
+      "Value": {
+        "Ref": "DecisionRoom"
       }
     }
   }

@@ -1,0 +1,242 @@
+[
+  {
+    "check": "signed-out shell hides all case controls",
+    "ok": true
+  },
+  {
+    "check": "signed-out private method denied",
+    "ok": true
+  },
+  {
+    "check": "empty real starting state 1380 light",
+    "ok": true
+  },
+  {
+    "check": "no horizontal overflow 1380 light",
+    "ok": true
+  },
+  {
+    "check": "new case has no prefilled client data 1380 light",
+    "ok": true
+  },
+  {
+    "check": "creation dialog fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 light",
+    "ok": true
+  },
+  {
+    "check": "empty real starting state 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "no horizontal overflow 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "new case has no prefilled client data 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "creation dialog fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "empty real starting state 390 light",
+    "ok": true
+  },
+  {
+    "check": "no horizontal overflow 390 light",
+    "ok": true
+  },
+  {
+    "check": "new case has no prefilled client data 390 light",
+    "ok": true
+  },
+  {
+    "check": "creation dialog fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 light",
+    "ok": true
+  },
+  {
+    "check": "empty real starting state 390 dark",
+    "ok": true
+  },
+  {
+    "check": "no horizontal overflow 390 dark",
+    "ok": true
+  },
+  {
+    "check": "new case has no prefilled client data 390 dark",
+    "ok": true
+  },
+  {
+    "check": "creation dialog fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 dark",
+    "ok": true
+  },
+  {
+    "check": "empty real starting state 320 light",
+    "ok": true
+  },
+  {
+    "check": "no horizontal overflow 320 light",
+    "ok": true
+  },
+  {
+    "check": "new case has no prefilled client data 320 light",
+    "ok": true
+  },
+  {
+    "check": "creation dialog fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 320 light",
+    "ok": true
+  },
+  {
+    "check": "creation persists once via real handler",
+    "ok": true
+  },
+  {
+    "check": "method visible only after owner authorization",
+    "ok": true
+  },
+  {
+    "check": "save persists real field edits",
+    "ok": true
+  },
+  {
+    "check": "no confidential URL or persistent browser storage",
+    "ok": true
+  },
+  {
+    "check": "review requires deliberate acknowledgement",
+    "ok": true
+  },
+  {
+    "check": "client preview excludes internal content",
+    "ok": true
+  },
+  {
+    "check": "evidence markup stays inert in preview",
+    "ok": true
+  },
+  {
+    "check": "export excludes private notes and answers",
+    "ok": true
+  },
+  {
+    "check": "export encodes submitted markup",
+    "ok": true
+  },
+  {
+    "check": "download obtains an authorized export",
+    "ok": true
+  },
+  {
+    "check": "saved record survives reload",
+    "ok": true
+  },
+  {
+    "check": "conflict preserves unsaved edits",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 01 \u00b7 Mandate",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 02 \u00b7 Evidence",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 03 \u00b7 Findings",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 04 \u00b7 Options",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 05 \u00b7 Decision",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 06 \u00b7 Handoff",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 07 \u00b7 Internal",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 390 08 \u00b7 Review",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 01 \u00b7 Mandate",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 02 \u00b7 Evidence",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 03 \u00b7 Findings",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 04 \u00b7 Options",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 05 \u00b7 Decision",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 06 \u00b7 Handoff",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 07 \u00b7 Internal",
+    "ok": true
+  },
+  {
+    "check": "populated stage fits 320 08 \u00b7 Review",
+    "ok": true
+  },
+  {
+    "check": "revoked owner cannot download a cached preview",
+    "ok": true
+  },
+  {
+    "check": "revocation clears private editors and guidance",
+    "ok": true
+  },
+  {
+    "check": "no analytics events from private page",
+    "ok": true
+  },
+  {
+    "check": "no script errors in case lifecycle",
+    "ok": true
+  },
+  {
+    "check": "page CSP permits only intended application behavior",
+    "ok": true
+  }
+]
