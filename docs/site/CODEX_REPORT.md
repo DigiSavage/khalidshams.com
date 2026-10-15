@@ -1,3 +1,9 @@
+# Paragraph layout and responsive reading · 2026-10-14
+
+Fixed the reported superimposed text by removing a shared desktop grid rule that placed every introductory paragraph in the same cell. Home's Built section, Method, Learn and all six playbook next-step sections now keep paragraphs and actions in document order. Added consistent button gaps, earlier navigation collapse and wrapping for Learn controls and Enterprise Studio dropdown text.
+
+Build and 368 layout cases pass in Chromium and WebKit, with 55,600 editorial text-pair comparisons, zero measured text collisions, zero horizontal overflow and zero page errors. This includes narrow screens, the desktop layout transition, both themes and increased text spacing. The existing menu suites pass 103 checks per browser, Learn passes 186, and Enterprise Studio passes 231. Screenshots were reviewed. See [TEXT_LAYOUT_RELEASE.md](TEXT_LAYOUT_RELEASE.md) and `evidence/text-layout/` for the defect, scope, tests and evidence. Publication and live verification are recorded in the release pull request. The existing untracked brief patch was preserved.
+
 # SHAMS Decision Room · 2026-10-13
 
 Implemented the private assessment workbench with an empty production starting state, evidence-linked findings, alternatives, counterarguments, explicit owner review and client-only exports. Case storage and methodology access use a separate Lambda role; the 49-question proprietary pack stays outside the public repository and build. Version conflicts, owner/MFA revocation, expiry and deletion races are enforced server-side. No sample clients or prefilled findings are shipped.

@@ -1,0 +1,140 @@
+[
+  {
+    "route": "/",
+    "section": "built",
+    "probe": "Previous grid-row:1 rule restored in isolated browser only",
+    "detected": true,
+    "collision": [
+      {
+        "first": {
+          "element": "p.intro",
+          "text": "Architecture advice ages badly when you stop building. These are mine, end to end: architecture, data model, s",
+          "box": {
+            "x": 869.03125,
+            "y": 10913.09375,
+            "width": 455.78125,
+            "height": 77.109375,
+            "right": 1324.8125,
+            "bottom": 10990.203125
+          }
+        },
+        "second": {
+          "element": "p.intro",
+          "text": "Full stack, at this level, is not a list of frameworks. It means owning every layer a system can fail in, from",
+          "box": {
+            "x": 869.03125,
+            "y": 10923.09375,
+            "width": 455.78125,
+            "height": 205.625,
+            "right": 1324.8125,
+            "bottom": 11128.71875
+          }
+        },
+        "textOverlaps": true,
+        "overlap": {
+          "width": 455.78125,
+          "height": 67.109375
+        }
+      }
+    ],
+    "sequence": {
+      "section": "built",
+      "paragraphs": [
+        {
+          "element": "p.intro",
+          "text": "Architecture advice ages badly when you stop building. These are mine, end to end: architecture, data model, s",
+          "box": {
+            "x": 869.03125,
+            "y": 10913.09375,
+            "width": 455.78125,
+            "height": 77.109375,
+            "right": 1324.8125,
+            "bottom": 10990.203125
+          }
+        },
+        {
+          "element": "p.intro",
+          "text": "Full stack, at this level, is not a list of frameworks. It means owning every layer a system can fail in, from",
+          "box": {
+            "x": 869.03125,
+            "y": 10923.09375,
+            "width": 455.78125,
+            "height": 205.625,
+            "right": 1324.8125,
+            "bottom": 11128.71875
+          }
+        }
+      ],
+      "ordered": false
+    }
+  },
+  {
+    "route": "/learn/",
+    "section": "next",
+    "probe": "Previous grid-row:1 rule restored in isolated browser only",
+    "detected": true,
+    "collision": [
+      {
+        "first": {
+          "element": "p.intro",
+          "text": "This page is the vocabulary. The SHAMS Method is how I decide where AI belongs in an estate and what has to be",
+          "box": {
+            "x": 869.03125,
+            "y": 13863.953125,
+            "width": 455.78125,
+            "height": 77.109375,
+            "right": 1324.8125,
+            "bottom": 13941.0625
+          }
+        },
+        "second": {
+          "element": "p.intro",
+          "text": "Read the method The agentic AI playbook",
+          "box": {
+            "x": 869.03125,
+            "y": 13873.953125,
+            "width": 455.78125,
+            "height": 46,
+            "right": 1324.8125,
+            "bottom": 13919.953125
+          }
+        },
+        "textOverlaps": true,
+        "overlap": {
+          "width": 455.78125,
+          "height": 46
+        }
+      }
+    ],
+    "sequence": {
+      "section": "next",
+      "paragraphs": [
+        {
+          "element": "p.intro",
+          "text": "This page is the vocabulary. The SHAMS Method is how I decide where AI belongs in an estate and what has to be",
+          "box": {
+            "x": 869.03125,
+            "y": 13863.953125,
+            "width": 455.78125,
+            "height": 77.109375,
+            "right": 1324.8125,
+            "bottom": 13941.0625
+          }
+        },
+        {
+          "element": "p.intro",
+          "text": "Read the method The agentic AI playbook",
+          "box": {
+            "x": 869.03125,
+            "y": 13873.953125,
+            "width": 455.78125,
+            "height": 46,
+            "right": 1324.8125,
+            "bottom": 13919.953125
+          }
+        }
+      ],
+      "ordered": false
+    }
+  }
+]

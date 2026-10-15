@@ -1,0 +1,414 @@
+[
+  {
+    "check": "light / first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light / arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light / arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light / arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light / second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /learn/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /learn/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /learn/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /learn/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /learn/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /architect/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /architect/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /architect/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /architect/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /architect/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /method/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /method/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /method/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /method/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /method/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /playbooks/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /playbooks/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /playbooks/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /playbooks/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /playbooks/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /tools/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /tools/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /tools/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /tools/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /tools/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /writing/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /writing/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /writing/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /writing/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /writing/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light /#work first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /#work arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "light /#work arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "light /#work arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "light /#work second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light Enter arrow expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light Enter arrow collapses without navigating",
+    "ok": true
+  },
+  {
+    "check": "light Enter expands Learn",
+    "ok": true
+  },
+  {
+    "check": "light Enter navigates to Learn",
+    "ok": true
+  },
+  {
+    "check": "light Space arrow expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "light Space arrow collapses without navigating",
+    "ok": true
+  },
+  {
+    "check": "light Space expands Learn",
+    "ok": true
+  },
+  {
+    "check": "light Space navigates to Learn",
+    "ok": true
+  },
+  {
+    "check": "light submenu anchor still navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light Escape still closes drawer",
+    "ok": true
+  },
+  {
+    "check": "light no script errors or horizontal overflow",
+    "ok": true
+  },
+  {
+    "check": "dark / first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark / arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark / arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark / arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark / second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /learn/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /learn/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /learn/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /learn/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /learn/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /architect/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /architect/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /architect/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /architect/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /architect/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /method/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /method/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /method/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /method/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /method/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /playbooks/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /playbooks/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /playbooks/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /playbooks/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /playbooks/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /tools/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /tools/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /tools/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /tools/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /tools/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /writing/ first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /writing/ arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /writing/ arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /writing/ arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /writing/ second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /#work first tap expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /#work arrow is a separate accessible touch target",
+    "ok": true
+  },
+  {
+    "check": "dark /#work arrow collapses without navigating or closing drawer",
+    "ok": true
+  },
+  {
+    "check": "dark /#work arrow reopens without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark /#work second tap navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark Enter arrow expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark Enter arrow collapses without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark Enter expands Learn",
+    "ok": true
+  },
+  {
+    "check": "dark Enter navigates to Learn",
+    "ok": true
+  },
+  {
+    "check": "dark Space arrow expands without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark Space arrow collapses without navigating",
+    "ok": true
+  },
+  {
+    "check": "dark Space expands Learn",
+    "ok": true
+  },
+  {
+    "check": "dark Space navigates to Learn",
+    "ok": true
+  },
+  {
+    "check": "dark submenu anchor still navigates and closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark Escape still closes drawer",
+    "ok": true
+  },
+  {
+    "check": "dark no script errors or horizontal overflow",
+    "ok": true
+  },
+  {
+    "check": "Desktop Learn link still navigates on first click",
+    "ok": true
+  }
+]

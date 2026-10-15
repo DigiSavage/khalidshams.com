@@ -1,0 +1,926 @@
+[
+  {
+    "check": "light 360 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 360 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 360 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 360 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 360 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 360 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 360 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 360 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 360 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 360 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 360 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 360 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 360 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 360 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 360 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 360 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 360 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 360 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 360 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 390 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 390 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 390 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 390 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 390 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 390 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 390 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 390 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 390 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 390 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 390 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 390 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 390 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 390 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 390 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 390 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 390 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 390 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 390 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 768 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 768 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 768 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 768 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 768 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 768 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 768 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 768 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 768 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 768 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 768 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 768 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 768 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 768 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 768 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 768 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 768 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 768 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 768 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 1024 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 1024 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 1024 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 1024 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 1024 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 1024 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 1024 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 1024 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 1024 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 1024 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 1024 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 1024 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 1024 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 1024 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 1024 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 1024 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 1024 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 1024 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 1024 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 1440 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 1440 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 1440 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 1440 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 1440 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 1440 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 1440 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 1440 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 1440 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 1440 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 1440 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 1440 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 1440 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 1440 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 1440 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 1440 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 1440 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 1440 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 1440 no script errors",
+    "ok": true
+  },
+  {
+    "check": "light 1920 page fits",
+    "ok": true
+  },
+  {
+    "check": "light 1920 source and art present",
+    "ok": true
+  },
+  {
+    "check": "light 1920 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "light 1920 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "light 1920 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "light 1920 waits for review",
+    "ok": true
+  },
+  {
+    "check": "light 1920 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "light 1920 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "light 1920 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "light 1920 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "light 1920 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "light 1920 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "light 1920 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "light 1920 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "light 1920 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "light 1920 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "light 1920 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "light 1920 page still fits",
+    "ok": true
+  },
+  {
+    "check": "light 1920 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 360 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 360 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 360 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 360 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 360 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 360 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 360 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 360 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 360 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 360 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 360 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 360 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 360 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 360 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 360 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 360 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 360 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 360 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 360 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 390 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 390 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 390 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 390 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 390 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 390 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 390 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 390 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 390 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 390 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 390 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 390 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 390 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 390 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 390 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 390 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 390 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 390 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 390 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 768 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 768 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 768 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 768 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 768 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 768 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 768 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 768 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 768 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 768 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 768 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 768 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 768 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 768 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 768 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 768 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 768 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 768 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 768 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1024 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1440 no script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 page fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 source and art present",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 illustrations load",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 step detail zooms the diagram",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 whole diagram remains available",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 waits for review",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 no premature receipt",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 approval reaches verified outcome",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 revocation blocks write",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 assistant stays read only",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 consequence narrows authority",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 specialist budget stops",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 external inference boundary visible",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 access failure routes to enforcement",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 record downloaded safely",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 controls remain keyboard operable",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 keyboard reset",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 page still fits",
+    "ok": true
+  },
+  {
+    "check": "dark 1920 no script errors",
+    "ok": true
+  },
+  {
+    "check": "no JS: both worked examples readable",
+    "ok": true
+  },
+  {
+    "check": "no JS: layout fits",
+    "ok": true
+  },
+  {
+    "check": "200 percent zoom equivalent fits",
+    "ok": true
+  }
+]
