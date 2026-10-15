@@ -1,10 +1,10 @@
 ---
 title: "The cheapest migration is the one you skip"
 date: 2026-10-15
-status: approved
+status: published
 tag: business-value
 summary: "In one assessment, a third of the application estate had no owner. You don't migrate that. You retire it."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7516572438290161664/
 ---
 
 In one assessment, about a third of the application estate had no clear owner.
