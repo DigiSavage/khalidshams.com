@@ -1,10 +1,10 @@
 ---
 title: "Three questions before any AI project"
 date: 2026-10-20
-status: approved
+status: published
 tag: agentic-ai
 summary: "Before the model, before the use case list, three questions decide whether an AI project is real."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7518385559669661697/
 ---
 
 Three questions I ask before I'll take an AI project seriously.
