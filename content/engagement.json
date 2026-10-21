@@ -1,0 +1,296 @@
+{
+  "title": "From discovery to delivery",
+  "scenario": {
+    "title": "A quote the team can stand behind",
+    "description": "A field-service company receives requests through email and PDFs. Estimators reconcile them with ERP records, route exceptions through an approval queue and assemble reports from disconnected sources. I work through a proposed design that makes the evidence, commercial commitment and delivery responsibility visible together.",
+    "boundary": "D-01: prepare a source-backed quote draft. A named, authorized person must approve before sending. The pilot prepares drafts and records approval only; sending and dispatch remain in the existing human-operated workflows. It has no autonomous sending or dispatch capability.",
+    "label": "Worked design exercise. The organization, inputs, estimates and targets are illustrative. This is not a shipped client engagement or a claim of measured results."
+  },
+  "audiences": {
+    "executive": {
+      "label": "Executive sponsor",
+      "opening": "I am proposing a bounded way to help estimators prepare quotes with clearer evidence and accountability. I am not promising faster turnaround until we measure it.",
+      "question": "Which delay matters enough to address, and who can authorize the investment?",
+      "show": "The current handoffs, proposed pilot boundary, effort range, dependencies and evidence required for a continuation decision.",
+      "decision": "Sponsor discovery and a bounded pilot. Keep approval, sending and dispatch with authorized people."
+    },
+    "engineering": {
+      "label": "Engineering team",
+      "opening": "The proposed service reads approved sources, prepares a draft and records a human decision. It does not acquire permission to send quotes or dispatch work.",
+      "question": "Can we preserve source identity, access boundaries and reproducible calculations across every draft revision?",
+      "show": "The data contract, read-only ERP adapter, deterministic pricing calculation, versioned draft and approval state machine.",
+      "decision": "Validate the integration and evaluation design before estimating an implementation as ready to build."
+    },
+    "risk": {
+      "label": "Risk and assurance",
+      "opening": "A plausible answer is insufficient. Every material quote detail needs an allowed source, and the software cannot approve its own work.",
+      "question": "What evidence proves that unauthorized access, stale prices and bypassed approvals fail safely?",
+      "show": "The threat review, source permissions, retention plan, negative tests, approval record and revocation procedure.",
+      "decision": "Accept the bounded pilot only after its controls are demonstrated and residual risks have named owners."
+    },
+    "operations": {
+      "label": "Operations team",
+      "opening": "The draft should make an estimator's work easier to check. Missing information enters an owned queue instead of becoming a confident guess.",
+      "question": "Who handles an incomplete request, a rejected draft or an unavailable source during a busy shift?",
+      "show": "The exception queue, source links, approval handoff, existing send process, support runbook and fallback workflow.",
+      "decision": "Agree ownership and rehearse the exception paths before people depend on the pilot."
+    }
+  },
+  "stages": [
+    {
+      "id": "prepare",
+      "title": "Prepare before the first conversation",
+      "shams": "Scope",
+      "lead": "I prepare around the decision the business needs, not a product demonstration. I separate what I know from what I need to ask, then make the meeting useful for the people attending.",
+      "actions": [
+        "Research the service model, request channels, current systems and likely business constraints.",
+        "Identify the sponsor, estimator, ERP owner, security reviewer and delivery decision makers.",
+        "Send a short agenda, evidence request and proposed decision for the session."
+      ],
+      "artifact": {
+        "title": "Preparation brief",
+        "lines": [
+          "Known scenario: email and PDF intake, ERP records, an approval queue and fragmented reporting.",
+          "Hypothesis to test: repeated reconciliation contributes more delay than drafting the response.",
+          "Request: approved sample requests, workflow walk-through, access constraints and available timing data.",
+          "Meeting outcome: agree the problem, owner and evidence needed before proposing a build."
+        ]
+      },
+      "owner": "Engagement architect",
+      "exit": "The meeting has an accountable sponsor, a decision and the right operational voices.",
+      "hold": "Do not assume a bottleneck or prepare a production promise from public research alone."
+    },
+    {
+      "id": "audience",
+      "title": "Know the room and change the explanation",
+      "shams": "Scope",
+      "lead": "I explain the same proposal differently to each audience. The sponsor needs the investment decision; the estimator needs the changed work; engineering and assurance need the boundaries they must prove.",
+      "actions": [
+        "Confirm who decides, who advises, who operates and who can stop release.",
+        "Open with the audience's question, then offer the supporting technical depth.",
+        "Ask each group to explain the proposed boundary back in their own words."
+      ],
+      "artifact": {
+        "title": "One decision, four views",
+        "lines": [
+          "D-01 remains constant: source-backed draft, named approval, human sending and dispatch.",
+          "Sponsor: is a bounded pilot worth the effort and operational attention?",
+          "Engineering and risk: can the draft be traced, constrained and independently checked?",
+          "Operations: who owns the queue when a request cannot proceed?"
+        ]
+      },
+      "owner": "Engagement architect with the customer sponsor",
+      "exit": "The groups agree what is being decided and can identify their own responsibility.",
+      "hold": "Resolve conflicting expectations before an audience-specific explanation becomes a different promise."
+    },
+    {
+      "id": "discover",
+      "title": "Observe the work and establish a baseline",
+      "shams": "Scope + Measure",
+      "lead": "I follow a request through the real handoffs before designing a replacement. I need to understand the exceptions, data ownership and existing controls as well as the happy path.",
+      "actions": [
+        "Walk through intake, clarification, pricing, approval, sending and dispatch with their owners.",
+        "Map source permissions, freshness, document quality and the authority for price changes.",
+        "Agree how to measure preparation time, rework, approval waits and operating cost."
+      ],
+      "artifact": {
+        "title": "Current-state evidence map",
+        "lines": [
+          "Request PDF → estimator → ERP lookup → approval queue → human send → dispatch team.",
+          "Unresolved: which ERP fields are authoritative and whether request timestamps are reliable.",
+          "Baseline: not measured. Record preparation time separately from time awaiting customer clarification.",
+          "Process-only alternative: improve the intake form and queue ownership before adding AI."
+        ]
+      },
+      "owner": "Operations process owner and data owners",
+      "exit": "The team agrees the workflow, evidence gaps, baseline method and decision to investigate.",
+      "hold": "No savings claim or automation recommendation without a usable baseline and source ownership."
+    },
+    {
+      "id": "design",
+      "title": "Design the boundary before the assistant",
+      "shams": "Harden + Anchor",
+      "lead": "I compare a better process, conventional automation and an assisted draft. The design earns its complexity only if it improves the work while keeping authority, evidence and recovery clear.",
+      "actions": [
+        "Define the Azure foundation, identity boundaries, environment separation and read-only integration.",
+        "Plan governed ingestion, OneLake ownership, Fabric workspaces, reporting and capacity assumptions.",
+        "Evaluate Copilot Studio and Foundry against channel, integration, ownership and operational requirements."
+      ],
+      "artifact": {
+        "title": "D-01 architecture decision",
+        "lines": [
+          "Email/PDF intake → controlled extraction → allowed ERP retrieval → draft → named human approval.",
+          "Price arithmetic uses validated ERP values and deterministic rules; missing values stop the draft.",
+          "Draft evidence includes source, revision and retrieval time. Document instructions are untrusted input.",
+          "Software identities cannot send, dispatch or approve. A revised draft requires fresh approval.",
+          "Platform choice remains conditional on a validated integration and operational fit."
+        ]
+      },
+      "owner": "Design authority with security, data and integration owners",
+      "exit": "The chosen option has a recorded trade-off, threat review and testable boundary.",
+      "hold": "Pause if source permissions cannot be preserved or human approval can be bypassed."
+    },
+    {
+      "id": "scope",
+      "title": "Turn the design into an honest commitment",
+      "shams": "Scope + Measure",
+      "lead": "I estimate the work as a set of deliverables and dependencies. The technical scope, commercial approval and customer acceptance belong to named roles, with uncertainty visible before anyone commits.",
+      "actions": [
+        "Write the SOW with deliverables, exclusions, role effort, milestones and acceptance evidence.",
+        "Validate delivery capacity, licensing, environments and access before promising dates or prices.",
+        "Record assumptions and route scope changes through impact assessment and written approval."
+      ],
+      "artifact": {
+        "title": "Illustrative pilot SOW",
+        "lines": [
+          "Included: one intake route, one read-only ERP adapter, draft review queue, reporting and handover.",
+          "Excluded: automatic sending, dispatch, ERP writes, broad data cleanup and additional business units.",
+          "Estimate by role and work package, with low and high person-hours, dependencies and contingency shown separately. The interactive planning envelope above carries the current example values.",
+          "Dependencies: approved samples, API access, available reviewers, capacity and licensing confirmation. Effort is illustrative, not elapsed duration or a quote.",
+          "Change example: adding an ERP write requires revised controls, effort and acceptance before approval."
+        ]
+      },
+      "owner": "Technical scope owner, delivery lead and commercial approver",
+      "exit": "Customer and supplier approve the scope, commercial terms, dependencies and acceptance process.",
+      "hold": "Do not absorb unapproved scope or turn a planning range into an unconditional deadline."
+    },
+    {
+      "id": "rehearse",
+      "title": "Prove the uncertain part in a rehearsal",
+      "shams": "Anchor + Measure",
+      "lead": "I use a bounded rehearsal to test the riskiest assumptions. A convincing demonstration needs a failure path and clear limitations, otherwise it can sell a level of readiness the team has not earned.",
+      "actions": [
+        "Prepare approved or synthetic examples with expected results and source permissions.",
+        "Rehearse missing prices, stale records, conflicting documents and embedded malicious instructions.",
+        "Let the estimator reject a draft and explain what happens next."
+      ],
+      "artifact": {
+        "title": "Rehearsal script",
+        "lines": [
+          "Normal case: draft cites allowed request and ERP records; the estimator checks its calculation.",
+          "Missing price: hold for clarification, with no invented amount or silent fallback.",
+          "Injected instruction: treat PDF text as evidence, never as authority to change permissions.",
+          "Proof required: approval cannot be self-issued and no send or dispatch operation exists."
+        ]
+      },
+      "owner": "Technical lead and estimator representative",
+      "exit": "The evidence supports continuing, changing the design or stopping, with limitations recorded.",
+      "hold": "A passing rehearsal does not establish production reliability, savings or deployment readiness."
+    },
+    {
+      "id": "deliver",
+      "title": "Keep the build aligned with what was agreed",
+      "shams": "Harden + Sustain",
+      "lead": "I keep design authority through delivery while the delivery lead owns planning and execution. We review risks together and make changes visible before they become customer surprises.",
+      "actions": [
+        "Assign work to platform, data, application and quality owners with explicit interfaces.",
+        "Review architecture decisions, pull requests, control evidence and deviations on a regular cadence.",
+        "Escalate a breached assumption with impact, options, recommendation and the next customer update."
+      ],
+      "artifact": {
+        "title": "Delivery decision record",
+        "lines": [
+          "Design authority: architecture integrity and exceptions. Delivery lead: plan, resources and dependencies.",
+          "ERP delay: describe the blocked work, re-sequencing option and effect on the agreed milestone.",
+          "Customer update: what changed, who owns resolution, the decision needed and when we report again.",
+          "Every scope change links back to D-01, its estimate and its acceptance evidence."
+        ]
+      },
+      "owner": "Design authority and delivery lead",
+      "exit": "The implemented scope has review evidence and no hidden exceptions to the agreed boundary.",
+      "hold": "Stop affected work when an access, safety or scope breach cannot be contained."
+    },
+    {
+      "id": "release",
+      "title": "Make readiness a decision with evidence",
+      "shams": "Harden + Measure",
+      "lead": "I make release readiness explicit. The customer should see what passed, what remains uncertain and who accepts the residual risk, including the practical route back to the existing workflow.",
+      "actions": [
+        "Run authorization, source isolation, approval replay and stale-data tests against the release candidate.",
+        "Verify operational monitoring, retention, cost limits and recovery with the responsible owners.",
+        "Walk the sponsor through acceptance evidence and the remaining risks before release approval."
+      ],
+      "artifact": {
+        "title": "Pilot release gate",
+        "lines": [
+          "Required: allowed sources only, reproducible calculations, revision-bound approval and attributable audit events.",
+          "Required: failure paths route to an owned queue; sending and dispatch remain outside the pilot.",
+          "Fallback: disable new draft creation and return requests to the established estimator workflow.",
+          "Decision record: release version, evidence, residual risks, named approvers and recovery owner."
+        ]
+      },
+      "owner": "Customer release approver with security and operations owners",
+      "exit": "Authorized owners accept the evidence and the team has rehearsed the fallback.",
+      "hold": "An unresolved authorization failure or missing operational owner blocks release."
+    },
+    {
+      "id": "operate",
+      "title": "Measure the work after the demonstration",
+      "shams": "Measure + Sustain",
+      "lead": "I compare observed work with the agreed baseline. A shorter draft time is not enough if review effort, errors or operating cost increase. The continuation decision should use the whole workflow.",
+      "actions": [
+        "Track preparation time, correction rate, queue age, adoption, availability and cost per reviewed request.",
+        "Review source freshness, incident patterns, access changes and capacity with operational owners.",
+        "Decide whether to continue, adjust or retire the pilot using recorded evidence."
+      ],
+      "artifact": {
+        "title": "Outcome review",
+        "lines": [
+          "Baseline and observed results: not measured in this design exercise.",
+          "Proposed comparison: similar request types, the same measurement definitions and a declared observation period.",
+          "Record preparation and approval waits separately; distinguish assisted requests from requests handled manually.",
+          "Keep business outcomes, platform consumption and commercial commitments as separate measures."
+        ]
+      },
+      "owner": "Operations owner with the sponsor and service owner",
+      "exit": "The next investment decision has evidence, limitations and a responsible decision maker.",
+      "hold": "Do not claim attributable savings from adoption counts, a demonstration or incomplete timing data."
+    },
+    {
+      "id": "enable",
+      "title": "Leave a team that can own the system",
+      "shams": "Sustain",
+      "lead": "I build enablement into the engagement from the first workshop. Handover is complete when another person can explain the boundaries and handle an exception, not when I have sent a document.",
+      "actions": [
+        "Pair an architect or operator with preparation, delivery reviews and customer conversations.",
+        "Use shadowing, teach-back and a short debrief to turn observation into independent judgment.",
+        "Provide runbooks, decision history, access procedures and an owned improvement backlog."
+      ],
+      "artifact": {
+        "title": "Shadow, explain, operate, teach",
+        "lines": [
+          "Prepare: learner states the audience, decision and risks before the session.",
+          "Debrief rubric: accurate explanation, appropriate depth, clear ownership and honest handling of uncertainty.",
+          "Operate: learner handles a missing source, rejected draft and fallback using the runbook.",
+          "Teach: learner explains why human approval remains necessary and documents the next improvement."
+        ]
+      },
+      "owner": "Technical mentor and operations enablement owner",
+      "exit": "The receiving team demonstrates the operating and communication skills it needs.",
+      "hold": "Workshop attendance is not proof of competence or a substitute for an accountable service owner."
+    },
+    {
+      "id": "partner",
+      "title": "Turn earned evidence into the next opportunity",
+      "shams": "Scope + Sustain",
+      "lead": "I make partner collaboration useful to the customer. A joint account plan connects a real need to capable delivery, with customer permission and program eligibility checked before funding or co-sell is presented as available.",
+      "actions": [
+        "Align the customer sponsor, account team and partner on the next decision and responsibilities.",
+        "Verify current Microsoft partner, co-sell and funded-engagement requirements for the specific opportunity.",
+        "Reuse sanitized architecture and outcome evidence only with the customer's permission."
+      ],
+      "artifact": {
+        "title": "Joint account and evidence brief",
+        "lines": [
+          "Customer need: a next phase supported by measured pilot evidence, not a predetermined expansion.",
+          "Account plan: sponsor, delivery capacity, technical owner, commercial owner and agreed next action.",
+          "Program gate: verify eligibility, application, written approval and conditions before assuming support.",
+          "Reference gate: customer permission, sanitized material and accurate separation of commitments and realized outcomes."
+        ]
+      },
+      "owner": "Customer sponsor, partner account lead and practice lead",
+      "exit": "The next pursuit has permission, credible evidence, delivery ownership and a clear commercial path.",
+      "hold": "No guaranteed funding, automatic co-sell entitlement or customer reference without permission."
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "build": "pass; 555 search entries",
+  "engine": {
+    "passed": 12,
+    "total": 12
+  },
+  "structure": {
+    "passed": 8,
+    "total": 8
+  },
+  "browser": {
+    "chromium": 263,
+    "webkit": 263
+  },
+  "layout": {
+    "passed": 368,
+    "total": 368
+  },
+  "menus": {
+    "chromium": 103,
+    "webkit": 103
+  },
+  "commercial": {
+    "passed": 52,
+    "total": 52
+  },
+  "total_checks": 1172,
+  "date": "2026-10-21",
+  "limits": "Browser automation; no physical phone or screen-reader certification. Example has no measured business outcomes."
+}

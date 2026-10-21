@@ -24,6 +24,7 @@ import vignettes
 import delivery_build
 import admin_build
 import enterprise_build
+import engagement_build
 import tool_glossary
 
 ROOT = Path(__file__).parent
@@ -432,7 +433,7 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/illustrated/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}{enterprise_build.ROUTE}", f"{SITE}/method/", f"{SITE}/playbooks/", f"{SITE}/contact/"]
+    urls = ([f"{SITE}/", f"{SITE}/illustrated/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}{enterprise_build.ROUTE}", f"{SITE}/method/", f"{SITE}{engagement_build.ROUTE}", f"{SITE}/playbooks/", f"{SITE}/contact/"]
             + [f"{SITE}/learn/paths/{x['id']}/" for x in learn_build.load()[1]["paths"]] + [f"{SITE}/learn/ideas/{x['id']}/" for x in learn_build.load()[0]["ideas"]] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
@@ -515,6 +516,16 @@ def build():
         description="Design document intelligence and internal AI assistants through Scope, Harden, Anchor, Measure and Sustain. Choose an architecture, test its boundaries and map it to Azure and Anthropic models.",
         canonical=f"{SITE}{enterprise_build.ROUTE}"), encoding="utf-8")
 
+    # ---- public architecture engagement, distinct from the private Decision Room
+    engagement = engagement_build.render(tpl('engagement.html'), masthead, footer)
+    engagement = engagement.replace('{{PAGENAV}}', learn_build.page_nav(engagement))
+    engagement_dir = DIST / engagement_build.ROUTE.strip('/')
+    engagement_dir.mkdir(parents=True, exist_ok=True)
+    (engagement_dir / 'index.html').write_text(page(engagement,
+        title='From discovery to delivery · The SHAMS Method · Khalid Shams',
+        description='Follow a complete architecture engagement: audience preparation, discovery, Azure and Fabric design, scope and estimates, delivery authority, operations, mentoring and partner planning.',
+        canonical=f'{SITE}{engagement_build.ROUTE}'), encoding='utf-8')
+
     admin_build.render(ROOT, DIST, tpl, fill, page, masthead, footer, SITE)
 
     # ---- 404 (CloudFront custom error response points here)
@@ -541,6 +552,7 @@ def build():
     pages.append(("/illustrated/", DIST / "illustrated" / "index.html"))
     pages.append(("/contact/", DIST / "contact/index.html"))
     pages.append((enterprise_build.ROUTE, enterprise_dir / "index.html"))
+    pages.append((engagement_build.ROUTE, engagement_dir / 'index.html'))
     idx = build_search_index([pg for pg in pages if pg[1].exists()], graph, live)
     (DIST / "search.json").write_text(json.dumps(idx, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     (ROOT / "services/site-admin/pages.json").write_text(json.dumps(admin_build.public_pages(DIST), indent=2)+"\n")
