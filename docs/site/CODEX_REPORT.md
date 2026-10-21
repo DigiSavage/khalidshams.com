@@ -1,3 +1,7 @@
+# Inquiry source resilience · 2026-10-21
+
+After public deployment, integration review found that a new static page can precede the inquiry service's registered page list. The form now retries only an explicit unknown-page validation rejection, using the registered contact-page source and preserving the same inquiry identifier, challenge and user fields. It still requires confirmed storage and never retries ambiguous failures automatically. The follow-up tests use isolated API responses; no fake inquiries are added to the live inbox. All 100 commercial/inquiry browser checks pass, including the old-registry and failed-storage cases. Detailed new-route analytics remains dependent on the backend registry refresh.
+
 # From discovery to delivery · 2026-10-21
 
 Added `/method/engagement/`: an inspectable, 11-stage architecture engagement from meeting preparation and audience awareness through commercial scope, delivery, operations, mentoring and partner planning. A new field-service quote design carries decision D-01 through four connected records. Four audiences and four changing requirements expose scope, assurance, ownership and estimate consequences without changing permissions or inventing outcomes. The public reference is linked from Home, Method, Architect, menus and search; the private Decision Room is untouched.
