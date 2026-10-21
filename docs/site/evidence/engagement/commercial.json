@@ -1,0 +1,210 @@
+[
+  {
+    "check": "light 390 paid review has a discoverable home",
+    "ok": true
+  },
+  {
+    "check": "light 390 offer fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 390 sample brief opens by keyboard without overflow",
+    "ok": true
+  },
+  {
+    "check": "light 390 keyboard CTA opens explanatory contact context",
+    "ok": true
+  },
+  {
+    "check": "light 390 editable brief is prefilled for architecture",
+    "ok": true
+  },
+  {
+    "check": "light 390 inquiry requests no payment credentials",
+    "ok": true
+  },
+  {
+    "check": "light 390 contact fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 390 existing inquiry contract accepts offer without new fields",
+    "ok": true
+  },
+  {
+    "check": "light 390 successful inquiry waits for storage confirmation",
+    "ok": true
+  },
+  {
+    "check": "light 390 no unexpected API calls or script errors",
+    "ok": true
+  },
+  {
+    "check": "light 1380 paid review has a discoverable home",
+    "ok": true
+  },
+  {
+    "check": "light 1380 offer fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 1380 sample brief opens by keyboard without overflow",
+    "ok": true
+  },
+  {
+    "check": "light 1380 keyboard CTA opens explanatory contact context",
+    "ok": true
+  },
+  {
+    "check": "light 1380 editable brief is prefilled for architecture",
+    "ok": true
+  },
+  {
+    "check": "light 1380 inquiry requests no payment credentials",
+    "ok": true
+  },
+  {
+    "check": "light 1380 contact fits viewport",
+    "ok": true
+  },
+  {
+    "check": "light 1380 existing inquiry contract accepts offer without new fields",
+    "ok": true
+  },
+  {
+    "check": "light 1380 successful inquiry waits for storage confirmation",
+    "ok": true
+  },
+  {
+    "check": "light 1380 no unexpected API calls or script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 390 paid review has a discoverable home",
+    "ok": true
+  },
+  {
+    "check": "dark 390 offer fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 390 sample brief opens by keyboard without overflow",
+    "ok": true
+  },
+  {
+    "check": "dark 390 keyboard CTA opens explanatory contact context",
+    "ok": true
+  },
+  {
+    "check": "dark 390 editable brief is prefilled for architecture",
+    "ok": true
+  },
+  {
+    "check": "dark 390 inquiry requests no payment credentials",
+    "ok": true
+  },
+  {
+    "check": "dark 390 contact fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 390 existing inquiry contract accepts offer without new fields",
+    "ok": true
+  },
+  {
+    "check": "dark 390 successful inquiry waits for storage confirmation",
+    "ok": true
+  },
+  {
+    "check": "dark 390 no unexpected API calls or script errors",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 paid review has a discoverable home",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 offer fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 sample brief opens by keyboard without overflow",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 keyboard CTA opens explanatory contact context",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 editable brief is prefilled for architecture",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 inquiry requests no payment credentials",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 contact fits viewport",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 existing inquiry contract accepts offer without new fields",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 successful inquiry waits for storage confirmation",
+    "ok": true
+  },
+  {
+    "check": "dark 1380 no unexpected API calls or script errors",
+    "ok": true
+  },
+  {
+    "check": "direct offer inquiry succeeds with session storage blocked",
+    "ok": true
+  },
+  {
+    "check": "unsupported offer absent leaves general inquiry unchanged",
+    "ok": true
+  },
+  {
+    "check": "unsupported offer ?offer=unknown leaves general inquiry unchanged",
+    "ok": true
+  },
+  {
+    "check": "unsupported offer ?offer=%3Cimg%20src%3Dx%20onerror%3Dalert%281%29%3E leaves general inquiry unchanged",
+    "ok": true
+  },
+  {
+    "check": "arbitrary query fields cannot change the offer or inquiry",
+    "ok": true
+  },
+  {
+    "check": "offer context preserves an existing browser-restored message",
+    "ok": true
+  },
+  {
+    "check": "390 Work menu reaches the paid review",
+    "ok": true
+  },
+  {
+    "check": "390 footer reaches the paid review",
+    "ok": true
+  },
+  {
+    "check": "1380 Work menu reaches the paid review",
+    "ok": true
+  },
+  {
+    "check": "1380 footer reaches the paid review",
+    "ok": true
+  },
+  {
+    "check": "offer remains readable with JavaScript disabled",
+    "ok": true
+  },
+  {
+    "check": "no-script contact keeps a direct email fallback",
+    "ok": true
+  }
+]

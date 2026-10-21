@@ -1373,6 +1373,14 @@ section .pq{ margin-top:clamp(30px,4vw,48px); padding-bottom:0; }
 .delivery-resource{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center;}
 @media(max-width:700px){.delivery-team-grid,.delivery-resource{grid-template-columns:1fr;}.delivery-team-grid svg{margin:auto;}.delivery-resource .delivery-poster{max-width:420px;}}
 
+.engagement-callout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,.7fr);gap:clamp(24px,4vw,60px);align-items:center;padding:clamp(24px,4vw,52px);border:1px solid var(--rule2);border-left:3px solid var(--blue);background:var(--card);margin-block:32px;}
+.engagement-callout h2{font:400 clamp(30px,3.4vw,46px)/1.1 var(--display);margin:14px 0;}
+.engagement-callout p{max-width:64ch;}
+.engagement-callout ol{list-style:none;margin:0;padding:0;display:grid;gap:12px;}
+.engagement-callout li{border-bottom:1px solid var(--rule);padding-bottom:12px;}
+.engagement-callout li b{font:12px var(--mono);color:var(--blue);margin-right:14px;}
+.engagement-callout .cta{margin-top:24px;}
+@media(max-width:760px){.engagement-callout{grid-template-columns:1fr;}}
 </style>
 <script src="/search.js" defer></script>
 <link rel="stylesheet" href="/admin/admin.css">

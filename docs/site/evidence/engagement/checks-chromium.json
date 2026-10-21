@@ -1,0 +1,1227 @@
+[
+  {
+    "check": "chromium 390 light readable page and disclosure",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light action buttons have explicit readable backgrounds",
+    "ok": true,
+    "buttons": [
+      {
+        "id": "eg-reset",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-copy",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-download",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-print",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      }
+    ]
+  },
+  {
+    "check": "chromium 390 light executive/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light executive/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light engineering/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light risk/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light operations/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light changed requirement propagates through every record",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light exercise creates no network requests or stored records",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light unknown delivery is separated from discovery",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light downloaded brief includes current hold and honest boundaries",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light keyboard reset removes arbitrary URL state",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light audience control is usable by keyboard",
+    "ok": true,
+    "value": "engineering",
+    "focus": "eg-change"
+  },
+  {
+    "check": "chromium 390 light artifact opens using keyboard",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light source reference opens a collapsed panel",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light repeated source reference remains usable",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light print includes evidence, sources and every artifact",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light printing restores the reader disclosure state",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light increased text spacing preserves page width",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 light no script errors",
+    "ok": true,
+    "pageErrors": []
+  },
+  {
+    "check": "chromium 1380 light readable page and disclosure",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light action buttons have explicit readable backgrounds",
+    "ok": true,
+    "buttons": [
+      {
+        "id": "eg-reset",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-copy",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-download",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-print",
+        "foreground": "rgb(14, 16, 18)",
+        "background": "rgb(247, 247, 245)",
+        "opaque": true,
+        "contrast": 17.77325164750274,
+        "cursor": "pointer"
+      }
+    ]
+  },
+  {
+    "check": "chromium 1380 light executive/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light executive/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light engineering/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light risk/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light operations/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light changed requirement propagates through every record",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light exercise creates no network requests or stored records",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light unknown delivery is separated from discovery",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light downloaded brief includes current hold and honest boundaries",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light keyboard reset removes arbitrary URL state",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light audience control is usable by keyboard",
+    "ok": true,
+    "value": "engineering",
+    "focus": "eg-change"
+  },
+  {
+    "check": "chromium 1380 light artifact opens using keyboard",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light source reference opens a collapsed panel",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light repeated source reference remains usable",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light stage navigation fits a short desktop and reaches the final stage",
+    "ok": true,
+    "navigation": {
+      "x": 55.1875,
+      "y": 109.46875,
+      "width": 210,
+      "height": 574
+    },
+    "finalHeading": {
+      "x": 375.984375,
+      "y": 258.96875,
+      "width": 558.046875,
+      "height": 41.390625
+    }
+  },
+  {
+    "check": "chromium 1380 light print includes evidence, sources and every artifact",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light printing restores the reader disclosure state",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light increased text spacing preserves page width",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 light no script errors",
+    "ok": true,
+    "pageErrors": []
+  },
+  {
+    "check": "chromium 390 dark readable page and disclosure",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark action buttons have explicit readable backgrounds",
+    "ok": true,
+    "buttons": [
+      {
+        "id": "eg-reset",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-copy",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-download",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-print",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      }
+    ]
+  },
+  {
+    "check": "chromium 390 dark executive/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark executive/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark engineering/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark risk/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark operations/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark changed requirement propagates through every record",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark exercise creates no network requests or stored records",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark unknown delivery is separated from discovery",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark downloaded brief includes current hold and honest boundaries",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark keyboard reset removes arbitrary URL state",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark audience control is usable by keyboard",
+    "ok": true,
+    "value": "engineering",
+    "focus": "eg-change"
+  },
+  {
+    "check": "chromium 390 dark artifact opens using keyboard",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark source reference opens a collapsed panel",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark repeated source reference remains usable",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark print includes evidence, sources and every artifact",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark printing restores the reader disclosure state",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark increased text spacing preserves page width",
+    "ok": true
+  },
+  {
+    "check": "chromium 390 dark no script errors",
+    "ok": true,
+    "pageErrors": []
+  },
+  {
+    "check": "chromium 1380 dark readable page and disclosure",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark action buttons have explicit readable backgrounds",
+    "ok": true,
+    "buttons": [
+      {
+        "id": "eg-reset",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-copy",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-download",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      },
+      {
+        "id": "eg-print",
+        "foreground": "rgb(241, 242, 241)",
+        "background": "rgb(13, 15, 17)",
+        "opaque": true,
+        "contrast": 17.11070082465988,
+        "cursor": "pointer"
+      }
+    ]
+  },
+  {
+    "check": "chromium 1380 dark executive/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark executive/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark engineering/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark risk/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/baseline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/baseline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/baseline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/autonomy audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/autonomy decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/autonomy shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/unowned audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/unowned decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/unowned shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/deadline audience and planning values",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/deadline decision remains consistent across audiences",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark operations/deadline shareable state and layout",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark changed requirement propagates through every record",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark exercise creates no network requests or stored records",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark unknown delivery is separated from discovery",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark downloaded brief includes current hold and honest boundaries",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark keyboard reset removes arbitrary URL state",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark audience control is usable by keyboard",
+    "ok": true,
+    "value": "engineering",
+    "focus": "eg-change"
+  },
+  {
+    "check": "chromium 1380 dark artifact opens using keyboard",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark source reference opens a collapsed panel",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark repeated source reference remains usable",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark stage navigation fits a short desktop and reaches the final stage",
+    "ok": true,
+    "navigation": {
+      "x": 55.1875,
+      "y": 109.46875,
+      "width": 210,
+      "height": 574
+    },
+    "finalHeading": {
+      "x": 375.984375,
+      "y": 258.96875,
+      "width": 558.046875,
+      "height": 41.390625
+    }
+  },
+  {
+    "check": "chromium 1380 dark print includes evidence, sources and every artifact",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark printing restores the reader disclosure state",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark increased text spacing preserves page width",
+    "ok": true
+  },
+  {
+    "check": "chromium 1380 dark no script errors",
+    "ok": true,
+    "pageErrors": []
+  },
+  {
+    "check": "chromium 320 dark with increased text spacing and all artifacts open fits",
+    "ok": true
+  },
+  {
+    "check": "chromium 320 expanded content and controls do not clip horizontally",
+    "ok": true,
+    "clipping": []
+  },
+  {
+    "check": "chromium no-script workflow remains readable",
+    "ok": true
+  },
+  {
+    "check": "chromium no-script artifact stays accessible",
+    "ok": true
+  },
+  {
+    "check": "chromium all audience explanations exist without JavaScript",
+    "ok": true
+  },
+  {
+    "check": "chromium malformed query ?audience=%3Cscript%3E&change=approved cannot inject or expand authority",
+    "ok": true
+  },
+  {
+    "check": "chromium malformed query ?audience=risk&audience=engineering&change=unowned&change=autonomy cannot inject or expand authority",
+    "ok": true
+  },
+  {
+    "check": "chromium site search discovers engagement preparation",
+    "ok": true
+  },
+  {
+    "check": "chromium keyboard search navigates and highlights the workflow",
+    "ok": true
+  }
+]

@@ -1,3 +1,9 @@
+# From discovery to delivery · 2026-10-21
+
+Added `/method/engagement/`: an inspectable, 11-stage architecture engagement from meeting preparation and audience awareness through commercial scope, delivery, operations, mentoring and partner planning. A new field-service quote design carries decision D-01 through four connected records. Four audiences and four changing requirements expose scope, assurance, ownership and estimate consequences without changing permissions or inventing outcomes. The public reference is linked from Home, Method, Architect, menus and search; the private Decision Room is untouched.
+
+The build and 1,172 checks pass across the new engine/content tests, Chromium/WebKit browser coverage and existing layout/menu/commercial regressions. Printing, collapsed references, short laptop navigation and dark-mode buttons were corrected during review. Selected screenshots and reports are in `evidence/engagement/`. See [ENGAGEMENT_RELEASE.md](ENGAGEMENT_RELEASE.md) for coverage, boundaries, sources and reproduction commands. Publication and live verification are recorded in the release pull request. The pre-existing untracked brief patch remains unchanged.
+
 # Paragraph layout and responsive reading · 2026-10-14
 
 Fixed the reported superimposed text by removing a shared desktop grid rule that placed every introductory paragraph in the same cell. Home's Built section, Method, Learn and all six playbook next-step sections now keep paragraphs and actions in document order. Added consistent button gaps, earlier navigation collapse and wrapping for Learn controls and Enterprise Studio dropdown text.

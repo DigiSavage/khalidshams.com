@@ -1,0 +1,1851 @@
+{
+  "baseURL": "http://127.0.0.1:8767",
+  "passed": 368,
+  "failed": 0,
+  "skipped": [],
+  "editorialPairs": 56020,
+  "collisions": 0,
+  "pageErrors": 0,
+  "cases": [
+    {
+      "case": "chromium / 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /illustrated/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/agentic-ai/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/app-modernization/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/data-platform/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/security-identity-governance/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/fullstack-product-engineering/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /tools/availability/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /writing/the-demo-is-never-the-hard-part/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium / 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /learn/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /method/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /playbooks/cloud-foundations-multitenant/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium /architect/agent-studio/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium Learn native path selection 320 text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "chromium keyboard search and arrival highlighting 1040 text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /illustrated/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/agentic-ai/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/app-modernization/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/data-platform/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/security-identity-governance/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/fullstack-product-engineering/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /tools/availability/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /writing/the-demo-is-never-the-hard-part/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 390 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 768 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1099 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1100 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1380 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1920 light",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 390 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1380 dark",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit / 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /learn/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /method/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /playbooks/cloud-foundations-multitenant/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 320 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 320 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 390 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 390 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 900 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 900 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1040 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1040 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1041 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1041 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1100 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1100 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1380 light text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit /architect/agent-studio/ 1380 dark text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit Learn native path selection 320 text-spacing",
+      "ok": true,
+      "failures": []
+    },
+    {
+      "case": "webkit keyboard search and arrival highlighting 1040 text-spacing",
+      "ok": true,
+      "failures": []
+    }
+  ]
+}
