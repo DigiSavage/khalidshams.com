@@ -56,13 +56,71 @@ def api_fixture(context):
     return submissions, unexpected
 
 
-def submit_fixture(page):
+def legacy_source_fixture(context, outcome):
+    """Model an older deployed registry. All requests stay inside this fixture."""
+    pages = {key: value for key, value in PAGES.items() if key != '/method/engagement/'}
+    submissions, replies, unexpected, challenges = [], [], [], []
+
+    def respond(route):
+        request = route.request
+        path = urlsplit(request.url).path
+        if path == '/api/config' and request.method == 'GET':
+            route.fulfill(json={'available': False, 'collection': False})
+        elif path == '/api/contact/challenge' and request.method == 'GET':
+            challenges.append(path)
+            route.fulfill(json={'challenge': 'legacy-registry-fixture-challenge'})
+        elif path == '/api/contact' and request.method == 'POST':
+            payload = request.post_data_json
+            submissions.append(payload)
+            first = len(submissions) == 1
+            if first and outcome == 'network-failure':
+                replies.append('network-failure')
+                route.abort('failed')
+                return
+            if first and outcome == 'ambiguous-response':
+                replies.append('non-json-success')
+                route.fulfill(status=200, content_type='text/plain', body='Receipt not available')
+                return
+            if first and outcome == 'other-validation-error':
+                response = (400, {'error': 'Message is invalid'})
+            elif first and outcome == 'similar-validation-error':
+                response = (400, {'error': 'Unknown public page: additional validation failed'})
+            elif first and outcome == 'server-error':
+                response = (503, {'error': 'Unknown public page'})
+            elif outcome == 'contact-source-rejected' or (not first and outcome == 'fallback-rejected'):
+                response = (400, {'error': 'Unknown public page'})
+            elif not first and outcome == 'fallback-unavailable':
+                response = (503, {'error': 'Storage unavailable'})
+            elif not first and outcome == 'fallback-unconfirmed':
+                response = (201, {'stored': False, 'id': payload['id']})
+            else:
+                try:
+                    contracts.inquiry(payload, pages)
+                    response = (201, {'stored': True, 'id': payload['id']})
+                except contracts.Invalid as error:
+                    response = (400, {'error': str(error)})
+            status, body = response
+            replies.append({'status': status, **body})
+            route.fulfill(status=status, json=body)
+        else:
+            unexpected.append((request.method, path))
+            route.fulfill(status=503, json={'error': 'Unexpected fixture request'})
+
+    context.route('**/api/**', respond)
+    return submissions, replies, unexpected, challenges
+
+
+def fill_fixture(page):
     page.locator('[name=name]').fill('Commercial browser fixture')
     page.locator('[name=email]').fill('commercial@example.test')
     page.locator('[name=company]').fill('Fixture company')
     page.locator('[name=message]').fill(
         '[Architecture Decision Review]\nI need a written comparison of two tenant isolation options.'
     )
+
+
+def submit_fixture(page):
+    fill_fixture(page)
     page.locator('#contact-form button[type=submit]').click()
     page.wait_for_function("document.querySelector('#contact-status').textContent.includes('has been stored')")
 
@@ -204,6 +262,60 @@ with sync_playwright() as pw:
     check('no-script contact keeps a direct email fallback',
           page.locator('main a[href="mailto:khalidshams@gmail.com"]').is_visible())
     context.close()
+
+    # A newly published public page can precede deployment of the API's page
+    # registry. Only that precise rejected source may use the contact page as
+    # attribution. No ambiguous response or unrelated failure authorizes retry.
+    for outcome, expected_attempts in (
+        ('accepted', 2), ('other-validation-error', 1), ('similar-validation-error', 1),
+        ('contact-source-rejected', 1),
+        ('fallback-rejected', 2), ('fallback-unavailable', 2), ('fallback-unconfirmed', 2),
+        ('network-failure', 1), ('ambiguous-response', 1), ('server-error', 1),
+    ):
+        context = browser.new_context(reduced_motion='reduce')
+        submissions, replies, unexpected, challenges = legacy_source_fixture(context, outcome)
+        page = context.new_page()
+        errors = []
+        page.on('pageerror', lambda error: errors.append(str(error)))
+        if outcome == 'contact-source-rejected':
+            page.goto(BASE + '/contact/')
+        else:
+            # The explicit test flag enables the production attribution listener
+            # on localhost. Its API remains intercepted and collection is off.
+            page.goto(BASE + '/method/engagement/?ks-test=1', wait_until='networkidle')
+            page.locator('main a[href="/contact/"]').click()
+            page.wait_for_url(BASE + '/contact/')
+        page.wait_for_function("!document.querySelector('#contact-form button[type=submit]').disabled")
+        fill_fixture(page)
+        original_message = page.locator('[name=message]').input_value()
+        page.locator('#contact-form button[type=submit]').click()
+        page.wait_for_function("""() => document.querySelector('#contact-form').hidden ||
+            !document.querySelector('#contact-form button[type=submit]').disabled""")
+        check(f'{outcome}: source recovery makes only the expected attempts', len(submissions) == expected_attempts)
+        expected_source = '/contact/' if outcome == 'contact-source-rejected' else '/method/engagement/'
+        check(f'{outcome}: initial request preserves actual page attribution',
+              bool(submissions) and submissions[0]['source'] == expected_source)
+        if expected_attempts == 2:
+            check(f'{outcome}: only an explicit unknown-page rejection triggers recovery',
+                  replies[0] == {'status': 400, 'error': 'Unknown public page'})
+            check(f'{outcome}: recovery preserves id, challenge and every field except source',
+                  len(submissions) == 2 and submissions[1]['source'] == '/contact/'
+                  and {key: value for key, value in submissions[0].items() if key != 'source'}
+                  == {key: value for key, value in submissions[1].items() if key != 'source'}
+                  and len(challenges) == 1)
+        if outcome == 'accepted':
+            check('legacy source recovery confirms storage before showing success',
+                  replies[-1].get('stored') is True
+                  and page.locator('#contact-form').is_hidden()
+                  and 'has been stored' in page.locator('#contact-status').inner_text())
+        else:
+            check(f'{outcome}: no success claim or draft loss after failed storage',
+                  page.locator('#contact-form').is_visible()
+                  and page.locator('[name=message]').input_value() == original_message
+                  and page.locator('#contact-form button[type=submit]').is_enabled()
+                  and 'has been stored' not in page.locator('#contact-status').inner_text())
+        check(f'{outcome}: no unexpected API calls or script errors', not unexpected and not errors)
+        context.close()
     browser.close()
 
 (OUT / 'checks.json').write_text(json.dumps(results, indent=2) + '\n')

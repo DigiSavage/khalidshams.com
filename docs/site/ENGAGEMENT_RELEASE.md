@@ -62,3 +62,11 @@ node --test tests/engagement/engine.test.mjs
 ```
 
 The original untracked `codex-brief.patch` is preserved. No workflow, credential, access policy or backend implementation is changed. The generated public-page registry includes this route and the two newly published posts; that registry file alone does not redeploy the analytics service. Publication uses the existing static site workflow.
+
+## Inquiry integration follow-up
+
+Live integration review identified a dependency on the separately deployed inquiry service's page registry. A newly published page can produce an explicit `400 Unknown public page` validation response even when every user field is valid. The contact form now retries that one pre-storage rejection once with `/contact/` as the source. Inquiry ID, challenge and user fields remain identical. Other errors, ambiguous responses and network failures do not trigger this fallback; storage must still be explicitly confirmed. No production test inquiries are seeded.
+
+This preserves inquiries while static routes and the service registry are deployed independently. Detailed analytics for newly added routes still require the normal backend registry refresh; this static release does not claim those observations are available.
+
+All 100 commercial/inquiry browser checks pass, including the legacy-registry recovery, unchanged identifiers and challenge, refusal to retry other errors, failed fallback storage, network failures and ambiguous receipts. See `evidence/engagement/contact-resilience.json`. The initial public deployment completed in [run 39628987077](https://github.com/DigiSavage/khalidshams.com/actions/runs/39628987077); live page and asset bytes matched the tested build, and Home, Method and Architect exposed the new link.
