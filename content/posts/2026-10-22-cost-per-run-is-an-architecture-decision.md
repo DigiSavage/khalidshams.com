@@ -1,10 +1,10 @@
 ---
 title: "Cost per run is an architecture decision"
 date: 2026-10-22
-status: approved
+status: published
 tag: agentic-ai
 summary: "A license costs the same whether people use it or not. An agent costs more the better it works."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7519111411503939584/
 ---
 
 A license costs the same whether people use it or not. An agent costs more the better it works.
