@@ -49,7 +49,7 @@ function brief() {
     r.lowHours === null ? 'Delivery hours and price are not established. Discovery only is listed below.' :
       `${r.lowHours} to ${r.highHours} person-hours; ${money(r.lowCost)} to ${money(r.highCost)} USD including contingency.`,
     '$150 USD/hour sample labor rate; 15% contingency. Excludes software, cloud usage, licenses, tax and customer effort.',
-    'Not a binding quote or the $950 Architecture Decision Review. Person-hours do not establish a delivery date.',
+    'Teaching example, not a quote for services. I do not offer paid consultations through this site. Person-hours do not establish a delivery date.',
     ...r.rows.map(x => `${x.role}: ${x.low} to ${x.high} hours`), ...r.assumptions,
     '', 'Observed business results: not measured.',
     '', 'BASELINE WORKFLOW REFERENCE',

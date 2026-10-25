@@ -1,4 +1,4 @@
-"""Check the paid-review discovery and inquiry flow without contacting the live API.
+"""Check the community-resource discovery and inquiry flow without contacting the live API.
 
 Build and serve dist, then run: python tests/commercial/ui_check.py BASE OUT
 All API requests are intercepted. The submitted fixture is checked against the
@@ -21,7 +21,7 @@ spec = importlib.util.spec_from_file_location('site_contracts', ROOT / 'services
 contracts = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(contracts)
 PAGES = json.loads((ROOT / 'services/site-admin/pages.json').read_text())
-OFFER = '/contact/?offer=architecture-review'
+OFFER = '/contact/?context=community'
 results = []
 
 
@@ -115,7 +115,7 @@ def fill_fixture(page):
     page.locator('[name=email]').fill('commercial@example.test')
     page.locator('[name=company]').fill('Fixture company')
     page.locator('[name=message]').fill(
-        '[Architecture Decision Review]\nI need a written comparison of two tenant isolation options.'
+        '[Community learning]\nCould you explain the trade-offs between two tenant isolation options?'
     )
 
 
@@ -140,8 +140,10 @@ with sync_playwright() as pw:
             page.on('pageerror', lambda error: errors.append(str(error)))
             page.goto(BASE + '/#work-with-me')
             section = page.locator('#work-with-me')
-            check(f'{label} paid review has a discoverable home',
-                  section.is_visible() and 'Architecture Decision Review' in section.inner_text())
+            check(f'{label} free resources and boundaries have a discoverable home',
+                  section.is_visible() and 'Useful knowledge' in section.inner_text()
+                  and 'conflicts of interest' in section.inner_text()
+                  and '$950' not in section.inner_text())
             check(f'{label} offer fits viewport',
                   page.evaluate('document.documentElement.scrollWidth <= innerWidth'))
             section.screenshot(path=str(OUT / f'offer-{width}-{theme}.png'),
@@ -162,7 +164,7 @@ with sync_playwright() as pw:
             message = page.locator('[name=message]')
             check(f'{label} editable brief is prefilled for architecture',
                   page.locator('[name=topic]').input_value() == 'architecture'
-                  and '[Architecture Decision Review]' in message.input_value()
+                  and '[Community learning]' in message.input_value()
                   and message.is_editable())
             check(f'{label} inquiry requests no payment credentials',
                   page.locator('#contact-form [autocomplete^="cc-"],'
@@ -206,6 +208,10 @@ with sync_playwright() as pw:
         check(f'unsupported offer {query or "absent"} leaves general inquiry unchanged',
               page.locator('#offer-context').is_hidden()
               and page.locator('[name=message]').input_value() == '')
+    page.goto(BASE + '/contact/?offer=architecture-review')
+    check('old paid-review bookmarks explain retirement without a sales draft',
+          'no longer offering' in page.locator('#offer-context').inner_text()
+          and '[Community learning]' in page.locator('[name=message]').input_value())
     page.goto(BASE + OFFER + '&message=untrusted-prefill&topic=cloud&price=1&source=https://example.test')
     check('arbitrary query fields cannot change the offer or inquiry',
           'untrusted-prefill' not in page.locator('[name=message]').input_value()
@@ -244,11 +250,11 @@ with sync_playwright() as pw:
             work.hover()
             work.locator('a[href="/#work-with-me"]').click()
         page.wait_for_url(BASE + '/#work-with-me')
-        check(f'{width} Work menu reaches the paid review', page.locator('#work-with-me').is_visible())
+        check(f'{width} Work menu reaches the community section', page.locator('#work-with-me').is_visible())
         page.goto(BASE + '/privacy/')
         page.locator('footer a[href="/#work-with-me"]').first.click()
         page.wait_for_url(BASE + '/#work-with-me')
-        check(f'{width} footer reaches the paid review', page.locator('#work-with-me').is_visible())
+        check(f'{width} footer reaches the community section', page.locator('#work-with-me').is_visible())
         context.close()
 
     context = browser.new_context(java_script_enabled=False)

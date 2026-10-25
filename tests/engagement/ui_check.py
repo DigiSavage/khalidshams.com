@@ -143,7 +143,7 @@ with sync_playwright() as pw:
                       and 'D-01 CHANGE ASSESSMENT: Hold' in brief
                       and 'Delivery hours and price are not established' in brief
                       and 'Observed business results: not measured.' in brief
-                      and 'Not a binding quote or the $950 Architecture Decision Review' in brief
+                      and 'Teaching example, not a quote for services. I do not offer paid consultations through this site.' in brief
                       and 'BASELINE WORKFLOW REFERENCE' in brief
                       and all(stage['title'].upper() in brief for stage in DATA['stages']))
                 page.goto(BASE + ROUTE + '?audience=risk&change=unowned&token=private&approval=approved#decision')

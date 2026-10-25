@@ -1,3 +1,5 @@
+> Superseded on 2026-10-25 by COMMUNITY_RESOURCES_RELEASE.md. The paid offer described below is historical and is no longer offered.
+
 # Architecture Decision Review
 
 The owner approved a $950 USD, fixed-scope Architecture Decision Review and asked for a premium presentation grounded in his existing principal architecture work. The public library remains free. Stripe connection is explicitly deferred by the owner.
