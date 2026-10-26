@@ -1,0 +1,15 @@
+{
+  "base_weekdays": [1, 3],
+  "campaigns": [
+    {
+      "name": "2036",
+      "start": "2026-10-26",
+      "end": "2026-11-20",
+      "weekdays": [0, 2, 4],
+      "manual_dates": ["2026-10-26"],
+      "manual_receipts": {
+        "2026-10-26": "https://www.linkedin.com/feed/update/urn:li:share:7520443246674878464/"
+      }
+    }
+  ]
+}
