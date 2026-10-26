@@ -56,13 +56,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Reserve one publication before contacting LinkedIn
+        id: reserve
+        if: inputs.dry_run != true
+        env:
+          RESERVE_ONLY: "1"
+          PUBLICATION_ATTEMPT: ${{ github.run_id }}-${{ github.run_attempt }}
+          SCHEDULED: "1"
+        run: python scripts/publish_linkedin.py
+      - name: Persist the reservation
+        if: steps.reserve.outputs.reserved == 'true'
+        run: |
+          git config user.name "khalidshams.com publisher"
+          git config user.email "publisher@khalidshams.com"
+          git add -- content/linkedin_pending.json
+          git commit -m "Reserve LinkedIn publication: $GITHUB_RUN_ID/$GITHUB_RUN_ATTEMPT"
+          git pull --rebase origin main
+          git push origin HEAD:main
       - name: Select and publish one approved post
         id: pub
+        if: inputs.dry_run == true || steps.reserve.outputs.reserved == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ inputs.dry_run != true && secrets.LINKEDIN_ACCESS_TOKEN || '' }}
           LINKEDIN_VERSION: ${{ vars.LINKEDIN_VERSION }}
           DRY_RUN: ${{ inputs.dry_run == true && '1' || '' }}
           SCHEDULED: "1"
+          REQUIRE_RESERVATION: "1"
+          PUBLICATION_ATTEMPT: ${{ github.run_id }}-${{ github.run_attempt }}
           BUILD_DATE: ${{ inputs.dry_run == true && inputs.preview_date || '' }}
         run: python scripts/publish_linkedin.py
       - name: Keep a publication receipt before committing
@@ -86,16 +106,16 @@ jobs:
           name: linkedin-receipt-${{ github.run_id }}-${{ github.run_attempt }}
           path: linkedin-publication-receipt.json
           retention-days: 90
-      - name: Commit publication record
-        if: steps.pub.outputs.published == 'true'
+      - name: Commit confirmed receipt or definite rejection
+        if: always() && (steps.pub.outputs.published == 'true' || steps.pub.outputs.reservation_released == 'true')
         env:
           POST_TITLE: ${{ steps.pub.outputs.title }}
           SELECTED_PATH: ${{ steps.pub.outputs.selected_path }}
         run: |
           git config user.name "khalidshams.com publisher"
           git config user.email "publisher@khalidshams.com"
-          git add -- "$SELECTED_PATH"
-          git commit -m "Publish: $POST_TITLE"
+          git add -A -- content/posts content/linkedin_pending.json
+          git commit -m "Resolve LinkedIn publication: $POST_TITLE"
           git pull --rebase origin main
           git push origin HEAD:main
 
