@@ -135,6 +135,18 @@ try:
             check(f'calendar research date is preserved {width} {theme}', expected_date in page.locator('#vs-catalog-date').inner_text())
             check(f'catalog does not seed records {width} {theme}', f.table.scan()['Count'] == 0)
             page.screenshot(path=str(OUT / f'research-{width}-{theme}.png'), full_page=True)
+            page.locator('#vs-playbook-nav').click()
+            check(f'shared approach available {width} {theme}', page.locator('#vs-playbook').is_visible() and studio.catalog()['playbook']['promise'] in page.locator('#vs-playbook-content').inner_text())
+            check(f'approach does not seed episodes {width} {theme}', f.table.scan()['Count'] == 0)
+            page.screenshot(path=str(OUT / f'approach-{width}-{theme}.png'), full_page=True)
+            groups = page.locator('.vs-method-group')
+            fits = True
+            for i in range(groups.count()):
+                groups.nth(i).locator('summary').click()
+                fits = fits and page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+            check(f'expanded approach and roadmap fit {width} {theme}', fits)
+            check(f'roadmap links only to authored drafts {width} {theme}', page.locator('#vs-playbook-content button').count() == len(studio.catalog()['templates']))
+            page.locator('#vs-research-nav').click()
             create_template(page)
             for name in ['brief', 'beats', 'sources', 'readiness', 'transcript']:
                 tab(page, name)
@@ -168,6 +180,9 @@ try:
         check('explicit creation persists one episode', len(videos()) == 1)
         page.locator('#vs-title').fill('<img src=x onerror=alert(1)> Browser fixture')
         page.locator('#vs-notes').fill('PRIVATE-VIDEO-CANARY-9381')
+        page.locator('#vs-playbook-nav').click()
+        page.locator('#vs-library-nav').click()
+        check('approach navigation retains unsaved episode', page.locator('#vs-notes').input_value() == 'PRIVATE-VIDEO-CANARY-9381' and page.locator('#vs-save-state').inner_text() == 'Unsaved changes')
         tab(page, 'sources')
         page.locator('#vs-editor').get_by_label('Source title', exact=True).first.fill('<svg onload=alert(1)> Fixture source')
         page.locator('#vs-editor').get_by_label('Source URL · HTTPS', exact=True).first.fill('javascript:alert(1)')
@@ -288,7 +303,7 @@ try:
         f.auth.idp.admin_get_user.return_value['Enabled'] = False
         page.locator('#vs-export-pack').click()
         page.wait_for_function("() => document.querySelector('#vs-app').hidden")
-        check('revoked owner cannot export and private content clears', page.locator('#vs-editor').inner_text() == '' and page.locator('#vs-topic-list').inner_text() == '')
+        check('revoked owner cannot export and private content clears', page.locator('#vs-editor').inner_text() == '' and page.locator('#vs-topic-list').inner_text() == '' and page.locator('#vs-playbook-content').inner_text() == '')
         check('private studio sends no analytics events', not any('/api/events' in url for url in traffic))
         check('lifecycle has no script errors', not errors)
         check('CSP permits only intended behavior', not security_errors)

@@ -348,6 +348,12 @@ class VideoStudioTests(unittest.TestCase):
         self.assertGreaterEqual(len(actual['topics']), 1)
         self.assertGreaterEqual(len(actual['templates']), 3)
         self.assertEqual(len({template['id'] for template in actual['templates']}), len(actual['templates']))
+        playbook = actual['playbook']
+        self.assertTrue(playbook['promise'])
+        for key in ('principles', 'discovery', 'season', 'filming', 'roles', 'continuity'):
+            self.assertTrue(playbook[key])
+        references = {episode['template_id'] for episode in playbook['season'] if episode.get('template_id')}
+        self.assertEqual(references, {template['id'] for template in actual['templates']})
         result = self.request(studio.ROOT + '/catalog')
         self.assertEqual(result['statusCode'], 200, result)
         self.assertEqual(json.loads(result['body'])['catalog'], actual)
@@ -411,6 +417,7 @@ class VideoStudioTests(unittest.TestCase):
         forbidden += [template['id'] for template in actual['templates']]
         forbidden += [template['beats'][0]['spoken'] for template in actual['templates']]
         forbidden += [topic['why'] for topic in actual['topics']]
+        forbidden += [actual['playbook']['promise']]
         original_write = Path.write_text
         with tempfile.TemporaryDirectory(prefix='video-studio-build-') as tmp:
             output = Path(tmp) / 'dist'
@@ -436,7 +443,7 @@ class VideoStudioTests(unittest.TestCase):
             for path in output.rglob('*'):
                 if not path.is_file():
                     continue
-                self.assertNotIn(path.name, {'video_catalog.py', 'video_research.json', 'video_templates.json', 'video_studio.py'})
+                self.assertNotIn(path.name, {'video_catalog.py', 'video_research.json', 'video_templates.json', 'video_playbook.json', 'video_studio.py'})
                 if path.suffix in {'.html', '.json', '.js', '.css', '.txt', '.xml'}:
                     content = path.read_bytes()
                     self.assertFalse(any(needle in content for needle in needles), str(path.relative_to(output)))

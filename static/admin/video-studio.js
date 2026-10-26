@@ -24,7 +24,7 @@
     invalidateRequests(); if (sessionClock) clearInterval(sessionClock); sessionClock = null;
     csrf = ''; expires = 0; catalog = null; items = []; nextCursor = null; record = null; draft = null; dirty = false; busy = false; conflict = false; createRequestId = ''; resumeOnVisible = false;
     objectURLs.forEach(url => URL.revokeObjectURL(url)); objectURLs.clear();
-    ['vs-topic-list','vs-templates','vs-video-list','vs-editor','vs-video-title','vs-video-decision','vs-video-meta','vs-session','vs-size','vs-list-note','vs-ranking','vs-catalog-date','vs-progress'].forEach(id => $(id).replaceChildren());
+    ['vs-topic-list','vs-templates','vs-playbook-content','vs-video-list','vs-editor','vs-video-title','vs-video-decision','vs-video-meta','vs-session','vs-size','vs-list-note','vs-ranking','vs-catalog-date','vs-progress'].forEach(id => $(id).replaceChildren());
     $('vs-search').value = ''; $('vs-create-form').reset(); $('vs-create-error').textContent = ''; $('vs-count').textContent = '0';
     closeDialog('vs-create-dialog'); closeRehearsal();
     $('vs-app').hidden = true; $('vs-workbench').hidden = true; $('vs-empty').hidden = false; $('vs-signin').hidden = false; $('vs-signout').hidden = true; $('vs-conflict').hidden = true; $('vs-load-more').hidden = true;
@@ -63,8 +63,8 @@
     document.querySelectorAll('[data-boundary="true"]').forEach(n => { n.disabled = true; });
   }
   function showView(next) {
-    view = next; $('vs-research').hidden = next !== 'research'; $('vs-library').hidden = next !== 'library';
-    ['research','library'].forEach(key => { const button = $('vs-' + key + '-nav'); if (key === next) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current'); });
+    view = next;
+    ['research','library','playbook'].forEach(key => { $('vs-' + key).hidden = next !== key; const button = $('vs-' + key + '-nav'); if (key === next) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current'); });
   }
   function sourceURL(value) { try { const u = new URL(value); return u.protocol === 'https:' && !u.username && !u.password ? u.href : null; } catch { return null; } }
   function sourceList(sources) {
@@ -73,6 +73,7 @@
   }
   function renderCatalog() {
     $('vs-topic-list').replaceChildren(); $('vs-templates').replaceChildren();
+    renderPlaybook();
     $('vs-ranking').textContent = catalog.ranking_note || 'Editorial priority based on evidence and the consequences of a decision. This is not a price or revenue ranking.';
     (catalog.topics || []).forEach((topic,index) => {
       const card = el('article',undefined,'vs-topic'); card.append(el('span',String(index + 1).padStart(2,'0') + ' · RESEARCH PRIORITY','vs-topic-number'),el('h3',topic.title),el('p',topic.decision,'vs-question'),el('p',topic.why,'vs-small'));
@@ -86,6 +87,28 @@
     if (!catalog.topics?.length) $('vs-topic-list').append(el('p','Research topics are not available. You can still work on your saved episodes.','vs-empty-note'));
     if (!catalog.templates?.length) $('vs-templates').append(el('p','No authored teaching drafts are available. Start a new episode from your own decision.','vs-empty-note'));
     $('vs-catalog-date').textContent = 'Research checked ' + date(catalog.checked_at) + '. Sources support the stated claims; they do not prove a promised client outcome.';
+  }
+  function renderPlaybook() {
+    const root = $('vs-playbook-content'), plan = catalog.playbook; root.replaceChildren();
+    if (!plan) { root.append(el('p','The shared approach is not available from the service yet. Your saved episodes are unchanged.','vs-empty-note')); return; }
+    const intro = el('div',undefined,'vs-playbook-intro');
+    intro.append(el('p',plan.title,'vs-question'),el('p',plan.promise),el('p',plan.audience,'vs-small'),el('p','Direction revision · ' + plan.version,'vs-small')); root.append(intro);
+    const principles = el('div',undefined,'vs-method-grid');
+    (plan.principles || []).forEach(item => { const card = el('article',undefined,'vs-card'); card.append(el('h3',item.title),el('p',item.detail)); principles.append(card); }); root.append(principles);
+    function group(title, items, render) {
+      const details = el('details',undefined,'vs-method-group'); details.append(el('summary',title));
+      const list = el('div',undefined,'vs-method-grid'); (items || []).forEach((item,index) => { const card = el('article',undefined,'vs-card'); render(card,item,index); list.append(card); }); details.append(list); root.append(details);
+    }
+    function line(card,label,value) { card.append(el('p',label,'vs-cue-label'),el('p',value)); }
+    group('Discovery questions and where they pay off',plan.discovery,(card,item) => { card.append(el('h3',item.question)); line(card,'Why I ask',item.why); line(card,'Where it pays off',item.payoff); line(card,'What I save',item.save); });
+    group('The connected series, from discovery to handover',plan.season,(card,item,index) => {
+      card.append(el('p',String(index+1).padStart(2,'0') + ' · ' + item.status,'vs-topic-number'),el('h3',item.title),el('p',item.decision)); line(card,'Reusable artifact',item.save);
+      const template = (catalog.templates || []).find(t => t.id === item.template_id);
+      if (template) card.append(action('Prepare this teaching draft →',() => openCreate(template),'vs-primary'));
+    });
+    group('Filming and making the idea stick',plan.filming,(card,item) => { card.append(el('h3',item.title),el('p',item.detail)); });
+    group('What each of us prepares',plan.roles,(card,item) => { card.append(el('h3',item.title),el('p',item.detail)); });
+    group('What we preserve and what still needs to happen',plan.continuity,(card,item) => { card.append(el('h3',item.title),el('p',item.detail)); });
   }
   function renderList() {
     const list = $('vs-video-list'); list.replaceChildren(); const term = $('vs-search').value.toLowerCase().trim();
@@ -262,7 +285,7 @@
     } catch(error) { if (generation === epoch) { clearPrivate(); message(error); } }
     finally { if (authGeneration === generation) authGeneration = null; }
   }
-  $('vs-research-nav').onclick = () => showView('research'); $('vs-library-nav').onclick = () => showView('library'); $('vs-empty-research').onclick = () => showView('research');
+  $('vs-research-nav').onclick = () => showView('research'); $('vs-library-nav').onclick = () => showView('library'); $('vs-playbook-nav').onclick = () => showView('playbook'); $('vs-empty-research').onclick = () => showView('research');
   $('vs-new').onclick = () => openCreate(); $('vs-create-close').onclick = () => closeDialog('vs-create-dialog');
   $('vs-create-form').addEventListener('submit',async event => {
     event.preventDefault(); const form = event.currentTarget; if (busy || !form.reportValidity()) return; const payload = {request_id:createRequestId || (createRequestId = crypto.randomUUID()),title:form.elements.title.value}; if (form.elements.template_id.value) payload.template_id = form.elements.template_id.value;

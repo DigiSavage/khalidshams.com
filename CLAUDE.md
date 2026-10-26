@@ -136,6 +136,10 @@ Tests: `node --test tests/atlas/*.test.mjs` (engine), `python -m unittest tests/
 
 `build.py` emits `dist/search.json` (one entry per heading section, map idea, and post). `static/search.js` loads it on first open, scores with word-start matching plus a synonym table (`SYN`), groups by page, and on navigation stores the query in `sessionStorage` so the destination page highlights matches with a prev/next/clear pill. Add synonyms to `SYN` when a term has a common alias. Keep it dependency-free.
 
+## Video Studio continuity
+
+Before changing the creator direction or Video Studio, read `docs/site/VIDEO_STUDIO_DIRECTION.md` and `services/site-admin/video_playbook.json`. They preserve Khalid's agreed audience, outcome-backward and backend-first method, discovery payoffs, human decisions, connected series, reusable artifacts and filming responsibilities. The authenticated admin view "Our approach" renders that playbook. Keep changes consistent across it and the episode templates; label planned work honestly. The committed direction is versioned independently of private episodes, which expire 365 days after creation. Check `docs/site/VIDEO_STUDIO_REPORT.md` and PR #21 for the release handoff; an implemented feature is not evidence of a live deployment.
+
 ## Pending and next
 
 - Tools: 01 Availability and recovery budget is live. Next, in order: 02 Agent cost per run, 03 Tenant tier rules, 04 Detection-first log budget, 05 The honest estimate (listed under "On the bench" in `templates/tools_index.html`).

@@ -6,7 +6,11 @@
     <aside class="vs-access"><span class="vs-private">Private · Owner access</span><p id="vs-status" role="status" aria-live="polite">Checking owner access…</p><a class="btn" id="vs-signin" href="/login/">Sign in securely →</a><button type="button" id="vs-signout" hidden>Sign out</button><p id="vs-session" class="vs-small"></p></aside>
   </header>
   <div id="vs-app" hidden>
-    <nav class="vs-room-nav" aria-label="Video Studio views"><div><button type="button" id="vs-research-nav" aria-current="page">01 · Research desk</button><button type="button" id="vs-library-nav">02 · My episodes <span id="vs-count">0</span></button></div><button type="button" id="vs-new" class="vs-primary">New episode +</button></nav>
+    <nav class="vs-room-nav" aria-label="Video Studio views"><div><button type="button" id="vs-research-nav" aria-current="page">01 · Research desk</button><button type="button" id="vs-library-nav">02 · My episodes <span id="vs-count">0</span></button><button type="button" id="vs-playbook-nav">03 · Our approach</button></div><button type="button" id="vs-new" class="vs-primary">New episode +</button></nav>
+    <section id="vs-playbook" hidden aria-labelledby="vs-playbook-title">
+      <div class="vs-section-head"><div><p class="eyebrow">The direction we keep</p><h2 id="vs-playbook-title">Our approach, on purpose.</h2></div><p class="vs-small">The shared method, connected series and filming preparation. Use this before researching or scripting the next episode.</p></div>
+      <div id="vs-playbook-content"></div>
+    </section>
     <section id="vs-research" aria-labelledby="vs-research-title">
       <div class="vs-section-head"><div><p class="eyebrow">Decisions with consequences</p><h2 id="vs-research-title">Start where the stakes are real.</h2></div><p id="vs-ranking" class="vs-small"></p></div>
       <div id="vs-topic-list" class="vs-topic-grid"></div>

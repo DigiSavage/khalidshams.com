@@ -20,6 +20,22 @@
     "ok": true
   },
   {
+    "check": "shared approach available 1380 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 1380 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 1380 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 1380 light",
+    "ok": true
+  },
+  {
     "check": "editor brief fits 1380 light",
     "ok": true
   },
@@ -69,6 +85,22 @@
   },
   {
     "check": "catalog does not seed records 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 1380 dark",
     "ok": true
   },
   {
@@ -124,6 +156,22 @@
     "ok": true
   },
   {
+    "check": "shared approach available 390 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 390 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 390 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 390 light",
+    "ok": true
+  },
+  {
     "check": "editor brief fits 390 light",
     "ok": true
   },
@@ -173,6 +221,22 @@
   },
   {
     "check": "catalog does not seed records 390 dark",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 390 dark",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 390 dark",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 390 dark",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 390 dark",
     "ok": true
   },
   {
@@ -228,6 +292,22 @@
     "ok": true
   },
   {
+    "check": "shared approach available 320 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 320 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 320 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 320 light",
+    "ok": true
+  },
+  {
     "check": "editor brief fits 320 light",
     "ok": true
   },
@@ -269,6 +349,10 @@
   },
   {
     "check": "explicit creation persists one episode",
+    "ok": true
+  },
+  {
+    "check": "approach navigation retains unsaved episode",
     "ok": true
   },
   {

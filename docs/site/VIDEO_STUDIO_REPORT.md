@@ -17,6 +17,7 @@ Research priorities are editorial judgments about business consequence and teach
 ## What works
 
 - `/admin/video-studio/`, reached from control room section 08. Research desk, saved episode library and a responsive editor use the existing site typography and themes.
+- The "Our approach" view preserves the shared creator direction independently of episode drafts: principal architecture, the audience, outcome-backward and backend-first work, discovery payoffs, human responsibilities, a connected eight-part series, reusable artifacts and filming guidance. `video_playbook.json` is the versioned source; `VIDEO_STUDIO_DIRECTION.md` maps the agreed intent to its admin home. The roadmap opens the three existing teaching drafts and keeps future episodes labeled planned.
 - Three authored shooting plans, each with six beats totaling 300 planned seconds: build/buy/process, exact approval boundaries, and the first Foundry checkpoint. Timing includes demonstrations and pauses and still requires rehearsal.
 - Each beat separates draft spoken words, screen clicks, visuals, Khalid's actions, Codex's preparation and what to preserve. Codex preparation is a plan; no background agent is implied.
 - Explicitly create an episode from a plan or from a blank decision. Reading the catalog creates no production record. No fictional clients, completed recordings, measured results or analytics are seeded.
@@ -33,7 +34,7 @@ Video records use an independent `video#<uuid>` sort-key prefix in the existing 
 
 Request bodies remain limited to 24 KB. Collection, field, URL and duration limits are enforced server-side. Records use inert text in the browser. Owner content is not placed in persistent browser storage, URLs, public HTML, search or sitemap. The page has noindex, a restrictive CSP and no-referrer policy. Session expiry, sign-out, revocation and a changed login clear private state; a hidden tab is masked until authorization is checked again.
 
-The authored catalog and source code are committed in this public repository; they are not proprietary secrets. The public build contains only the generic UI shell. Owner-created drafts and transcripts exist only in the private runtime and deliberate device downloads.
+The authored catalog, shared playbook and source code are committed in this public repository; they are not proprietary secrets. The public build contains only the generic UI shell. Owner-created drafts and transcripts exist only in the private runtime and deliberate device downloads. The versioned playbook has no episode TTL. It does not change the 365-day retention of private episodes or promise permanent transcript retention.
 
 ## Validation
 
@@ -43,7 +44,7 @@ The authored catalog and source code are committed in this public repository; th
 - 68 existing admin browser checks passed, including sign-in, enrollment, inbox, consent and layout.
 - A separate isolated-build test verifies no fixture record, research catalog, script or catalog file enters generated public artifacts; private routes remain absent from search, sitemap and the public page allowlist.
 - Full static build passes with 558 search entries. JavaScript syntax and whitespace checks pass.
-- 98 Video Studio browser checks passed across desktop/phone and both themes: saves, reload, conflicts, readiness, all exports, transcript/source markup, revocation and changed-session clearing.
+- 119 Video Studio browser checks passed across desktop/phone and both themes: saves, reload, conflicts, readiness, all exports, transcript/source markup, revocation and changed-session clearing. The added approach and roadmap fit at 320, 390 and 1380 pixels, do not seed records, and preserve unsaved work when switching views. The backend suite also verifies the playbook stays outside the public build.
 - 16 shooting-sequence checks passed for the first two authored demonstrations at 390 and 1380 pixels, including the source denial, exact approval boundary and exported design record. No Foundry cloud run is claimed.
 - Selected screenshots and machine-readable results: `docs/site/evidence/video-studio/`.
 

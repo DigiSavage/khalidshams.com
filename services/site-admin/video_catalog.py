@@ -5,4 +5,5 @@ import json
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 CATALOG = {**json.loads((ROOT / "video_research.json").read_text()),
+           "playbook": json.loads((ROOT / "video_playbook.json").read_text()),
            "templates": json.loads((ROOT / "video_templates.json").read_text())}

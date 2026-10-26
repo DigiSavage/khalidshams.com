@@ -5,3 +5,5 @@
 @media(prefers-reduced-motion:reduce){.video-studio *,.vs-dialog *{scroll-behavior:auto!important}}
 
 .video-studio section:not(.vs-empty){padding-block:0}.vs-rehearsal[open]{display:grid;grid-template-rows:auto auto minmax(0,1fr) auto auto;height:min(850px,calc(100dvh - 40px));overflow:hidden}.vs-rehearsal-grid{overflow:auto;min-height:0}.vs-rehearsal-grid>section{padding:0}
+.vs-playbook-intro{border-left:3px solid var(--blue);padding:8px 24px;margin-bottom:28px;max-width:80ch}.vs-method-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.vs-method-grid .vs-card{min-width:0;overflow-wrap:anywhere;margin:0}.vs-method-group{border-top:1px solid var(--rule2);margin-top:28px}.vs-method-group>summary{padding:22px 0;cursor:pointer;font-weight:500;font-size:18px}.vs-method-group .vs-cue-label{margin-top:18px;margin-bottom:6px}.vs-room-nav>div{flex-wrap:wrap}.vs-method-group .vs-topic-number{margin-bottom:14px}
+@media(max-width:760px){.vs-method-grid{grid-template-columns:1fr}.vs-playbook-intro{padding-left:18px}.vs-method-group>summary{font-size:16px}}
