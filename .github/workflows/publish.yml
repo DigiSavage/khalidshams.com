@@ -59,7 +59,7 @@ jobs:
       - name: Select and publish one approved post
         id: pub
         env:
-          LINKEDIN_ACCESS_TOKEN: ${{ inputs.dry_run == true && '' || secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN: ${{ inputs.dry_run != true && secrets.LINKEDIN_ACCESS_TOKEN || '' }}
           LINKEDIN_VERSION: ${{ vars.LINKEDIN_VERSION }}
           DRY_RUN: ${{ inputs.dry_run == true && '1' || '' }}
           SCHEDULED: "1"
