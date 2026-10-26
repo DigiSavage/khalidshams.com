@@ -3,12 +3,12 @@ import base64,hashlib,json,re
 from pathlib import Path
 
 def render(root,dist,tpl,fill,page,masthead,footer,site):
-    for route,title in [('login','Owner sign-in'),('admin','Private control room'),('admin/decision-room','SHAMS Decision Room'),('contact','Start a conversation')]:
-        template='decision_room' if route=='admin/decision-room' else route
+    for route,title in [('login','Owner sign-in'),('admin','Private control room'),('admin/decision-room','SHAMS Decision Room'),('admin/video-studio','Video Studio'),('contact','Start a conversation')]:
+        template={'admin/decision-room':'decision_room','admin/video-studio':'video_studio'}.get(route,route)
         body=fill(tpl(template+'.html'),MASTHEAD=masthead,FOOTER=footer)
         html=page(body,title=title+' · Khalid Shams',description='Owner access to the site.' if route!='contact' else 'Talk about architecture, cloud platforms, AI systems and teaching.',canonical=site+'/'+route+'/')
         if route!='contact':html=html.replace('<head>','<head>\n<meta name="robots" content="noindex, nofollow">')
-        if route=='admin/decision-room':
+        if route in ('admin/decision-room','admin/video-studio'):
             # Permit only the build's known inline scripts, never injected code.
             hashes=["'sha256-"+base64.b64encode(hashlib.sha256(script.encode()).digest()).decode()+"'" for script in re.findall(r'<script\b[^>]*>(.*?)</script>',html,re.S) if script.strip()]
             policy="default-src 'self'; script-src 'self' "+' '.join(hashes)+"; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-src 'none'"

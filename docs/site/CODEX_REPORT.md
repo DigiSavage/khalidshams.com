@@ -171,3 +171,12 @@ A direct Atlas run passed 95 checks. Subsequent runs hit intermittent external f
 | Evidence | 160 JPEGs: 64 original drawing checks, 52 integration placements (including 4 historical library captures) and 44 recovered-art captures, plus machine-readable results |
 
 The focused suite verifies keyboard dependency inspection, one selected dependency, industry risk re-weighting, mesh/hub arithmetic at twelve agents, component selection, the understood check mark and saved key, circuit stepping, Society zoom, and search arrival highlights. The additional layout matrix covers both lessons, Method and Learn in both themes at every requested width and the 200 percent equivalent. All 19 vignette keys pass SVG text-bound checks.
+
+
+## Video Studio · 26 October 2026
+
+Implemented the owner-only research and video preparation workspace on `codex/video-studio`: five evidence-backed editorial priorities, three complete five-minute shooting plans, editable narration/clicks/visuals/roles, readiness review, rehearsal, private saves and separate draft/recorded-transcript exports. No production records are seeded.
+
+Validation: 18 new backend tests, 48 existing backend tests, 14 engine/timing tests, 98 Video Studio browser checks, 68 existing admin browser checks and 16 shooting-sequence checks passed. Build, JavaScript syntax and whitespace checks passed. Evidence and deployment order are in [VIDEO_STUDIO_REPORT.md](VIDEO_STUDIO_REPORT.md).
+
+The implementation is prepared for publication. AWS access expired, so the private backend and static release have not been deployed in this pass. Publication remains authorized; restored access to the existing site account is the remaining release dependency.

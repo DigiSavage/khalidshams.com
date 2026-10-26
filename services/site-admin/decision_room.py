@@ -373,6 +373,10 @@ def handler(event, context=None):
         owner = session['sub']
         path = event.get('path', '')
         query = event.get('queryStringParameters') or {}
+        if path == ROOT + '/videos' or path.startswith(ROOT + '/videos/'):
+            operation = 'video-studio'
+            from video_studio import handle
+            return handle(event, owner)
         if path == ROOT + '/method' and method == 'GET':
             operation = 'method'
             exact(query, {'case_id'})
@@ -496,10 +500,14 @@ def handler(event, context=None):
     except Unauthorized:
         return response(401, {'error': 'Owner sign-in required. Your session may have expired.'})
     except Conflict:
+        if operation == 'video-studio':
+            return response(409, {'error': 'This video changed. Reload the saved version before applying your edits.'})
         return response(409, {'error': 'This assessment changed. Reload the saved version before applying your edits.'})
     except Invalid as error:
         return response(400, {'error': str(error)})
     except Exception as error:
         # Operation comes from a fixed vocabulary, never a case ID, title or input.
         print(json.dumps({'failure_type': type(error).__name__, 'operation': 'decision-room.' + operation}))
+        if operation == 'video-studio':
+            return response(503, {'error': 'Video Studio is temporarily unavailable. Your change has not been confirmed.'})
         return response(503, {'error': 'Decision Room is temporarily unavailable. Your change has not been confirmed.'})
