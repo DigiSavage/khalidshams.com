@@ -16,6 +16,10 @@ Everything on the site is Khalid speaking in the first person, as a practitioner
 
 The four dollar figures on the home page ($7.6M, $5.1M, $4.5M, $532K) come from one role at Microsoft. They must stay inside the "Numbers, in context" block under Selected work with that caveat, never at the top of the page.
 
+## Implementation order
+
+Khalid's standing direction: work backward from the finished outcome, like reverse chess, and build the engine before polishing the interface. For features with backend behavior, define the acceptance evidence, data and state, component contracts, permissions, failure handling and recovery first. Prove one complete backend path and a meaningful failure case before presenting a finished frontend. Early interface sketches may validate the audience and need; do not mistake a polished shell for a working system. Keep static work simple when no service is needed. Treat "2036" as a forward-looking design horizon and support ambitious claims with reproducible evidence.
+
 ## Layout of the repo
 
 ```
