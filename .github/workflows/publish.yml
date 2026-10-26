@@ -1,56 +1,103 @@
-# Post the next approved note to LinkedIn, mark it published, then redeploy.
-#
-# Tuesday + Thursday 08:00 America/Phoenix. Safe to run on demand.
-# If LINKEDIN_ACCESS_TOKEN is not configured the job exits quietly — the site
-# still updates on its own daily schedule; LinkedIn is distribution, not source.
+# Weekday wakeups at 08:00 America/Phoenix; GitHub start times are best-effort.
+# content/linkedin_schedule.json bounds the extra M/W/F slots to four weeks.
 name: Publish to LinkedIn
 
 on:
   schedule:
-    - cron: "0 15 * * 2,4"
+    - cron: "0 15 * * 1-5"
+  pull_request:
+    paths:
+      - ".github/workflows/publish.yml"
+      - "scripts/publish_linkedin.py"
+      - "content/linkedin_schedule.json"
+      - "content/posts/**"
+      - "tests/linkedin/**"
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Dry run (don't post, don't commit)"
+        description: "Preview only: no network, publication or file changes"
         type: boolean
-        default: false
+        default: true
+      preview_date:
+        description: "Optional YYYY-MM-DD, honored only in a dry run"
+        type: string
+        default: ""
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: publish-linkedin
+  group: ${{ github.event_name == 'pull_request' && format('linkedin-check-{0}', github.ref) || 'publish-linkedin' }}
   cancel-in-progress: false
 
 jobs:
-  publish:
+  validate:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check publisher and actual four-week queue
+        run: python -m unittest discover -s tests/linkedin -v
+
+  publish:
+    needs: validate
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || inputs.dry_run == true)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
     outputs:
       published: ${{ steps.pub.outputs.published }}
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          ref: ${{ github.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Publish next approved post
+      - name: Select and publish one approved post
         id: pub
         env:
-          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN: ${{ inputs.dry_run == true && '' || secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_VERSION: ${{ vars.LINKEDIN_VERSION }}
           DRY_RUN: ${{ inputs.dry_run == true && '1' || '' }}
-          SCHEDULED: ${{ github.event_name == 'schedule' && '1' || '' }}
+          SCHEDULED: "1"
+          BUILD_DATE: ${{ inputs.dry_run == true && inputs.preview_date || '' }}
         run: python scripts/publish_linkedin.py
-
+      - name: Keep a publication receipt before committing
+        if: always() && steps.pub.outputs.receipt_url != ''
+        env:
+          RECEIPT_URL: ${{ steps.pub.outputs.receipt_url }}
+          SELECTED_PATH: ${{ steps.pub.outputs.selected_path }}
+          PUBLISH_STATUS: ${{ steps.pub.outputs.status }}
+        run: |
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          receipt = {k: os.environ[k] for k in ("RECEIPT_URL", "SELECTED_PATH", "PUBLISH_STATUS")}
+          Path("linkedin-publication-receipt.json").write_text(json.dumps(receipt, indent=2))
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+              summary.write(f"LinkedIn status: {receipt['PUBLISH_STATUS']}\n\nReceipt: {receipt['RECEIPT_URL']}\n")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && steps.pub.outputs.receipt_url != ''
+        with:
+          name: linkedin-receipt-${{ github.run_id }}-${{ github.run_attempt }}
+          path: linkedin-publication-receipt.json
+          retention-days: 90
       - name: Commit publication record
         if: steps.pub.outputs.published == 'true'
+        env:
+          POST_TITLE: ${{ steps.pub.outputs.title }}
+          SELECTED_PATH: ${{ steps.pub.outputs.selected_path }}
         run: |
-          git config user.name  "khalidshams.com publisher"
+          git config user.name "khalidshams.com publisher"
           git config user.email "publisher@khalidshams.com"
-          git add content/posts
-          git commit -m "Publish: ${{ steps.pub.outputs.title }}"
-          git push
+          git add -- "$SELECTED_PATH"
+          git commit -m "Publish: $POST_TITLE"
+          git pull --rebase origin main
+          git push origin HEAD:main
 
   deploy:
     needs: publish
