@@ -1,10 +1,11 @@
 ---
 title: "Where deals actually die"
 date: 2026-10-27
-status: approved
+status: published
 tag: business-value
 summary: "Running a partner channel taught me that deals rarely die in the sales meeting. They die in the handoff."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7520935239809110019/
+linkedin_published_at: 2026-10-27T12:51:34-07:00
 ---
 
 Running an Azure partner channel taught me that deals rarely die in the sales meeting.
