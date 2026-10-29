@@ -45,7 +45,9 @@ class Store:
             if not start:break
         return result,bool(start)
     def events(self,start,end,limit=20000):
-        result=[];day=datetime.fromtimestamp(start,timezone.utc).date();last=datetime.fromtimestamp(end-1,timezone.utc).date();partial=False
+        # Persisted retention days produce Decimal epoch bounds. Convert only
+        # the whole-second timestamps required by datetime, not measured values.
+        result=[];day=datetime.fromtimestamp(int(start),timezone.utc).date();last=datetime.fromtimestamp(int(end-1),timezone.utc).date();partial=False
         while day<=last:
             if len(result)>=limit:partial=True;break
             rows,cut=self.query('events',str(day),limit-len(result));partial|=cut

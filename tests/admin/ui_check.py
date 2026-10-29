@@ -5,7 +5,7 @@ from http.server import HTTPServer,SimpleHTTPRequestHandler
 from urllib.parse import urlsplit,parse_qs
 from playwright.sync_api import sync_playwright
 sys.path.insert(0,str(Path(__file__).parent))
-from test_service import Fixture
+from test_service import Fixture,observation
 ROOT=Path(__file__).resolve().parents[2];OUT=Path(sys.argv[1] if len(sys.argv)>1 else '/tmp/admin-ui');OUT.mkdir(parents=True,exist_ok=True)
 f=Fixture();os.environ['PUBLIC_ORIGIN']='http://localhost:8769';f.auth.origin=os.environ['PUBLIC_ORIGIN']
 class Handler(SimpleHTTPRequestHandler):
@@ -67,6 +67,37 @@ with sync_playwright() as pw:
             for section in ('pages','journeys','inquiries','health','settings','overview'):
                 p.locator('[data-section="'+section+'"]').press('Enter');check(f'{section} is keyboard-focusable and opens {width} {theme}',p.locator('#cr-'+section).is_visible() and p.locator('[data-section="'+section+'"]').evaluate('(e)=>e.tabIndex===0'))
             p.screenshot(path=str(OUT/f'admin-empty-{width}-{theme}.png'),full_page=True);check(f'no script errors {width} {theme}',not errors);c.close()
+    # An insights outage is not an owner-auth failure. Exercise the real handler
+    # and persisted DynamoDB measurements through a failed load, retry and expiry.
+    c=browser.new_context(viewport={'width':390,'height':844});c.request.get(BASE+'/__fixture__/login')
+    p=c.new_page();errors=[];p.on('pageerror',lambda e:errors.append(str(e)))
+    view=observation();f.store.save_event(view,90)
+    real_events=f.store.events
+    def unavailable_events(*args,**kwargs):raise RuntimeError('Isolated insights outage')
+    try:
+        f.store.events=unavailable_events
+        p.goto(BASE+'/admin/');p.wait_for_function("document.querySelector('#admin-status').textContent.includes('Use Apply period to retry')")
+        check('insights outage retains owner navigation and signout',p.locator('#admin-app').is_visible() and p.locator('#admin-logout').is_visible() and p.locator('#admin-signin').is_hidden())
+        check('insights outage retains independent private tools',p.locator('.cr-nav a[href="/admin/decision-room/"]').is_visible() and p.locator('.cr-nav a[href="/admin/video-studio/"]').is_visible())
+        check('failed first load does not invent zero metrics',p.locator('#metrics').inner_text()=='' and 'No observations have loaded' in p.locator('#admin-status').inner_text())
+        check('insights retry remains available',p.get_by_role('button',name='Apply period',exact=True).is_enabled())
+        p.screenshot(path=str(OUT/'admin-insights-unavailable-390.png'),full_page=True)
+        f.store.events=real_events
+        p.get_by_role('button',name='Apply period',exact=True).click();p.wait_for_function("document.querySelector('#admin-status').textContent.includes('observations loaded')")
+        check('retry loads real persisted observations',p.locator('.cr-metric').filter(has_text='Pageviews').locator('strong').inner_text()=='1')
+        previous_metrics=p.locator('#metrics').inner_text()
+        f.store.events=unavailable_events
+        p.get_by_role('button',name='Apply period',exact=True).click();p.wait_for_function("document.querySelector('#admin-status').textContent.includes('Previous observations remain visible')")
+        check('refresh outage labels preserved observations honestly',p.locator('#metrics').inner_text()==previous_metrics and 'observations loaded' not in p.locator('#admin-status').inner_text())
+        f.store.events=real_events
+        f.store.delete('sessions','session#'+__import__('auth').digest(f.sid))
+        p.get_by_role('button',name='Apply period',exact=True).click();p.wait_for_function("document.querySelector('#admin-app').hidden")
+        check('unauthorized retry still locks private tools and signout',p.locator('#admin-app').is_hidden() and p.locator('#admin-logout').is_hidden() and p.locator('#admin-signin').is_visible())
+        check('unauthorized retry clears analytics and coverage',all(p.locator('#'+id).inner_text()=='' for id in ('metrics','trend','pages-table','coverage','freshness')))
+        check('insights outage and recovery have no script errors',not errors)
+    finally:
+        f.store.events=real_events;c.close()
+        for row in f.store.events(view['at']-1,int(time.time())+1)[0]:f.store.delete('events',row['pk'],row['sk'])
     # The actual public form must persist before displaying success, and its private inbox must safely render markup.
     public=browser.new_context();p=public.new_page();p.goto(BASE+'/contact/');check('ordinary contact starts without an offer draft',p.locator('[name=message]').input_value()=='');p.goto(BASE+'/contact/?offer=architecture-review&ks-test=1');check('legacy review link explains current community context',p.locator('#offer-context').is_visible() and '[Community learning]' in p.locator('[name=message]').input_value());p.locator('[name=name]').fill('<img src=x onerror=alert(1)>');p.locator('[name=email]').fill('fixture@example.test');p.locator('[name=topic]').select_option('architecture');p.locator('[name=message]').fill('<script>window.injected=true</script> A fixture inquiry.');p.locator('button[type=submit]').click();p.wait_for_function("document.querySelector('#contact-status').textContent.includes('has been stored')");check('contact success reflects persisted record',len(f.store.query('inquiries','inbox')[0])==1);check('legacy review source survives the real handler contract',f.store.query('inquiries','inbox')[0][0]['source']=='/');p.screenshot(path=str(OUT/'contact-confirmation.png'),full_page=True);public.close()
     c=browser.new_context(viewport={'width':390,'height':844});c.request.get(BASE+'/__fixture__/login');p=c.new_page();p.goto(BASE+'/admin/');p.wait_for_function("document.querySelector('#admin-status').textContent.includes('observations loaded')");p.locator('[data-section=inquiries]').click();p.locator('#show-tests').check();p.locator('#inquiry-filters button').click();p.locator('#inbox button').click();check('stored XSS is displayed as inert text',p.locator('#inquiry-detail script,#inquiry-detail img').count()==0 and '<script>' in p.locator('#inquiry-detail').inner_text());p.locator('#edit-status').select_option('read');p.locator('#inquiry-detail textarea').fill('Reviewed fixture');p.get_by_role('button',name='Save inquiry',exact=True).click();p.wait_for_function("document.querySelector('#admin-status').textContent==='Inquiry updated.'");check('inbox update persists',f.store.query('inquiries','inbox')[0][0]['status']=='read');p.screenshot(path=str(OUT/'inquiry-phone.png'),full_page=True)
