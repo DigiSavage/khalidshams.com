@@ -1,10 +1,11 @@
 ---
 title: "Retrieval is not memory"
 date: 2026-10-29
-status: approved
+status: published
 tag: agentic-ai
 summary: "Teams say their agent has memory when it has retrieval. The difference decides what you can trust."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7521663570493988864/
+linkedin_published_at: 2026-10-29T13:05:41-07:00
 ---
 
 Teams often say their agent "has memory" when what it has is retrieval.
