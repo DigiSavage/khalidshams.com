@@ -1,0 +1,66 @@
+[
+  {
+    "check": "1380: source denial stops without write",
+    "ok": true
+  },
+  {
+    "check": "1380: reusable record retains scope and limits",
+    "ok": true
+  },
+  {
+    "check": "1380: Evidence and services available pauses for explicit approval",
+    "ok": true
+  },
+  {
+    "check": "1380: Evidence and services available reaches expected result",
+    "ok": true
+  },
+  {
+    "check": "1380: Payload changed after approval pauses for explicit approval",
+    "ok": true
+  },
+  {
+    "check": "1380: Payload changed after approval reaches expected result",
+    "ok": true
+  },
+  {
+    "check": "1380: changed request never writes",
+    "ok": true
+  },
+  {
+    "check": "1380: screen fits and has no errors",
+    "ok": true
+  },
+  {
+    "check": "390: source denial stops without write",
+    "ok": true
+  },
+  {
+    "check": "390: reusable record retains scope and limits",
+    "ok": true
+  },
+  {
+    "check": "390: Evidence and services available pauses for explicit approval",
+    "ok": true
+  },
+  {
+    "check": "390: Evidence and services available reaches expected result",
+    "ok": true
+  },
+  {
+    "check": "390: Payload changed after approval pauses for explicit approval",
+    "ok": true
+  },
+  {
+    "check": "390: Payload changed after approval reaches expected result",
+    "ok": true
+  },
+  {
+    "check": "390: changed request never writes",
+    "ok": true
+  },
+  {
+    "check": "390: screen fits and has no errors",
+    "ok": true
+  }
+]

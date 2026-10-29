@@ -1,0 +1,43 @@
+{{MASTHEAD}}
+<link rel="stylesheet" href="/admin/video-studio.css">
+<main class="wrap video-studio" id="video-studio">
+  <header class="vs-heading">
+    <div><a class="vs-back" href="/admin/">← Private control room</a><p class="eyebrow">Khalid Shams · Video Studio</p><h1>A decision<br><em>worth recording.</em></h1><p class="vs-intro">Research the expensive decision. Prepare the words, the screen and the evidence. Walk into the recording knowing exactly what comes next.</p></div>
+    <aside class="vs-access"><span class="vs-private">Private · Owner access</span><p id="vs-status" role="status" aria-live="polite">Checking owner access…</p><a class="btn" id="vs-signin" href="/login/">Sign in securely →</a><button type="button" id="vs-signout" hidden>Sign out</button><p id="vs-session" class="vs-small"></p></aside>
+  </header>
+  <div id="vs-app" hidden>
+    <nav class="vs-room-nav" aria-label="Video Studio views"><div><button type="button" id="vs-research-nav" aria-current="page">01 · Research desk</button><button type="button" id="vs-library-nav">02 · My episodes <span id="vs-count">0</span></button><button type="button" id="vs-playbook-nav">03 · Our approach</button></div><button type="button" id="vs-new" class="vs-primary">New episode +</button></nav>
+    <section id="vs-playbook" hidden aria-labelledby="vs-playbook-title">
+      <div class="vs-section-head"><div><p class="eyebrow">The direction we keep</p><h2 id="vs-playbook-title">Our approach, on purpose.</h2></div><p class="vs-small">The shared method, connected series and filming preparation. Use this before researching or scripting the next episode.</p></div>
+      <div id="vs-playbook-content"></div>
+    </section>
+    <section id="vs-research" aria-labelledby="vs-research-title">
+      <div class="vs-section-head"><div><p class="eyebrow">Decisions with consequences</p><h2 id="vs-research-title">Start where the stakes are real.</h2></div><p id="vs-ranking" class="vs-small"></p></div>
+      <div id="vs-topic-list" class="vs-topic-grid"></div>
+      <div class="vs-section-head vs-template-head"><div><p class="eyebrow">From research to a recording plan</p><h2 id="vs-template-title">An episode I can walk through.</h2></div><p class="vs-small">Authored teaching drafts. Starting one creates a private editable episode. Review the claims, rehearse the clicks and make the words your own.</p></div>
+      <div id="vs-templates" class="vs-template-grid"></div>
+      <p id="vs-catalog-date" class="vs-small"></p>
+    </section>
+    <section id="vs-library" hidden aria-labelledby="vs-library-title">
+      <div class="vs-section-head"><div><p class="eyebrow">Saved work</p><h2 id="vs-library-title">My recording desk.</h2></div><p class="vs-small">Every episode starts with an explicit choice. No sample clients, invented results or automatic recordings.</p></div>
+      <div class="vs-workspace">
+        <aside class="vs-rail" aria-label="Saved episodes"><label>Find a loaded episode<input type="search" id="vs-search" maxlength="200" autocomplete="off"></label><div id="vs-video-list"></div><button type="button" id="vs-load-more" hidden>Load more episodes</button><p id="vs-list-note" class="vs-small"></p></aside>
+        <div class="vs-main">
+          <section id="vs-empty" class="vs-empty"><span aria-hidden="true" class="vs-empty-mark">↗</span><p class="eyebrow">The next useful explanation</p><h2>One decision.<br><em>A clear way through.</em></h2><p>Choose an authored teaching draft from the research desk, or start an episode from your own question. Your saved episodes will appear here.</p><button type="button" id="vs-empty-research">Explore the research desk →</button></section>
+          <section id="vs-workbench" hidden aria-labelledby="vs-video-title">
+            <header class="vs-video-heading"><div><p id="vs-video-meta" class="vs-small"></p><h2 id="vs-video-title"></h2><p id="vs-video-decision"></p></div><div class="vs-save-group"><span id="vs-save-state" role="status">Saved</span><button type="button" id="vs-save" class="vs-primary" disabled>Save changes</button></div></header>
+            <div id="vs-conflict" class="vs-alert" hidden><h3>A newer saved version exists.</h3><p>Your unsaved work is still in this tab. Review it before reloading. The saved episode has not been overwritten.</p><button type="button" id="vs-reload">Discard these edits and load saved version</button></div>
+            <div class="vs-progress" id="vs-progress" aria-label="Episode progress"></div>
+            <nav id="vs-tabs" class="vs-tabs" aria-label="Episode preparation"></nav>
+            <div id="vs-editor"></div>
+            <footer class="vs-workbench-footer"><div class="vs-export-actions"><button type="button" id="vs-rehearse">Rehearse the episode →</button><button type="button" id="vs-export-pack">Download shooting pack .md</button><button type="button" id="vs-export-script">Download draft script .txt</button><button type="button" id="vs-export-transcript">Download transcript .txt</button></div><p id="vs-export-note" class="vs-small">Save before downloading. Each download stays on your device.</p><p id="vs-size" class="vs-small"></p><p class="vs-small">Drafts stay in this tab and the private service, never in browser storage or shared URLs. Episodes expire 365 days after creation. Editing does not renew retention; physical expiry and backup removal may lag.</p></footer>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+<dialog id="vs-create-dialog" class="vs-dialog" aria-labelledby="vs-create-title"><form id="vs-create-form"><div class="vs-dialog-top"><p class="eyebrow">A new private episode</p><button type="button" id="vs-create-close" aria-label="Close new episode">×</button></div><h2 id="vs-create-title">Name the decision.</h2><p id="vs-create-note">Start with a real question you want to explain. Build the script and recording plan one beat at a time.</p><label>Episode title<input name="title" minlength="3" maxlength="200" required autocomplete="off"></label><input type="hidden" name="template_id"><p class="vs-small">Stored privately for 365 days from creation. Keep credentials, client identifiers and confidential source material out of scripts and screen captures.</p><p id="vs-create-error" role="alert"></p><button type="submit" class="vs-primary">Create private episode</button></form></dialog>
+<dialog id="vs-rehearsal-dialog" class="vs-dialog vs-rehearsal" aria-labelledby="vs-rehearsal-title"><div class="vs-dialog-top"><div><p class="eyebrow">Rehearsal · No recording</p><h2 id="vs-rehearsal-title"></h2></div><button type="button" id="vs-rehearsal-close" aria-label="Close rehearsal">×</button></div><p id="vs-rehearsal-position" class="vs-small"></p><div class="vs-rehearsal-grid"><section><p class="vs-cue-label">What I say · Draft spoken script</p><p id="vs-rehearsal-script" class="vs-teleprompter"></p></section><aside id="vs-rehearsal-cues"></aside></div><div class="vs-rehearsal-controls"><button type="button" id="vs-rehearsal-prev">← Previous beat</button><div><output id="vs-rehearsal-timer" aria-label="Elapsed rehearsal time">00:00</output><button type="button" id="vs-timer-toggle">Start timer</button><button type="button" id="vs-timer-reset">Reset</button></div><button type="button" id="vs-rehearsal-next" class="vs-primary">Next beat →</button></div><p class="vs-small">The timer measures this rehearsal only. Nothing is recorded, transcribed or published.</p></dialog>
+<script src="/admin/video-studio.js" defer></script>
+{{FOOTER}}

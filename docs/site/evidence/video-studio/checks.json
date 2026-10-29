@@ -1,0 +1,478 @@
+[
+  {
+    "check": "signed-out shell masks the private studio",
+    "ok": true
+  },
+  {
+    "check": "signed-out catalog is denied",
+    "ok": true
+  },
+  {
+    "check": "research fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "calendar research date is preserved 1380 light",
+    "ok": true
+  },
+  {
+    "check": "catalog does not seed records 1380 light",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 1380 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 1380 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 1380 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 1380 light",
+    "ok": true
+  },
+  {
+    "check": "editor brief fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "editor beats fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "editor sources fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "editor readiness fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "editor transcript fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal fits 1380 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal navigation visible 1380 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal next beat 1380 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal timer starts 1380 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 light",
+    "ok": true
+  },
+  {
+    "check": "research fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "calendar research date is preserved 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "catalog does not seed records 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "editor brief fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "editor beats fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "editor sources fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "editor readiness fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "editor transcript fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal fits 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal navigation visible 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal next beat 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal timer starts 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 1380 dark",
+    "ok": true
+  },
+  {
+    "check": "research fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "calendar research date is preserved 390 light",
+    "ok": true
+  },
+  {
+    "check": "catalog does not seed records 390 light",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 390 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 390 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 390 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 390 light",
+    "ok": true
+  },
+  {
+    "check": "editor brief fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "editor beats fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "editor sources fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "editor readiness fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "editor transcript fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal fits 390 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal navigation visible 390 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal next beat 390 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal timer starts 390 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 light",
+    "ok": true
+  },
+  {
+    "check": "research fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "calendar research date is preserved 390 dark",
+    "ok": true
+  },
+  {
+    "check": "catalog does not seed records 390 dark",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 390 dark",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 390 dark",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 390 dark",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 390 dark",
+    "ok": true
+  },
+  {
+    "check": "editor brief fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "editor beats fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "editor sources fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "editor readiness fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "editor transcript fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal fits 390 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal navigation visible 390 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal next beat 390 dark",
+    "ok": true
+  },
+  {
+    "check": "rehearsal timer starts 390 dark",
+    "ok": true
+  },
+  {
+    "check": "no script errors 390 dark",
+    "ok": true
+  },
+  {
+    "check": "research fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "calendar research date is preserved 320 light",
+    "ok": true
+  },
+  {
+    "check": "catalog does not seed records 320 light",
+    "ok": true
+  },
+  {
+    "check": "shared approach available 320 light",
+    "ok": true
+  },
+  {
+    "check": "approach does not seed episodes 320 light",
+    "ok": true
+  },
+  {
+    "check": "expanded approach and roadmap fit 320 light",
+    "ok": true
+  },
+  {
+    "check": "roadmap links only to authored drafts 320 light",
+    "ok": true
+  },
+  {
+    "check": "editor brief fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "editor beats fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "editor sources fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "editor readiness fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "editor transcript fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal fits 320 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal navigation visible 320 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal next beat 320 light",
+    "ok": true
+  },
+  {
+    "check": "rehearsal timer starts 320 light",
+    "ok": true
+  },
+  {
+    "check": "no script errors 320 light",
+    "ok": true
+  },
+  {
+    "check": "explicit creation persists one episode",
+    "ok": true
+  },
+  {
+    "check": "approach navigation retains unsaved episode",
+    "ok": true
+  },
+  {
+    "check": "unsafe source URL is rejected before save",
+    "ok": true
+  },
+  {
+    "check": "private title markup remains inert",
+    "ok": true
+  },
+  {
+    "check": "source markup remains inert",
+    "ok": true
+  },
+  {
+    "check": "source links use HTTPS and noreferrer",
+    "ok": true
+  },
+  {
+    "check": "real save persists edited notes",
+    "ok": true
+  },
+  {
+    "check": "private data absent from URL and browser storage",
+    "ok": true
+  },
+  {
+    "check": "pack export freshly authorizes and reads saved revision",
+    "ok": true
+  },
+  {
+    "check": "script export freshly authorizes and reads saved revision",
+    "ok": true
+  },
+  {
+    "check": "transcript export freshly authorizes and reads saved revision",
+    "ok": true
+  },
+  {
+    "check": "shooting pack includes responsibilities and encoded markup",
+    "ok": true
+  },
+  {
+    "check": "script export cannot be mistaken for a recorded transcript",
+    "ok": true
+  },
+  {
+    "check": "recorded transcript is separate plain text",
+    "ok": true
+  },
+  {
+    "check": "saved notes survive a page reload",
+    "ok": true
+  },
+  {
+    "check": "reviewed preparation saves ready stage",
+    "ok": true
+  },
+  {
+    "check": "content edits reset readiness in the editor",
+    "ok": true
+  },
+  {
+    "check": "readiness reset persists",
+    "ok": true
+  },
+  {
+    "check": "conflict preserves unsaved edits",
+    "ok": true
+  },
+  {
+    "check": "explicit reload obtains concurrent revision",
+    "ok": true
+  },
+  {
+    "check": "successful save is retained when list refresh fails",
+    "ok": true
+  },
+  {
+    "check": "beat creation and reorder persist",
+    "ok": true
+  },
+  {
+    "check": "beat removal persists",
+    "ok": true
+  },
+  {
+    "check": "deletion requires exact confirmation",
+    "ok": true
+  },
+  {
+    "check": "confirmed deletion removes the active episode",
+    "ok": true
+  },
+  {
+    "check": "deleted record cannot be fetched",
+    "ok": true
+  },
+  {
+    "check": "hidden tab masks private content",
+    "ok": true
+  },
+  {
+    "check": "changed owner session clears old draft and list",
+    "ok": true
+  },
+  {
+    "check": "revoked owner cannot export and private content clears",
+    "ok": true
+  },
+  {
+    "check": "private studio sends no analytics events",
+    "ok": true
+  },
+  {
+    "check": "lifecycle has no script errors",
+    "ok": true
+  },
+  {
+    "check": "CSP permits only intended behavior",
+    "ok": true
+  }
+]

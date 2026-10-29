@@ -1,0 +1,358 @@
+[
+  {
+    "id": "buy-build-process",
+    "title": "Should we buy this, build it, or fix the process?",
+    "premise": "A request for an internal chatbot becomes a business decision before it becomes a technology purchase. Follow one employee trying to find the approved IT policy.",
+    "audience": "People deciding how AI should fit their work, with implementation detail for builders. Explain terms in context; do not assume a technical background.",
+    "decision": "Choose a bounded first experiment among improving search, buying an existing assistant, and building a custom service. Do not decide from a model demo alone.",
+    "stage": "script",
+    "notes": "Authored shooting plan, not a recorded video or evidence of a client result. Target duration includes demonstrations and pauses; rehearse before calling it five minutes. Existing Nikon with kit lens, Blue microphone and light: confirm exact models later. Use an eye-level face shot, a softened key light slightly to one side, clean screen capture, a short sound check and readable captions. Show one decision per shot. Codex tasks describe preparation work, not an automatic agent running inside this page. No recording, publishing or paid cloud call happens from Video Studio.",
+    "transcript": "",
+    "beats": [
+      {
+        "id": "beat-1",
+        "label": "The expensive first assumption",
+        "seconds": 30,
+        "spoken": "Someone says, \"We need an AI chatbot.\" Before I open a model catalog, I want to know what happened that made a chatbot sound like the answer. Is somebody waiting for a policy? Is the policy wrong? Or does nobody know which version is official? Those are three different problems. Buying the same tool for all three could make confusion considerably more conversational.",
+        "screen": "Keep the screen on the episode title. Face camera, then open https://khalidshams.com/architect/agent-studio/#design in a clean browser window. Keep the teaching-example notice visible.",
+        "visual": "Three plain cards: finding an answer, trusting an answer, acting on an answer. Reveal them one at a time; use text with every color.",
+        "khalid": "Deliver the hook naturally. Say that this is a synthetic teaching case, not a client success story.",
+        "codex": "Prepare the three cards and verify the site anchors, field labels and recording crop before filming.",
+        "save": "Outcome statement: one employee question and the result that would make the task complete."
+      },
+      {
+        "id": "beat-2",
+        "label": "Ask for the task, not the technology",
+        "seconds": 55,
+        "spoken": "Here is my discovery question: walk me through the last time this happened. I want the starting point, the person doing the work, the source they consulted, and what counted as done. For our example, an employee needs the approved software-request policy. I would measure whether they reach the right answer, how much correction it takes, and whether the request is actually resolved. AI can help organize those notes. I still need the process owner to confirm that I understood the job. A tidy summary of the wrong workflow is still the wrong workflow.",
+        "screen": "Under Worked example choose Internal knowledge assistant. Under How is the next step chosen? choose Known sequence or retrieval path. Under Requested business authority choose Read and draft only. Pause over the proposed starting architecture.",
+        "visual": "Over-shoulder notes followed by a close crop of the three selected controls. Question card: What is the job?",
+        "khalid": "Explain what each selection means in ordinary language. Ask the audience what they would count as resolved.",
+        "codex": "Capture a clean configuration screenshot and verify the resulting explanation. Prepare a blank baseline worksheet, without invented measurements.",
+        "save": "Baseline worksheet: task, source, outcome, elapsed time, corrections and unresolved cases."
+      },
+      {
+        "id": "beat-3",
+        "label": "Put three options beside each other",
+        "seconds": 65,
+        "spoken": "Now I can compare options. First, improve the existing search and ownership of the documents. Second, use an assistant already available in the organization, if its permissions and capabilities fit. Third, build a custom service because we need behavior those options cannot provide. I ask the same questions of every option: can it respect access, give usable evidence, handle missing information, and be maintained by the team? The cheapest model is only one line in that decision. Integration, support, change management and the cost of a wrong answer still belong in the picture.",
+        "screen": "Scroll to Name the outcome and its owner, then Make evidence traceable all the way back. Point to the baseline and source-owner requirements. For an edited insert, display the three options as a simple table with Unknown where evidence has not been collected.",
+        "visual": "Three-column option comparison. Do not place a winner badge on an untested option. Cobalt highlights the current question; gold labels a cost assumption.",
+        "khalid": "Explain one reason each option might win. Say explicitly that no business case has been measured in this example.",
+        "codex": "Draft the comparison table and challenge it with counterexamples. Leave license prices and projected savings blank until verified.",
+        "save": "Decision record: options, constraints, assumptions, owners and the evidence that could change the choice."
+      },
+      {
+        "id": "beat-4",
+        "label": "Show the boundary before the interface",
+        "seconds": 60,
+        "spoken": "This is why I build the engine before polishing the screen. The employee identity, permitted sources, answer evidence and failure behavior have to work underneath it. Watch what happens when the source is unavailable to the caller. The correct result may be to stop. That is useful behavior. A friendly answer that crosses a permission boundary does not become acceptable because the interface looks professional. This demonstration is a deterministic teaching simulation. It explains the rule; a real deployment must prove the same rule against its actual backend.",
+        "screen": "Go to Follow the work. Set Condition to Source access denied. Click Reset run, then Next step until the run stops. Read the state, Enforced by, and observable event. Do not describe this as a live cloud or model test.",
+        "visual": "Crop the Condition field, then the stop state. Keep a persistent label: Teaching simulation. Reveal the original discovery question: Who may read this?",
+        "khalid": "Click slowly enough for the viewer to follow. Explain the denied behavior without implying a real tenant was tested.",
+        "codex": "Rehearse the exact stop path and prepare a capture of the public event trail. Do not manufacture a failed model output.",
+        "save": "Acceptance check: a caller without source permission receives no restricted content."
+      },
+      {
+        "id": "beat-5",
+        "label": "Save the decision, not just the prompt",
+        "seconds": 60,
+        "spoken": "What do I save so the next build starts further ahead? The outcome, the permission rule, the alternatives, the failure tests and the reason we chose a small pilot. A prompt is useful, but it cannot tell a future teammate why we excluded a source or refused an action. I also write down what would make me change my mind. Perhaps existing search resolves the task after the documents are fixed. Perhaps it does not. Either result is valuable if the experiment answers the question we actually asked.",
+        "screen": "Go to Take it to review. Enter Accountable owner or role as Teaching example: IT service owner. Enter First pilot outcome as Compare approved-source answers with current search on the same synthetic questions; measure resolution and correct refusal. Click Download the design record and open the downloaded text.",
+        "visual": "Show the saved file name and three readable excerpts. Leave private downloads and personal account details outside the frame.",
+        "khalid": "Explain the difference between a reusable design record and approval to deploy. Confirm the download opens.",
+        "codex": "Check the exported record includes the chosen constraints. Prepare an annotated copy for the edit and a companion-link draft.",
+        "save": "Downloaded design record plus a separately maintained option comparison and baseline worksheet."
+      },
+      {
+        "id": "beat-6",
+        "label": "Give the viewer a useful next move",
+        "seconds": 30,
+        "spoken": "Before you choose your chatbot, write one sentence: who needs to do what, using which approved information, and how will we know it worked? Then compare the simplest credible options. That is the first thing worth saving. Next time, we will make the same request as two different employees and ask whether the system knows the difference.",
+        "screen": "Return to camera. Show khalidshams.com/architect/agent-studio/ as the companion destination. End the screen recording before opening any private admin page.",
+        "visual": "Final question card and one companion link, with sufficient hold time to read.",
+        "khalid": "Deliver the takeaway in your own words. Record a clean second take of only the final sentence.",
+        "codex": "Prepare captions, verify the companion URL and assemble a rough cut for Khalid to review.",
+        "save": "Final script revision, tested screen sequence, caption corrections and selected takes."
+      }
+    ],
+    "checklist": [
+      {
+        "id": "evidence",
+        "label": "I checked every claim and opened each source. Teaching examples are labeled.",
+        "done": false
+      },
+      {
+        "id": "clarity",
+        "label": "Screen text is readable, captions are planned, and the discovery question returns at its consequence.",
+        "done": false
+      },
+      {
+        "id": "rehearsal",
+        "label": "I rehearsed every click in the actual environment and checked the five-minute timing.",
+        "done": false
+      },
+      {
+        "id": "privacy",
+        "label": "The frame contains no credentials, private tabs, client records, account IDs, or notifications.",
+        "done": false
+      },
+      {
+        "id": "save",
+        "label": "The reusable artifact opens correctly and the closing viewer action works.",
+        "done": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "McKinsey: State of AI 2026",
+        "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+        "note": "Investment and impact context. Self-reported survey, not a price list or proof that custom builds save money."
+      },
+      {
+        "title": "SHAMS Enterprise Agent Studio",
+        "url": "https://khalidshams.com/architect/agent-studio/",
+        "note": "Existing public teaching simulation. Click labels checked against repository templates on 2026-10-26; rehearse the deployed page before recording."
+      }
+    ]
+  },
+  {
+    "id": "approval-is-specific",
+    "title": "You approved the action. Then one field changed.",
+    "premise": "Explain why human participation has to attach to a specific decision, using a synthetic internal assistant that can propose a service-desk request.",
+    "audience": "People deciding how AI should fit their work, with implementation detail for builders. Explain terms in context; do not assume a technical background.",
+    "decision": "Decide exactly what a reviewer approves and what must invalidate that approval.",
+    "stage": "script",
+    "notes": "Authored shooting plan, not a recorded video or evidence of a client result. Target duration includes demonstrations and pauses; rehearse before calling it five minutes. Existing Nikon with kit lens, Blue microphone and light: confirm exact models later. Use an eye-level face shot, a softened key light slightly to one side, clean screen capture, a short sound check and readable captions. Show one decision per shot. Codex tasks describe preparation work, not an automatic agent running inside this page. No recording, publishing or paid cloud call happens from Video Studio.",
+    "transcript": "",
+    "beats": [
+      {
+        "id": "beat-1",
+        "label": "A yes with a boundary",
+        "seconds": 30,
+        "spoken": "I approve a request. One field changes. Is my approval still valid? If your AI workflow cannot answer that, the approve button might be doing more decoration than governance. Let me show you why I ask a surprisingly detailed question during discovery: what exactly does the person believe they are approving?",
+        "screen": "Open https://khalidshams.com/architect/agent-studio/#design. Keep other browser tabs and notifications out of the recording.",
+        "visual": "Face camera. Show one simple request card, then highlight a changed field without inventing a real business transaction.",
+        "khalid": "Set up the question. Identify the upcoming run as a synthetic simulation.",
+        "codex": "Prepare before/after request cards and verify that the proposed field change is understandable.",
+        "save": "Discovery question: what exact proposal is reviewed, by whom, and for how long?"
+      },
+      {
+        "id": "beat-2",
+        "label": "Separate an answer from an action",
+        "seconds": 55,
+        "spoken": "An internal assistant answering a policy question and an assistant changing a business record have different responsibilities. Here, it may prepare an access-request ticket. It may not grant the access itself. That distinction comes from the process owner, not from an enthusiastic model response. I ask who is allowed to review the request, which fields they must see, and what happens if they are unavailable. AI can help draft the request and assemble evidence. The system still has to check authority before anything changes.",
+        "screen": "Select Worked example: Internal knowledge assistant. Set Requested business authority to Write after explicit review. Set Consequence of a wrong action to Money, access rights or material harm. Read the Example action contract in the runtime.",
+        "visual": "Contrast two labeled states: draft a request; grant access. The second is crossed out in text as outside this example.",
+        "khalid": "Explain that creating a request is distinct from granting its requested permission.",
+        "codex": "Check labels and default conditions; prepare the permission boundary diagram with human and software visually distinct.",
+        "save": "Action contract: allowed operation, validated arguments, reviewer and prohibited operations."
+      },
+      {
+        "id": "beat-3",
+        "label": "Make the normal path observable",
+        "seconds": 60,
+        "spoken": "I want the reviewer to see the target, the proposed fields, the evidence and the consequence. Now we step through the normal path. Notice that we stop for review before the write. After approval, we still need a receipt. A model saying done is not the same as the destination confirming a change. When I am designing this for real, I want the record of the action and its result to be inspectable. Otherwise we are asking the person to approve something they cannot verify.",
+        "screen": "Set Condition to Evidence and services available. Click Reset run. Use Next step until Approve proposal appears. Read the displayed proposal, then click Approve proposal. Continue Next step to the terminal state and inspect the event trail.",
+        "visual": "Follow the active step view; highlight proposal, review, and receipt as separate moments. Keep Teaching simulation visible.",
+        "khalid": "Read the proposal before clicking approval. Describe the observed state, without narrating success before it appears.",
+        "codex": "Rehearse and record the normal path. Confirm the final event and label it simulated evidence.",
+        "save": "Normal-path check and the fields a real receipt must confirm."
+      },
+      {
+        "id": "beat-4",
+        "label": "Change the condition",
+        "seconds": 65,
+        "spoken": "Now the part that earns the architecture. We change the condition so the payload changes after approval. The original yes belongs to the original request. If we quietly apply it to the new one, we have changed the meaning of the human decision. This is why a review screen alone is insufficient. The execution service needs to bind permission to the actual action, and check again at the point of execution. If anything material changed, ask again. That is a small rule with a large consequence.",
+        "screen": "Select Condition: Payload changed after approval. Click Reset run. Advance to review, inspect the proposal and click Approve proposal when offered. Continue to the stop state. Read the explanation and observable event.",
+        "visual": "Split-screen normal result versus changed-payload result. Coral stop label plus explicit text, never color alone.",
+        "khalid": "Pause at the stop. Connect it back to the discovery question in the hook.",
+        "codex": "Capture the changed-payload trail. Verify the simulation actually rejects it before editing the narration to match.",
+        "save": "Negative test: changed payload invalidates prior approval and does not execute."
+      },
+      {
+        "id": "beat-5",
+        "label": "Keep reusable safeguards",
+        "seconds": 60,
+        "spoken": "The reusable part is bigger than this one demonstration. I keep the action schema, approval binding, expiry rule, retry policy and tests together. I also ask what happens when a write succeeds but its response disappears. Blindly retrying can duplicate work. A real implementation needs a stable request identifier and a way to reconcile the result. We reuse those mechanisms across projects, while checking the new organization’s authority and business rules again. Reusing code should save effort; it should never silently reuse somebody else’s permission.",
+        "screen": "Scroll to Give each capability a narrow contract and show the listed deliverables. Then scroll to Take it to review and download a record for the current design. Do not add a timeout demonstration to this five-minute cut; list it as the next episode.",
+        "visual": "Five labeled cards: contract, approval, expiry, retry, test. Show the artifact folder outline without real credentials or customer names.",
+        "khalid": "Distinguish reusable code from decisions that must be agreed again.",
+        "codex": "Prepare the artifact outline and a follow-up timeout test plan. Verify export content against current controls.",
+        "save": "Approval contract, failure tests and retry/reconciliation checklist."
+      },
+      {
+        "id": "beat-6",
+        "label": "The human role has a verb",
+        "seconds": 30,
+        "spoken": "The person is not simply in the loop. They review this evidence, approve this action, within this boundary. We can point to what their decision changed. That is what I mean when I say humans still matter in an AI workflow. Next: what do we do when the action happened, but the response never came back?",
+        "screen": "Return to face camera; show the original question beside the stopped changed-payload run.",
+        "visual": "Hold the words This action. This evidence. This boundary. Add captions; leave space around the text.",
+        "khalid": "Close with the specific decision, not a general claim that the system is safe.",
+        "codex": "Assemble the comparison cut, preserve limitations on screen and draft the companion notes.",
+        "save": "Reviewed transcript and a link to the exact teaching controls."
+      }
+    ],
+    "checklist": [
+      {
+        "id": "evidence",
+        "label": "I checked every claim and opened each source. Teaching examples are labeled.",
+        "done": false
+      },
+      {
+        "id": "clarity",
+        "label": "Screen text is readable, captions are planned, and the discovery question returns at its consequence.",
+        "done": false
+      },
+      {
+        "id": "rehearsal",
+        "label": "I rehearsed every click in the actual environment and checked the five-minute timing.",
+        "done": false
+      },
+      {
+        "id": "privacy",
+        "label": "The frame contains no credentials, private tabs, client records, account IDs, or notifications.",
+        "done": false
+      },
+      {
+        "id": "save",
+        "label": "The reusable artifact opens correctly and the closing viewer action works.",
+        "done": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "Microsoft Work Trend Index 2026",
+        "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization",
+        "note": "Human quality control and critical-thinking context. Survey of existing AI users; not a causal evaluation of this workflow."
+      },
+      {
+        "title": "SHAMS Enterprise Agent Studio",
+        "url": "https://khalidshams.com/architect/agent-studio/",
+        "note": "The public runtime demonstrates application-owned approval boundaries with synthetic events and no live AI calls."
+      }
+    ]
+  },
+  {
+    "id": "foundry-first-checkpoint",
+    "title": "My first Foundry checkpoint: a response is only the beginning",
+    "premise": "Take discovery into a real Microsoft Foundry session, preserving the boundary between a working model call and a deployed internal assistant.",
+    "audience": "People deciding how AI should fit their work, with implementation detail for builders. Explain terms in context; do not assume a technical background.",
+    "decision": "Prove one authenticated model response in an approved sandbox, then document what remains unproved before adding company sources or actions.",
+    "stage": "script",
+    "notes": "Authored shooting plan, not a recorded video or evidence of a client result. Target duration includes demonstrations and pauses; rehearse before calling it five minutes. Existing Nikon with kit lens, Blue microphone and light: confirm exact models later. Use an eye-level face shot, a softened key light slightly to one side, clean screen capture, a short sound check and readable captions. Show one decision per shot. Codex tasks describe preparation work, not an automatic agent running inside this page. No recording, publishing or paid cloud call happens from Video Studio. Foundry-specific preparation is pending the owner’s chosen Azure sandbox and a rehearsed session. This script contains no claim that resources or a model response already exist.",
+    "transcript": "",
+    "beats": [
+      {
+        "id": "beat-1",
+        "label": "Start with the question we already agreed",
+        "seconds": 30,
+        "spoken": "We have agreed on an internal assistant’s job. Today I am opening Foundry to prove one small thing: our approved environment can make a model call and return a response. We are not giving it company documents yet. That keeps the first checkpoint understandable. When something fails, I want to know which part I am testing, rather than debugging a whole architecture at once.",
+        "screen": "Open the approved Microsoft Foundry sandbox project in a clean recording window. Keep the prepared discovery brief beside it. This plan requires an Azure sign-in and a deliberately approved test budget before rehearsal.",
+        "visual": "Face camera to brief to sandbox. Persistent label: Sandbox checkpoint; no company data.",
+        "khalid": "Name the scope and the boundary. Keep subscription identifiers and personal account details out of frame.",
+        "codex": "Before filming, verify current portal navigation, approved region/model access, costs and project permissions with Khalid. This workspace does not provision Azure resources.",
+        "save": "Checkpoint scope and environment decision record."
+      },
+      {
+        "id": "beat-2",
+        "label": "Verify where the work is happening",
+        "seconds": 55,
+        "spoken": "The first clicks are boring on purpose. I check the project, the selected deployment and the approved processing location. A familiar logo does not answer where a particular model is hosted or which terms apply. I want a record that another builder can reproduce later. I also want the smallest permission needed for this task. We have already chosen the business goal; now we verify the environment that will carry it.",
+        "screen": "Use the project selector to open the approved sandbox. Confirm the selected model deployment and its details. If the needed deployment is absent, pause the recording and prepare it separately with a reviewed cost limit. Rehearse the actual portal labels; do not improvise a production setup on camera.",
+        "visual": "Close crops of non-sensitive deployment properties. Overlay three checks: project, deployment, boundary.",
+        "khalid": "Confirm the environment aloud without reading account IDs or secrets. Do not choose a new model solely to make the demo proceed.",
+        "codex": "Check current Microsoft documentation and retain a sanitized environment manifest. Distinguish documented navigation from clicks verified in Khalid’s tenant.",
+        "save": "Model/deployment reference, region, access assumptions, documentation date and reproducible configuration without secrets."
+      },
+      {
+        "id": "beat-3",
+        "label": "Run one deliberately small request",
+        "seconds": 65,
+        "spoken": "I am using a harmless synthetic request. I want a concise comparison of improving an existing process, buying a tool, and building a small service. There are no internal policies for the model to retrieve. Watch the response, but notice what it can and cannot prove. If it returns text, we have evidence that this request reached a model and came back. We have not demonstrated the company’s access rules, citation accuracy, operational resilience or business value. A useful first result deserves an accurate description.",
+        "screen": "Open the selected deployment’s model playground through Build, or the documented Test in playground entry where available. Submit: \"For a fictional company, list one question to ask before choosing each option: improve existing search, buy an assistant, build a custom assistant. Do not invent prices or company facts.\" Capture the actual response. Labels must be checked during rehearsal.",
+        "visual": "Large prompt and response crop; hide irrelevant portal chrome. No fabricated result in the script.",
+        "khalid": "Read one actual output and explain whether it answers the request. If it fails, show the failure and diagnose it.",
+        "codex": "Prepare the exact prompt, confirm documented entry points, capture elapsed time and any available usage metadata without equating one run to a benchmark.",
+        "save": "Prompt version, actual response, deployment reference, observation time and limitations."
+      },
+      {
+        "id": "beat-4",
+        "label": "Show where judgment enters",
+        "seconds": 60,
+        "spoken": "The model can help us generate questions and alternatives. It cannot tell us who inside a company is authorized to decide which policy is official. That information comes from discovery and accountable owners. I review the response for unsupported assumptions, then compare it with the outcome we wrote down. If it gives us something useful, we keep it. If it invents a fact, we correct the process rather than quietly editing the video into a perfect result.",
+        "screen": "Compare the actual response with the prepared discovery brief. Highlight one supported suggestion or one unsupported assumption that really appears. If neither fits, explain that result honestly. Do not script a guaranteed hallucination.",
+        "visual": "Two labels: AI proposed; Khalid checked. Bring back the original discovery question as the connecting card.",
+        "khalid": "Explain your specific judgment and what evidence would change it. Keep the clip conversational.",
+        "codex": "Help annotate the observed output after the run. Never pre-write a claimed result or hide a failure to fit the storyboard.",
+        "save": "Review note linking observed output to the discovery outcome."
+      },
+      {
+        "id": "beat-5",
+        "label": "Save a reproducible starting point",
+        "seconds": 60,
+        "spoken": "Before adding more features, I save the environment configuration, prompt, observed result and a small repeatable check. I keep credentials out of that pack. Later, the same structure will hold source permissions, expected refusals and release tests. This is how a build compounds: the next session begins with a known checkpoint, not a memory of where I clicked. Any model or configuration change should be evaluated against the same questions before it replaces this version.",
+        "screen": "Save a sanitized checkpoint note in the project repository with the prompt and actual observation. Show the file diff, excluding tokens, endpoints containing private identifiers, and secret files. Record dependency versions only if code was actually used.",
+        "visual": "Folder outline: decision, configuration, prompt, observations, checks. Checkmarks only on files actually saved and inspected.",
+        "khalid": "Open the saved files and confirm they contain enough context to repeat the experiment.",
+        "codex": "Prepare the checkpoint template and review it for exposed secrets; after the actual run, help convert the observed behavior into a repeatable test.",
+        "save": "Versioned checkpoint with no credentials and an explicit list of unproved requirements."
+      },
+      {
+        "id": "beat-6",
+        "label": "Set the next boundary",
+        "seconds": 30,
+        "spoken": "We proved a connection, not a complete assistant. Next, we introduce approved synthetic policies and ask which employee may see which source. That is where the discovery questions become enforcement rules. The goal is to leave every session with something working, something tested, and something the next person can understand.",
+        "screen": "Return to camera. Display the remaining checks: source authority, caller permissions, failure behavior, operational ownership. Leave the sandbox as documented; review its cost and cleanup plan separately.",
+        "visual": "One completed checkpoint, four visibly pending ones. No production-ready badge.",
+        "khalid": "Finish with the actual scope achieved. Note any incomplete prerequisite in the episode notes.",
+        "codex": "Draft captions and companion instructions after seeing the recorded result; retain an unresolved-work list.",
+        "save": "Updated shooting plan, observed transcript and next-session checklist."
+      }
+    ],
+    "checklist": [
+      {
+        "id": "evidence",
+        "label": "I checked every claim and opened each source. Teaching examples are labeled.",
+        "done": false
+      },
+      {
+        "id": "clarity",
+        "label": "Screen text is readable, captions are planned, and the discovery question returns at its consequence.",
+        "done": false
+      },
+      {
+        "id": "rehearsal",
+        "label": "I rehearsed every click in the actual environment and checked the five-minute timing.",
+        "done": false
+      },
+      {
+        "id": "privacy",
+        "label": "The frame contains no credentials, private tabs, client records, account IDs, or notifications.",
+        "done": false
+      },
+      {
+        "id": "save",
+        "label": "The reusable artifact opens correctly and the closing viewer action works.",
+        "done": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "Microsoft: Set up Foundry resources",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/tutorials/quickstart-create-foundry-resources",
+        "note": "Checked 2026-10-26. Resource creation requires appropriate Azure permissions. Portal labels and regional availability need a fresh rehearsal in the chosen tenant."
+      },
+      {
+        "title": "Microsoft: Get started with Foundry SDK",
+        "url": "https://learn.microsoft.com/azure/ai-foundry/quickstarts/get-started-code",
+        "note": "Checked 2026-10-26. Includes model and agent calls and portal paths. A returned response is an initial connectivity checkpoint, not enterprise acceptance."
+      },
+      {
+        "title": "Microsoft: Baseline Foundry chat architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/architecture/baseline-microsoft-foundry-chat",
+        "note": "Reference for the additional production architecture work; adapt it to actual requirements rather than claiming universal readiness."
+      }
+    ]
+  }
+]

@@ -1,0 +1,53 @@
+{
+  "version": "2026-10-26",
+  "title": "Show the thinking. Leave something useful.",
+  "promise": "I make decisions behind working systems visible. Help viewers understand a real problem, see why a question matters, and keep something useful for their next build.",
+  "audience": "Business owners, decision makers, curious learners and experienced builders who want to use AI well and understand their own role. Explain terms in context; let evidence carry the depth. This is not a beginner-only series.",
+  "principles": [
+    {"title": "Principal architecture, with a public purpose", "detail": "Build a free learning hub for systems, cloud, data, platforms, security, integration and AI. Choose useful business decisions over tool hype. AI is one capability within the system, not the limit of the channel."},
+    {"title": "Work backward from the finish", "detail": "Like reverse chess, start with the outcome and proof. Trace people, dependencies and failures backward before choosing components. Make the next move small enough to test."},
+    {"title": "Build the engine before polishing the frame", "detail": "Define data, state, contracts, identity, permissions and recovery. Prove a backend path and meaningful failure before presenting a finished interface. Early sketches test needs; a polished shell does not prove a working system."},
+    {"title": "Use 2036 as a design horizon", "detail": "Ask what survives a new model, vendor or business rule. Prefer clear interfaces, portable evidence, reversible changes and inspectable operations. This is a planning discipline, not a forecast."},
+    {"title": "Give discovery its payoff", "detail": "Know the audience and vocabulary. Introduce a question that seems unrelated; return to it when its answer changes a permission, contract, test or operating decision. Let viewers see the pieces connect."},
+    {"title": "Make the human decision specific", "detail": "Show what AI proposes, what I verify and what an accountable person decides. Give that role a verb and boundary. Demonstrate its effect, including when the system must stop."},
+    {"title": "Earn the claim on screen", "detail": "Separate assumptions, simulations, observed outputs and measured results. Show real failures. Never invent clients, savings, deployments or compliance guarantees. Research priority is consequence and teachability, not verified consulting prices."},
+    {"title": "Save more than the prompt", "detail": "Keep decisions, contracts, access rules, tests, evidence, configuration and runbooks. Reuse mechanisms; recheck permissions and ownership for each organization. Leave a useful artifact and next step."}
+  ],
+  "discovery": [
+    {"question": "Who is watching, who does the work, and who owns the result?", "why": "The sponsor, user, operator and viewer may need different explanations.", "payoff": "Choose the vocabulary, scenario, decision owner and handoff.", "save": "Audience note, roles and one observable outcome."},
+    {"question": "Walk me through the last time this happened. What counted as done?", "why": "A request for a chatbot can hide a broken process or missing source.", "payoff": "Compare improve, buy and build against the same task and baseline.", "save": "Current workflow, baseline questions, options and assumptions."},
+    {"question": "Which source is authoritative, and who may read it?", "why": "An accurate answer can still disclose information to the wrong person.", "payoff": "Turn source ownership and employee roles into retrieval and denial checks.", "save": "Source register, access matrix and permitted/denied test cases."},
+    {"question": "What exactly can change, who approves it, and what invalidates that approval?", "why": "Answering, proposing and executing carry different responsibilities.", "payoff": "Bind authority to the actual operation and check it at execution.", "save": "Action schema, approval rule, expiry and changed-payload test."},
+    {"question": "What happens if the write succeeds but the response disappears?", "why": "A retry can duplicate work unless the result can be reconciled.", "payoff": "Design stable request identifiers, observable receipts and recovery.", "save": "Retry policy, reconciliation test, event record and recovery runbook."},
+    {"question": "What must remain true when cost, load, ownership or the model changes?", "why": "A successful demo does not establish a sustainable service.", "payoff": "Set quality, cost, access and recovery limits with named owners.", "save": "Acceptance tests, cost assumptions, monitoring, rollback and handover."}
+  ],
+  "season": [
+    {"title": "Understand the people and the finish", "decision": "Define the assistant's task, audience, owner and proof before opening a portal.", "save": "Discovery brief and acceptance evidence outline for the whole season.", "status": "Planned"},
+    {"title": "Buy, build, or fix the process?", "decision": "Compare the smallest credible options for the same approved-policy task.", "save": "Option record and baseline worksheet, linked back to the discovery brief.", "status": "Authored draft", "template_id": "buy-build-process"},
+    {"title": "Same question, different employee", "decision": "Decide which sources each role may use and what a correct refusal looks like.", "save": "Source register, access matrix and repeatable negative tests.", "status": "Planned"},
+    {"title": "Build the contract before the screen", "decision": "Define identity, request, response, state and errors. Prove a backend path and failure before polishing UI.", "save": "Versioned contract, test harness and operating record.", "status": "Planned"},
+    {"title": "The first Foundry checkpoint", "decision": "Prove a bounded model call in an approved sandbox; inspect the response against discovery.", "save": "Configuration, prompt revision, observed output and review note without credentials.", "status": "Authored draft", "template_id": "foundry-first-checkpoint"},
+    {"title": "Approval belongs to one action", "decision": "Separate drafting from execution. Show why a changed payload invalidates approval.", "save": "Action contract, approval binding, expiry and failure tests.", "status": "Authored draft", "template_id": "approval-is-specific"},
+    {"title": "Count the work, then recover it", "decision": "Measure successful tasks including retries and human review. Inspect a lost response.", "save": "Cost worksheet, reconciliation test and recovery steps.", "status": "Planned"},
+    {"title": "Release something another person can run", "decision": "Check acceptance, operating ownership, monitoring and rollback before release.", "save": "Release checklist, handover pack, tested rollback and follow-up measures.", "status": "Planned"}
+  ],
+  "filming": [
+    {"title": "Five minutes with one memorable decision", "detail": "Open on my face: a tension, discovery question, useful step, failure, saved artifact and takeaway. Rehearse to about five minutes. Divide long workflows into connected episodes instead of rushing clicks."},
+    {"title": "Clear, warm and occasionally witty", "detail": "Use plain language, short analogies and humor about real assumptions. Let predictions meet observable results. Cut dead time, keep evidence readable, and never edit a failure into apparent success."},
+    {"title": "Use the equipment already here", "detail": "Nikon with kit lens, Blue microphone and strong light; exact models remain unconfirmed. Start eye-level, soften the light to one side, and test audio. Confirm models before prescribing settings or buying gear."},
+    {"title": "Make the screen teach", "detail": "Use clean windows, readable crops and captions. One decision per shot; text alongside color; people distinct from software; simulations labeled. Inspect a pilot for audio, privacy and mobile readability."}
+  ],
+  "roles": [
+    {"title": "Khalid: meaning, judgment and delivery", "detail": "Confirm the audience and honest claims. Explain tradeoffs, make decisions, rehearse clicks, record voice and face, and approve the evidence and edit."},
+    {"title": "Codex: research and production preparation", "detail": "Check sources, draft scripts and visuals, prepare files and test clicks. Help review footage, captions and companion resources when inputs and tools are available. These are assigned tasks, not an agent running inside the panel."},
+    {"title": "Together: one coherent teaching record", "detail": "Connect words, clicks, visuals, responsibilities and saved artifacts. Match the final evidence to the original question. Separate draft scripts from recorded transcripts; carry the artifact into the next episode."}
+  ],
+  "continuity": [
+    {"title": "Preserve the direction deliberately", "detail": "This versioned playbook lives in committed source. Private episodes expire 365 days after creation; editing does not renew them. Download reviewed shooting packs and transcripts for deliberate long-term custody."},
+    {"title": "A connected season, not completed work", "detail": "Three linked templates are authored drafts; other episodes are planned. None proves a recording, client outcome or deployment. Review older drafts against the current method before filming."},
+    {"title": "Keep the wider architecture tracks", "detail": "Future tracks: cloud, tenant isolation, platforms, data, security, integration and modernization. An EMR teaching build would use synthetic data and jurisdiction-specific review; a video does not establish compliance."},
+    {"title": "Resolve the open items honestly", "detail": "At this version, PR #21 awaits AWS sign-in for backend release. Foundry needs an approved sandbox, budget and rehearsal. The channel name is unresolved; Shams Blueprint was rejected. Handle availability is unverified."},
+    {"title": "Let the same idea travel", "detail": "A useful video can yield a LinkedIn observation and free site companion tied to the same artifact. Prepare them deliberately. The current cadence lives in docs/site/LINKEDIN_2036_SERIES.md, not in this playbook."},
+    {"title": "Preparation is not publication", "detail": "This studio does not record, transcribe automatically, deploy, schedule or publish. Existing LinkedIn scheduling is separate and unchanged. Mark readiness or recording only after the human work happens."}
+  ]
+}
