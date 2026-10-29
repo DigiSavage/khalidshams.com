@@ -1,12 +1,13 @@
 ---
 title: "Build the engine first"
 date: 2026-10-28
-status: approved
+status: published
 tag: architecture
 summary: "Work backward from the finished job, then prove the backend before polishing its interface."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7521301407157829633/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-10-28T13:06:35-07:00
 ---
 
 I built the car’s body before thinking through its engine. In software, that mistake cost me far more time than I expected.
