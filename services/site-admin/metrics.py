@@ -21,10 +21,11 @@ def aggregate(events,pages,now):
     for p in sorted({e['path'] for e in views}):
         v=[e for e in views if e['path']==p];ids={e['page'] for e in v}
         measured=ids & duration.keys();active=sum(duration[x] for x in measured)
-        page_days=Counter(datetime.fromtimestamp(e['at'],TZ).date().isoformat() for e in v)
+        # The event contract stores whole seconds; DynamoDB reads them as Decimal.
+        page_days=Counter(datetime.fromtimestamp(int(e['at']),TZ).date().isoformat() for e in v)
         table.append(dict(trend=dict(sorted(page_days.items())),path=p,title=pages.get(p,p),pageviews=len(v),visitors=len({e['visitor'] for e in v}),entrances=entrances[p],exits=exits[p],engaged_ms=active if measured else None,average_active_ms=round(active/len(measured)) if measured else None,measured_pages=len(measured),scroll={str(n):sum(x[1]==n for x in scroll[p]) for n in (25,50,75,100)},sources=dict(Counter(e['referrer'] for e in v)),devices=dict(Counter(e['device'] for e in v)),events=dict(Counter(e['name'] for e in rows if e['path']==p and e['name'] not in {'pageview','engagement'})),next_pages=[{'path':b,'count':n} for (a,b),n in transitions.items() if a==p]))
     days=defaultdict(list)
-    for e in views:days[datetime.fromtimestamp(e['at'],TZ).date().isoformat()].append(e)
+    for e in views:days[datetime.fromtimestamp(int(e['at']),TZ).date().isoformat()].append(e)
     funnel=[]
     for label,match in [('Home',lambda p:p=='/'),('Learn',lambda p:p.startswith('/learn/') and '/atlas/' not in p),('Atlas',lambda p:'/atlas/' in p),('Method',lambda p:p.startswith('/method/')),('Architect',lambda p:p=='/architect/'),('Enterprise Studio',lambda p:'agent-studio' in p),('Contact',lambda p:p=='/contact/')]:
         entered={e['session'] for e in views if match(e['path'])}

@@ -1,5 +1,7 @@
 """Isolated DynamoDB fixtures and real signed JWTs. No production records or credentials."""
 import sys,os,json,time,uuid,unittest,tempfile
+import csv,io
+from decimal import Decimal
 from pathlib import Path
 from unittest.mock import Mock,patch
 from urllib.parse import urlsplit,parse_qs
@@ -204,6 +206,66 @@ class ServiceTests(unittest.TestCase):
     def test_empty_partial_and_periods(self):
         r=json.loads(self.request('/api/admin/insights',owner=True)['body']);self.assertIsNone(r['current']['average_active_ms']);self.assertEqual(r['current']['visitors'],0);self.assertTrue(r['partial']);self.assertTrue(r['previous_partial']);self.assertEqual(r['previous']['inquiries'],0)
         self.assertEqual(self.request('/api/admin/insights',owner=True,q={'from':'2020-01-01','to':'2025-01-01'})['statusCode'],400)
+    def test_insights_and_analytics_export_after_dynamodb_event_roundtrip(self):
+        # DynamoDB returns Decimal even for the whole-second timestamps and
+        # millisecond counters accepted by the public event contract.
+        now=int(time.time())
+        views=[observation(at=now-30) for _ in range(3)]
+        heartbeats=[view|dict(id=uid(),name='engagement',value=value,at=now-15)
+                    for view,value in zip(views,(15000,10002))]
+        contact=views[0]|dict(id=uid(),name='contact_open',target='contact',at=now-10)
+        collected=self.request('/api/events','POST',{'events':views+heartbeats+[contact]})
+        self.assertEqual(collected['statusCode'],200,collected)
+        self.assertEqual(json.loads(collected['body'])['accepted'],6)
+        stored,partial=self.f.store.events(now-31,now+1)
+        self.assertFalse(partial)
+        self.assertTrue(all(isinstance(row['at'],Decimal) for row in stored))
+        self.assertTrue(all(isinstance(row['value'],Decimal) for row in stored))
+        insights=self.request('/api/admin/insights',owner=True)
+        self.assertEqual(insights['statusCode'],200,insights)
+        current=json.loads(insights['body'])['current']
+        self.assertEqual(current['pageviews'],3)
+        self.assertEqual(current['engaged_ms'],25002)
+        self.assertEqual(current['average_active_ms'],12501)
+        self.assertEqual(current['active_last_5_minutes'],2)
+        self.assertEqual(current['journeys'][0]['rate'],33.3)
+        self.assertEqual(sum(day['pageviews'] for day in current['trend']),3)
+        self.assertEqual(sum(current['pages'][0]['trend'].values()),3)
+        exported=self.request('/api/admin/export',owner=True,q={'kind':'analytics'})
+        self.assertEqual(exported['statusCode'],200,exported)
+        csv_rows=list(csv.DictReader(io.StringIO(json.loads(exported['body'])['csv'])))
+        self.assertEqual(len(csv_rows),1)
+        self.assertEqual(csv_rows[0]['pageviews'],'3')
+        self.assertEqual(csv_rows[0]['engaged_ms'],'25002')
+        self.assertEqual(csv_rows[0]['average_active_ms'],'12501')
+    def test_insights_and_export_with_persisted_retention_decimal(self):
+        now=int(time.time())
+        cfg={'collection':True,'analytics_days':1,'inquiry_days':365}
+        self.assertEqual(self.request('/api/admin/settings','PUT',cfg,owner=True)['statusCode'],200)
+        saved=self.f.store.get('sessions','settings')
+        self.assertIsInstance(saved['analytics_days'],Decimal)
+        # A shortened retention setting excludes still-stored older events
+        # immediately, even before the asynchronous maintenance sweep.
+        old=observation(at=now-86410)
+        self.f.store.save_event(old,90)
+        view=observation(at=now-30)
+        self.assertEqual(self.request('/api/events','POST',{'events':[view]})['statusCode'],200)
+        floor=now-saved['analytics_days']*86400
+        self.assertIsInstance(floor,Decimal)
+        rows,partial=self.f.store.events(floor,Decimal(now+1))
+        self.assertFalse(partial)
+        self.assertEqual([row['id'] for row in rows],[view['id']])
+        insights=self.request('/api/admin/insights',owner=True)
+        self.assertEqual(insights['statusCode'],200,insights)
+        result=json.loads(insights['body'])
+        self.assertEqual(result['current']['pageviews'],1)
+        self.assertTrue(result['partial'])
+        self.assertTrue(result['previous_partial'])
+        exported=self.request('/api/admin/export',owner=True,q={'kind':'analytics'})
+        self.assertEqual(exported['statusCode'],200,exported)
+        csv_rows=list(csv.DictReader(io.StringIO(json.loads(exported['body'])['csv'])))
+        self.assertEqual(len(csv_rows),1)
+        self.assertEqual(csv_rows[0]['pageviews'],'1')
     def test_retention_and_exports(self):
         data=self.f.contact(name='=SUM(1,2)',test=False);self.request('/api/contact','POST',data)
         r=self.request('/api/admin/export',owner=True,q={'kind':'inquiries'});self.assertEqual(r['statusCode'],200);self.assertIn("'=SUM",json.loads(r['body'])['csv'])
