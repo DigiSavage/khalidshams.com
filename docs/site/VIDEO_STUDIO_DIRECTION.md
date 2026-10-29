@@ -47,6 +47,6 @@ The template content and playbook are authored source in a public repository. Ke
 
 ## Release state
 
-The studio implementation is on `codex/video-studio` in [PR #21](https://github.com/DigiSavage/khalidshams.com/pull/21). At this document's version, the implementation is prepared and tested locally but the backend has not been released; the site's AWS session needs sign-in. Publication is already authorized. Deploy and verify the backend first, then release the admin interface and verify production. This playbook addition does not itself deploy anything.
+The studio implementation is on `codex/video-studio` in [PR #21](https://github.com/DigiSavage/khalidshams.com/pull/21). The backend was deployed and verified on October 28, 2026, after restoring the site's AWS session. Publication is already authorized. Static deployment and authenticated owner acceptance are recorded with that PR. See the dated release entry in `VIDEO_STUDIO_REPORT.md`; source code and isolated test results alone do not establish production acceptance.
 
 The Foundry demonstration remains pending an approved sandbox, budget and portal rehearsal. No model output, recording, real client result or completed deployment is implied by its storyboard. See `docs/site/VIDEO_STUDIO_REPORT.md` for the implementation and validation record; add the method-view verification there before release.

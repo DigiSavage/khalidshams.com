@@ -74,3 +74,13 @@ At preparation time the site's AWS console session was signed out and no local A
 Deploy the backend package first using the existing site-admin deployment procedure. Preserve the current method object/version, owner parameters, API gateway configuration and roles. Inspect the prepared change set and confirm that only the intended function code updates are present. Verify denied anonymous catalog/read/write requests, private/no-store responses, package contents and runtime health before merging the static release. Then verify the successful static deployment and served HTML/JS/CSS against the build. Signed-in production acceptance requires the owner's real website session; isolated test success must not be represented as completed production acceptance.
 
 No videos have been recorded, uploaded or scheduled by this implementation. Existing LinkedIn schedules and public educational content are unchanged.
+
+## Backend release · 28 October 2026, America/Phoenix
+
+The restored AWS console session was verified in the site's account. The reviewed backend from commit `ebeaa0d` was deployed through change set `site-admin-1793250758`; the stack reached `UPDATE_COMPLETE`. Both existing functions are active, report a successful update, and match package SHA-256 `304291bc8bf1792e2b7ef11f3aeb8c4a78d799ce6cea56785c097cf28816686c`. The archive's 12 application source/catalog files match the reviewed checkout, with no test fixtures packaged.
+
+The original-template comparison contains only the two function artifact-key changes. CloudFormation also reported dynamic dependencies on existing API and retention references. All stack parameters, including the private methodology pin, are unchanged; the complete CloudFront configuration matches its pre-release copy. Private rollback templates and parameters were retained in the authenticated deployment environment.
+
+Fresh verification passed 66 backend tests and 119 Video Studio browser checks. Six live anonymous checks of catalog, collection, record, create, methodology and session paths all returned 401 with `no-store, private, max-age=0`. No production episodes or dummy records were created. These anonymous checks do not claim authenticated production acceptance.
+
+Main's October 27 and 28 LinkedIn publication receipts were merged into the release branch without changing the publishing schedule. Static release and authenticated owner acceptance are recorded with PR #21 after deployment. The owner sign-in reached its existing MFA challenge; access is kept protected while that step is completed.
