@@ -1,12 +1,13 @@
 ---
 title: "Give context an expiry date"
 date: 2026-10-30
-status: approved
+status: published
 tag: architecture
 summary: "Test whether a system can stop using information it once had permission to trust."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7522022688069013504/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-10-30T12:52:42-07:00
 ---
 
 A bigger context window can hold more outdated instructions. Capacity is a wonderfully expensive substitute for housekeeping.
