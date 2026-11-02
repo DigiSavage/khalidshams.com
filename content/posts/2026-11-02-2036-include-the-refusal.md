@@ -1,12 +1,13 @@
 ---
 title: "Include the refusal in the demo"
 date: 2026-11-02
-status: approved
+status: published
 tag: architecture
 summary: "A useful evaluation shows what happens when the evidence or permission runs out."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7523157014445719552/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-02T16:00:06-07:00
 ---
 
 A demo that succeeds every time may have an excellent editor.
