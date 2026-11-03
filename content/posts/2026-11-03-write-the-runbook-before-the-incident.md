@@ -1,10 +1,11 @@
 ---
 title: "Write the runbook before the incident"
 date: 2026-11-03
-status: approved
+status: published
 tag: engineering
 summary: "The resiliency posture everyone described in the room was not the one the system actually had."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7523486190767939585/
+linkedin_published_at: 2026-11-03T13:48:07-07:00
 ---
 
 During a database escalation, I asked what the resiliency posture was.
