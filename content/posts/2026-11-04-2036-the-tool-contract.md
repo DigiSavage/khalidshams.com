@@ -1,12 +1,13 @@
 ---
 title: "The tool contract must survive the prompt"
 date: 2026-11-04
-status: approved
+status: published
 tag: architecture
 summary: "Try the protected operation directly and inspect who really enforces the boundary."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7523852816638214144/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-04T14:04:58-07:00
 ---
 
 “The agent knows not to do that” is an interesting test plan.
