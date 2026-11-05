@@ -1,10 +1,11 @@
 ---
 title: "Fabric changed the question"
 date: 2026-11-05
-status: approved
+status: published
 tag: data
 summary: "Before a governed lakehouse the question was where is the data. After, it became who owns this layer."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7524219394344857600/
+linkedin_published_at: 2026-11-05T14:21:37-07:00
 ---
 
 Before a governed lakehouse, the question I heard most was "where is the data?"
