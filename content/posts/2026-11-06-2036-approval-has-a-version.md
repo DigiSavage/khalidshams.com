@@ -1,12 +1,13 @@
 ---
 title: "Approval has a version"
 date: 2026-11-06
-status: approved
+status: published
 tag: security
 summary: "An approval belongs to an exact proposal and must survive a fresh permission check."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7524572140092706817/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-06T13:43:18-07:00
 ---
 
 Suppose I approve a draft. Someone changes the amount before execution.
