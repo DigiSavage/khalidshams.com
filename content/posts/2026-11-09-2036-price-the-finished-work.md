@@ -1,12 +1,13 @@
 ---
 title: "Price the finished work"
 date: 2026-11-09
-status: approved
+status: published
 tag: business-value
 summary: "Measure cost across completed, failed and reviewed work before celebrating cheap tokens."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7525704308852604928/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-09T16:42:08-07:00
 ---
 
 The token bill is only one receipt.
