@@ -1,10 +1,11 @@
 ---
 title: "Idempotent or it didn't happen"
 date: 2026-11-10
-status: approved
+status: published
 tag: agentic-ai
 summary: "An agent will retry. If a write isn't safe to retry, the agent will eventually do it twice."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7525937464721719296/
+linkedin_published_at: 2026-11-10T08:08:37-07:00
 ---
 
 An agent will retry. That's not a bug. It's how they work.
