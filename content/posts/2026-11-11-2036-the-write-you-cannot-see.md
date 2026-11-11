@@ -1,12 +1,13 @@
 ---
 title: "The write you cannot see"
 date: 2026-11-11
-status: approved
+status: published
 tag: architecture
 summary: "A timed-out write needs reconciliation before another attempt."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7526299742990098432/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-11T08:08:11-07:00
 ---
 
 The most interesting moment in an agent demo might be the one after the screen stops responding.
