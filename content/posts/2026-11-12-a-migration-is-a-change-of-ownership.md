@@ -1,10 +1,11 @@
 ---
 title: "A migration is a change of ownership"
 date: 2026-11-12
-status: approved
+status: published
 tag: cloud
 summary: "Customer success taught me the migration isn't done at cutover. It's done when the other team runs it without you."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7526662301928660993/
+linkedin_published_at: 2026-11-12T08:08:52-07:00
 ---
 
 Customer success taught me that a migration isn't done at cutover.
