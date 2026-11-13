@@ -1,12 +1,13 @@
 ---
 title: "Recovery needs a clock"
 date: 2026-11-13
-status: approved
+status: published
 tag: cloud
 summary: "Measure the steps required to restore service and reconcile completed actions."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7527024572752109568/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-13T08:08:23-07:00
 ---
 
 My 2036 design horizon includes a fairly old-fashioned instrument: a clock.
