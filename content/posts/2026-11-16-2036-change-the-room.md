@@ -1,12 +1,13 @@
 ---
 title: "Change the room and keep the decision"
 date: 2026-11-16
-status: approved
+status: published
 tag: architecture
 summary: "The audience changes the explanation; the permissions and operating commitments stay explicit."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7528112521539407872/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-16T08:11:31-07:00
 ---
 
 Try explaining the same proposed system to the sponsor, the security reviewer and the person who will operate it.
