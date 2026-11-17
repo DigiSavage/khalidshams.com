@@ -4,6 +4,12 @@ These are deliberately authored diagrams, not automatically summarized claims. E
 
 The initial collection covers every prepared post from November 17 through December 18, 2026, plus the public synthetic approval graphic used by the private recording set. The recording graphic has no scheduled post association.
 
+## One process, one enlarged focus
+
+Every card uses the same SHAMS process map: Scope, Harden, Anchor, Measure, Sustain. Highlight one primary focus and draw the visual connection into the enlarged topic mechanism. Show what evidence enters that focus and the reusable artifact the reader leaves with. This is a revisitable design loop, not a calendar, a completed-stage progress bar or a claim that controls apply only once.
+
+Keep the map subordinate to the enlarged lesson. The active stage must be identifiable from its label and shape, not color alone. Use the mechanism suited to the topic inside the focus panel. A consistent process frame must not flatten all topics into the same checklist.
+
 ## Source and asset contract
 
 `specs.json` is the editable source (`schema_version: 1`, `items: []`). Every item requires:
@@ -11,13 +17,14 @@ The initial collection covers every prepared post from November 17 through Decem
 - `slug`: lowercase words joined by hyphens. The slug must match its post filename without the date prefix.
 - `post`: repository-relative `content/posts/YYYY-MM-DD-slug.md`, or `null` for an unscheduled standalone visual.
 - `title`, `subtitle`, `category`: the decision and context visible in the graphic.
+- `process`: an object containing `focus` (`scope`, `harden`, `anchor`, `measure`, or `sustain`), `bring_in` (the necessary evidence or input), and `leave_with` (the concrete reusable artifact). All three are required; descriptions must fit the visible handoff strip.
 - `layout`: `flow`, `fork`, `matrix`, `map`, `stack`, `timeline`, or `approval`.
 - `test`: an inspectable check, shown in the navy panel.
 - `boundary`: what the example or evidence does not establish.
 - `alt`: a useful text equivalent of the diagram, not promotional copy, limited to 1,000 characters to match the publisher.
 - Layout fields: `items` for flow/stack/timeline, `question`/`question_detail`/`branches`/`rule` for forks, `columns`/`rows` for matrices, and `center`/`center_detail`/`nodes` for maps. Stack adds `equation`; timeline adds `rule`.
 
-The renderer emits 1200 x 1500 RGB PNGs at `content/images/<slug>.png`. `manifest.json` records `slug`, `post`, `asset`, `alt`, `layout`, `sha256`, `spec_sha256`, and `source`, with top-level dimensions and schema version. Each specification hash uses canonical JSON (sorted keys, UTF-8, no insignificant whitespace). Top-level `inputs` records the renderer source path and hash plus every bundled font used by the renderer. The publisher can verify the file digest and copy the corresponding alt text. The manifest does not authorize posting or prove that a post was published.
+The renderer emits 1200 x 1500 RGB PNGs at `content/images/<slug>.png`. `manifest.json` records `slug`, `post`, `asset`, `alt`, `layout`, `process`, `sha256`, `spec_sha256`, and `source`, with top-level dimensions and schema version. Each specification hash uses canonical JSON (sorted keys, UTF-8, no insignificant whitespace). Top-level `inputs` records the renderer source path and hash plus every bundled font used by the renderer. The publisher can verify the file digest and copy the corresponding alt text. The manifest does not authorize posting or prove that a post was published.
 
 ## Rebuild and verify
 

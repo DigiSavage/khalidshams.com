@@ -27,6 +27,7 @@ FONTS = ROOT / 'tools/fonts'
 FONT_FILES = {'sans':'IBMPlexSans-Regular.ttf','medium':'IBMPlexSans-Medium.ttf',
  'bold':'IBMPlexSans-SemiBold.ttf','mono':'IBMPlexMono-Medium.ttf','serif':'IBMPlexSerif-Medium.ttf'}
 LAYOUTS = {'flow', 'fork', 'matrix', 'map', 'approval', 'stack', 'timeline'}
+PROCESS_STAGES = ('scope', 'harden', 'anchor', 'measure', 'sustain')
 
 class LayoutError(ValueError):
     pass
@@ -90,21 +91,54 @@ class Canvas:
         if detail: self.text(detail,(x+24,y+96,w-48,h-110),size=30,fill=PAPER if dark else MUTED)
 
 
+def process_rail(c,spec):
+    """Show the whole revisitable method, then open the selected move into detail."""
+    focus=spec['process']['focus']
+    active=PROCESS_STAGES.index(focus)
+    c.text('THE SHAMS PROCESS',(72,314,430,28),size=19,family='mono',fill=NAVY)
+    c.text('REVISIT AS EVIDENCE CHANGES',(570,314,558,28),size=18,family='mono',fill=MUTED,align='right')
+    for i,stage in enumerate(PROCESS_STAGES):
+        x=72+i*216
+        selected=i==active
+        if i<4: c.arrow((x+198,388),(x+213,388),color=LINE,width=3)
+        c.rect((x,349,192,79),fill=NAVY if selected else '#ECEFEE',
+               outline=NAVY if selected else LINE,width=2)
+        c.text(f'{i+1:02d}'+(' · IN FOCUS' if selected else ''),
+               (x+13,359,166,26),size=17,family='mono',fill='#E5C478' if selected else MUTED)
+        c.text(stage.title(),(x+13,391,166,34),size=27,family='bold',fill=WHITE if selected else MUTED)
+    # The expanding wedge makes the macro/micro relation visible without adding
+    # another process step or implying that earlier stages have been completed.
+    left=72+active*216
+    c.d.polygon([(left,430),(left+192,430),(1144,484),(56,484)],fill=PALE)
+    c.d.line((left,430,56,484),fill=BLUE,width=2)
+    c.d.line((left+192,430,1144,484),fill=BLUE,width=2)
+    c.rect((56,484,1088,630),fill='#EFF2FA',outline=BLUE,width=2)
+    c.rect((72,449,516,35),fill=NAVY,outline=NAVY)
+    c.text(f'{active+1:02d} / {focus.upper()} · UNDER THE LENS',
+           (87,456,490,26),size=20,family='mono',fill=WHITE)
+
+
 def chrome(c,spec):
-    c.d.rectangle((0,0,1200,12),fill=NAVY)
-    c.text('KHALID SHAMS',(72,56,550,40),size=25,family='mono',fill=NAVY)
-    c.text(spec['category'].upper(),(620,59,508,36),size=22,family='mono',fill=MUTED,align='right')
-    c.d.line((72,115,1128,115),fill=LINE,width=2)
-    c.text(spec['title'],(72,154,1056,182),size=66,family='bold',fill=NAVY,spacing=1.06)
-    c.text(spec['subtitle'],(72,335,1056,90),size=32,fill=MUTED)
-    c.text('THE MECHANISM',(72,435,1056,35),size=23,family='mono',fill=BLUE)
-    c.rect((72,1120,1056,162),fill=NAVY,outline=NAVY)
-    c.text('CHECK IT',(96,1140,190,35),size=23,family='mono',fill='#E5C478')
-    c.text(spec['test'],(302,1144,796,113),size=32,family='medium',fill=PAPER)
-    c.text(spec['boundary'],(72,1310,1056,70),size=25,fill=MUTED)
-    c.d.line((72,1400,1128,1400),fill=LINE,width=2)
-    c.text('A decision worth keeping.',(72,1430,600,42),size=27,family='medium',fill=NAVY)
-    c.text('khalidshams.com',(700,1433,428,38),size=24,family='mono',fill=MUTED,align='right')
+    c.d.rectangle((0,0,1200,10),fill=NAVY)
+    c.text('KHALID SHAMS',(72,37,550,34),size=24,family='mono',fill=NAVY)
+    c.text(spec['category'].upper(),(620,40,508,31),size=20,family='mono',fill=MUTED,align='right')
+    c.d.line((72,83,1128,83),fill=LINE,width=2)
+    c.text(spec['title'],(72,108,1056,138),size=57,family='bold',fill=NAVY,spacing=1.06)
+    c.text(spec['subtitle'],(72,246,1056,67),size=27,fill=MUTED)
+    process_rail(c,spec)
+    c.rect((72,1131,1056,118),fill=NAVY,outline=NAVY)
+    c.text('CHECK IT',(93,1150,164,32),size=21,family='mono',fill='#E5C478')
+    c.text(spec['test'],(274,1148,829,94),size=27,family='medium',fill=PAPER)
+    # Input and durable output connect this close-up to the wider practice.
+    for x,label,value in [(72,'BRING IN',spec['process']['bring_in']),
+                          (616,'LEAVE WITH',spec['process']['leave_with'])]:
+        c.text(label,(x,1270,512,28),size=19,family='mono',fill=BLUE)
+        c.text(value,(x,1302,512,64),size=25,family='medium',fill=INK)
+    c.d.line((592,1270,592,1366),fill=LINE,width=2)
+    c.text(spec['boundary'],(72,1380,1056,60),size=22,fill=MUTED)
+    c.d.line((72,1450,1128,1450),fill=LINE,width=2)
+    c.text('A connected architecture field guide.',(72,1466,660,29),size=21,family='medium',fill=NAVY)
+    c.text('khalidshams.com',(760,1467,368,28),size=20,family='mono',fill=MUTED,align='right')
 
 
 def flow(c,s):
@@ -199,6 +233,13 @@ def validate_spec(spec):
         if not isinstance(spec.get(key),str) or not spec[key].strip(): raise ValueError(f'Missing {key}')
     if not re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*',spec['slug']): raise ValueError('Invalid slug')
     if spec['layout'] not in LAYOUTS: raise ValueError('Unknown layout')
+    process=spec.get('process')
+    if not isinstance(process,dict): raise ValueError('Missing process context')
+    if not isinstance(process.get('focus'),str) or process['focus'] not in PROCESS_STAGES:
+        raise ValueError('Invalid process focus')
+    for key in ('bring_in','leave_with'):
+        if not isinstance(process.get(key),str) or not process[key].strip():
+            raise ValueError(f'Missing process {key}')
     if len(spec['alt'])>1000: raise ValueError('Alt text exceeds publisher limit of 1000 characters')
     for value in iter_text(spec):
         if any(d in value for d in ('—','–',' -- ')): raise ValueError('Public text contains forbidden dash')
@@ -256,7 +297,7 @@ def input_fingerprints():
 def manifest_entry(spec,asset_hash):
     return {'slug':spec['slug'],'post':spec.get('post'),
             'asset':'content/images/'+spec['slug']+'.png','alt':spec['alt'],
-            'layout':spec['layout'],'sha256':asset_hash,'spec_sha256':spec_fingerprint(spec),
+            'layout':spec['layout'],'process':spec['process'],'sha256':asset_hash,'spec_sha256':spec_fingerprint(spec),
             'source':'content/infographics/specs.json'}
 
 
