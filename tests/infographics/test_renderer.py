@@ -104,6 +104,32 @@ class InfographicTests(unittest.TestCase):
             self.assertTrue(spec['test'].strip())
             self.assertTrue(spec['boundary'].strip())
 
+    def test_whole_process_and_authored_handoff_are_visible(self):
+        for spec in self.specs:
+            with self.subTest(slug=spec['slug']):
+                process = spec['process']
+                self.assertIn(process['focus'], ('scope', 'harden', 'anchor', 'measure', 'sustain'))
+                _, boxes = self.rendered[spec['slug']]
+                visible = '\n'.join(box['text'] for box in boxes)
+                for stage in ('Scope', 'Harden', 'Anchor', 'Measure', 'Sustain'):
+                    self.assertIn(stage.lower(), visible.lower())
+                self.assertIn(process['bring_in'], visible)
+                self.assertIn(process['leave_with'], visible)
+                self.assertIn('IN FOCUS', visible.upper())
+                self.assertIn(process['focus'], spec['alt'].lower())
+
+    def test_invalid_or_missing_process_cannot_publish_a_contextless_card(self):
+        missing = copy.deepcopy(self.specs[0])
+        missing.pop('process', None)
+        with self.assertRaises(ValueError): renderer.render(missing)
+        valid = copy.deepcopy(self.specs[0]['process'])
+        for process in (None, [], {}, dict(valid, focus='unknown'),
+                        dict(valid, focus=''), dict(valid, bring_in=''),
+                        dict(valid, leave_with=' '), dict(valid, leave_with=12)):
+            spec = dict(self.specs[0], process=process)
+            with self.subTest(process=process), self.assertRaises(ValueError):
+                renderer.render(spec)
+
     def test_standalone_demo_is_synthetic_and_not_a_scheduled_post(self):
         spec = next(s for s in self.specs if s['slug']=='a-yes-has-a-boundary-recording')
         self.assertIsNone(spec['post'])

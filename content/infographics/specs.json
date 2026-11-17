@@ -10,7 +10,7 @@
       "layout": "flow",
       "test": "Trace one detection to its source. Explain the cost and the consequence of losing that evidence.",
       "boundary": "No detection does not mean no value. Audit, investigation and retention duties still apply.",
-      "alt": "Detection-first log budget: name the event and response owner, map the source fields and timing with audit obligations, generate a safe test event to verify detection coverage, then choose the storage tier, retention period and accountable owner. Trace one detection to its source and explain the cost and consequence of losing that evidence. Logs without a detection may still be required for audit, investigation or retention obligations.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Detection-first log budget: name the event and response owner, map the source fields and timing with audit obligations, generate a safe test event to verify detection coverage, then choose the storage tier, retention period and accountable owner. Trace one detection to its source and explain the cost and consequence of losing that evidence. Logs without a detection may still be required for audit, investigation or retention obligations.",
       "items": [
         {
           "title": "Name the detection",
@@ -28,7 +28,12 @@
           "title": "Set retention + cost",
           "detail": "Choose tier, period and accountable owner."
         }
-      ]
+      ],
+      "process": {
+        "focus": "measure",
+        "bring_in": "Detection needs + required evidence",
+        "leave_with": "Coverage test + cost owner"
+      }
     },
     {
       "slug": "2036-change-one-assumption",
@@ -39,7 +44,7 @@
       "layout": "flow",
       "test": "Remove the preferred model. Name the first acceptance test that now needs to run again.",
       "boundary": "A design exercise, not a claim that any replacement is equivalent.",
-      "alt": "A four-step change-impact flow: preserve the accepted outcome, identify the broken dependency, recheck data access and authority, then rerun affected tests with a named owner. Test it by removing the preferred model. Replacement does not establish equivalence.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. A four-step change-impact flow: preserve the accepted outcome, identify the broken dependency, recheck data access and authority, then rerun affected tests with a named owner. Test it by removing the preferred model. Replacement does not establish equivalence.",
       "items": [
         {
           "title": "Outcome",
@@ -57,7 +62,12 @@
           "title": "Evidence",
           "detail": "Rerun affected tests. Name the decision owner."
         }
-      ]
+      ],
+      "process": {
+        "focus": "measure",
+        "bring_in": "Accepted outcome + changed assumption",
+        "leave_with": "Affected tests + decision owner"
+      }
     },
     {
       "slug": "small-models-big-boundaries",
@@ -68,7 +78,7 @@
       "layout": "fork",
       "test": "Run the same labeled cases through both routes. Compare accepted results, failures, latency and full cost.",
       "boundary": "Model suitability depends on the task and evaluation; no savings are assumed.",
-      "alt": "Model-routing decision: choose a smaller route only if it passes the task-specific acceptance test. Otherwise escalate for a suitable model or human review, or stop. Both routes require typed inputs, validated outputs, failure behavior and permission enforcement. Compare quality, latency and full delivery cost.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Model-routing decision: choose a smaller route only if it passes the task-specific acceptance test. Otherwise escalate for a suitable model or human review, or stop. Both routes require typed inputs, validated outputs, failure behavior and permission enforcement. Compare quality, latency and full delivery cost.",
       "question": "Does the narrow route meet the acceptance test?",
       "question_detail": "Typed input + validated output + a defined failure path",
       "branches": [
@@ -81,7 +91,12 @@
           "detail": "Try a suitable stronger route, ask for review, or decline. Do not improvise authority."
         }
       ],
-      "rule": "A larger model still needs the same authority boundary."
+      "rule": "A larger model still needs the same authority boundary.",
+      "process": {
+        "focus": "measure",
+        "bring_in": "Task contract + labeled cases",
+        "leave_with": "Evaluated route + failure path"
+      }
     },
     {
       "slug": "2036-hand-over-the-proof",
@@ -92,7 +107,7 @@
       "layout": "matrix",
       "test": "Ask a colleague to run all three cases. Every question they must ask you becomes a gap to close.",
       "boundary": "Teaching cases support a handover. They are not production certification.",
-      "alt": "Handover matrix with three cases. Allowed: inspect the intended business state and keep inputs plus receipt. Refused: verify no forbidden change and keep the reason and boundary. Recovered: verify a reconciled final state and keep recovery steps and timings. Have another person reproduce them; record the questions they need to ask.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Handover matrix with three cases. Allowed: inspect the intended business state and keep inputs plus receipt. Refused: verify no forbidden change and keep the reason and boundary. Recovered: verify a reconciled final state and keep recovery steps and timings. Have another person reproduce them; record the questions they need to ask.",
       "columns": [
         "CASE",
         "INSPECT",
@@ -114,7 +129,12 @@
           "A reconciled final state",
           "Steps + timings"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Allowed, refused and recovery cases",
+        "leave_with": "Reproducible operator handover"
+      }
     },
     {
       "slug": "draw-the-finish-line-before-the-flow",
@@ -125,7 +145,7 @@
       "layout": "flow",
       "test": "Give the acceptance statement to someone else. Can they tell a finished task from a plausible-looking output?",
       "boundary": "An interface sketch may test a need; it does not prove the engine.",
-      "alt": "Reverse planning from an accepted outcome to evidence, state and authority, then component contracts. First define the result and who accepts it; identify the completion record; define permitted changes and recovery; give each capability inputs, outputs and tests. Ask a colleague to distinguish actual completion from a plausible output.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Reverse planning from an accepted outcome to evidence, state and authority, then component contracts. First define the result and who accepts it; identify the completion record; define permitted changes and recovery; give each capability inputs, outputs and tests. Ask a colleague to distinguish actual completion from a plausible output.",
       "items": [
         {
           "title": "Accepted outcome",
@@ -143,7 +163,12 @@
           "title": "Component contract",
           "detail": "Give each capability an input, output and test."
         }
-      ]
+      ],
+      "process": {
+        "focus": "scope",
+        "bring_in": "People, need and consequence",
+        "leave_with": "Accepted outcome + component contracts"
+      }
     },
     {
       "slug": "the-pilot-that-never-ends",
@@ -154,7 +179,7 @@
       "layout": "fork",
       "test": "Write the decision date, acceptance thresholds and accountable owner before starting the next pilot.",
       "boundary": "Thresholds depend on the use case. This template supplies no universal target.",
-      "alt": "Pilot exit decision tree. Before building, agree on fixed cases, quality and cost thresholds, an accountable owner and a review date. If evidence passes, decide the next bounded production investment and operating conditions. If not, stop or revise with a new hypothesis and date. A clear no is a valid result.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Pilot exit decision tree. Before building, agree on fixed cases, quality and cost thresholds, an accountable owner and a review date. If evidence passes, decide the next bounded production investment and operating conditions. If not, stop or revise with a new hypothesis and date. A clear no is a valid result.",
       "question": "At the review date: did the agreed case pass?",
       "question_detail": "Fixed cases + measured quality + full delivery cost",
       "branches": [
@@ -167,7 +192,12 @@
           "detail": "Record what failed. Any extension needs a new hypothesis and a new decision date."
         }
       ],
-      "rule": "A useful pilot ends with a decision, including a clear no."
+      "rule": "A useful pilot ends with a decision, including a clear no.",
+      "process": {
+        "focus": "scope",
+        "bring_in": "Business hypothesis + constraints",
+        "leave_with": "Exit criteria + owner + review date"
+      }
     },
     {
       "slug": "the-fallback-needs-a-smaller-promise",
@@ -178,7 +208,7 @@
       "layout": "fork",
       "test": "Remove the retrieval source. Verify that the fallback cannot silently send an unsupported answer as fact.",
       "boundary": "A fallback must earn its own acceptance evidence. Availability is not permission.",
-      "alt": "Degraded-mode decision: when an approved source is unavailable, keep identity and authority checks. Continue only with bounded work supported by available evidence, marking limitations and routing unresolved parts. Stop actions lacking evidence or authority. Test by removing the retrieval source; availability does not grant new permission.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Degraded-mode decision: when an approved source is unavailable, keep identity and authority checks. Continue only with bounded work supported by available evidence, marking limitations and routing unresolved parts. Stop actions lacking evidence or authority. Test by removing the retrieval source; availability does not grant new permission.",
       "question": "The approved source is unavailable. What remains safe?",
       "question_detail": "Keep the original identity and authority boundary",
       "branches": [
@@ -191,7 +221,12 @@
           "detail": "If evidence or authority is missing, refuse the write and explain the next step."
         }
       ],
-      "rule": "Fallback capability must not exceed the original authority."
+      "rule": "Fallback capability must not exceed the original authority.",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Failed dependency + remaining evidence",
+        "leave_with": "Bounded fallback + stop condition"
+      }
     },
     {
       "slug": "a-deletion-has-more-than-one-address",
@@ -202,7 +237,7 @@
       "layout": "matrix",
       "test": "Delete one synthetic record, then search its identifier across every documented copy and derived view.",
       "boundary": "Retention duties and backup expiry need an agreed policy; do not promise instant erasure.",
-      "alt": "Deletion coverage matrix: source follows the deletion policy; indexes and caches are invalidated and queried again; exports require an owner and retention disposition; backups require expiry and restore controls to prevent reintroduction. Delete a synthetic record and check every documented copy. Legal retention and physical backup removal can differ.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Deletion coverage matrix: source follows the deletion policy; indexes and caches are invalidated and queried again; exports require an owner and retention disposition; backups require expiry and restore controls to prevent reintroduction. Delete a synthetic record and check every documented copy. Legal retention and physical backup removal can differ.",
       "columns": [
         "LOCATION",
         "ACTION",
@@ -229,7 +264,12 @@
           "Apply expiry + restore rule",
           "Prevent reintroduction"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "anchor",
+        "bring_in": "Data lineage + retention obligations",
+        "leave_with": "Deletion route + verification record"
+      }
     },
     {
       "slug": "a-dashboard-can-disagree-politely",
@@ -240,7 +280,7 @@
       "layout": "matrix",
       "test": "Trace one row through both revenue definitions. Identify the exact rule that explains the difference.",
       "boundary": "Illustrative metric contract. The business owner must approve the actual rules.",
-      "alt": "Metric agreement checklist: define the time basis, transaction status, currency conversion rule, owner and version before comparing revenue charts. Trace one row through both definitions to explain disagreements. A technically valid query does not establish a shared business meaning.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Metric agreement checklist: define the time basis, transaction status, currency conversion rule, owner and version before comparing revenue charts. Trace one row through both definitions to explain disagreements. A technically valid query does not establish a shared business meaning.",
       "columns": [
         "DIMENSION",
         "MAKE EXPLICIT",
@@ -267,7 +307,12 @@
           "Definition + version",
           "Who approves change?"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "anchor",
+        "bring_in": "Business question + competing queries",
+        "leave_with": "Shared metric definition + owner"
+      }
     },
     {
       "slug": "the-cache-remembers-the-old-permission",
@@ -278,7 +323,7 @@
       "layout": "fork",
       "test": "Warm the cache, revoke access, then ask again. The cached path must deny what the source path would deny.",
       "boundary": "A tenant key alone does not prove row-level or user-level authorization.",
-      "alt": "Cache authorization fork: evaluate the caller’s current permission before serving a result. An eligible entry must match tenant and relevant caller, source and policy scope. Deny access if permission is no longer valid. Test by warming the cache, revoking access and making the same request again; tenant separation alone is insufficient.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Cache authorization fork: evaluate the caller’s current permission before serving a result. An eligible entry must match tenant and relevant caller, source and policy scope. Deny access if permission is no longer valid. Test by warming the cache, revoking access and making the same request again; tenant separation alone is insufficient.",
       "question": "Can this caller read this result right now?",
       "question_detail": "Check current scope before a cached result is served",
       "branches": [
@@ -291,7 +336,12 @@
           "detail": "Do not serve the old result. Invalidate or segregate affected entries as required."
         }
       ],
-      "rule": "Cache the computation. Recheck the permission."
+      "rule": "Cache the computation. Recheck the permission.",
+      "process": {
+        "focus": "harden",
+        "bring_in": "Caller identity + current access policy",
+        "leave_with": "Authorized reuse or explicit denial"
+      }
     },
     {
       "slug": "what-building-on-aws-taught-me-about-boring",
@@ -302,7 +352,7 @@
       "layout": "stack",
       "test": "Restore a synthetic record. Verify identity, dependencies, owner and acceptance before declaring recovery.",
       "boundary": "A rehearsal is evidence for the cases exercised. It does not guarantee every recovery.",
-      "alt": "Recovery checklist: restore a synthetic record with a known expected result, rebuild identity/configuration/access dependencies, name the recovery owner, then verify the usable outcome. A stored backup alone is not evidence that the service has recovered. A rehearsal covers only the cases exercised.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Recovery checklist: restore a synthetic record with a known expected result, rebuild identity/configuration/access dependencies, name the recovery owner, then verify the usable outcome. A stored backup alone is not evidence that the service has recovered. A rehearsal covers only the cases exercised.",
       "items": [
         {
           "title": "Restore a synthetic record",
@@ -321,7 +371,12 @@
           "detail": "Confirm the service can do its permitted job."
         }
       ],
-      "equation": "Stored copy + restored dependencies + acceptance"
+      "equation": "Stored copy + restored dependencies + acceptance",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Backup + dependency inventory",
+        "leave_with": "Restore evidence + recovery owner"
+      }
     },
     {
       "slug": "version-the-question-behind-the-metric",
@@ -332,7 +387,7 @@
       "layout": "matrix",
       "test": "Change one business definition in a test copy. Can a consumer detect the version change before comparing periods?",
       "boundary": "A definition change may require restatement; a new label alone is not reconciliation.",
-      "alt": "Versioned metric contract covering business meaning, included population, period and currency rules, and owner plus effective date. Change a definition in a test copy and verify consumers detect the version change before comparing periods. Historical restatement or reconciliation may be needed.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Versioned metric contract covering business meaning, included population, period and currency rules, and owner plus effective date. Change a definition in a test copy and verify consumers detect the version change before comparing periods. Historical restatement or reconciliation may be needed.",
       "columns": [
         "CONTRACT",
         "PIN IT",
@@ -359,7 +414,12 @@
           "Owner + effective date",
           "Consumer notified?"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "anchor",
+        "bring_in": "Current definition + proposed change",
+        "leave_with": "Versioned contract + consumer migration"
+      }
     },
     {
       "slug": "the-slide-nobody-wants-to-see",
@@ -370,7 +430,7 @@
       "layout": "map",
       "test": "Pick one critical workflow. Trace every data, identity, vendor and operating dependency, then name the owner.",
       "boundary": "Illustrative map, not an inventory of a real organization.",
-      "alt": "Illustrative dependency map places a business workflow in the center, connected to data, identity, vendor and operations. Each dependency needs an owner: sources and shared stores; service accounts and permissions; supplier service and exit path; deployment, restore and escalation. Trace one real workflow to find undocumented coupling.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Illustrative dependency map places a business workflow in the center, connected to data, identity, vendor and operations. Each dependency needs an owner: sources and shared stores; service accounts and permissions; supplier service and exit path; deployment, restore and escalation. Trace one real workflow to find undocumented coupling.",
       "center": "BUSINESS WORKFLOW",
       "center_detail": "Who owns the result?",
       "nodes": [
@@ -390,7 +450,12 @@
           "title": "Operations",
           "detail": "Deploy, restore, escalation"
         }
-      ]
+      ],
+      "process": {
+        "focus": "scope",
+        "bring_in": "Critical workflow + known dependencies",
+        "leave_with": "Dependency map + accountable owners"
+      }
     },
     {
       "slug": "the-queue-is-part-of-the-product",
@@ -401,7 +466,7 @@
       "layout": "timeline",
       "test": "Hold a test dependency unavailable, then restore it. Inspect which tasks resume, expire or need a new decision.",
       "boundary": "A queue absorbs pressure. It does not remove the work or its deadline.",
-      "alt": "Queue lifecycle: at arrival assign identity, deadline and stable work ID; while waiting expose age, capacity, expiry and escalation; to finish, recheck authority and execute, review and confirm the outcome. The deadline includes waiting as well as execution. Hold a test dependency unavailable, restore it, and inspect resumed, expired and held tasks.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Queue lifecycle: at arrival assign identity, deadline and stable work ID; while waiting expose age, capacity, expiry and escalation; to finish, recheck authority and execute, review and confirm the outcome. The deadline includes waiting as well as execution. Hold a test dependency unavailable, restore it, and inspect resumed, expired and held tasks.",
       "items": [
         {
           "title": "ARRIVE: accepted into the queue",
@@ -416,7 +481,12 @@
           "detail": "Recheck authority; record an accepted or expired outcome."
         }
       ],
-      "rule": "BUDGET WAIT + EXECUTION + REVIEW + CONFIRMATION"
+      "rule": "BUDGET WAIT + EXECUTION + REVIEW + CONFIRMATION",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "User deadline + queued work",
+        "leave_with": "Expiry, escalation + outcome receipt"
+      }
     },
     {
       "slug": "rent-the-capability-keep-the-exit",
@@ -427,7 +497,7 @@
       "layout": "fork",
       "test": "Export a synthetic case set and run it through a replacement path. List every field, rule or behavior that was lost.",
       "boundary": "An export button is not proof of operational portability.",
-      "alt": "Build-or-buy portability decision: test whether another provider can reproduce the required outcome using exported data, identity mappings and acceptance cases. A rehearsed exit retains the export format and replacement plan. An unproven exit records proprietary behavior and migration gaps. An export button alone does not prove portability.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Build-or-buy portability decision: test whether another provider can reproduce the required outcome using exported data, identity mappings and acceptance cases. A rehearsed exit retains the export format and replacement plan. An unproven exit records proprietary behavior and migration gaps. An export button alone does not prove portability.",
       "question": "Can the next provider reproduce the required outcome?",
       "question_detail": "Data + identity + behavior + operating evidence",
       "branches": [
@@ -440,7 +510,12 @@
           "detail": "Name proprietary behavior, missing fields and migration work before committing."
         }
       ],
-      "rule": "Portability is an exercised path, not a feature label."
+      "rule": "Portability is an exercised path, not a feature label.",
+      "process": {
+        "focus": "scope",
+        "bring_in": "Required outcome + supplier constraints",
+        "leave_with": "Build-or-buy decision + tested exit"
+      }
     },
     {
       "slug": "why-did-it-do-that",
@@ -451,7 +526,7 @@
       "layout": "flow",
       "test": "Replay one synthetic case from its recorded inputs and versions. Compare the observed actions and result.",
       "boundary": "A trace supports investigation; it cannot prove a model’s hidden internal reasoning.",
-      "alt": "Inspectable decision trail: pin context and policy versions; record the selected route and explicit decision signals; preserve validated action arguments, authority and result; redact sensitive fields and apply access and retention rules. Replay a synthetic case and compare observable behavior. Traces do not prove hidden internal model reasoning.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Inspectable decision trail: pin context and policy versions; record the selected route and explicit decision signals; preserve validated action arguments, authority and result; redact sensitive fields and apply access and retention rules. Replay a synthetic case and compare observable behavior. Traces do not prove hidden internal model reasoning.",
       "items": [
         {
           "title": "Context",
@@ -469,7 +544,12 @@
           "title": "Review",
           "detail": "Redact sensitive fields. Limit access and retention."
         }
-      ]
+      ],
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Context, policy and observable actions",
+        "leave_with": "Access-controlled investigation trail"
+      }
     },
     {
       "slug": "a-rollback-cannot-unsend-an-email",
@@ -480,7 +560,7 @@
       "layout": "timeline",
       "test": "In a synthetic run, fail after the external effect. Verify the recovery path does not create the effect twice.",
       "boundary": "A compensating action is a new business action and may need fresh authority.",
-      "alt": "Recovery timeline distinguishes before, after and recovery. Before an external action, draft, validate and authorize. After uncertainty, inspect the destination receipt before retrying. Recover by rolling back safe local state or performing a deliberate compensating action. Restoring code does not undo an email or other external business effect.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Recovery timeline distinguishes before, after and recovery. Before an external action, draft, validate and authorize. After uncertainty, inspect the destination receipt before retrying. Recover by rolling back safe local state or performing a deliberate compensating action. Restoring code does not undo an email or other external business effect.",
       "items": [
         {
           "title": "BEFORE: prevent unnecessary effects",
@@ -495,7 +575,12 @@
           "detail": "Reconcile local state; compensate external effects."
         }
       ],
-      "rule": "RESTORE CODE ≠ REVERSE EVERY BUSINESS EFFECT"
+      "rule": "RESTORE CODE ≠ REVERSE EVERY BUSINESS EFFECT",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Failure point + destination receipt",
+        "leave_with": "Reconciliation or authorized repair"
+      }
     },
     {
       "slug": "boring-is-a-feature",
@@ -506,7 +591,7 @@
       "layout": "stack",
       "test": "Ask a new engineer to trace one release and one restore. Record every undocumented step they need help with.",
       "boundary": "Prefer simplicity where it fits. A measured requirement can justify an exception.",
-      "alt": "Four foundations of an operable platform: a repeatable release path, an explicit owner for each layer, recovery including dependencies and verification, and bounded exceptions with reasons and review dates. Ask a new engineer to trace a release and restore; treat undocumented steps as work to remove.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Four foundations of an operable platform: a repeatable release path, an explicit owner for each layer, recovery including dependencies and verification, and bounded exceptions with reasons and review dates. Ask a new engineer to trace a release and restore; treat undocumented steps as work to remove.",
       "items": [
         {
           "title": "A repeatable release",
@@ -525,7 +610,12 @@
           "detail": "Keep the reason, owner and review date."
         }
       ],
-      "equation": "Predictable foundation → more attention for the product"
+      "equation": "Predictable foundation → more attention for the product",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Platform responsibilities + dependencies",
+        "leave_with": "Repeatable release + recovery path"
+      }
     },
     {
       "slug": "give-the-easy-work-a-smaller-machine",
@@ -536,7 +626,7 @@
       "layout": "fork",
       "test": "Run the same cases through both routes. Include retries, escalation and human correction in the cost.",
       "boundary": "This is a comparison method, not a claim about a particular model or saving.",
-      "alt": "Evidence-based model routing: evaluate a smaller route against the same cases, authority and acceptance rule. If it passes, measure total cost including retries and correction. Otherwise use an approved escalation or decline path. Cost per accepted outcome divides full delivery cost by accepted work; no model-specific savings are claimed.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Evidence-based model routing: evaluate a smaller route against the same cases, authority and acceptance rule. If it passes, measure total cost including retries and correction. Otherwise use an approved escalation or decline path. Cost per accepted outcome divides full delivery cost by accepted work; no model-specific savings are claimed.",
       "question": "Does the smaller route meet the task’s acceptance rule?",
       "question_detail": "Same case set. Same authority. Same definition of done.",
       "branches": [
@@ -549,7 +639,12 @@
           "detail": "Use the approved fallback. Preserve the failed case for evaluation."
         }
       ],
-      "rule": "Cost per accepted outcome = total delivery cost / accepted work"
+      "rule": "Cost per accepted outcome = total delivery cost / accepted work",
+      "process": {
+        "focus": "measure",
+        "bring_in": "Shared cases + acceptance rule",
+        "leave_with": "Route evidence + full delivery cost"
+      }
     },
     {
       "slug": "let-uncertainty-choose-the-next-action",
@@ -560,7 +655,7 @@
       "layout": "matrix",
       "test": "Run synthetic cases for missing context, conflicting sources, denied access and a permitted action. Inspect each result.",
       "boundary": "Model confidence is not a substitute for evidence or authorization.",
-      "alt": "Decision policy matrix: missing context leads to a focused question; conflicting approved sources go to an accountable owner with both sources preserved; denied access leads to refusal without restricted content; a permitted action still requires validation and a result receipt. Test all four conditions. Confidence cannot grant authority or establish that a source is current.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Decision policy matrix: missing context leads to a focused question; conflicting approved sources go to an accountable owner with both sources preserved; denied access leads to refusal without restricted content; a permitted action still requires validation and a result receipt. Test all four conditions. Confidence cannot grant authority or establish that a source is current.",
       "columns": [
         "CONDITION",
         "NEXT STEP",
@@ -587,7 +682,12 @@
           "Validate, then execute",
           "Scope + result receipt"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "harden",
+        "bring_in": "Available evidence + caller authority",
+        "leave_with": "Ask, escalate, refuse or execute"
+      }
     },
     {
       "slug": "what-i-m-carrying-into-next-year",
@@ -598,7 +698,7 @@
       "layout": "flow",
       "test": "Pick one workflow. Locate the written rule, the human decision and the test that proves its foundation.",
       "boundary": "A reusable checklist helps prepare evidence; it does not certify a system.",
-      "alt": "Reusable architecture practices: write scope, ownership and exceptions; identify the exact human judgment; test state, permissions and failure behavior; preserve decision records and acceptance cases. Locate all four for one workflow. A checklist prepares evidence but is not certification.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Reusable architecture practices: write scope, ownership and exceptions; identify the exact human judgment; test state, permissions and failure behavior; preserve decision records and acceptance cases. Locate all four for one workflow. A checklist prepares evidence but is not certification.",
       "items": [
         {
           "title": "Write the rule",
@@ -616,7 +716,12 @@
           "title": "Keep the evidence",
           "detail": "Save the decision and its acceptance cases."
         }
-      ]
+      ],
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Written rules + human decisions",
+        "leave_with": "Reusable checks + acceptance evidence"
+      }
     },
     {
       "slug": "a-small-release-needs-a-small-blast-radius",
@@ -627,7 +732,7 @@
       "layout": "fork",
       "test": "Revoke the release flag during a test run. Check which in-flight actions stop and which need reconciliation.",
       "boundary": "A flag can stop new work. It cannot automatically undo completed effects.",
-      "alt": "Release-control decision: bound affected tenants, operations, authority and time; tag results by version and name stop thresholds plus an operator. If consequences cannot be identified, reduce scope and test recovery first. Revoke a test flag while work is active, then reconcile completed effects; a flag cannot undo them.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Release-control decision: bound affected tenants, operations, authority and time; tag results by version and name stop thresholds plus an operator. If consequences cannot be identified, reduce scope and test recovery first. Revoke a test flag while work is active, then reconcile completed effects; a flag cannot undo them.",
       "question": "Can we stop this change without guessing who it affected?",
       "question_detail": "Limit tenants + operations + authority + time",
       "branches": [
@@ -640,7 +745,12 @@
           "detail": "Reduce scope before rollout. Test the stop and reconciliation paths first."
         }
       ],
-      "rule": "Observe → stop new work → reconcile existing work"
+      "rule": "Observe → stop new work → reconcile existing work",
+      "process": {
+        "focus": "sustain",
+        "bring_in": "Release scope + permitted effects",
+        "leave_with": "Stop signal + reconciliation plan"
+      }
     },
     {
       "slug": "read-the-invoice-before-the-architecture-review",
@@ -651,7 +761,7 @@
       "layout": "matrix",
       "test": "Choose one unexplained charge. Trace its workload, owner, purpose and safe retirement evidence before acting.",
       "boundary": "A high cost may be justified. Investigate before removing a dependency.",
-      "alt": "Cloud cost-to-ownership matrix: compute maps to workloads and tier owners, storage to data and retention owners, network to flows and service owners, shared services to consumers and cost owners. Investigate one unexplained charge before deciding whether to keep, tune or retire it. A high cost can be justified.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Cloud cost-to-ownership matrix: compute maps to workloads and tier owners, storage to data and retention owners, network to flows and service owners, shared services to consumers and cost owners. Investigate one unexplained charge before deciding whether to keep, tune or retire it. A high cost can be justified.",
       "columns": [
         "BILL LINE",
         "CONNECT IT TO",
@@ -678,7 +788,12 @@
           "Consumers + cost owner",
           "Allocation + lifecycle"
         ]
-      ]
+      ],
+      "process": {
+        "focus": "measure",
+        "bring_in": "Charges + workload inventory",
+        "leave_with": "Cost ownership + keep or retire decision"
+      }
     },
     {
       "slug": "save-the-reason-then-reuse-the-component",
@@ -689,7 +804,7 @@
       "layout": "flow",
       "test": "Move the component into a synthetic second context. Change its authority and confirm the old permission does not follow.",
       "boundary": "Code can be reused. Another organization’s authority cannot be inherited.",
-      "alt": "Reusable component package: preserve its input/output contract and permitted effects, the reason and assumptions behind the design, allowed/refused/recovery tests, then validate identity and data policy in the new context. Test that old permission does not follow a component into another environment.",
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Reusable component package: preserve its input/output contract and permitted effects, the reason and assumptions behind the design, allowed/refused/recovery tests, then validate identity and data policy in the new context. Test that old permission does not follow a component into another environment.",
       "items": [
         {
           "title": "Contract",
@@ -707,7 +822,12 @@
           "title": "New context",
           "detail": "Recheck identity, data policy and acceptance."
         }
-      ]
+      ],
+      "process": {
+        "focus": "harden",
+        "bring_in": "Component contract + new context",
+        "leave_with": "Revalidated authority + failure tests"
+      }
     },
     {
       "slug": "a-yes-has-a-boundary-recording",
@@ -718,7 +838,12 @@
       "layout": "approval",
       "test": "Approve version 1, change the amount, then attempt the write. Expected: PAYLOAD_CHANGED; synthetic writes: 0.",
       "boundary": "Deterministic teaching simulation. No payment, model or cloud transaction is executed.",
-      "alt": "Synthetic approval-boundary demonstration. A reviewed refund proposal for $500 is version 1. Changing the amount to $5,000 produces version 2. Approval remains bound to version 1, so a write attempt is refused with PAYLOAD_CHANGED and zero synthetic writes. The changed proposal needs new review. No payment or live cloud transaction occurs."
+      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Synthetic approval-boundary demonstration. A reviewed refund proposal for $500 is version 1. Changing the amount to $5,000 produces version 2. Approval remains bound to version 1, so a write attempt is refused with PAYLOAD_CHANGED and zero synthetic writes. The changed proposal needs new review. No payment or live cloud transaction occurs.",
+      "process": {
+        "focus": "harden",
+        "bring_in": "Exact proposal + human approval",
+        "leave_with": "Version-bound action + refusal receipt"
+      }
     }
   ]
 }

@@ -35,9 +35,9 @@ A recurring editorial preparation task should check remote main, preserve any ne
 | Dec 17 | Read the invoice before the architecture review | Existing article: economic evidence |
 | Dec 18 | Save the reason, then reuse the component | Contract, decision, failure tests and operational handoff |
 
-## A useful visual, not a decorated quotation
+## A connected process, with one stage enlarged
 
-Each upcoming post gets a specific infographic that a reader could use after closing the feed. Keep one central decision per image, with an inspectable flow, comparison or checklist. The layout may vary with the subject: a state transition is not a cost equation, and a lifecycle map is not a quotation card.
+Each upcoming post gets a specific infographic that a reader could use after closing the feed. Start with the common SHAMS process map: Scope, Harden, Anchor, Measure, Sustain. Highlight one primary stage and connect it visually to the enlarged lesson. Show the evidence to bring in and the artifact to leave with. These are revisitable design moves, not publication dates or proof that earlier work is complete. The November 17 logging post focuses Measure; its detail checks evidence coverage and cost. Other cards keep the same map while highlighting the stage their decision most directly tests. Keep one central decision per image, with an inspectable flow, comparison or checklist. The layout may vary with the subject: a state transition is not a cost equation, and a lifecycle map is not a quotation card.
 
 Use the site's paper, ink and cobalt palette, gold only for costs and coral for denial or error. Pair color with labels or symbols. Keep text readable on a phone, define unfamiliar terms in context, and leave space around the main structure. Do not invent percentages, benchmarks, customer results or a safety certification to make an image look advanced.
 
