@@ -32,15 +32,17 @@ class InfographicTests(unittest.TestCase):
         self.assertEqual(len(actual), len(set(actual)))
 
     def test_manifest_assets_are_complete_readable_and_current(self):
+        renderer.verify_manifest(self.manifest,self.specs)
         self.assertEqual((self.manifest['width'], self.manifest['height']), (1200, 1500))
         self.assertEqual(len(self.manifest['items']), len(self.specs))
         specs = {s['slug']: s for s in self.specs}
         for item in self.manifest['items']:
             with self.subTest(slug=item['slug']):
-                data, boxes = self.rendered[item['slug']]
+                _, boxes = self.rendered[item['slug']]
+                data = (ROOT/item['asset']).read_bytes()
                 self.assertEqual(item['asset'], f"content/images/{item['slug']}.png")
-                self.assertEqual((ROOT/item['asset']).read_bytes(), data)
                 self.assertEqual(item['sha256'], hashlib.sha256(data).hexdigest())
+                self.assertEqual(item['spec_sha256'], renderer.spec_fingerprint(specs[item['slug']]))
                 self.assertEqual(item['alt'], specs[item['slug']]['alt'])
                 self.assertEqual(item['post'], specs[item['slug']].get('post'))
                 self.assertGreater(len(item['alt']), 80)
@@ -49,6 +51,52 @@ class InfographicTests(unittest.TestCase):
                     self.assertEqual(image.size, (1200, 1500))
                     self.assertEqual(image.mode, 'RGB')
                 self.assertGreater(len(boxes), 10)
+
+    def test_changed_renderer_source_is_rejected(self):
+        original = Path.read_bytes
+        source = Path(renderer.__file__).resolve()
+        def changed(path):
+            data = original(path)
+            return data+b'\n# changed renderer source\n' if path==source else data
+        with patch.object(Path,'read_bytes',changed), self.assertRaisesRegex(ValueError,'Renderer source'):
+            renderer.verify_manifest(self.manifest,self.specs)
+
+    def test_changed_font_is_rejected(self):
+        original = Path.read_bytes
+        font = renderer.FONTS/renderer.FONT_FILES['sans']
+        def changed(path):
+            data = original(path)
+            return data+b'changed' if path==font else data
+        with patch.object(Path,'read_bytes',changed), self.assertRaisesRegex(ValueError,'font inputs'):
+            renderer.verify_manifest(self.manifest,self.specs)
+
+    def test_changed_spec_is_rejected_even_when_it_still_fits(self):
+        specs = copy.deepcopy(self.specs)
+        specs[0]['subtitle'] = 'Changed meaning that still fits the layout.'
+        with self.assertRaisesRegex(ValueError,'Specification'):
+            renderer.verify_manifest(self.manifest,specs)
+
+    def test_tampered_committed_asset_is_rejected(self):
+        original = Path.read_bytes
+        asset = ROOT/self.manifest['items'][0]['asset']
+        def changed(path):
+            data = original(path)
+            return data+b'changed' if path==asset else data
+        with patch.object(Path,'read_bytes',changed), self.assertRaisesRegex(ValueError,'Asset hash mismatch'):
+            renderer.verify_manifest(self.manifest,self.specs)
+
+    def test_check_renders_bounds_but_ignores_platform_raster_bytes(self):
+        def different_raster(spec):
+            data,boxes = self.rendered[spec['slug']]
+            return data+b'different platform raster bytes',boxes
+        with patch.object(renderer,'render',side_effect=different_raster), patch('builtins.print'):
+            self.assertEqual(renderer.build(check=True), self.manifest)
+
+    def test_check_rejects_overflow_even_with_committed_assets(self):
+        specs = copy.deepcopy(self.specs)
+        specs[0]['title'] = 'Cannot fit the available title region ' * 100
+        with patch.object(renderer,'load_specs',return_value=specs), self.assertRaises(renderer.LayoutError):
+            renderer.build(check=True)
 
     def test_graphics_offer_multiple_mechanisms(self):
         self.assertEqual({s['layout'] for s in self.specs}, renderer.LAYOUTS)

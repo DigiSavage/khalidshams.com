@@ -238,31 +238,76 @@ def load_specs():
     return raw['items']
 
 
+def spec_fingerprint(spec):
+    canonical=json.dumps(spec,sort_keys=True,ensure_ascii=False,separators=(',',':'))
+    return hashlib.sha256(canonical.encode('utf-8')).hexdigest()
+
+
+def input_fingerprints():
+    renderer_path=Path(__file__).resolve()
+    return {
+        'renderer':{'path':str(renderer_path.relative_to(ROOT)),
+                    'sha256':hashlib.sha256(renderer_path.read_bytes()).hexdigest()},
+        'fonts':{str((FONTS/name).relative_to(ROOT)):hashlib.sha256((FONTS/name).read_bytes()).hexdigest()
+                 for name in sorted(set(FONT_FILES.values()))},
+    }
+
+
+def manifest_entry(spec,asset_hash):
+    return {'slug':spec['slug'],'post':spec.get('post'),
+            'asset':'content/images/'+spec['slug']+'.png','alt':spec['alt'],
+            'layout':spec['layout'],'sha256':asset_hash,'spec_sha256':spec_fingerprint(spec),
+            'source':'content/infographics/specs.json'}
+
+
+def verify_manifest(manifest,specs):
+    """Verify reviewed assets and every rendering input without requiring identical rasterizers."""
+    if (manifest.get('schema_version'),manifest.get('width'),manifest.get('height'))!=(1,W,H):
+        raise ValueError('Manifest schema or dimensions are stale')
+    if manifest.get('inputs')!=input_fingerprints():
+        raise ValueError('Renderer source or bundled font inputs changed; regenerate and review assets')
+    entries=manifest.get('items',[])
+    if len(entries)!=len(specs): raise ValueError('Manifest item coverage is stale')
+    for spec,entry in zip(specs,entries):
+        if entry!=manifest_entry(spec,entry.get('sha256')):
+            raise ValueError(f'Specification or manifest metadata changed: {spec["slug"]}')
+        destination=ROOT/entry['asset']
+        if not destination.is_file(): raise ValueError(f'Asset missing: {entry["asset"]}')
+        data=destination.read_bytes()
+        if hashlib.sha256(data).hexdigest()!=entry['sha256']:
+            raise ValueError(f'Asset hash mismatch: {entry["asset"]}')
+        with Image.open(io.BytesIO(data)) as image:
+            if image.format!='PNG' or image.size!=(W,H) or image.mode!='RGB':
+                raise ValueError(f'Invalid asset format or dimensions: {entry["asset"]}')
+            image.verify()
+
+
 def build(check=False,only=None):
-    items=[]; prepared=[]
-    for spec in load_specs():
+    items=[]; prepared=[]; specs=load_specs()
+    for spec in specs:
         # Preflight every layout before changing files: one overflow must not leave a partial batch.
         data,boxes=render(spec)
         asset='content/images/'+spec['slug']+'.png'
-        entry={'slug':spec['slug'],'post':spec.get('post'),'asset':asset,'alt':spec['alt'],
-               'layout':spec['layout'],'sha256':hashlib.sha256(data).hexdigest(),
-               'source':'content/infographics/specs.json'}
+        entry=manifest_entry(spec,hashlib.sha256(data).hexdigest())
         items.append(entry)
         if not only or spec['slug']==only:
             prepared.append((asset,data,boxes))
     if only and not prepared: raise ValueError('Requested slug was not found')
+    if check:
+        # The renders above still check every text bound. Reviewed PNG bytes are checked
+        # against their receipt, not this machine's FreeType/PNG implementation.
+        manifest=json.loads(MANIFEST_PATH.read_text())
+        verify_manifest(manifest,specs)
+        for asset,data,boxes in prepared:
+            print(f'checked {asset}: source hashes, asset hash, {len(boxes)} text regions')
+        return manifest
     for asset,data,boxes in prepared:
         destination=ROOT/asset
-        if check:
-            if not destination.exists() or destination.read_bytes()!=data: raise ValueError(f'Asset missing or stale: {asset}')
-        else:
-            destination.parent.mkdir(parents=True,exist_ok=True);destination.write_bytes(data)
-        print(f'{"checked" if check else "rendered"} {asset}: {len(boxes)} text regions')
-    manifest={'schema_version':1,'width':W,'height':H,'items':items}
+        destination.parent.mkdir(parents=True,exist_ok=True);destination.write_bytes(data)
+        print(f'rendered {asset}: {len(boxes)} text regions')
+    manifest={'schema_version':1,'width':W,'height':H,'inputs':input_fingerprints(),'items':items}
     serialized=json.dumps(manifest,indent=2,ensure_ascii=False)+'\n'
-    if check:
-        if json.loads(MANIFEST_PATH.read_text())!=manifest: raise ValueError('Manifest is stale')
-    elif not only:
+    if not only:
         MANIFEST_PATH.write_text(serialized)
     return manifest
 
