@@ -1,11 +1,12 @@
 ---
 title: "The cost of seeing everything"
 date: 2026-11-17
-status: approved
+status: published
 visual_required: true
 tag: security
 summary: "A log budget starts with the decisions the data must support. Keep detection, investigation and retention needs visible."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7528474382395088897/
+linkedin_published_at: 2026-11-17T08:09:25-07:00
 ---
 
 "Send everything to Sentinel" is a budget decision disguised as a security strategy.
