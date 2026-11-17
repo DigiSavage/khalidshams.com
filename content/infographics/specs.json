@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "slug": "2036-change-one-assumption",
+      "post": "content/posts/2026-11-18-2036-change-one-assumption.md",
+      "title": "Change the assumption.\nTrace the consequence.",
+      "subtitle": "A component swap can change the decision underneath it.",
+      "category": "Change control",
+      "layout": "flow",
+      "test": "Remove the preferred model. Name the first acceptance test that now needs to run again.",
+      "boundary": "A design exercise, not a claim that any replacement is equivalent.",
+      "alt": "A four-step change-impact flow: preserve the accepted outcome, identify the broken dependency, recheck data access and authority, then rerun affected tests with a named owner. Test it by removing the preferred model. Replacement does not establish equivalence.",
+      "items": [
+        {
+          "title": "Outcome",
+          "detail": "Keep the accepted business result explicit."
+        },
+        {
+          "title": "Dependency",
+          "detail": "Find what can no longer support that result."
+        },
+        {
+          "title": "Boundary",
+          "detail": "Recheck data access, authority and cost."
+        },
+        {
+          "title": "Evidence",
+          "detail": "Rerun affected tests. Name the decision owner."
+        }
+      ]
+    },
+    {
+      "slug": "small-models-big-boundaries",
+      "post": "content/posts/2026-11-19-small-models-big-boundaries.md",
+      "title": "Choose the boundary.\nThen choose the model.",
+      "subtitle": "Use task-specific evidence to route work. Size alone is not a safety control.",
+      "category": "Model routing",
+      "layout": "fork",
+      "test": "Run the same labeled cases through both routes. Compare accepted results, failures, latency and full cost.",
+      "boundary": "Model suitability depends on the task and evaluation; no savings are assumed.",
+      "alt": "Model-routing decision: choose a smaller route only if it passes the task-specific acceptance test. Otherwise escalate for a suitable model or human review, or stop. Both routes require typed inputs, validated outputs, failure behavior and permission enforcement. Compare quality, latency and full delivery cost.",
+      "question": "Does the narrow route meet the acceptance test?",
+      "question_detail": "Typed input + validated output + a defined failure path",
+      "branches": [
+        {
+          "title": "YES: use the narrow route",
+          "detail": "Use the measured fit. Keep validation and permission checks at execution."
+        },
+        {
+          "title": "NO: escalate or stop",
+          "detail": "Try a suitable stronger route, ask for review, or decline. Do not improvise authority."
+        }
+      ],
+      "rule": "A larger model still needs the same authority boundary."
+    },
+    {
+      "slug": "2036-hand-over-the-proof",
+      "post": "content/posts/2026-11-20-2036-hand-over-the-proof.md",
+      "title": "A handover needs\nthree reproducible results.",
+      "subtitle": "Give the next operator enough evidence to work without your narration.",
+      "category": "Handover",
+      "layout": "matrix",
+      "test": "Ask a colleague to run all three cases. Every question they must ask you becomes a gap to close.",
+      "boundary": "Teaching cases support a handover. They are not production certification.",
+      "alt": "Handover matrix with three cases. Allowed: inspect the intended business state and keep inputs plus receipt. Refused: verify no forbidden change and keep the reason and boundary. Recovered: verify a reconciled final state and keep recovery steps and timings. Have another person reproduce them; record the questions they need to ask.",
+      "columns": [
+        "CASE",
+        "INSPECT",
+        "KEEP"
+      ],
+      "rows": [
+        [
+          "Allowed",
+          "The intended business state",
+          "Inputs + receipt"
+        ],
+        [
+          "Refused",
+          "No forbidden change",
+          "Reason + boundary"
+        ],
+        [
+          "Recovered",
+          "A reconciled final state",
+          "Steps + timings"
+        ]
+      ]
+    },
+    {
+      "slug": "draw-the-finish-line-before-the-flow",
+      "post": "content/posts/2026-11-23-draw-the-finish-line-before-the-flow.md",
+      "title": "Design backward\nfrom the finish line.",
+      "subtitle": "Start with a safely completed task, then trace what must be true.",
+      "category": "Outcome backward",
+      "layout": "flow",
+      "test": "Give the acceptance statement to someone else. Can they tell a finished task from a plausible-looking output?",
+      "boundary": "An interface sketch may test a need; it does not prove the engine.",
+      "alt": "Reverse planning from an accepted outcome to evidence, state and authority, then component contracts. First define the result and who accepts it; identify the completion record; define permitted changes and recovery; give each capability inputs, outputs and tests. Ask a colleague to distinguish actual completion from a plausible output.",
+      "items": [
+        {
+          "title": "Accepted outcome",
+          "detail": "State the result and who can accept it."
+        },
+        {
+          "title": "Evidence",
+          "detail": "Name the record that proves completion."
+        },
+        {
+          "title": "State + authority",
+          "detail": "Define permitted changes and recovery."
+        },
+        {
+          "title": "Component contract",
+          "detail": "Give each capability an input, output and test."
+        }
+      ]
+    },
+    {
+      "slug": "the-pilot-that-never-ends",
+      "post": "content/posts/2026-11-24-the-pilot-that-never-ends.md",
+      "title": "Give the pilot\nan exit decision.",
+      "subtitle": "Agree on the evidence, thresholds and review date before the build.",
+      "category": "Pilot decisions",
+      "layout": "fork",
+      "test": "Write the decision date, acceptance thresholds and accountable owner before starting the next pilot.",
+      "boundary": "Thresholds depend on the use case. This template supplies no universal target.",
+      "alt": "Pilot exit decision tree. Before building, agree on fixed cases, quality and cost thresholds, an accountable owner and a review date. If evidence passes, decide the next bounded production investment and operating conditions. If not, stop or revise with a new hypothesis and date. A clear no is a valid result.",
+      "question": "At the review date: did the agreed case pass?",
+      "question_detail": "Fixed cases + measured quality + full delivery cost",
+      "branches": [
+        {
+          "title": "YES: production decision",
+          "detail": "Approve the next bounded investment, operating owner and release conditions."
+        },
+        {
+          "title": "NO: stop or revise",
+          "detail": "Record what failed. Any extension needs a new hypothesis and a new decision date."
+        }
+      ],
+      "rule": "A useful pilot ends with a decision, including a clear no."
+    },
+    {
+      "slug": "the-fallback-needs-a-smaller-promise",
+      "post": "content/posts/2026-11-25-the-fallback-needs-a-smaller-promise.md",
+      "title": "A fallback needs\na smaller promise.",
+      "subtitle": "When a dependency fails, reduce capability explicitly.",
+      "category": "Degraded mode",
+      "layout": "fork",
+      "test": "Remove the retrieval source. Verify that the fallback cannot silently send an unsupported answer as fact.",
+      "boundary": "A fallback must earn its own acceptance evidence. Availability is not permission.",
+      "alt": "Degraded-mode decision: when an approved source is unavailable, keep identity and authority checks. Continue only with bounded work supported by available evidence, marking limitations and routing unresolved parts. Stop actions lacking evidence or authority. Test by removing the retrieval source; availability does not grant new permission.",
+      "question": "The approved source is unavailable. What remains safe?",
+      "question_detail": "Keep the original identity and authority boundary",
+      "branches": [
+        {
+          "title": "CONTINUE, BOUNDED",
+          "detail": "Draft from approved available evidence, mark limits and route the unresolved part."
+        },
+        {
+          "title": "STOP THE ACTION",
+          "detail": "If evidence or authority is missing, refuse the write and explain the next step."
+        }
+      ],
+      "rule": "Fallback capability must not exceed the original authority."
+    },
+    {
+      "slug": "a-deletion-has-more-than-one-address",
+      "post": "content/posts/2026-11-26-a-deletion-has-more-than-one-address.md",
+      "title": "Deletion is a route,\nnot one button.",
+      "subtitle": "Follow a record through its copies and preserve the verification result.",
+      "category": "Data lifecycle",
+      "layout": "matrix",
+      "test": "Delete one synthetic record, then search its identifier across every documented copy and derived view.",
+      "boundary": "Retention duties and backup expiry need an agreed policy; do not promise instant erasure.",
+      "alt": "Deletion coverage matrix: source follows the deletion policy; indexes and caches are invalidated and queried again; exports require an owner and retention disposition; backups require expiry and restore controls to prevent reintroduction. Delete a synthetic record and check every documented copy. Legal retention and physical backup removal can differ.",
+      "columns": [
+        "LOCATION",
+        "ACTION",
+        "VERIFY"
+      ],
+      "rows": [
+        [
+          "Source",
+          "Apply the deletion policy",
+          "Record absent or sealed"
+        ],
+        [
+          "Index + cache",
+          "Invalidate derived copies",
+          "Search and read again"
+        ],
+        [
+          "Exports",
+          "Track owner + retention",
+          "Confirm disposition"
+        ],
+        [
+          "Backups",
+          "Apply expiry + restore rule",
+          "Prevent reintroduction"
+        ]
+      ]
+    },
+    {
+      "slug": "a-dashboard-can-disagree-politely",
+      "post": "content/posts/2026-11-27-a-dashboard-can-disagree-politely.md",
+      "title": "Before comparing charts,\ncompare the definitions.",
+      "subtitle": "Two correct queries can answer different business questions.",
+      "category": "Metric agreement",
+      "layout": "matrix",
+      "test": "Trace one row through both revenue definitions. Identify the exact rule that explains the difference.",
+      "boundary": "Illustrative metric contract. The business owner must approve the actual rules.",
+      "alt": "Metric agreement checklist: define the time basis, transaction status, currency conversion rule, owner and version before comparing revenue charts. Trace one row through both definitions to explain disagreements. A technically valid query does not establish a shared business meaning.",
+      "columns": [
+        "DIMENSION",
+        "MAKE EXPLICIT",
+        "ASK"
+      ],
+      "rows": [
+        [
+          "Time",
+          "Recognized vs received",
+          "Which period?"
+        ],
+        [
+          "Status",
+          "Booked vs refunded",
+          "Which events count?"
+        ],
+        [
+          "Currency",
+          "Conversion rule + date",
+          "Which rate?"
+        ],
+        [
+          "Ownership",
+          "Definition + version",
+          "Who approves change?"
+        ]
+      ]
+    },
+    {
+      "slug": "the-cache-remembers-the-old-permission",
+      "post": "content/posts/2026-11-30-the-cache-remembers-the-old-permission.md",
+      "title": "A cached answer\ncan outlive permission.",
+      "subtitle": "Data reuse never replaces a current authorization decision.",
+      "category": "Permission freshness",
+      "layout": "fork",
+      "test": "Warm the cache, revoke access, then ask again. The cached path must deny what the source path would deny.",
+      "boundary": "A tenant key alone does not prove row-level or user-level authorization.",
+      "alt": "Cache authorization fork: evaluate the caller’s current permission before serving a result. An eligible entry must match tenant and relevant caller, source and policy scope. Deny access if permission is no longer valid. Test by warming the cache, revoking access and making the same request again; tenant separation alone is insufficient.",
+      "question": "Can this caller read this result right now?",
+      "question_detail": "Check current scope before a cached result is served",
+      "branches": [
+        {
+          "title": "YES: eligible cache entry",
+          "detail": "Match tenant, caller scope and relevant source or policy versions before reuse."
+        },
+        {
+          "title": "NO: deny the response",
+          "detail": "Do not serve the old result. Invalidate or segregate affected entries as required."
+        }
+      ],
+      "rule": "Cache the computation. Recheck the permission."
+    },
+    {
+      "slug": "what-building-on-aws-taught-me-about-boring",
+      "post": "content/posts/2026-12-01-what-building-on-aws-taught-me-about-boring.md",
+      "title": "A backup is not\na recovered service.",
+      "subtitle": "Restore the dependencies that make the record usable again.",
+      "category": "Operating choices",
+      "layout": "stack",
+      "test": "Restore a synthetic record. Verify identity, dependencies, owner and acceptance before declaring recovery.",
+      "boundary": "A rehearsal is evidence for the cases exercised. It does not guarantee every recovery.",
+      "alt": "Recovery checklist: restore a synthetic record with a known expected result, rebuild identity/configuration/access dependencies, name the recovery owner, then verify the usable outcome. A stored backup alone is not evidence that the service has recovered. A rehearsal covers only the cases exercised.",
+      "items": [
+        {
+          "title": "Restore a synthetic record",
+          "detail": "Use a controlled case with an expected result."
+        },
+        {
+          "title": "Rebuild its dependencies",
+          "detail": "Verify identity, configuration and access."
+        },
+        {
+          "title": "Name the recovery owner",
+          "detail": "Make the decision and handoff explicit."
+        },
+        {
+          "title": "Test the usable outcome",
+          "detail": "Confirm the service can do its permitted job."
+        }
+      ],
+      "equation": "Stored copy + restored dependencies + acceptance"
+    },
+    {
+      "slug": "version-the-question-behind-the-metric",
+      "post": "content/posts/2026-12-02-version-the-question-behind-the-metric.md",
+      "title": "Version the question\nbehind the metric.",
+      "subtitle": "A schema can stay unchanged while the meaning changes underneath it.",
+      "category": "Data contracts",
+      "layout": "matrix",
+      "test": "Change one business definition in a test copy. Can a consumer detect the version change before comparing periods?",
+      "boundary": "A definition change may require restatement; a new label alone is not reconciliation.",
+      "alt": "Versioned metric contract covering business meaning, included population, period and currency rules, and owner plus effective date. Change a definition in a test copy and verify consumers detect the version change before comparing periods. Historical restatement or reconciliation may be needed.",
+      "columns": [
+        "CONTRACT",
+        "PIN IT",
+        "CHANGE CHECK"
+      ],
+      "rows": [
+        [
+          "Meaning",
+          "Business question",
+          "What changed?"
+        ],
+        [
+          "Population",
+          "Rows + exclusions",
+          "Who moved in or out?"
+        ],
+        [
+          "Period",
+          "Time + currency rules",
+          "Comparable history?"
+        ],
+        [
+          "Version",
+          "Owner + effective date",
+          "Consumer notified?"
+        ]
+      ]
+    },
+    {
+      "slug": "the-slide-nobody-wants-to-see",
+      "post": "content/posts/2026-12-03-the-slide-nobody-wants-to-see.md",
+      "title": "Draw the dependencies\ninto the same room.",
+      "subtitle": "Make hidden ownership and coupling visible before selecting a target design.",
+      "category": "Dependency map",
+      "layout": "map",
+      "test": "Pick one critical workflow. Trace every data, identity, vendor and operating dependency, then name the owner.",
+      "boundary": "Illustrative map, not an inventory of a real organization.",
+      "alt": "Illustrative dependency map places a business workflow in the center, connected to data, identity, vendor and operations. Each dependency needs an owner: sources and shared stores; service accounts and permissions; supplier service and exit path; deployment, restore and escalation. Trace one real workflow to find undocumented coupling.",
+      "center": "BUSINESS WORKFLOW",
+      "center_detail": "Who owns the result?",
+      "nodes": [
+        {
+          "title": "Data",
+          "detail": "Source, shared store, retention"
+        },
+        {
+          "title": "Identity",
+          "detail": "Service account, scope, owner"
+        },
+        {
+          "title": "Vendor",
+          "detail": "Service, agreement, exit path"
+        },
+        {
+          "title": "Operations",
+          "detail": "Deploy, restore, escalation"
+        }
+      ]
+    },
+    {
+      "slug": "the-queue-is-part-of-the-product",
+      "post": "content/posts/2026-12-04-the-queue-is-part-of-the-product.md",
+      "title": "The clock starts\nbefore execution.",
+      "subtitle": "Queue time belongs in the promise made to the user.",
+      "category": "Queue design",
+      "layout": "timeline",
+      "test": "Hold a test dependency unavailable, then restore it. Inspect which tasks resume, expire or need a new decision.",
+      "boundary": "A queue absorbs pressure. It does not remove the work or its deadline.",
+      "alt": "Queue lifecycle: at arrival assign identity, deadline and stable work ID; while waiting expose age, capacity, expiry and escalation; to finish, recheck authority and execute, review and confirm the outcome. The deadline includes waiting as well as execution. Hold a test dependency unavailable, restore it, and inspect resumed, expired and held tasks.",
+      "items": [
+        {
+          "title": "ARRIVE: accepted into the queue",
+          "detail": "Assign identity, deadline, priority and a retry-safe work ID."
+        },
+        {
+          "title": "WAIT: owned but not complete",
+          "detail": "Expose age, capacity, expiry and the escalation path."
+        },
+        {
+          "title": "FINISH: execute, review and confirm",
+          "detail": "Recheck authority; record an accepted or expired outcome."
+        }
+      ],
+      "rule": "BUDGET WAIT + EXECUTION + REVIEW + CONFIRMATION"
+    },
+    {
+      "slug": "rent-the-capability-keep-the-exit",
+      "post": "content/posts/2026-12-07-rent-the-capability-keep-the-exit.md",
+      "title": "Buy the capability.\nTest the exit.",
+      "subtitle": "A purchasing decision also chooses the cost of changing your mind.",
+      "category": "Build or buy",
+      "layout": "fork",
+      "test": "Export a synthetic case set and run it through a replacement path. List every field, rule or behavior that was lost.",
+      "boundary": "An export button is not proof of operational portability.",
+      "alt": "Build-or-buy portability decision: test whether another provider can reproduce the required outcome using exported data, identity mappings and acceptance cases. A rehearsed exit retains the export format and replacement plan. An unproven exit records proprietary behavior and migration gaps. An export button alone does not prove portability.",
+      "question": "Can the next provider reproduce the required outcome?",
+      "question_detail": "Data + identity + behavior + operating evidence",
+      "branches": [
+        {
+          "title": "EXIT REHEARSED",
+          "detail": "Keep an export format, acceptance cases and a realistic replacement path."
+        },
+        {
+          "title": "EXIT UNPROVEN",
+          "detail": "Name proprietary behavior, missing fields and migration work before committing."
+        }
+      ],
+      "rule": "Portability is an exercised path, not a feature label."
+    },
+    {
+      "slug": "why-did-it-do-that",
+      "post": "content/posts/2026-12-08-why-did-it-do-that.md",
+      "title": "Keep the decision\ninspectable.",
+      "subtitle": "Record observable inputs and actions. Do not mistake a generated explanation for proof.",
+      "category": "Trace design",
+      "layout": "flow",
+      "test": "Replay one synthetic case from its recorded inputs and versions. Compare the observed actions and result.",
+      "boundary": "A trace supports investigation; it cannot prove a model’s hidden internal reasoning.",
+      "alt": "Inspectable decision trail: pin context and policy versions; record the selected route and explicit decision signals; preserve validated action arguments, authority and result; redact sensitive fields and apply access and retention rules. Replay a synthetic case and compare observable behavior. Traces do not prove hidden internal model reasoning.",
+      "items": [
+        {
+          "title": "Context",
+          "detail": "Pin source versions, input and relevant policy."
+        },
+        {
+          "title": "Decision record",
+          "detail": "Record selected route and explicit decision signals."
+        },
+        {
+          "title": "Action receipt",
+          "detail": "Keep validated arguments, authority and result."
+        },
+        {
+          "title": "Review",
+          "detail": "Redact sensitive fields. Limit access and retention."
+        }
+      ]
+    },
+    {
+      "slug": "a-rollback-cannot-unsend-an-email",
+      "post": "content/posts/2026-12-09-a-rollback-cannot-unsend-an-email.md",
+      "title": "A rollback cannot\nunsend an email.",
+      "subtitle": "Separate reversible system state from effects outside your boundary.",
+      "category": "Recovery design",
+      "layout": "timeline",
+      "test": "In a synthetic run, fail after the external effect. Verify the recovery path does not create the effect twice.",
+      "boundary": "A compensating action is a new business action and may need fresh authority.",
+      "alt": "Recovery timeline distinguishes before, after and recovery. Before an external action, draft, validate and authorize. After uncertainty, inspect the destination receipt before retrying. Recover by rolling back safe local state or performing a deliberate compensating action. Restoring code does not undo an email or other external business effect.",
+      "items": [
+        {
+          "title": "BEFORE: prevent unnecessary effects",
+          "detail": "Draft, validate and obtain the required authorization."
+        },
+        {
+          "title": "AFTER: establish what happened",
+          "detail": "Inspect the destination receipt before retrying."
+        },
+        {
+          "title": "RECOVER: choose the right repair",
+          "detail": "Reconcile local state; compensate external effects."
+        }
+      ],
+      "rule": "RESTORE CODE ≠ REVERSE EVERY BUSINESS EFFECT"
+    },
+    {
+      "slug": "boring-is-a-feature",
+      "post": "content/posts/2026-12-10-boring-is-a-feature.md",
+      "title": "Make the foundation\neasy to operate.",
+      "subtitle": "Predictable systems leave room for ambitious products.",
+      "category": "Platform design",
+      "layout": "stack",
+      "test": "Ask a new engineer to trace one release and one restore. Record every undocumented step they need help with.",
+      "boundary": "Prefer simplicity where it fits. A measured requirement can justify an exception.",
+      "alt": "Four foundations of an operable platform: a repeatable release path, an explicit owner for each layer, recovery including dependencies and verification, and bounded exceptions with reasons and review dates. Ask a new engineer to trace a release and restore; treat undocumented steps as work to remove.",
+      "items": [
+        {
+          "title": "A repeatable release",
+          "detail": "One documented path, used consistently."
+        },
+        {
+          "title": "An explicit owner",
+          "detail": "Each layer has an accountable operator."
+        },
+        {
+          "title": "A recovery path",
+          "detail": "Dependencies, access and verification are included."
+        },
+        {
+          "title": "A bounded exception",
+          "detail": "Keep the reason, owner and review date."
+        }
+      ],
+      "equation": "Predictable foundation → more attention for the product"
+    },
+    {
+      "slug": "give-the-easy-work-a-smaller-machine",
+      "post": "content/posts/2026-12-11-give-the-easy-work-a-smaller-machine.md",
+      "title": "Route by evidence,\nnot model prestige.",
+      "subtitle": "A cheaper call is useful only if the accepted task stays cheaper.",
+      "category": "AI economics",
+      "layout": "fork",
+      "test": "Run the same cases through both routes. Include retries, escalation and human correction in the cost.",
+      "boundary": "This is a comparison method, not a claim about a particular model or saving.",
+      "alt": "Evidence-based model routing: evaluate a smaller route against the same cases, authority and acceptance rule. If it passes, measure total cost including retries and correction. Otherwise use an approved escalation or decline path. Cost per accepted outcome divides full delivery cost by accepted work; no model-specific savings are claimed.",
+      "question": "Does the smaller route meet the task’s acceptance rule?",
+      "question_detail": "Same case set. Same authority. Same definition of done.",
+      "branches": [
+        {
+          "title": "YES: measure the full route",
+          "detail": "Include validation, retries and accepted outputs in the comparison."
+        },
+        {
+          "title": "NO: escalate or decline",
+          "detail": "Use the approved fallback. Preserve the failed case for evaluation."
+        }
+      ],
+      "rule": "Cost per accepted outcome = total delivery cost / accepted work"
+    },
+    {
+      "slug": "let-uncertainty-choose-the-next-action",
+      "post": "content/posts/2026-12-14-let-uncertainty-choose-the-next-action.md",
+      "title": "Uncertainty needs\nan action policy.",
+      "subtitle": "Make the next step depend on evidence and authority, not confidence alone.",
+      "category": "Decision policy",
+      "layout": "matrix",
+      "test": "Run synthetic cases for missing context, conflicting sources, denied access and a permitted action. Inspect each result.",
+      "boundary": "Model confidence is not a substitute for evidence or authorization.",
+      "alt": "Decision policy matrix: missing context leads to a focused question; conflicting approved sources go to an accountable owner with both sources preserved; denied access leads to refusal without restricted content; a permitted action still requires validation and a result receipt. Test all four conditions. Confidence cannot grant authority or establish that a source is current.",
+      "columns": [
+        "CONDITION",
+        "NEXT STEP",
+        "VERIFY"
+      ],
+      "rows": [
+        [
+          "Missing context",
+          "Ask a focused question",
+          "No invented detail"
+        ],
+        [
+          "Sources conflict",
+          "Escalate to the owner",
+          "Keep both sources"
+        ],
+        [
+          "Access denied",
+          "Decline that request",
+          "No restricted content"
+        ],
+        [
+          "Action permitted",
+          "Validate, then execute",
+          "Scope + result receipt"
+        ]
+      ]
+    },
+    {
+      "slug": "what-i-m-carrying-into-next-year",
+      "post": "content/posts/2026-12-15-what-i-m-carrying-into-next-year.md",
+      "title": "Keep the rules\nwith the work.",
+      "subtitle": "Three durable habits become useful when they have observable checks.",
+      "category": "Reusable practice",
+      "layout": "flow",
+      "test": "Pick one workflow. Locate the written rule, the human decision and the test that proves its foundation.",
+      "boundary": "A reusable checklist helps prepare evidence; it does not certify a system.",
+      "alt": "Reusable architecture practices: write scope, ownership and exceptions; identify the exact human judgment; test state, permissions and failure behavior; preserve decision records and acceptance cases. Locate all four for one workflow. A checklist prepares evidence but is not certification.",
+      "items": [
+        {
+          "title": "Write the rule",
+          "detail": "Make scope, ownership and exceptions explicit."
+        },
+        {
+          "title": "Locate the judgment",
+          "detail": "Name what a person must decide and why."
+        },
+        {
+          "title": "Prove the foundation",
+          "detail": "Test state, permissions and failure behavior."
+        },
+        {
+          "title": "Keep the evidence",
+          "detail": "Save the decision and its acceptance cases."
+        }
+      ]
+    },
+    {
+      "slug": "a-small-release-needs-a-small-blast-radius",
+      "post": "content/posts/2026-12-16-a-small-release-needs-a-small-blast-radius.md",
+      "title": "A small release needs\na small blast radius.",
+      "subtitle": "Limit the consequence, not just the number of changed lines.",
+      "category": "Release control",
+      "layout": "fork",
+      "test": "Revoke the release flag during a test run. Check which in-flight actions stop and which need reconciliation.",
+      "boundary": "A flag can stop new work. It cannot automatically undo completed effects.",
+      "alt": "Release-control decision: bound affected tenants, operations, authority and time; tag results by version and name stop thresholds plus an operator. If consequences cannot be identified, reduce scope and test recovery first. Revoke a test flag while work is active, then reconcile completed effects; a flag cannot undo them.",
+      "question": "Can we stop this change without guessing who it affected?",
+      "question_detail": "Limit tenants + operations + authority + time",
+      "branches": [
+        {
+          "title": "BOUNDED RELEASE",
+          "detail": "Tag outcomes by version. Name stop thresholds and the operator who can act."
+        },
+        {
+          "title": "UNBOUNDED CONSEQUENCE",
+          "detail": "Reduce scope before rollout. Test the stop and reconciliation paths first."
+        }
+      ],
+      "rule": "Observe → stop new work → reconcile existing work"
+    },
+    {
+      "slug": "read-the-invoice-before-the-architecture-review",
+      "post": "content/posts/2026-12-17-read-the-invoice-before-the-architecture-review.md",
+      "title": "Turn the invoice\ninto an ownership map.",
+      "subtitle": "Each recurring cost should connect to a workload and a decision.",
+      "category": "Cloud economics",
+      "layout": "matrix",
+      "test": "Choose one unexplained charge. Trace its workload, owner, purpose and safe retirement evidence before acting.",
+      "boundary": "A high cost may be justified. Investigate before removing a dependency.",
+      "alt": "Cloud cost-to-ownership matrix: compute maps to workloads and tier owners, storage to data and retention owners, network to flows and service owners, shared services to consumers and cost owners. Investigate one unexplained charge before deciding whether to keep, tune or retire it. A high cost can be justified.",
+      "columns": [
+        "BILL LINE",
+        "CONNECT IT TO",
+        "DECIDE"
+      ],
+      "rows": [
+        [
+          "Compute",
+          "Workload + tier owner",
+          "Keep, tune or retire"
+        ],
+        [
+          "Storage",
+          "Data + retention owner",
+          "Need, growth, expiry"
+        ],
+        [
+          "Network",
+          "Flow + service owner",
+          "Purpose + destination"
+        ],
+        [
+          "Shared service",
+          "Consumers + cost owner",
+          "Allocation + lifecycle"
+        ]
+      ]
+    },
+    {
+      "slug": "save-the-reason-then-reuse-the-component",
+      "post": "content/posts/2026-12-18-save-the-reason-then-reuse-the-component.md",
+      "title": "Reuse the component.\nRecheck the decision.",
+      "subtitle": "Keep the knowledge that makes a useful part safe to use again.",
+      "category": "Reuse contract",
+      "layout": "flow",
+      "test": "Move the component into a synthetic second context. Change its authority and confirm the old permission does not follow.",
+      "boundary": "Code can be reused. Another organization’s authority cannot be inherited.",
+      "alt": "Reusable component package: preserve its input/output contract and permitted effects, the reason and assumptions behind the design, allowed/refused/recovery tests, then validate identity and data policy in the new context. Test that old permission does not follow a component into another environment.",
+      "items": [
+        {
+          "title": "Contract",
+          "detail": "Save inputs, outputs and permitted effects."
+        },
+        {
+          "title": "Decision",
+          "detail": "Keep the reason, assumptions and owner."
+        },
+        {
+          "title": "Tests",
+          "detail": "Carry allowed, refused and recovery cases."
+        },
+        {
+          "title": "New context",
+          "detail": "Recheck identity, data policy and acceptance."
+        }
+      ]
+    },
+    {
+      "slug": "a-yes-has-a-boundary-recording",
+      "post": null,
+      "title": "I approved $500.\nWho approved $5,000?",
+      "subtitle": "An approval belongs to the proposal that was actually reviewed.",
+      "category": "Approval boundary",
+      "layout": "approval",
+      "test": "Approve version 1, change the amount, then attempt the write. Expected: PAYLOAD_CHANGED; synthetic writes: 0.",
+      "boundary": "Deterministic teaching simulation. No payment, model or cloud transaction is executed.",
+      "alt": "Synthetic approval-boundary demonstration. A reviewed refund proposal for $500 is version 1. Changing the amount to $5,000 produces version 2. Approval remains bound to version 1, so a write attempt is refused with PAYLOAD_CHANGED and zero synthetic writes. The changed proposal needs new review. No payment or live cloud transaction occurs."
+    }
+  ]
+}

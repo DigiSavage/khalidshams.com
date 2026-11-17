@@ -2,21 +2,22 @@
 title: "What building on AWS taught me about boring"
 date: 2026-12-01
 status: approved
+visual_required: true
 tag: engineering
-summary: "I built and run a knowledge platform on AWS, solo. The choices that held up were the boring ones."
+summary: "A restore rehearsal checks whether recovered data can support a usable service, not just whether a backup job ran."
 linkedin_url:
 ---
 
-I design, build, and operate a knowledge platform on AWS, solo. MongoDB for the documents, S3 for the audio and media, a small set of services in front.
+I build on AWS. One question I want every platform to answer is wonderfully unglamorous:
 
-It does some interesting things. Word-by-word recitation with per-word highlighting. Audio-based verse detection that takes what someone is reciting and jumps the reader to the matching passage. AI features with explicit provenance rules about what the model may and may not assert.
+Can we get the work back?
 
-None of that is what keeps it running.
+A successful backup job proves that a job reported success. A restore rehearsal asks a different question: can the recovered data, configuration, identities and dependencies support a usable service?
 
-What keeps it running is a stack of deliberately boring choices. Managed services wherever one exists. One way to deploy, scripted, and used every time. Backups tested by restoring them, not by checking that the job ran. A cost alarm set lower than I think I need. Logs I actually read.
+For a small rehearsal, I would create a synthetic record with a known expected result, back it up, then restore into an isolated destination. Check integrity and permissions before exercising the path a person actually needs.
 
-When you're the whole team, every clever decision is a future page at midnight. Boring infrastructure is what lets the product be interesting.
+Keep a dependency order, a named recovery owner and an acceptance checklist beside the backup configuration. Measure elapsed recovery time in the rehearsal; do not substitute it for a production recovery promise.
 
-I think this applies at enterprise scale too, it's just easier to see when there's nobody else to blame. The platform should be dull. The product on top of it should be the thing people talk about.
+Also check what must stay unavailable after recovery, including revoked access and removed content.
 
-What's the most interesting part of your infrastructure, and does it need to be?
+The interesting feature gets the demo. The boring restore exercise determines whether it can get another one.

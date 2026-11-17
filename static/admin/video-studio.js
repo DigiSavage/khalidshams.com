@@ -10,6 +10,7 @@
   let csrf = '', expires = 0, epoch = 0, catalog = null, items = [], nextCursor = null, record = null, draft = null;
   let dirty = false, conflict = false, busy = false, tab = 'brief', view = 'research', controlId = 0, createRequestId = '';
   let sessionClock = null, authGeneration = null, resumeOnVisible = false, rehearsalIndex = 0, timer = null, timerStarted = 0, elapsed = 0;
+  let approvalDemo = null, recordingBeat = 0, receiptVisible = false;
   const clone = value => JSON.parse(JSON.stringify(value));
   const el = (tag,text,cls) => { const n = document.createElement(tag); if (text !== undefined) n.textContent = String(text); if (cls) n.className = cls; return n; };
   const date = value => { const d = new Date(typeof value === 'number' ? value * 1000 : /^\d{4}-\d{2}-\d{2}$/.test(value || '') ? value + 'T12:00:00-07:00' : value); return Number.isNaN(d.valueOf()) ? 'Not recorded' : new Intl.DateTimeFormat('en-US',{dateStyle:'medium',timeZone:'America/Phoenix'}).format(d); };
@@ -21,6 +22,7 @@
   function closeRehearsal() { stopTimer(); closeDialog('vs-rehearsal-dialog'); ['vs-rehearsal-title','vs-rehearsal-position','vs-rehearsal-script','vs-rehearsal-cues'].forEach(id => $(id).replaceChildren()); }
   function invalidateRequests() { epoch += 1; requests.forEach(c => c.abort()); requests.clear(); authGeneration = null; }
   function clearPrivate(reason) {
+    approvalDemo = null; recordingBeat = 0; receiptVisible = false; $('vs-recording-content').replaceChildren();
     invalidateRequests(); if (sessionClock) clearInterval(sessionClock); sessionClock = null;
     csrf = ''; expires = 0; catalog = null; items = []; nextCursor = null; record = null; draft = null; dirty = false; busy = false; conflict = false; createRequestId = ''; resumeOnVisible = false;
     objectURLs.forEach(url => URL.revokeObjectURL(url)); objectURLs.clear();
@@ -64,7 +66,66 @@
   }
   function showView(next) {
     view = next;
-    ['research','library','playbook'].forEach(key => { $('vs-' + key).hidden = next !== key; const button = $('vs-' + key + '-nav'); if (key === next) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current'); });
+    if (next === 'recording') renderRecording();
+    ['research','library','playbook','recording'].forEach(key => { $('vs-' + key).hidden = next !== key; const button = $('vs-' + key + '-nav'); if (key === next) button.setAttribute('aria-current','page'); else button.removeAttribute('aria-current'); });
+  }
+  function recordingAction(fn) {
+    if (busy || document.hidden || !csrf) return;
+    if (expires * 1000 <= Date.now()) { clearPrivate('Your owner session expired. Sign in again.'); return; }
+    const focusId = document.activeElement?.id; fn(); renderRecording();
+    if (focusId && $(focusId) && !$(focusId).disabled) $(focusId).focus({preventScroll:true});
+  }
+  function renderRecording() {
+    const host = $('vs-recording-content'); host.replaceChildren();
+    if (!catalog || !window.KSApprovalDemo) { host.append(el('p','The recording set is unavailable. Reload after signing in.')); return; }
+    if (!approvalDemo) approvalDemo = window.KSApprovalDemo.create();
+    const state = approvalDemo.snapshot(), money = cents => '$' + (cents / 100).toLocaleString('en-US');
+    const stage = el('div',undefined,'vs-recording-stage'); stage.id = 'vs-demo-stage';
+    stage.append(el('p','TEACHING SIMULATION · SYNTHETIC REFUND · NO MONEY MOVES','vs-cue-label'));
+    const cards = el('div',undefined,'vs-contract-cards');
+    function contractCard(label,payload,version) {
+      const card = el('div',undefined,'vs-contract-card');
+      card.append(el('p',label,'vs-cue-label'),el('strong',payload ? money(payload.amount_cents) : 'Not set','vs-contract-amount'),
+        el('p',payload ? 'Refund · USD · ' + payload.recipient : 'Start with a draft.'),el('span',version ? 'Proposal version ' + version : 'No version','vs-small'));
+      return card;
+    }
+    cards.append(contractCard('The human approved',state.approval?.payload,state.approval?.version),contractCard('The system is asked to write',state.proposal,state.version));
+    stage.append(cards);
+    const controls = el('div',undefined,'vs-demo-controls');
+    [['reset','Reset rehearsal'],['draft','Draft $500 refund'],['approve',state.proposal?.amount_cents === 500000 ? 'Approve $5,000 refund' : 'Approve $500 refund'],['change','Change amount to $5,000'],['attempt','Attempt write']].forEach(([key,label]) => {
+      const button = action(label,() => recordingAction(() => { approvalDemo.dispatch(key); receiptVisible = false; }),key === 'attempt' ? 'vs-primary' : ''); button.id = 'vs-demo-' + key;
+      if ((key === 'approve' || key === 'change') && !state.proposal) { button.disabled = true; button.dataset.boundary = 'true'; }
+      controls.append(button);
+    });
+    const inspect = action('Inspect receipt',() => recordingAction(() => { receiptVisible = !receiptVisible; })); inspect.id = 'vs-demo-inspect'; inspect.setAttribute('aria-expanded',String(receiptVisible));
+    if (!state.receipt) { inspect.disabled = true; inspect.dataset.boundary = 'true'; }
+    controls.append(inspect); stage.append(controls);
+    const status = el('div',undefined,'vs-demo-result'); status.id = 'vs-demo-result'; status.setAttribute('role','status'); status.setAttribute('aria-live','polite');
+    const receipt = state.receipt;
+    status.append(el('strong',receipt ? receipt.status : state.approval && state.approval.version !== state.version ? 'Fresh approval required' : state.approval ? 'Exact proposal approved' : 'Waiting for a proposal and approval'),
+      el('p',receipt ? receipt.reason + ' · Synthetic writes: ' + receipt.simulated_writes + ' · External calls: 0' : 'Synthetic writes: ' + state.writes.length + ' · External calls: 0'));
+    if (receipt?.reason === 'PAYLOAD_CHANGED') status.append(el('p','The approved payload and current version differ. The old approval cannot authorize this write.'));
+    stage.append(status);
+    if (receiptVisible && receipt) { const pre = el('pre',JSON.stringify(receipt,null,2),'vs-demo-receipt'); pre.id = 'vs-demo-receipt'; pre.tabIndex = 0; pre.setAttribute('aria-label','Synthetic execution receipt'); stage.append(pre); }
+    const trail = el('details',undefined,'vs-demo-trail'); trail.append(el('summary','Inspect rehearsal events')); const list = el('ol'); state.events.forEach(event => list.append(el('li',event))); trail.append(list); stage.append(trail); host.append(stage);
+    const boundary = el('p','What this proves: this local rule rejects a changed proposal and leaves the synthetic write count unchanged. What it does not prove: real server authorization, payment safety, identity, approval expiry, revocation, concurrent writes or recovery. Production enforcement belongs at the server execution boundary.','vs-recording-boundary'); host.append(boundary);
+    const selected = draft?.beats?.some(beat => beat.id === 'approval90-hook');
+    const plan = selected ? draft : catalog.templates.find(template => template.beats?.some(beat => beat.id === 'approval90-hook'));
+    if (plan) {
+      recordingBeat = Math.min(recordingBeat,plan.beats.length - 1);
+      const cue = el('section',undefined,'vs-recording-cue'), beat = plan.beats[recordingBeat];
+      const start = plan.beats.slice(0,recordingBeat).reduce((sum,b) => sum+b.seconds,0);
+      cue.append(el('p',(selected ? 'CURRENT EPISODE' + (dirty ? ' · UNSAVED EDITS' : ' · SAVED DRAFT') : 'AUTHORED CUE CARD · CREATE A PRIVATE COPY TO EDIT') + ' · ' + start + ' to ' + (start+beat.seconds) + ' seconds','vs-cue-label'),el('h3',beat.label),el('p',beat.spoken,'vs-recording-words'));
+      [['screen','Say it, then click'],['visual','Camera and visual'],['khalid','Khalid'],['codex','Codex prepared'],['save','Keep this artifact']].forEach(([key,label]) => { cue.append(el('h4',label),el('p',beat[key])); });
+      const nav = el('div',undefined,'vs-demo-controls');
+      const previous = action('Previous cue',() => recordingAction(() => { recordingBeat = Math.max(0,recordingBeat-1); })); previous.id = 'vs-cue-previous'; previous.disabled = recordingBeat === 0; if (previous.disabled) previous.dataset.boundary = 'true';
+      const next = action('Next cue',() => recordingAction(() => { recordingBeat = Math.min(plan.beats.length-1,recordingBeat+1); })); next.id = 'vs-cue-next'; next.disabled = recordingBeat === plan.beats.length-1; if (next.disabled) next.dataset.boundary = 'true';
+      nav.append(previous,el('span','Cue ' + (recordingBeat+1) + ' of ' + plan.beats.length),next); cue.append(nav);
+      if (!selected) cue.append(action('Create this private episode →',() => openCreate(plan),'vs-primary'));
+      host.append(cue);
+    }
+    const asset = el('a','Open the companion infographic · PNG'); asset.href = '/images/a-yes-has-a-boundary-recording.png'; asset.target = '_blank'; asset.rel = 'noopener noreferrer';
+    host.append(asset,el('p','Capture only the teaching stage above, with the simulation label visible. Use the cue card as your off-screen prompt. The existing five-minute approval teaching draft remains in the research desk. Rehearsal resets after leaving this browser tab; saved episodes are unchanged.','vs-small'));
   }
   function sourceURL(value) { try { const u = new URL(value); return u.protocol === 'https:' && !u.username && !u.password ? u.href : null; } catch { return null; } }
   function sourceList(sources) {
@@ -80,7 +141,7 @@
       const details = el('details'); details.append(el('summary','First episode and primary sources'),el('p',topic.first_episode || 'Choose one decision to explain.'),sourceList(topic.sources)); card.append(details); $('vs-topic-list').append(card);
     });
     (catalog.templates || []).forEach(template => {
-      const card = el('article',undefined,'vs-template'); card.append(el('div',(template.beats || []).length + ' BEATS · AUTHORED TEACHING DRAFT','vs-template-meta'),el('h3',template.title),el('p',template.premise || template.decision));
+      const card = el('article',undefined,'vs-template'); card.append(el('div',(template.beats || []).reduce((sum,beat) => sum + beat.seconds,0) + ' SECONDS · ' + (template.beats || []).length + ' BEATS · AUTHORED TEACHING DRAFT','vs-template-meta'),el('h3',template.title),el('p',template.premise || template.decision));
       const details = el('details'); details.append(el('summary','See the audience and decision'),el('p','For: ' + (template.audience || 'Define the audience.')),el('p',template.decision || ''),sourceList(template.sources)); card.append(details);
       const start = action('Start this episode →',() => openCreate(template),'vs-primary'); start.dataset.template = template.id; card.append(start); $('vs-templates').append(card);
     });
@@ -285,7 +346,7 @@
     } catch(error) { if (generation === epoch) { clearPrivate(); message(error); } }
     finally { if (authGeneration === generation) authGeneration = null; }
   }
-  $('vs-research-nav').onclick = () => showView('research'); $('vs-library-nav').onclick = () => showView('library'); $('vs-playbook-nav').onclick = () => showView('playbook'); $('vs-empty-research').onclick = () => showView('research');
+  $('vs-research-nav').onclick = () => showView('research'); $('vs-library-nav').onclick = () => showView('library'); $('vs-playbook-nav').onclick = () => showView('playbook'); $('vs-recording-nav').onclick = () => showView('recording'); $('vs-empty-research').onclick = () => showView('research');
   $('vs-new').onclick = () => openCreate(); $('vs-create-close').onclick = () => closeDialog('vs-create-dialog');
   $('vs-create-form').addEventListener('submit',async event => {
     event.preventDefault(); const form = event.currentTarget; if (busy || !form.reportValidity()) return; const payload = {request_id:createRequestId || (createRequestId = crypto.randomUUID()),title:form.elements.title.value}; if (form.elements.template_id.value) payload.template_id = form.elements.template_id.value;
@@ -310,7 +371,7 @@
   addEventListener('beforeunload',event => { if (dirty) { event.preventDefault(); event.returnValue = ''; } });
   addEventListener('pagehide',() => clearPrivate()); addEventListener('pageshow',event => { if (event.persisted) authenticate(); });
   document.addEventListener('visibilitychange',() => {
-    if (document.hidden) { resumeOnVisible = true; invalidateRequests(); $('vs-app').hidden = true; closeDialog('vs-create-dialog'); closeRehearsal(); working(false); say('Private studio hidden. Owner access will be checked when you return.'); }
+    if (document.hidden) { approvalDemo = null; receiptVisible = false; $('vs-recording-content').replaceChildren(); resumeOnVisible = true; invalidateRequests(); $('vs-app').hidden = true; closeDialog('vs-create-dialog'); closeRehearsal(); working(false); say('Private studio hidden. Owner access will be checked when you return.'); }
     else if (resumeOnVisible) { resumeOnVisible = false; authenticate(); }
   });
   authenticate();

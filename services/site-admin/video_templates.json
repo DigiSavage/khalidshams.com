@@ -1,5 +1,117 @@
 [
   {
+    "id": "approval-refund-90",
+    "title": "A $500 approval cannot authorize a $5,000 action.",
+    "premise": "A 90-second face-and-screen explanation of one expensive failure: a proposed amount changes after approval. The deterministic browser model must refuse the stale approval without changing its synthetic ledger. No real account, money or client outcome is involved.",
+    "audience": "People deciding what AI may do at work, plus builders who need to implement the boundary. Explain the business question before naming payload or version.",
+    "decision": "Bind approval to the exact action and version, then check that binding at execution. A changed proposal requires a fresh review.",
+    "stage": "script",
+    "transcript": "",
+    "notes": "AUTHORED RECORDING PACKAGE, NOT A RECORDED RESULT. Target: 90 seconds, six 15-second beats, including pauses and clicks. Rehearse the timing with your own delivery.\n\nBefore recording: use the existing Nikon, kit lens, Blue microphone and light. Confirm camera and microphone models before applying model-specific settings. Put the lens at eye level, soften the light from one side, test eye focus and listen to a ten-second recording on headphones. Use Do Not Disturb and a clean desktop. Crop screen capture to the synthetic teaching stage, leaving the simulation label visible. The screen recorder is separate; this studio does not record or transcribe. Keep private cue cards off screen.\n\nExact entry: /admin/video-studio/ > 04 · Recording set. Use the six visible controls in the script. Switching tabs resets the rehearsal, so capture the demo in one visible-tab take. The cue card uses the selected 90-second episode, including unsaved edits; save before exporting. A reset is not a change to the saved episode.\n\nFive-minute expansion: 0:00-0:45 discovery and who can approve; 0:45-1:30 contract fields and version; 1:30-2:30 the same stale-approval refusal; 2:30-3:15 explicitly review and click Approve $5,000 refund, then Attempt write to show SIMULATED_ONLY; attempt again to show APPROVAL_USED; 3:15-4:15 inspect receipt and discuss lost-response reconciliation without claiming it is implemented; 4:15-5:00 reusable tests and production boundary. The existing five-minute approval teaching draft remains available as a separate episode.\n\nModel changeability is a design aim, not measured evidence from a client. The engine checks exact payload/version and consumes an approval after a simulated success. It does not implement real server authorization, identity, expiry, revocation, concurrency or recovery.\n\nSuccess for this first recording: a viewer can explain why the changed amount was refused and name the artifact they would retain. Do not infer business growth or savings from this demonstration.",
+    "beats": [
+      {
+        "id": "approval90-hook",
+        "label": "The question that makes approval concrete",
+        "seconds": 15,
+        "spoken": "I approved five hundred dollars. The request changed to five thousand. Does that approval still count? This is a synthetic example, and the answer should be visible.",
+        "screen": "In Video Studio, click 04 · Recording set, then Reset rehearsal. Confirm both cards say Not set and Synthetic writes: 0. Keep this browser tab visible throughout the screen take.",
+        "visual": "0:00 to 0:08: eye-level face shot, looking into the lens. 0:08 to 0:15: cut to the empty teaching stage. Keep TEACHING SIMULATION and NO MONEY MOVES visible. Crop out browser chrome, owner navigation and cue cards.",
+        "khalid": "Deliver the question calmly. Pause after five thousand. Check eye focus and record a ten-second sound test before the take.",
+        "codex": "Prepared the isolated in-memory engine, exact controls, script and reusable graphic. No model or money service runs in the demonstration.",
+        "save": "Opening shot and the question: what exactly does approval authorize?"
+      },
+      {
+        "id": "approval90-contract",
+        "label": "Show what the person is approving",
+        "seconds": 15,
+        "spoken": "Before building an AI workflow, I ask: what exactly is the person approving? Here it is a refund, a recipient, an amount and this version. That question becomes a contract.",
+        "screen": "Click Draft $500 refund once. Point to The system is asked to write: $500 and Proposal version 1. Do not approve yet.",
+        "visual": "Full screen capture. Hold on the right-hand card for two seconds. In the edit, underline refund, recipient, amount, version one at a time. Avoid animations that hide the state.",
+        "khalid": "Read the fields in plain language. Explain that a recipient is where the action is aimed. This links discovery to a visible rule.",
+        "codex": "Prepared before/after contract cards with real state from the rehearsal engine, not a static success screen.",
+        "save": "Action fields: operation, recipient, currency, amount_cents, proposal version."
+      },
+      {
+        "id": "approval90-change",
+        "label": "Approve, then change one field",
+        "seconds": 15,
+        "spoken": "I approve version one. Watch what happens when I change just the amount. The approval still shows five hundred. The current request shows five thousand. Those are different decisions.",
+        "screen": "Click Approve $500 refund. Pause on matching $500 cards. Then click Change amount to $5,000. Confirm left $500 / version 1 and right $5,000 / version 2. Do not click Approve $5,000 refund.",
+        "visual": "Keep both cards in frame. Hold the matching pair for one second, then the mismatch for three seconds. Add captions below the amounts, never over the version numbers.",
+        "khalid": "Move the cursor deliberately and read the actual values. The old approval must remain visible after the change.",
+        "codex": "Prepared approval snapshots bound to an exact payload and version, with changed-version tests.",
+        "save": "Before/after capture with the same approved snapshot and a different current proposal."
+      },
+      {
+        "id": "approval90-refusal",
+        "label": "Make the failure inspectable",
+        "seconds": 15,
+        "spoken": "Now I attempt the write. Refused. The old approval does not match the new proposal. Synthetic writes: zero. The useful part is that we can inspect why it stopped.",
+        "screen": "Click Attempt write, then Inspect receipt. Read REFUSED and PAYLOAD_CHANGED. Scroll within the receipt if needed to show simulated_writes: 0, external_calls: 0 and money_moved: false. Stop if these are not the observed values.",
+        "visual": "Close crop of the result and receipt. Keep the simulation label in the composite. Hold REFUSED for two seconds. Use a simple cobalt outline to guide the eye, not a theatrical alarm effect.",
+        "khalid": "Describe the observed result only after it appears. Say synthetic writes rather than implying a real bank blocked a payment.",
+        "codex": "Prepared a receipt containing approved/current payloads and versions plus a test that the refused path leaves the synthetic ledger unchanged.",
+        "save": "Negative test: draft $500, approve, change $5,000, attempt, inspect refusal and unchanged write count."
+      },
+      {
+        "id": "approval90-boundary",
+        "label": "Say precisely where the demonstration ends",
+        "seconds": 15,
+        "spoken": "This is a browser teaching model, not a payment system. A real service must enforce the same boundary on the server, with identity, expiry, revocation and recovery tested separately.",
+        "screen": "Leave the refused result visible. Point to What this proves and What it does not prove immediately beneath the stage. Do not open a real payment, identity or cloud console.",
+        "visual": "Return to face camera with a small inset of the refused result. Put Browser model on screen, then Server enforcement required. Keep the boundary sentence in captions.",
+        "khalid": "Name the limitation plainly. This demonstration proves one local rule, not security certification, compliance or production readiness.",
+        "codex": "Prepared a visible limitations panel and an OWASP source reference; no claim that expiry or distributed recovery is implemented here.",
+        "save": "Production checklist: server enforcement, identity, expiry, revocation, concurrency, idempotency and recovery."
+      },
+      {
+        "id": "approval90-keep",
+        "label": "Leave a reusable decision artifact",
+        "seconds": 15,
+        "spoken": "Keep the action contract, the approval rule and the failure test. Then changing the model does not quietly change what a person authorized. An approve button needs a boundary.",
+        "screen": "After capturing the refusal, open Open the companion infographic · PNG beneath the cue card for a separate closing take. Opening another tab resets the rehearsal by design. Keep the saved private episode and download its shooting pack from My episodes.",
+        "visual": "Use the prepared portrait infographic as a closing insert with a slow crop across the two amounts and refusal. Finish on face camera. Add accurate captions after recording; music is optional and should not obscure speech.",
+        "khalid": "Finish on the three things worth keeping. Leave a beat of silence. Save the actual recording before marking the episode recorded or pasting a real transcript.",
+        "codex": "Prepared the companion PNG and source-linked shooting pack. These are recording assets; no recording or publication has happened.",
+        "save": "Save raw take, edited caption file, actual transcript, companion infographic, contract and failure test."
+      }
+    ],
+    "checklist": [
+      {
+        "id": "evidence",
+        "label": "I opened the source and verified the demo is a local synthetic rule, not a production security claim.",
+        "done": false
+      },
+      {
+        "id": "clarity",
+        "label": "Both amounts, versions and the refusal are legible on a phone; captions leave them visible.",
+        "done": false
+      },
+      {
+        "id": "rehearsal",
+        "label": "I rehearsed all six controls, observed REFUSED with zero synthetic writes, and timed the 90-second take.",
+        "done": false
+      },
+      {
+        "id": "privacy",
+        "label": "The recorded crop contains no private account details, tabs, owner scripts, credentials or notifications.",
+        "done": false
+      },
+      {
+        "id": "save",
+        "label": "The companion PNG and saved shooting pack open; raw take and actual transcript have separate destinations.",
+        "done": false
+      }
+    ],
+    "sources": [
+      {
+        "title": "OWASP Transaction Authorization Cheat Sheet",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Transaction_Authorization_Cheat_Sheet.html",
+        "note": "Checked 2026-11-17. Sections 2.1, 2.5, 2.6 and 2.8 support server enforcement, controlled state transitions, invalidation after transaction data changes and a final authorization check. The local demonstration is deliberately narrower."
+      }
+    ]
+  },
+  {
     "id": "buy-build-process",
     "title": "Should we buy this, build it, or fix the process?",
     "premise": "A request for an internal chatbot becomes a business decision before it becomes a technology purchase. Follow one employee trying to find the approved IT policy.",

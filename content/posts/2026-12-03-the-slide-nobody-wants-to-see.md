@@ -2,21 +2,22 @@
 title: "The slide nobody wants to see"
 date: 2026-12-03
 status: approved
+visual_required: true
 tag: business-value
-summary: "In every assessment there is one slide that shows the organisation whole. It's the one people avoid."
+summary: "A dependency map becomes useful when it identifies owners, unknowns and the consequence of one missing dependency."
 linkedin_url:
 ---
 
-In every assessment there's one slide people would rather not see.
+The uncomfortable slide in an assessment is often the dependency map.
 
-It's the dependency map. Every application, every integration, every identity, every vendor, every data flow, on one page. Not because it's ugly, though it usually is. Because it makes visible what everyone had been managing by not looking.
+Applications, data flows, identities, integrations and vendors finally share a page. So do the unanswered questions.
 
-On the assessment where we documented 32 gaps, most of them were on that slide before anyone wrote them down. Two systems sharing a database nobody had declared. An integration that ran through a contractor's personal account. A vendor whose contract had lapsed but whose service had not.
+In one business-value assessment, I mapped those layers and documented 32 gaps. The point of the single view was to connect each gap to a cloud or services decision.
 
-Nobody was hiding these things. They were simply never in the same room as each other.
+To make that map useful, I want an owner beside each dependency and a visible marker where the evidence is missing. An unexplained arrow is a discovery question, not permission to invent an answer.
 
-That's what an assessment is really for. Not a price check. Not a compliance box. It's the one moment an organisation sees itself whole, and gets to decide on purpose what it will look like next.
+Then choose one dependency and make it unavailable in a tabletop exercise. Which outcome stops? Who notices? Who can restore it? Where does the recovery order become circular?
 
-I've learned to put that slide early in the readout, not at the end. The room needs time to absorb it before the recommendations mean anything.
+A map cannot establish every fact in one meeting. It can show the next fact that needs checking.
 
-If someone drew that slide for your organisation tomorrow, what would be on it that shouldn't be?
+The strongest assessment slide gives the room a decision to make and a way to verify it.

@@ -2,6 +2,7 @@
 title: "Read the invoice before the architecture review"
 date: 2026-12-17
 status: approved
+visual_required: true
 tag: cloud
 summary: "The cloud bill is the most honest architecture diagram an organisation has. It shows what was actually built."
 linkedin_url:

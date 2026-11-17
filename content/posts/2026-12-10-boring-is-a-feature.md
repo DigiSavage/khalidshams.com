@@ -2,6 +2,7 @@
 title: "Boring is a feature"
 date: 2026-12-10
 status: approved
+visual_required: true
 tag: architecture
 summary: "The platform should be dull. The product should be interesting. Most teams get that backwards."
 linkedin_url:

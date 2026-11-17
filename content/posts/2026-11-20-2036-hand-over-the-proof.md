@@ -2,6 +2,7 @@
 title: "Hand over the proof"
 date: 2026-11-20
 status: approved
+visual_required: true
 tag: architecture
 summary: "Let another person reproduce one permitted result, one refusal and one recovery path."
 linkedin_url:
