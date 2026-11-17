@@ -5,14 +5,15 @@
   "inputs": {
     "renderer": {
       "path": "tools/linkedin_infographics.py",
-      "sha256": "7e98e8cac7a84eb7dbef50e14e291df743fffabca02bddaf79017a7639d025a8"
+      "sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7"
     },
     "fonts": {
       "tools/fonts/IBMPlexMono-Medium.ttf": "0bede3debdea8488bbb927f8f0650d915073209734a67fe8cd5a3320b572511c",
       "tools/fonts/IBMPlexSans-Medium.ttf": "331c8639d7598b2cde62a911a71db195e30cb655cd6bdf2e324a7e984955f907",
       "tools/fonts/IBMPlexSans-Regular.ttf": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5",
       "tools/fonts/IBMPlexSans-SemiBold.ttf": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1",
-      "tools/fonts/IBMPlexSerif-Medium.ttf": "6b5bfe2b755d256b2bd7ff2be78f1df1931f4a3aad3c6e413284410dfe5b91f7"
+      "tools/fonts/IBMPlexSerif-Medium.ttf": "6b5bfe2b755d256b2bd7ff2be78f1df1931f4a3aad3c6e413284410dfe5b91f7",
+      "tools/fonts/IBMPlexSerif-MediumItalic.ttf": "2441237647c0e696b4c414d8d91d836a94e348ad0bed7a7e3c9b0c8e505703ca"
     }
   },
   "items": [
@@ -29,366 +30,407 @@
       },
       "sha256": "7387bbce3dd01138910c0126eb0bd392d1193b830e87ce3d3b050eb650621802",
       "spec_sha256": "93171cffd65870b15d9076c26e3dcc1a09ce0af1c3df4b012a54faa48adfad4e",
-      "source": "content/infographics/specs.json"
+      "source": "content/infographics/specs.json",
+      "renderer_sha256": "7e98e8cac7a84eb7dbef50e14e291df743fffabca02bddaf79017a7639d025a8"
     },
     {
       "slug": "2036-change-one-assumption",
       "post": "content/posts/2026-11-18-2036-change-one-assumption.md",
       "asset": "content/images/2036-change-one-assumption.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. A four-step change-impact flow: preserve the accepted outcome, identify the broken dependency, recheck data access and authority, then rerun affected tests with a named owner. Test it by removing the preferred model. Replacement does not establish equivalence.",
-      "layout": "flow",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Measure is in focus and opened into the diagram below. A four-station trace runs down a spine. One: change one assumption, such as the model disappearing, the refresh slowing or a draft step starting to send, while the accepted outcome stays fixed. Two, working backward: find the first dependency that can no longer support that outcome. Three: trace what must change, including permissions, tests, costs and owners. Four: prove it again with a fresh behavioral evaluation, because new authority needs new acceptance evidence, until another engineer can follow it. Evidence in: accepted outcome and changed assumption. Artifact out: affected tests and a decision owner. A replacement is not assumed to be equivalent.",
+      "layout": "route",
       "process": {
         "focus": "measure",
         "bring_in": "Accepted outcome + changed assumption",
         "leave_with": "Affected tests + decision owner"
       },
-      "sha256": "db6d85a6de699f29bf8e2e450dc523bd3b35e8e62bbea667b24cbcb2a11b9377",
-      "spec_sha256": "5f7d9c3272e23ef40a001bc3bfe04160ba56ab7552d8474813277f71786c13d2",
+      "sha256": "0d4a8a8c7fa45b8ff0c0a61e8b1e102e5efcd6ab08994f6b8a4c7c2b4c8d2925",
+      "spec_sha256": "a128bd4cf014a0383ba3542c70503a31756d2d02c51aad3306f74e3de2c33121",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "small-models-big-boundaries",
       "post": "content/posts/2026-11-19-small-models-big-boundaries.md",
       "asset": "content/images/small-models-big-boundaries.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Model-routing decision: choose a smaller route only if it passes the task-specific acceptance test. Otherwise escalate for a suitable model or human review, or stop. Both routes require typed inputs, validated outputs, failure behavior and permission enforcement. Compare quality, latency and full delivery cost.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Measure is in focus and opened into the diagram below. A decision gate asks whether the smaller route passes the same task contract, decided with typed input, expected output, validation and escalation cases. If it passes: use the narrow route, keep validation and permission checks at execution, and confirm answers are correct, supported by the source and stop when they should. If it fails: escalate or stop by trying a suitable stronger route, asking for human review or declining, without improvising authority. One rule holds on both paths: a larger model still needs the same authority boundary. Evidence in: task contract and labeled cases. Artifact out: an evaluated route and a failure path. No savings are assumed.",
+      "layout": "gate",
       "process": {
         "focus": "measure",
         "bring_in": "Task contract + labeled cases",
         "leave_with": "Evaluated route + failure path"
       },
-      "sha256": "b5bcd8c82f76b09f92d10f5db9fa1cf9d9f9d3849380a502b2bda6be31b745e3",
-      "spec_sha256": "60912c5f4f1b34355c409ab4cab06994bc7f1fb79f6de168103c01bd2c94d0f8",
+      "sha256": "03d324b040880e35e664972263ce35b90164d906a93c9fa793679b18f927b1a1",
+      "spec_sha256": "ad6ae6b4495110a8d151e5a28f033db6262c410bed5af4b1217d90be574d67ab",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "2036-hand-over-the-proof",
       "post": "content/posts/2026-11-20-2036-hand-over-the-proof.md",
       "asset": "content/images/2036-hand-over-the-proof.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Handover matrix with three cases. Allowed: inspect the intended business state and keep inputs plus receipt. Refused: verify no forbidden change and keep the reason and boundary. Recovered: verify a reconciled final state and keep recovery steps and timings. Have another person reproduce them; record the questions they need to ask.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. The handover pack lists the permitted outcome, source versions, tool contracts, stop conditions and a named owner. Three rows follow, each a case, what to inspect and what to keep. Allowed: inspect the intended business state reached by the permitted path, keep inputs and receipt. Refused: inspect that no forbidden change happened and the reason is readable, keep reason and boundary. Recovered: inspect a reconciled final state after the failure, keep steps and timings. Rule: every question they must ask you is a gap to close. Evidence in: allowed, refused and recovery cases. Artifact out: a reproducible operator handover. Teaching cases are not production certification.",
+      "layout": "ledger",
       "process": {
         "focus": "sustain",
         "bring_in": "Allowed, refused and recovery cases",
         "leave_with": "Reproducible operator handover"
       },
-      "sha256": "80fa2cac7160fa0b2c4929763d9311ca2dc82d56ad31f11274faf2b149424a64",
-      "spec_sha256": "3bd32dfe7cc0223131c28a7bbb3ac59f30012a0ed86f154e7beedefdf5bf320b",
+      "sha256": "df2ac71471081c8982ea491480fa9d0ea2b4726e0863f1afa3a5b7872022b296",
+      "spec_sha256": "cad784416effa8b409ed901024be3bc8a16cdcfaa5bd37c97d690762658d9015",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "draw-the-finish-line-before-the-flow",
       "post": "content/posts/2026-11-23-draw-the-finish-line-before-the-flow.md",
       "asset": "content/images/draw-the-finish-line-before-the-flow.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Reverse planning from an accepted outcome to evidence, state and authority, then component contracts. First define the result and who accepts it; identify the completion record; define permitted changes and recovery; give each capability inputs, outputs and tests. Ask a colleague to distinguish actual completion from a plausible output.",
-      "layout": "flow",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Scope is in focus and opened into the diagram below. A four-station trace runs backward from the finish line. One: the accepted outcome, what must be true for someone to accept the work, for example the right team owns the request. Two, what proves it: the evidence, the record that proves acceptance and who can create it. Three, who may change it: state and authority, the permitted state change and its recovery. Four, what each part must do: the component contract, an input, an output and a test for each capability. A dashed arrow runs the other way to show that building goes forward from the contract. Evidence in: people, need and consequence. Artifact out: an accepted outcome and component contracts. A sketch does not prove the engine.",
+      "layout": "route",
       "process": {
         "focus": "scope",
         "bring_in": "People, need and consequence",
         "leave_with": "Accepted outcome + component contracts"
       },
-      "sha256": "3346a868029affc503325f86961d2da1f035d58be4560a83c3b2f35281c67cf0",
-      "spec_sha256": "7d30023e094730977292c5cb1d35a74a8d09be1b63f6b5bf3d9a221a2a21628a",
+      "sha256": "1b05dd2e09d2acc1ac2703bb30281fcfcf4fc93e2b73d8f069d9caaa4d796033",
+      "spec_sha256": "932238b1c286d42a8c96979e8c0f2f60024282339cd7da1561b02a3883e58bf2",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "the-pilot-that-never-ends",
       "post": "content/posts/2026-11-24-the-pilot-that-never-ends.md",
       "asset": "content/images/the-pilot-that-never-ends.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Pilot exit decision tree. Before building, agree on fixed cases, quality and cost thresholds, an accountable owner and a review date. If evidence passes, decide the next bounded production investment and operating conditions. If not, stop or revise with a new hypothesis and date. A clear no is a valid result.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Scope is in focus and opened into the diagram below. A decision gate asks: at the review date, did the agreed case pass? It is decided with fixed cases, a quality bar, a cost bar and the review date. Yes: a production decision that approves the next bounded investment, operating owner and release conditions. No: stop or revise, record what failed, and require a new hypothesis and a new decision date for any extension. One rule is written before the build: a useful pilot ends with a decision, including a clear no. Evidence in: business hypothesis and constraints. Artifact out: exit criteria, an owner and a review date. No universal threshold is supplied.",
+      "layout": "gate",
       "process": {
         "focus": "scope",
         "bring_in": "Business hypothesis + constraints",
         "leave_with": "Exit criteria + owner + review date"
       },
-      "sha256": "dd1819a836bdb0b710c05d77c42f16e1aa1dd7a70219be69184dfecda8287956",
-      "spec_sha256": "2e24e6c97077a15c63000e9d75a092a9745e15d1f2ee8da5ba724e04645b721d",
+      "sha256": "36b02a1ae870412b9c7e0b310b17c929823432fa49129fc4984b3201f946c457",
+      "spec_sha256": "9b5b8dc002a9b32c6ee17b2926038a88e8f66acc6fed18e59f3901bb14bb6a93",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "the-fallback-needs-a-smaller-promise",
       "post": "content/posts/2026-11-25-the-fallback-needs-a-smaller-promise.md",
       "asset": "content/images/the-fallback-needs-a-smaller-promise.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Degraded-mode decision: when an approved source is unavailable, keep identity and authority checks. Continue only with bounded work supported by available evidence, marking limitations and routing unresolved parts. Stop actions lacking evidence or authority. Test by removing the retrieval source; availability does not grant new permission.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A degraded-mode table with four rows, each a mode, its smaller promise and what to put beside it. Stays available: work the remaining evidence still supports, with an owner and stated limits. Read-only: show what is known and change nothing, with an owner and a recovery condition. Queues: accept the request for later, visibly, with an expiry rule and an owner. Stops: refuse actions that lack evidence or authority, with a reason and a next step. Rule: fallback capability must not exceed the original authority. Evidence in: failed dependency and remaining evidence. Artifact out: a bounded fallback and a stop condition. Availability is not permission.",
+      "layout": "ledger",
       "process": {
         "focus": "sustain",
         "bring_in": "Failed dependency + remaining evidence",
         "leave_with": "Bounded fallback + stop condition"
       },
-      "sha256": "40a39ec9f485e1899cef291d843ef9401ed51428188ad9b74cbb551d6b17bde3",
-      "spec_sha256": "f439b99eadfe232a423e4e7067d02a2271b94a960b540538b100fdc02b710732",
+      "sha256": "4a28946967b320f2558a29a091cc9935d1401fd5160ff949157b6a4b03492013",
+      "spec_sha256": "a72c219f303b0d9cc5fd5bfc55c8a142870705dbf1f24528a596453d1f01d627",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "a-deletion-has-more-than-one-address",
       "post": "content/posts/2026-11-26-a-deletion-has-more-than-one-address.md",
       "asset": "content/images/a-deletion-has-more-than-one-address.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Deletion coverage matrix: source follows the deletion policy; indexes and caches are invalidated and queried again; exports require an owner and retention disposition; backups require expiry and restore controls to prevent reintroduction. Delete a synthetic record and check every documented copy. Legal retention and physical backup removal can differ.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Anchor is in focus and opened into the diagram below. A copy map asks where the data travels, who owns each copy, how long it lives and how removal is checked. One record then travels down four stops, each with a removal action and a verification. Source: apply the deletion policy, verify the record is absent or sealed. Index and cache: invalidate every derived copy, then search and read again. Exports: track the owner and retention, confirm the disposition. Backups: apply expiry and a restore rule, verify nothing is reintroduced. Evidence in: data lineage and retention obligations. Artifact out: a deletion route and a verification record. Retention duties and backup expiry need an agreed policy, not a promise of instant erasure.",
+      "layout": "ledger",
       "process": {
         "focus": "anchor",
         "bring_in": "Data lineage + retention obligations",
         "leave_with": "Deletion route + verification record"
       },
-      "sha256": "af4e0158edc0cc6ce4a028046dbca564bdde30356583ed6b54cc7c59ef43e42f",
-      "spec_sha256": "46419f1a27491d56c4c7e21897133ff29603546d7549d8a9d32fa03327bedb83",
+      "sha256": "c9d90d3c55b04ba1da324ec60234fedb4e90b2aa28af74f9a8ca0a3ed7d7faa8",
+      "spec_sha256": "cb964a862613b567f1559cce2584be8ef139e2917a7e4e84975398c547a91db6",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "a-dashboard-can-disagree-politely",
       "post": "content/posts/2026-11-27-a-dashboard-can-disagree-politely.md",
       "asset": "content/images/a-dashboard-can-disagree-politely.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Metric agreement checklist: define the time basis, transaction status, currency conversion rule, owner and version before comparing revenue charts. Trace one row through both definitions to explain disagreements. A technically valid query does not establish a shared business meaning.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Anchor is in focus and opened into the diagram below. The metric contract names a definition, time window, included states, conversion rule and business owner. Four rows follow, each a dimension, what to make explicit and the question to ask. Time: window and time zone, which period? Status: booked or collected, gross or net of refunds, which events count? Currency: conversion rule and date, which rate? Corrections: late adjustments and cancellations, included and when? Rule: reconcile one small synthetic ledger by hand in both views. Evidence in: business question and competing queries. Artifact out: a shared metric definition and owner. The business owner must approve the actual rules.",
+      "layout": "ledger",
       "process": {
         "focus": "anchor",
         "bring_in": "Business question + competing queries",
         "leave_with": "Shared metric definition + owner"
       },
-      "sha256": "f67d96e20f5c176526d9e938efaaaf38c928101cd98586e809219ae61dbbd199",
-      "spec_sha256": "086ab23d03f4c2c2edc091606ca627f5b9144d9e0ae6d171e25e9e8f99f1ba32",
+      "sha256": "8d6022c63287edc7e5bfe6a0b85b1a7b725ba4642dd2f433254f6afe05f33498",
+      "spec_sha256": "17a586eb8d5e7e0de1da629000a288a3685964ffb09b264a9d6cddf09a44d15b",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "the-cache-remembers-the-old-permission",
       "post": "content/posts/2026-11-30-the-cache-remembers-the-old-permission.md",
       "asset": "content/images/the-cache-remembers-the-old-permission.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Cache authorization fork: evaluate the caller’s current permission before serving a result. An eligible entry must match tenant and relevant caller, source and policy scope. Deny access if permission is no longer valid. Test by warming the cache, revoking access and making the same request again; tenant separation alone is insufficient.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Harden is in focus and opened into the diagram below. A decision gate asks whether this caller can read this result right now, decided with the caller, tenant, source permission and policy version. Yes: serve the eligible entry after matching tenant, caller scope and the source or policy version, with scope matched and the entry not expired. No: deny the response, and do not serve the old result, its citations or a revealing summary; invalidate or segregate the entry. One rule holds on every delivery: cache the computation, recheck the permission. Evidence in: caller identity and current access policy. Artifact out: authorized reuse or an explicit denial. A tenant key alone does not prove row-level or user-level authorization.",
+      "layout": "gate",
       "process": {
         "focus": "harden",
         "bring_in": "Caller identity + current access policy",
         "leave_with": "Authorized reuse or explicit denial"
       },
-      "sha256": "035743dfda48e59785181ba037f7af4b5c0ab00498b4d256996ef8f23c15599f",
-      "spec_sha256": "6c4e708d6051254c6c0569a9843ed247f54e36bedca9ecd5616b53a49ae658c2",
+      "sha256": "91be83dd9fed448bbd215ff3b4fc992ae1f88266b789666234c412243052d4f8",
+      "spec_sha256": "99df7928b3419ace508db3101ddff8ab96b06d72f86e7af01793107000bedd69",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "what-building-on-aws-taught-me-about-boring",
       "post": "content/posts/2026-12-01-what-building-on-aws-taught-me-about-boring.md",
       "asset": "content/images/what-building-on-aws-taught-me-about-boring.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Recovery checklist: restore a synthetic record with a known expected result, rebuild identity/configuration/access dependencies, name the recovery owner, then verify the usable outcome. A stored backup alone is not evidence that the service has recovered. A rehearsal covers only the cases exercised.",
-      "layout": "stack",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. Four layers build upward and hold up a dashed crown labeled a usable, recovered service. Layer one at the base: a stored copy, a backup job that reports success and nothing more yet. Layer two: restored dependencies, meaning data, configuration and identities in a known order. Layer three: a named recovery owner who decides, hands off and answers for it. Layer four: an accepted outcome, where the path a person needs works and revoked access stays revoked. Rule: a backup proves a job ran, a rehearsal proves the service returns. Evidence in: backup and dependency inventory. Artifact out: restore evidence and a recovery owner. A rehearsal covers only the cases exercised.",
+      "layout": "strata",
       "process": {
         "focus": "sustain",
         "bring_in": "Backup + dependency inventory",
         "leave_with": "Restore evidence + recovery owner"
       },
-      "sha256": "f80dbab7beb5fd9691e93a8f7a27f10a6b34659edccb5f482622bbe6aa48998b",
-      "spec_sha256": "8722d845fe478626bce7c32bd3b932aa087479a111cd2d037892b57eb47701ed",
+      "sha256": "b75a88eed9cb96e1ef7a68bb0d61528c35658c1ceb131dea474be6f574da83fe",
+      "spec_sha256": "2f8e31971dd8a011888f77c572d8cc82df194a43f705ee73df2ad20d30f66e00",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "version-the-question-behind-the-metric",
       "post": "content/posts/2026-12-02-version-the-question-behind-the-metric.md",
       "asset": "content/images/version-the-question-behind-the-metric.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Anchor is highlighted and enlarged. Versioned metric contract covering business meaning, included population, period and currency rules, and owner plus effective date. Change a definition in a test copy and verify consumers detect the version change before comparing periods. Historical restatement or reconciliation may be needed.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Anchor is in focus and opened into the diagram below. An example shows the same field changing meaning: active customer, has an account, becomes recent paid activity. Four contract rows follow, each with what to pin and a change check. Meaning: the business question it answers, what changed? Population: rows included and excluded, who moved in or out? Period: time and currency rules, is history comparable? Version: owner and effective date, were consumers told? Rule: a type check proves shape, meaning needs its own review. Evidence in: current definition and proposed change. Artifact out: a versioned contract and consumer migration. A definition change may require restatement.",
+      "layout": "ledger",
       "process": {
         "focus": "anchor",
         "bring_in": "Current definition + proposed change",
         "leave_with": "Versioned contract + consumer migration"
       },
-      "sha256": "fad4af2392a8e42844012a1e3ec812eb18fdbc6da81f0d4967b2376b38afead9",
-      "spec_sha256": "b8ef3560e5a2106ef4beea1d39d1ea19728a3a0c09bbd204a96fccf1fc43cc9a",
+      "sha256": "df4f61ec5098547e6050f85138a81349d8d9a94721d39bb108669712756f67ea",
+      "spec_sha256": "f761e7b84949e4070da163cddbfb14e9c90cdf3e09cd8c35ee3b25002b376f5b",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "the-slide-nobody-wants-to-see",
       "post": "content/posts/2026-12-03-the-slide-nobody-wants-to-see.md",
       "asset": "content/images/the-slide-nobody-wants-to-see.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Illustrative dependency map places a business workflow in the center, connected to data, identity, vendor and operations. Each dependency needs an owner: sources and shared stores; service accounts and permissions; supplier service and exit path; deployment, restore and escalation. Trace one real workflow to find undocumented coupling.",
-      "layout": "map",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Scope is in focus and opened into the diagram below. One critical workflow sits in the centre with the question who owns the result. Four dependencies surround it, and every tie to the centre carries a dashed tag asking for an owner. Data: sources, shared stores and retention. Identity: service accounts, scopes and permissions. Vendor: service, agreement and exit path. Operations: deploy, restore and escalation. Margin notes read: an unexplained arrow is a discovery question, and tabletop, remove one, what stops? Evidence in: a critical workflow and known dependencies. Artifact out: a dependency map and accountable owners. The map is illustrative, not an inventory of a real organization.",
+      "layout": "hub",
       "process": {
         "focus": "scope",
         "bring_in": "Critical workflow + known dependencies",
         "leave_with": "Dependency map + accountable owners"
       },
-      "sha256": "465aa8001b70571f72bc2e15f35fafa5abdc4153f13b33f4f391de0b9c213d99",
-      "spec_sha256": "d8c4d58f89c865388cb716e5059ca5911a06889eebe912e91b6b8b6dc30936f2",
+      "sha256": "339db8f19e3101909479153bb700177f67cb6647c60fbb314caa646b2d5c7c78",
+      "spec_sha256": "52c956448649a26d3f17fe63b1503af38ff818a6d6b6f74883afb44df22f2220",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "the-queue-is-part-of-the-product",
       "post": "content/posts/2026-12-04-the-queue-is-part-of-the-product.md",
       "asset": "content/images/the-queue-is-part-of-the-product.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Queue lifecycle: at arrival assign identity, deadline and stable work ID; while waiting expose age, capacity, expiry and escalation; to finish, recheck authority and execute, review and confirm the outcome. The deadline includes waiting as well as execution. Hold a test dependency unavailable, restore it, and inspect resumed, expired and held tasks.",
-      "layout": "timeline",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A time bar runs left to right through three phases under one bracket labeled one deadline covers all of it. Arrive: accepted into the queue, assigned identity, deadline, priority and a retry-safe work ID. Wait: owned but not complete, showing the oldest pending request beside throughput and defining when work goes stale, with age, expiry and cancel. Finish: execute, review and confirm, rechecking authority first and recording an accepted or expired outcome. Rule: budget equals intake plus wait plus execution plus review plus confirmation. Evidence in: user deadline and queued work. Artifact out: expiry, escalation and an outcome receipt. A queue does not remove the work or its deadline.",
+      "layout": "span",
       "process": {
         "focus": "sustain",
         "bring_in": "User deadline + queued work",
         "leave_with": "Expiry, escalation + outcome receipt"
       },
-      "sha256": "d3df05dfd7f9047c203b3cade814534afe9f1c5ac791e558ca65646e2ec7715d",
-      "spec_sha256": "6797b70672098e34240d682e6734617d30db0052fb8177327e838368fd71da20",
+      "sha256": "ddfb8cfb65cb519289508b5f31ef6e0e8f2634601d5bf283e3f5221eee2d84b1",
+      "spec_sha256": "3d850b29d45717fdd7ef13c13a8dae3d05bae5d1941fc6fe3b954c21a6c0f37d",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "rent-the-capability-keep-the-exit",
       "post": "content/posts/2026-12-07-rent-the-capability-keep-the-exit.md",
       "asset": "content/images/rent-the-capability-keep-the-exit.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Scope is highlighted and enlarged. Build-or-buy portability decision: test whether another provider can reproduce the required outcome using exported data, identity mappings and acceptance cases. A rehearsed exit retains the export format and replacement plan. An unproven exit records proprietary behavior and migration gaps. An export button alone does not prove portability.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Scope is in focus and opened into the diagram below. A decision gate asks whether another provider can reproduce the required outcome, decided with data export, identity mapping, API limits and acceptance cases. Rehearsed: commit with a known exit, keeping the export format, the acceptance cases and a realistic replacement path. Unproven, shown in gold because it is a cost: price the lock-in first by naming the provider-specific behavior, missing fields and migration work before committing. One rule holds either way: portability is an exercised path, not a feature label. Evidence in: required outcome and supplier constraints. Artifact out: a build-or-buy decision and a tested exit. An export button is not proof.",
+      "layout": "gate",
       "process": {
         "focus": "scope",
         "bring_in": "Required outcome + supplier constraints",
         "leave_with": "Build-or-buy decision + tested exit"
       },
-      "sha256": "185daf273f9df6158e6afc2d6df196759316aae42f7f50f72ffaeead6cc61786",
-      "spec_sha256": "60e81c9b56dbcb099ae6d5030ed97bd68ba6b3cb938b3185842bcbdf95d762a1",
+      "sha256": "7b3746fdb385fc9ecaeed530d401c7cc67433361b95580870595f20e30f320ac",
+      "spec_sha256": "a4e3151bce72e5fe8052cf497aeea23957aa26def0e1c89c5465ab1bced810ea",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "why-did-it-do-that",
       "post": "content/posts/2026-12-08-why-did-it-do-that.md",
       "asset": "content/images/why-did-it-do-that.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Inspectable decision trail: pin context and policy versions; record the selected route and explicit decision signals; preserve validated action arguments, authority and result; redact sensitive fields and apply access and retention rules. Replay a synthetic case and compare observable behavior. Traces do not prove hidden internal model reasoning.",
-      "layout": "flow",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A four-station evidence trail runs down a spine. One: request and context, the request and its version with approved source references. Two, checked against: permission decisions, what was allowed, what was refused and under which policy. Three, which produced: actions and outcomes, the tool inputs, results, state changes and cost. Four, kept as: a record for review that captures only what an investigation needs, with redaction, access and retention rules. Evidence in: context, policy and observable actions. Artifact out: an access-controlled investigation trail. A trace cannot prove a model’s hidden internal reasoning.",
+      "layout": "route",
       "process": {
         "focus": "sustain",
         "bring_in": "Context, policy and observable actions",
         "leave_with": "Access-controlled investigation trail"
       },
-      "sha256": "a317d59d2ab2d27729afc5af2871c21203189b0b0d455f85c952e85edc43938d",
-      "spec_sha256": "e4f731fea8dc754bdab50951146bf2d784ac04959d1deafeff50a05f2e8cb537",
+      "sha256": "530b6e15038b212a0dc5cb98286e5588feff44de8e1bbd37cfa0e895d4e6146a",
+      "spec_sha256": "295613ced801ef92b1329f81a43b37128f016512a45db3dff43080109030d3de",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "a-rollback-cannot-unsend-an-email",
       "post": "content/posts/2026-12-09-a-rollback-cannot-unsend-an-email.md",
       "asset": "content/images/a-rollback-cannot-unsend-an-email.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Recovery timeline distinguishes before, after and recovery. Before an external action, draft, validate and authorize. After uncertainty, inspect the destination receipt before retrying. Recover by rolling back safe local state or performing a deliberate compensating action. Restoring code does not undo an email or other external business effect.",
-      "layout": "timeline",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A time bar runs left to right through three phases under a bracket labeled one workflow, two kinds of undo. A dashed coral marker after the first phase reads external effect sent, and everything after it is drawn in coral. Before: prevent the unnecessary effect by drafting, validating and obtaining the required authorization, while it can still be reversed. After: establish what happened by inspecting the destination receipt before any retry. Recover: choose the right repair, reconcile local state and compensate external effects on purpose, or acknowledge them. Rule: restore code does not equal reverse every business effect. Evidence in: failure point and destination receipt. Artifact out: reconciliation or an authorized repair.",
+      "layout": "span",
       "process": {
         "focus": "sustain",
         "bring_in": "Failure point + destination receipt",
         "leave_with": "Reconciliation or authorized repair"
       },
-      "sha256": "5ae19ab03fdc9c164436d70d60b7f5f1e741d857b0fe66b5e137eb106443c849",
-      "spec_sha256": "8e86265ba6a3fbe8643ad1c306373ad72f9f15398004ddcfb302aa4ad80b2714",
+      "sha256": "f9fcdda202b15b6f013af4199575af3514eff7a5664d431b59abcc081639f6c7",
+      "spec_sha256": "d0e6b83e42c1e480cdec9a551729af1b2a6f6cf7007fe729b49ce2167c9e3f00",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "boring-is-a-feature",
       "post": "content/posts/2026-12-10-boring-is-a-feature.md",
       "asset": "content/images/boring-is-a-feature.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Four foundations of an operable platform: a repeatable release path, an explicit owner for each layer, recovery including dependencies and verification, and bounded exceptions with reasons and review dates. Ask a new engineer to trace a release and restore; treat undocumented steps as work to remove.",
-      "layout": "stack",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. Four foundation layers build upward and hold up a dashed crown labeled attention for the product. Layer one at the base: a foundation with headroom, slightly heavier than today needs. Layer two: managed before self-hosted, unless there is a measured reason. Layer three: one deployment path, used by everyone for everything. Layer four: a written owner for every layer. Rule: if a new engineer cannot learn it in an afternoon, it is too interesting. Evidence in: platform responsibilities and dependencies. Artifact out: a repeatable release and a recovery path. A measured requirement can justify an exception.",
+      "layout": "strata",
       "process": {
         "focus": "sustain",
         "bring_in": "Platform responsibilities + dependencies",
         "leave_with": "Repeatable release + recovery path"
       },
-      "sha256": "8827b73f374c480fbb6a30bd6ea0e8f8c2e0144004c1f2ceaa965a5adfeb77c7",
-      "spec_sha256": "15e479f0cfd5f35264b3f33fe767ccc0025b49584530cf5ac5fac44ed67de96d",
+      "sha256": "40cef82b83ca19998791d7b6867dd02967f8fcffc6e54bf1dc91a9467f5d133e",
+      "spec_sha256": "c0c60e0f57aed0f257bc53deffcd68750cba56aef093df1c4fd193c67fd8f8e1",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "give-the-easy-work-a-smaller-machine",
       "post": "content/posts/2026-12-11-give-the-easy-work-a-smaller-machine.md",
       "asset": "content/images/give-the-easy-work-a-smaller-machine.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Evidence-based model routing: evaluate a smaller route against the same cases, authority and acceptance rule. If it passes, measure total cost including retries and correction. Otherwise use an approved escalation or decline path. Cost per accepted outcome divides full delivery cost by accepted work; no model-specific savings are claimed.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Measure is in focus and opened into the diagram below. A decision gate asks whether the cheaper route still passes the acceptance cases, decided with awkward inputs, missing evidence and cases that should escalate. Passes: count the full cost, including validation, retries, failed attempts and human corrections, recorded as cost per accepted task and elapsed time. Fails: escalate by the agreed rule, which is decided before comparing cost, and keep the failed case. The number that matters sits under both paths in gold: cost per accepted task equals total delivery cost divided by accepted work. Evidence in: shared cases and an acceptance rule. Artifact out: route evidence and full delivery cost. No model-specific saving is claimed.",
+      "layout": "gate",
       "process": {
         "focus": "measure",
         "bring_in": "Shared cases + acceptance rule",
         "leave_with": "Route evidence + full delivery cost"
       },
-      "sha256": "3511d61da779a5c0ea790fd3dc98c0e6734fe6fbca7b41bc31fe1e39c8f23459",
-      "spec_sha256": "7c058112a997da443ba5e117f2e76bd55148bc18eccba30de44b239387f9d52e",
+      "sha256": "05839ab1fa49e0aea3ef0b68df7dca8613d804c30d32bea9871e06d6a89c4a13",
+      "spec_sha256": "e35486f9a5e0e64e76f4070b27962fc06d1dd6ad1b320ec377ecba160981aa5a",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "let-uncertainty-choose-the-next-action",
       "post": "content/posts/2026-12-14-let-uncertainty-choose-the-next-action.md",
       "asset": "content/images/let-uncertainty-choose-the-next-action.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Decision policy matrix: missing context leads to a focused question; conflicting approved sources go to an accountable owner with both sources preserved; denied access leads to refusal without restricted content; a permitted action still requires validation and a result receipt. Test all four conditions. Confidence cannot grant authority or establish that a source is current.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Harden is in focus and opened into the diagram below. A decision table with four rows, each a condition, the next action and what to verify. Missing context: ask one specific question, verify no invented detail. Sources conflict: hand both sources to the accountable owner, verify both sources were kept. Access denied: do not proceed and decline that request, verify no restricted content was returned. Action permitted: validate, then execute, verify scope and a result receipt. Rule: confidence is one signal, it cannot grant authority. Evidence in: available evidence and caller authority. Artifact out: ask, escalate, refuse or execute. Model confidence is not a substitute for evidence or authorization.",
+      "layout": "ledger",
       "process": {
         "focus": "harden",
         "bring_in": "Available evidence + caller authority",
         "leave_with": "Ask, escalate, refuse or execute"
       },
-      "sha256": "05940645442a3e5b093b8c3b2432a5ebc637162497b998e635a039cc276123e4",
-      "spec_sha256": "c046f49c7af4b704ce40ece69be20a266ee81b125824fc96e64fc6d278cd19c7",
+      "sha256": "c54fe48f502291dabff43cdcbc2ceb38d85373f430f6a60b7bd9a4638d4d1e67",
+      "spec_sha256": "ec66f5cdd235e1711399b9b12f6195e2eefa3f21ecfa0c54fb8e687570688e44",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "what-i-m-carrying-into-next-year",
       "post": "content/posts/2026-12-15-what-i-m-carrying-into-next-year.md",
       "asset": "content/images/what-i-m-carrying-into-next-year.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Reusable architecture practices: write scope, ownership and exceptions; identify the exact human judgment; test state, permissions and failure behavior; preserve decision records and acceptance cases. Locate all four for one workflow. A checklist prepares evidence but is not certification.",
-      "layout": "flow",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A four-station trace runs down a spine. One: write the rule down and give it an owner, an example and an exception path. Two, who may act on it: keep authority explicit, because a human in the loop needs a named action, evidence and time, and mark what the system may prepare, what it may execute and where a person decides. Three, what it stands on: foundation before feature, meaning data, state, permissions, contracts and recovery come first. Four, can it be repeated: hand it to someone else and ask whether they can find a permitted outcome, a refusal and a recovery; keep what they can verify. Evidence in: written rules and human decisions. Artifact out: reusable checks and acceptance evidence. A checklist does not certify a system.",
+      "layout": "route",
       "process": {
         "focus": "sustain",
         "bring_in": "Written rules + human decisions",
         "leave_with": "Reusable checks + acceptance evidence"
       },
-      "sha256": "a878e2b83ec2f0ae7de1646e96cdc0824ecd6c12e22058389c40abbb865d9db5",
-      "spec_sha256": "f9a6409b67aaf3870b2350f4f860478b5542a23544f8c0bb8bc7676f60ff9e53",
+      "sha256": "818ae9bdd8d05b5f8659716828f6917cdb8022887fa6181c2fd3c507a6b70bb4",
+      "spec_sha256": "ed5f298742f17f28d496b5ee2ee32d65e67fda085850e97a1ecc42b7bac48ea4",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "a-small-release-needs-a-small-blast-radius",
       "post": "content/posts/2026-12-16-a-small-release-needs-a-small-blast-radius.md",
       "asset": "content/images/a-small-release-needs-a-small-blast-radius.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Sustain is highlighted and enlarged. Release-control decision: bound affected tenants, operations, authority and time; tag results by version and name stop thresholds plus an operator. If consequences cannot be identified, reduce scope and test recovery first. Revoke a test flag while work is active, then reconcile completed effects; a flag cannot undo them.",
-      "layout": "fork",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Sustain is in focus and opened into the diagram below. A decision gate asks whether we can stop this change without guessing who it reached, decided with tenants, records, operations and dependencies. Bounded: expose a named cohort, and name the stop signals, who can halt it and what happens to work in flight. Unbounded: shrink it before rollout by reducing the reach and exercising the stop and reconciliation paths first. One rule applies when the signal fires: observe, stop new work, then reconcile work already done. Evidence in: release scope and permitted effects. Artifact out: a stop signal and a reconciliation plan. A flag can stop new work but cannot undo completed effects.",
+      "layout": "gate",
       "process": {
         "focus": "sustain",
         "bring_in": "Release scope + permitted effects",
         "leave_with": "Stop signal + reconciliation plan"
       },
-      "sha256": "73602b3dda28f72fe4e51f0d82255f9a1a30753c8bb739d3211333222103ab26",
-      "spec_sha256": "ab550e67d2ad7fc21463dbd96a7e564cb822ea81db93703a78a9ae0f8adae1ac",
+      "sha256": "7e203228261379d735684b175a9c9c557846cbbe557ba2332f353e74c041ae7c",
+      "spec_sha256": "2c2486ca1ea6b8c9c6a5e40591f1169031d1f53b8358e01ee37b98ac578b7946",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "read-the-invoice-before-the-architecture-review",
       "post": "content/posts/2026-12-17-read-the-invoice-before-the-architecture-review.md",
       "asset": "content/images/read-the-invoice-before-the-architecture-review.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Measure is highlighted and enlarged. Cloud cost-to-ownership matrix: compute maps to workloads and tier owners, storage to data and retention owners, network to flows and service owners, shared services to consumers and cost owners. Investigate one unexplained charge before deciding whether to keep, tune or retire it. A high cost can be justified.",
-      "layout": "matrix",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Measure is in focus and opened into the diagram below. Annotate every line with what it is, who owns it and whether anyone would notice if it stopped. Four rows follow, each a bill line, what to connect it to and the decision. Compute: workload and tier owner, look for a tier bought mid-incident, then keep, tune or retire. Storage: data and retention owner, look for growth nobody planned, then need, growth and expiry. Network: flow and service owner, look for a region nobody chose, then purpose and destination. Shared service: consumers and cost owner, look for retired but still running, then allocation and lifecycle. Rule, in gold because the subject is cost: a line with no name beside it is a decision nobody is making. Evidence in: charges and a workload inventory. Artifact out: cost ownership and a keep or retire decision. A high cost may be justified, so investigate before removing a dependency.",
+      "layout": "ledger",
       "process": {
         "focus": "measure",
         "bring_in": "Charges + workload inventory",
         "leave_with": "Cost ownership + keep or retire decision"
       },
-      "sha256": "61dfce7adec04f0ee2cc93ce5cb47ec8b816c08dd08005e63e069c5fbff3e628",
-      "spec_sha256": "b5579297ede4d3d837308a762dd0320186a5e0d9e95e514f947ef451e752e31f",
+      "sha256": "6b2acafa209f8f64b1988162f21228f5dd5500d1abfb5d6dd4ff4aadc8c67a50",
+      "spec_sha256": "a1b40fb5dabec10e21de85e9b3fe21de750e0e4867df5ad4c37176d20b0e57c6",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "save-the-reason-then-reuse-the-component",
       "post": "content/posts/2026-12-18-save-the-reason-then-reuse-the-component.md",
       "asset": "content/images/save-the-reason-then-reuse-the-component.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Reusable component package: preserve its input/output contract and permitted effects, the reason and assumptions behind the design, allowed/refused/recovery tests, then validate identity and data policy in the new context. Test that old permission does not follow a component into another environment.",
-      "layout": "flow",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Harden is in focus and opened into the diagram below. A four-station trace runs down a spine and describes the package kept beside the code. One: the contract, meaning inputs, outputs and permitted effects. Two, because: the decision record, with the reason, the assumptions about identity, freshness and delivery, and what would change the design. Three, proven by: failure tests, where allowed, refused and recovery cases travel with the part. Four, rechecked in: the new context, where every assumption is tested again for identity, data policy and acceptance, because approval does not travel. Evidence in: component contract and new context. Artifact out: revalidated authority and failure tests. Another organization’s authority cannot be inherited.",
+      "layout": "route",
       "process": {
         "focus": "harden",
         "bring_in": "Component contract + new context",
         "leave_with": "Revalidated authority + failure tests"
       },
-      "sha256": "e27ed8d711f56c1bc0198ec63d5c9ee4d7a69ccd4e75a71a0b08453720e134a6",
-      "spec_sha256": "53a620148da86c42f1265d1812d0c29aaa92c82b1130517a9b0a9c996f9840ff",
+      "sha256": "cf935ce0a1b0210004e09c1d86c98f868c7bc997ce9572e661ee42afb277c047",
+      "spec_sha256": "29f669f897154d11be1c5c3b53e28175e086f399a354663ec1bca69d3be0ec8c",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     },
     {
       "slug": "a-yes-has-a-boundary-recording",
       "post": null,
       "asset": "content/images/a-yes-has-a-boundary-recording.png",
-      "alt": "SHAMS design loop: Scope, Harden, Anchor, Measure, Sustain. Harden is highlighted and enlarged. Synthetic approval-boundary demonstration. A reviewed refund proposal for $500 is version 1. Changing the amount to $5,000 produces version 2. Approval remains bound to version 1, so a write attempt is refused with PAYLOAD_CHANGED and zero synthetic writes. The changed proposal needs new review. No payment or live cloud transaction occurs.",
-      "layout": "approval",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Harden is in focus and opened into the diagram below. A synthetic teaching example shows two documents. Version 1, reviewed, is a proposal for $500 that a person read. An arrow labeled amount edited leads to version 2, changed, the same request for $5,000. A round approval seal with a person in it is stamped on version 1 only. A dashed coral line from the seal toward version 2 is blocked and labeled approval does not transfer. Version 2 leads down to a coral stop: version 2 needs a new review, PAYLOAD_CHANGED, synthetic writes zero. Evidence in: the exact proposal and a human approval. Artifact out: a version-bound action and a refusal receipt. No payment, model or cloud transaction is executed.",
+      "layout": "binding",
       "process": {
         "focus": "harden",
         "bring_in": "Exact proposal + human approval",
         "leave_with": "Version-bound action + refusal receipt"
       },
-      "sha256": "c860e30cb6509511e3606d219694d4cc7765a0100a7cdf9adb17f6f7d862333a",
-      "spec_sha256": "3c2f611df18aacfa91b4044d3f3fcb88cbcc556c7ed3bfb1af868f5a56e78bee",
+      "sha256": "100ffa76a3ede3fbe69e24d2a377a6f0770afd8e7cf3b42e2255117f62eb493e",
+      "spec_sha256": "fff6c7076559e906d548c7ea6b4e70f672df7de9599404b8f1d42f01bed2de15",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "budget-the-logs-keep-the-evidence",
+      "post": null,
+      "asset": "content/images/budget-the-logs-keep-the-evidence.png",
+      "alt": "SHAMS method map: Scope, Harden, Anchor, Measure, Sustain. Measure is in focus and opened into the diagram below. One log source is asked how it earns its place, and two lanes leave it. Solid lane, a detection uses it: name the detection (the event and a named responder), map the evidence (source, fields and time window), then test the coverage with a controlled event that is detected, investigated and traced back. Example: a privileged role activation joined to identity. Dashed lane, no detection uses it: it may still be owed for audit, investigation or a retention duty, so that is not permission to delete. Both lanes meet in one gold decision: set retention, cost and owner, with the coverage test beside the cost estimate. Evidence in: detection needs and required evidence. Artifact out: a coverage test and a cost owner.",
+      "layout": "lanes",
+      "process": {
+        "focus": "measure",
+        "bring_in": "Detection needs + required evidence",
+        "leave_with": "Coverage test + cost owner"
+      },
+      "sha256": "626ee353043b5b65e8e8ec9a559872fcb4fef15b5cb3aa5d1c48b56b8f5eba80",
+      "spec_sha256": "c4ecbcfb78fede92b837df8417efbb8b7134cee0e3391f0d9b21723979c95602",
+      "renderer_sha256": "ed5df7dd6b4f847fc5af100a628d4cbeec3700cf2f77e7e6dac94c7496bda6f7",
       "source": "content/infographics/specs.json"
     }
   ]

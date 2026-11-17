@@ -35,17 +35,21 @@ A recurring editorial preparation task should check remote main, preserve any ne
 | Dec 17 | Read the invoice before the architecture review | Existing article: economic evidence |
 | Dec 18 | Save the reason, then reuse the component | Contract, decision, failure tests and operational handoff |
 
-## A connected process, with one stage enlarged
+## A connected process, with one stage opened
 
-Each upcoming post gets a specific infographic that a reader could use after closing the feed. Start with the common SHAMS process map: Scope, Harden, Anchor, Measure, Sustain. Highlight one primary stage and connect it visually to the enlarged lesson. Show the evidence to bring in and the artifact to leave with. These are revisitable design moves, not publication dates or proof that earlier work is complete. The November 17 logging post focuses Measure; its detail checks evidence coverage and cost. Other cards keep the same map while highlighting the stage their decision most directly tests. Keep one central decision per image, with an inspectable flow, comparison or checklist. The layout may vary with the subject: a state transition is not a cost equation, and a lifecycle map is not a quotation card.
+Each upcoming post gets a specific diagram that a reader could use after closing the feed. Every card keeps the whole SHAMS map visible as five stations: Scope, Harden, Anchor, Measure, Sustain, each with what it settles. One station is enlarged and projected into a panel below it. Evidence enters that panel at the top left and a reusable artifact leaves at the bottom right. These are revisitable design moves, not publication dates or proof that earlier work is complete.
 
-Use the site's paper, ink and cobalt palette, gold only for costs and coral for denial or error. Pair color with labels or symbols. Keep text readable on a phone, define unfamiliar terms in context, and leave space around the main structure. Do not invent percentages, benchmarks, customer results or a safety certification to make an image look advanced.
+Inside the panel, the mechanism is chosen by the relationship the post is about, not by habit: two lanes that merge, a route with named links, a decision gate, a ledger of action and evidence, a hub of dependencies, layers that hold something up, a time span with a point of no return, or an approval bound to a version. A state transition is not a cost equation, and a lifecycle map is not a quotation card. `content/infographics/README.md` holds the eight layouts, the design rules and the review questions.
 
-The manifest in `content/infographics/manifest.json` connects each post to its image and meaningful alt text. New notes set `visual_required: true`, so their publishing path must not silently degrade to text if the reviewed asset is missing or its upload fails. The renderer must derive neither claims nor success metrics from a title alone. Review actual image output, including text wrapping, before enabling publication.
+Each card reads in two layers. The phone layer is the title, the stations and the node titles. The inspection layer adds the questions to ask, the fields to capture and what to scan for, for the reader who saves it. Take that detail from the post. Do not invent percentages, benchmarks, customer results or a safety certification to make an image look advanced.
 
-The infographic rollout begins with the November 17 post, before its scheduled publication. Twenty-four prepared posts through December 18 have required graphics; the separate recording companion remains an unscheduled asset. The video itself remains unrecorded.
+Use the site's paper, ink and cobalt palette, gold only where the subject is cost and coral only for refusal, stop or an effect that cannot be undone. Dashed lines always mean a boundary. Pair every colour with a label or symbol. A solid figure is a person; outline shapes are software and data.
 
-Past publication receipts remain immutable evidence. Preparing an improved asset for a future post does not alter earlier LinkedIn posts.
+The manifest in `content/infographics/manifest.json` connects each post to its image and meaningful alt text. New notes set `visual_required: true`, so their publishing path must not silently degrade to text if the reviewed asset is missing or its upload fails. The renderer must derive neither claims nor success metrics from a title alone. Review actual image output at full and phone size before enabling publication. Passing layout checks shows that the text fits. It does not show that the design is good.
+
+The infographic rollout began with the November 17 post, which published with the first process-and-zoom design. That image is now a frozen record. The redesigned system applies to the twenty-three prepared posts from November 18 through December 18 that had not published when it was prepared, plus the unscheduled recording companion and a reference exemplar that redraws the logging lesson. The video itself remains unrecorded.
+
+Past publication receipts and the images that went out with them remain immutable evidence. The renderer will not redraw a published graphic, and preparing an improved asset for a future post does not alter earlier LinkedIn posts.
 
 ## Video and voice
 
