@@ -2,23 +2,25 @@
 title: "The cost of seeing everything"
 date: 2026-11-17
 status: approved
+visual_required: true
 tag: security
-summary: "Logging everything into Sentinel is a bill, not a strategy. Decide what you need to detect first."
+summary: "A log budget starts with the decisions the data must support. Keep detection, investigation and retention needs visible."
 linkedin_url:
 ---
 
-"Send everything to Sentinel" is a bill, not a security strategy.
+"Send everything to Sentinel" is a budget decision disguised as a security strategy.
 
-I've seen the invoice that comes from that sentence. Ingestion priced per gigabyte, every verbose diagnostic log from every subscription flowing in, and a SOC drowning in data it never wrote a single detection for.
+Before adding another log source, I want a short record of what it earns its place by doing:
 
-Seeing everything feels safe. It isn't. It's expensive noise with a false sense of coverage.
+1. The question. Which event or investigation must we be able to explain?
+2. The evidence. Which source, fields and time window make that possible?
+3. The test. Can a controlled event be detected, investigated and traced back to its evidence?
+4. The owner. Who maintains that check and reviews the cost and retention?
 
-The approach that worked, on the security strategy work I contributed to, went the other way round. Start from what you need to detect. Privileged role activation. Impossible travel. Data leaving a boundary it shouldn't. New service principals with broad rights. Then trace backwards: which sources actually feed those detections, at what verbosity, and with what retention.
+Take a privileged role activation. Collecting the event is one step. Joining it to the right identity, retaining the evidence and having someone responsible for the resulting alert are separate decisions.
 
-Everything else goes to cheap storage, or doesn't get collected until there's a detection that needs it.
+The graphic is a review card for that conversation. Try it on one source before changing collection. If removing a field breaks an investigation, that is evidence against the saving.
 
-The result was a smaller pipe, a sharper set of alerts, and analysts who could explain why each source existed. It also meant the AI-assisted investigation tooling had a signal-rich dataset to work with rather than a landfill.
+A source can also earn its place through audit, incident response or a retention obligation. "No detection uses it" is not permission to delete it.
 
-Visibility is a design decision with a price. Treat it like one.
-
-What percentage of your log ingestion feeds a detection someone actually maintains?
+An expensive log lake can still have blind spots. I want the coverage test beside the cost estimate.

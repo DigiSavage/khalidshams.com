@@ -4,6 +4,16 @@
   "height": 1500,
   "items": [
     {
+      "slug": "the-cost-of-seeing-everything",
+      "post": "content/posts/2026-11-17-the-cost-of-seeing-everything.md",
+      "asset": "content/images/the-cost-of-seeing-everything.png",
+      "alt": "Detection-first log budget: name the event and response owner, map the source fields and timing with audit obligations, generate a safe test event to verify detection coverage, then choose the storage tier, retention period and accountable owner. Trace one detection to its source and explain the cost and consequence of losing that evidence. Logs without a detection may still be required for audit, investigation or retention obligations.",
+      "layout": "flow",
+      "sha256": "a9e77bf71d108c38714ec64746c717f4b2c5fef31e2bf4bedea08e350b2dc4fb",
+      "spec_sha256": "e61e89bb22ac338506d0d4104df68e8de4d49afc09dda1a834be54531f010d9a",
+      "source": "content/infographics/specs.json"
+    },
+    {
       "slug": "2036-change-one-assumption",
       "post": "content/posts/2026-11-18-2036-change-one-assumption.md",
       "asset": "content/images/2036-change-one-assumption.png",

@@ -2,7 +2,7 @@
 
 These are deliberately authored diagrams, not automatically summarized claims. Each graphic pairs one decision or mechanism with a concrete check and an honest boundary. They use the existing site palette and bundled IBM Plex typefaces. Examples and proposed tests do not imply measured production results.
 
-The initial collection covers every prepared post from November 18 through December 18, 2026, plus the public synthetic approval graphic used by the private recording set. The recording graphic has no scheduled post association.
+The initial collection covers every prepared post from November 17 through December 18, 2026, plus the public synthetic approval graphic used by the private recording set. The recording graphic has no scheduled post association.
 
 ## Source and asset contract
 
