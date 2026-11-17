@@ -2,21 +2,22 @@
 title: "Why did it do that"
 date: 2026-12-08
 status: approved
+visual_required: true
 tag: agentic-ai
-summary: "Logs tell you what an agent did. They don't tell you why. Observability for agents is a different thing."
+summary: "An agent trace should preserve observable decision evidence without pretending to expose the model's private reasoning."
 linkedin_url:
 ---
 
-"Why did it do that?" is the question every agentic system eventually gets asked, and logs can't answer it.
+"Why did it do that?" needs a better answer than a plausible story after the event.
 
-Logs tell you what happened. The tool was called, the response came back, the answer was returned. What they don't tell you is why the agent chose that tool, what it believed at the time, what it retrieved, and what it ignored.
+For an agent workflow, I want a record of observable evidence: the request and its version, approved source references, permission decisions, tool inputs and outcomes, resulting state changes, and cost.
 
-For a conventional service that's fine. The code is the reasoning, and you can read the code. For an agent, the reasoning happened at runtime and evaporated.
+That record can show what the system received and what it did. It does not reveal a model's private reasoning or prove that its explanation caused the action.
 
-So observability for agents means capturing the reasoning trail, not just the events. On the systems I've built, every run produces a trace: the plan the agent formed, each retrieval and what it returned, each tool call with its input and output, each decision point and the alternative it rejected, and the cost of every step.
+Take a synthetic run where a source changes between drafting and execution. Inspect whether the trace connects the final action to the evidence and approval that were actually current.
 
-That trace is what lets you answer "why" after the fact. It's also what feeds the evaluation harness, what surfaces new failure modes, and what an auditor will ask for in a regulated environment.
+Capture only what the investigation needs. Sensitive content needs appropriate access, redaction and retention; collecting everything creates another system to protect.
 
-It isn't free. Traces have to be stored, secured, and redacted where they hold sensitive data. But a system that can't explain itself is a system you can't safely change.
+Keep a compact evidence bundle with the evaluation case. Use it to test a change and distinguish a reproduced failure from a convincing explanation.
 
-Could your system answer "why" for a run from last Tuesday?
+An audit trail is a witness. It is not a mind reader.

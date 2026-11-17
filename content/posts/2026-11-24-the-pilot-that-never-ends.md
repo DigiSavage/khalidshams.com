@@ -2,6 +2,7 @@
 title: "The pilot that never ends"
 date: 2026-11-24
 status: approved
+visual_required: true
 tag: business-value
 summary: "Pilots don't fail. They just never finish, because nobody wrote down what finished looks like."
 linkedin_url:

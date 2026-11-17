@@ -2,8 +2,8 @@
 """
 Publish one approved note, following content/linkedin_schedule.json.
 
-Scheduled runs retain the ordinary Tue/Thu oldest-overdue queue. During a
-bounded campaign, extra weekdays select only that day's explicitly marked note.
+Scheduled runs use the effective weekday plan and an oldest-overdue queue.
+During a bounded campaign, extra weekdays select only that day's marked note.
 Manual runs may publish an ordinary overdue note on other days; campaign notes
 never catch up outside their own dates. Receipts prevent a second tracked post
 on the same Phoenix date. The workflow commits each confirmed publication.
@@ -29,7 +29,7 @@ or a failed resolution commit leaves the remote hold for manual reconciliation.
 """
 from __future__ import annotations
 import http.client
-import json, os, re, sys, tempfile, urllib.request, urllib.error
+import hashlib, json, os, re, struct, sys, tempfile, urllib.request, urllib.error
 from datetime import date, datetime, timezone, timedelta
 from dataclasses import dataclass
 from pathlib import Path
@@ -101,6 +101,41 @@ def api(method: str, path: str, token: str, body=None, version=None):
 
 
 IMAGES = POSTS.parent / "images"
+VISUAL_MANIFEST = POSTS.parent / "infographics" / "manifest.json"
+
+
+def visual_for(path: Path, meta: dict) -> tuple[Path | None, str, bool]:
+    """Validate required reference graphics before reserving or publishing."""
+    required = meta.get("visual_required", "").lower() == "true"
+    legacy = image_for(path)
+    if not VISUAL_MANIFEST.exists():
+        if required:
+            raise ValueError("Required infographic manifest is missing.")
+        return legacy, meta.get("title", path.stem), False
+    manifest = json.loads(VISUAL_MANIFEST.read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != 1 or not isinstance(manifest.get("items"), list):
+        raise ValueError("Invalid infographic manifest.")
+    relative = path.resolve().relative_to(ROOT.resolve()).as_posix()
+    matches = [item for item in manifest["items"] if item.get("post") == relative]
+    if not matches and not required:
+        return legacy, meta.get("title", path.stem), False
+    if len(matches) != 1:
+        raise ValueError(f"Expected exactly one infographic for {relative}; found {len(matches)}.")
+    item = matches[0]
+    asset = (ROOT / item["asset"]).resolve()
+    if asset.parent != IMAGES.resolve() or asset.suffix != ".png" or legacy is None or asset != legacy.resolve():
+        raise ValueError("Infographic must be the matching post PNG in content/images.")
+    alt = item.get("alt", "")
+    if not isinstance(alt, str) or not 20 <= len(alt.strip()) <= 1000:
+        raise ValueError("Infographic requires descriptive alt text of 20 to 1000 characters.")
+    data = asset.read_bytes()
+    if len(data) < 33 or data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
+        raise ValueError("Infographic is not a PNG.")
+    if struct.unpack(">II", data[16:24]) != (1200, 1500):
+        raise ValueError("Infographic must be 1200 by 1500 pixels.")
+    if hashlib.sha256(data).hexdigest() != item.get("sha256"):
+        raise ValueError("Infographic hash does not match its reviewed manifest.")
+    return asset, alt.strip(), required
 
 
 def image_for(path) -> "Path | None":
@@ -117,7 +152,7 @@ def upload_image(token: str, version: str, author: str, img_path) -> "str | None
     status, _, raw = api("POST", "/rest/images?action=initializeUpload", token,
                          {"initializeUploadRequest": {"owner": author}}, version)
     if status != 200:
-        print(f"::warning::image initializeUpload failed ({status}): {raw[:300]} — posting without image")
+        print(f"::warning::image initializeUpload failed ({status}): {raw[:300]}")
         return None
     v = json.loads(raw)["value"]
     upload_url, urn = v["uploadUrl"], v["image"]
@@ -127,10 +162,10 @@ def upload_image(token: str, version: str, author: str, img_path) -> "str | None
     try:
         with urllib.request.urlopen(req, timeout=60) as r:
             if r.status not in (200, 201):
-                print(f"::warning::image upload returned {r.status} — posting without image")
+                print(f"::warning::image upload returned {r.status}")
                 return None
     except urllib.error.HTTPError as e:
-        print(f"::warning::image upload failed ({e.code}): {e.read().decode()[:300]} — posting without image")
+        print(f"::warning::image upload failed ({e.code}): {e.read().decode()[:300]}")
         return None
     print(f"image uploaded: {urn}")
     return urn
@@ -156,6 +191,13 @@ def load_schedule(path: Path = None) -> dict:
             raise ValueError("Schedule weekdays must be nonempty lists of integers 0 through 6.")
 
     weekdays(config["base_weekdays"])
+    previous = date.min
+    for change in config.get("base_schedule_changes", []):
+        start = date.fromisoformat(change["start"])
+        weekdays(change["weekdays"])
+        if start <= previous:
+            raise ValueError("Base schedule changes must have unique, increasing start dates.")
+        previous = start
     names = set()
     for campaign in config.get("campaigns", []):
         name = campaign["name"]
@@ -166,7 +208,9 @@ def load_schedule(path: Path = None) -> dict:
         if start > end:
             raise ValueError(f"Campaign {name} ends before it starts.")
         weekdays(campaign["weekdays"])
-        if set(campaign["weekdays"]) & set(config["base_weekdays"]):
+        boundaries = [start] + [date.fromisoformat(c["start"]) for c in config.get("base_schedule_changes", [])
+                                if start < date.fromisoformat(c["start"]) <= end]
+        if any(set(campaign["weekdays"]) & set(base_weekdays_on(config, d)) for d in boundaries):
             raise ValueError(f"Campaign {name} overlaps ordinary publishing weekdays.")
         for manual in campaign.get("manual_dates", []):
             d = date.fromisoformat(manual)
@@ -174,6 +218,14 @@ def load_schedule(path: Path = None) -> dict:
             if not (start <= d <= end and d.weekday() in campaign["weekdays"] and valid_receipt(receipt)):
                 raise ValueError(f"Campaign {name} has an invalid manual date or missing receipt: {manual}.")
     return config
+
+
+def base_weekdays_on(config: dict, day: date) -> list[int]:
+    result = config["base_weekdays"]
+    for change in config.get("base_schedule_changes", []):
+        if date.fromisoformat(change["start"]) <= day:
+            result = change["weekdays"]
+    return result
 
 
 def publication_day(meta: dict) -> date:
@@ -217,8 +269,8 @@ def select_post(posts: list, config: dict, t: date, scheduled: bool) -> Selectio
             raise ValueError(f"Campaign post {post[0].name} must have matching series, approved status and no existing receipt.")
         return Selection("due", post)
 
-    if scheduled and t.weekday() not in config["base_weekdays"]:
-        return Selection("outside_schedule", message="No publishing slot today. The campaign is bounded; ordinary backlog stays on base weekdays.")
+    if scheduled and t.weekday() not in base_weekdays_on(config, t):
+        return Selection("outside_schedule", message="No publishing slot today. Ordinary backlog stays on the effective base weekdays.")
     campaign_names = {c["name"] for c in campaigns}
     ordinary = [p for p in posts if not p[1].get("linkedin_schedule") and p[1].get("series") not in campaign_names]
     approved = [p for p in ordinary if p[1].get("status", "").lower() == "approved" and not p[1].get("linkedin_url", "").strip()]
@@ -365,7 +417,13 @@ def main() -> int:
     title = meta.get("title", path.stem)
     body = public_text(body)
     print(f"selected: {path.name} ({title})")
-    img = image_for(path)
+    try:
+        img, image_alt, visual_required = visual_for(path, meta)
+    except (ValueError, KeyError, OSError, TypeError) as error:
+        print(f"::error::Infographic validation failed before publishing: {error}")
+        released = bool(hold and hold["path"] == selected_path(selection.post) and release_reservation())
+        report(selection, "visual_error", reservation_released=released)
+        return 1
     if dry:
         print(f"DRY_RUN: image={'none' if img is None else img.name}")
         print("DRY_RUN: would post the following commentary:\n" + "-" * 60 + f"\n{body}\n" + "-" * 60)
@@ -408,8 +466,10 @@ def main() -> int:
         }
         if img is not None:
             urn = upload_image(token, version, author, img)
+            if not urn and visual_required:
+                raise ValueError("Required infographic upload failed. No text-only post will be published.")
             if urn:
-                payload["content"] = {"media": {"id": urn, "title": title, "altText": title}}
+                payload["content"] = {"media": {"id": urn, "title": title, "altText": image_alt}}
     except (ValueError, KeyError, OSError, http.client.HTTPException) as error:
         print(f"::error::Preparation failed before publishing: {error}")
         released = release_reservation()

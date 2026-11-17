@@ -2,6 +2,7 @@
 title: "Change one assumption on purpose"
 date: 2026-11-18
 status: approved
+visual_required: true
 tag: architecture
 summary: "Test an architectural decision by changing the condition that justified it."
 linkedin_url:

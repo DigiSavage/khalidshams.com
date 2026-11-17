@@ -2,21 +2,22 @@
 title: "Small models, big boundaries"
 date: 2026-11-19
 status: approved
+visual_required: true
 tag: agentic-ai
-summary: "Most steps in an agent don't need the frontier model. The boundary around the step matters more than its size."
+summary: "A model swap belongs inside a tested task boundary, with explicit validation and escalation."
 linkedin_url:
 ---
 
-Most of the steps in an agentic system don't need the biggest model.
+The model can get smaller. The boundary should not get vague.
 
-Classifying a request. Pulling fields out of a document. Formatting an answer. Deciding which tool applies. These are narrow tasks with clear inputs, and a smaller, faster model handles them well at a fraction of the cost and latency.
+For a bounded task such as classification or field extraction, I would compare a deterministic rule, a smaller model and a larger model before choosing one.
 
-The expensive model earns its place at the steps that need judgment: reconciling conflicting evidence, planning a multi-step task, deciding that the right answer is "I can't do this safely."
+Give each candidate the same typed input, expected output, validation checks and escalation cases. Include a malformed document, missing evidence and a request outside the permitted task.
 
-What I've learned is that the boundary around each step matters more than the size of the model inside it. A small model with a typed input, a typed output, a validation check, and a clear failure path is more reliable than a large model with a vague prompt and permission to improvise.
+A valid JSON response is only the first check. Inspect whether the answer is correct, whether the source supports it and whether the workflow stops when it should.
 
-So the architecture ends up looking less like one brilliant agent and more like a pipeline of narrow specialists with a planner on top. Each specialist can be swapped, evaluated, and priced on its own. The planner is where the care goes.
+Then swap the implementation behind the contract and run those cases again. Record which behavior changes before looking at the savings.
 
-It's also how you stay flexible. Models change every few months. Boundaries don't have to.
+A narrow specialist may be easier to replace and operate. It still needs evidence that it can do its assigned job.
 
-Where in your system is a big model doing a small model's job?
+The useful unit of architecture is the task we can test, not the largest model we can afford.

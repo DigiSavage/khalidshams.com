@@ -46,10 +46,63 @@ class SelectionTests(unittest.TestCase):
 
     def test_campaign_is_bounded_and_weekends_do_not_drain_queue(self):
         posts = [note("2026-10-20"), campaign("2026-11-20")]
-        for day in ("2026-10-23", "2026-10-31", "2026-11-23", "2026-11-25", "2026-11-27"):
+        for day in ("2026-10-23", "2026-10-31", "2026-11-21", "2026-11-22", "2026-11-28"):
             with self.subTest(day=day):
                 self.assertEqual(self.select(posts, day).status, "outside_schedule")
         self.assertEqual(self.select(posts, "2026-11-20").post, posts[1])
+
+    def test_continuing_weekday_cadence_starts_on_november_23(self):
+        ordinary = note("2026-11-23", "ongoing")
+        posts = [campaign("2026-11-20"), ordinary]
+        self.assertEqual(self.select(posts, "2026-11-22").status, "outside_schedule")
+        for day in ("2026-11-23", "2026-11-25", "2026-11-27", "2027-01-04"):
+            with self.subTest(day=day):
+                self.assertEqual(self.select(posts, day).post, ordinary)
+
+    def test_continuing_cadence_does_not_revive_old_campaign_posts(self):
+        old_campaign = campaign("2026-11-20")
+        future = note("2026-11-24")
+        self.assertEqual(self.select([old_campaign, future], "2026-11-23").status, "nothing_due")
+
+    def test_effective_schedule_change_does_not_retroactively_change_old_dates(self):
+        old = note("2026-10-20")
+        self.assertEqual(self.select([old], "2026-10-23").status, "outside_schedule")
+        self.assertEqual(self.select([old], "2026-11-24").post, old)
+
+    def test_invalid_effective_cadence_changes_fail_validation(self):
+        invalid_changes = [
+            [{"start": "2026-11-23", "weekdays": []}],
+            [{"start": "2026-11-23", "weekdays": [7]}],
+            [{"start": "not-a-date", "weekdays": [0]}],
+            [{"start": "2026-11-23", "weekdays": [0]},
+             {"start": "2026-11-23", "weekdays": [2]}],
+            [{"start": "2026-12-01", "weekdays": [0]},
+             {"start": "2026-11-23", "weekdays": [2]}],
+        ]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "schedule.json"
+            for changes in invalid_changes:
+                with self.subTest(changes=changes):
+                    path.write_text(json.dumps({**self.config, "base_schedule_changes": changes}))
+                    with self.assertRaises((ValueError, TypeError)):
+                        publisher.load_schedule(path)
+
+    def test_effective_base_change_rejects_overlapping_campaign(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "schedule.json"
+            # The original Tue/Thu base does not overlap Friday. The dated
+            # Mon/Fri change does, both within and before the campaign window.
+            for start in ("2026-11-20", "2026-11-24"):
+                with self.subTest(start=start):
+                    config = {
+                        "base_weekdays": [1, 3],
+                        "base_schedule_changes": [{"start": "2026-11-23", "weekdays": [0, 4]}],
+                        "campaigns": [{"name": "future", "start": start,
+                                       "end": "2026-11-27", "weekdays": [4]}],
+                    }
+                    path.write_text(json.dumps(config))
+                    with self.assertRaisesRegex(ValueError, "overlaps ordinary"):
+                        publisher.load_schedule(path)
 
     def test_tuesday_and_thursday_preserve_oldest_ordinary_overdue(self):
         posts = [campaign("2026-10-28"), note("2026-10-27"), note("2026-10-20")]
@@ -332,7 +385,7 @@ class PublisherTests(unittest.TestCase):
 
 
 class RepositoryQueueTests(unittest.TestCase):
-    """Keep the actual four-week queue complete as publication changes status."""
+    """Preserve historical campaign receipts and the prepared ongoing queue."""
 
     @classmethod
     def setUpClass(cls):
@@ -399,10 +452,45 @@ class RepositoryQueueTests(unittest.TestCase):
     def test_actual_campaign_cannot_publish_before_or_after_its_window(self):
         # Existing receipts may legitimately make a later audit return
         # already_published. Neither state is permission to publish a campaign.
-        for day in ("2026-10-23", "2026-11-23", "2026-11-25", "2026-11-27"):
+        for day in ("2026-10-23", "2026-11-22", "2026-11-28"):
             with self.subTest(day=day):
                 selected = publisher.select_post(self.posts, self.config, date.fromisoformat(day), True)
                 self.assertIn(selected.status, ("outside_schedule", "already_published"))
+
+    def test_ongoing_weekday_schedule_has_no_artificial_end_date(self):
+        self.assertEqual(self.config["base_schedule_changes"], [
+            {"start": "2026-11-23", "weekdays": [0, 1, 2, 3, 4]}
+        ])
+
+    def test_prepared_next_four_weeks_cover_every_weekday_exactly_once(self):
+        start, end = date(2026, 11, 23), date(2026, 12, 18)
+        expected = [start + timedelta(days=n) for n in range((end - start).days + 1)
+                    if (start + timedelta(days=n)).weekday() < 5]
+        prepared = [p for p in self.posts if start <= date.fromisoformat(p[1]["date"]) <= end]
+        self.assertEqual(len(prepared), 20)
+        self.assertEqual(sorted(p[1]["date"] for p in prepared), [str(d) for d in expected])
+        for post in prepared:
+            with self.subTest(path=post[0].name):
+                self.assert_publishable_record(post)
+                self.assertFalse(post[1].get("linkedin_schedule"))
+                self.assertNotIn("\u2014", post[2])
+                self.assertNotIn("\u2013", post[2])
+
+    def test_prepared_queue_can_publish_in_order_without_empty_weekday_slots(self):
+        # Replay only this window, treating a confirmed receipt as each day's
+        # outcome. Existing older records are already reconciled separately.
+        start, end = date(2026, 11, 23), date(2026, 12, 18)
+        remaining = [p for p in self.posts if start <= date.fromisoformat(p[1]["date"]) <= end]
+        for offset in range((end - start).days + 1):
+            day = start + timedelta(days=offset)
+            selected = publisher.select_post(remaining, self.config, day, True)
+            if day.weekday() >= 5:
+                self.assertEqual(selected.status, "outside_schedule")
+                continue
+            self.assertEqual(selected.status, "due")
+            self.assertEqual(selected.post[1]["date"], str(day))
+            remaining.remove(selected.post)
+        self.assertEqual(remaining, [])
 
     def test_actual_campaign_autolinks_become_plain_linkedin_urls(self):
         checked_links = 0

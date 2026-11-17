@@ -365,8 +365,13 @@ class VideoStudioTests(unittest.TestCase):
                 self.assertEqual(draft['transcript'], '')
                 self.assertGreaterEqual(len(draft['sources']), 1)
                 self.assertTrue(all(not check['done'] for check in draft['checklist']))
-                self.assertGreaterEqual(sum(beat['seconds'] for beat in draft['beats']), 240)
-                self.assertLessEqual(sum(beat['seconds'] for beat in draft['beats']), 360)
+                duration = sum(beat['seconds'] for beat in draft['beats'])
+                if template['id'] == 'approval-refund-90':
+                    self.assertEqual(duration, 90)
+                    self.assertEqual(len(draft['beats']), 6)
+                else:
+                    self.assertGreaterEqual(duration, 240)
+                    self.assertLessEqual(duration, 360)
                 for beat in draft['beats']:
                     for field in ('label', 'spoken', 'screen', 'visual', 'khalid', 'codex', 'save'):
                         self.assertTrue(beat[field].strip(), (template['id'], beat['id'], field))

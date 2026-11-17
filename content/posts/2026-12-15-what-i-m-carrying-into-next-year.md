@@ -2,21 +2,22 @@
 title: "What I'm carrying into next year"
 date: 2026-12-15
 status: approved
+visual_required: true
 tag: career
-summary: "Three things I'm carrying into next year, from a year of building agentic systems and the foundations under them."
+summary: "Three principles to carry forward as concrete checks: written rules, explicit authority and foundations that make later changes easier."
 linkedin_url:
 ---
 
-Three things I'm carrying into next year.
+Three things I want to carry into next year.
 
-Write the rules down. Almost every hard problem I worked on this year, from tenant graduation to agent permissions to who owns a data layer, got easier the moment someone wrote the rule down. Imperfect written rules beat good judgment applied inconsistently. Every time.
+Write the rule down. Give it an owner, an example and an exception path. A written rule can still be wrong; the advantage is that people can inspect it and change it deliberately.
 
-Keep the human where the judgment is. The agentic systems I'm proudest of aren't the ones that decide the most. They're the ones clearest about what they don't decide. That clarity is a design choice, and it's the one that lets regulated organisations deploy at all.
+Keep authority explicit. Mark what the system may prepare, what it may execute, and where a person must make the decision. "Human in the loop" needs a named action, current evidence and enough time to act.
 
-Build the foundation before the feature. The dashboard that gets applause and the pilot that everyone loves are both cheap to produce and expensive to keep. The unglamorous work underneath is what makes the next thing cheap.
+Build the foundation before the feature hardens. Establish data, state, permissions, component contracts and recovery. Early interface sketches still help reveal whether we are solving the right problem.
 
-None of these are new ideas. What changed this year is that AI made the cost of ignoring them much higher. An agent on a shaky foundation with vague rules and no human in the loop isn't a risk. It's a schedule.
+For the next build, I would put those three checks on one page. Ask another engineer to find a permitted outcome, a refusal and a recovery path in the design.
 
-Thanks to everyone who argued with me in the comments this year. That's where most of this got sharper.
+Keep whatever they can verify. Turn whatever they have to guess into the next piece of work.
 
-What's the one thing you're carrying forward?
+The useful carry-forward is a practice someone else can repeat.

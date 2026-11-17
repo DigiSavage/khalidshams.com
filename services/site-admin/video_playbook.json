@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-26",
+  "version": "2026-11-17",
   "title": "Show the thinking. Leave something useful.",
   "promise": "I make decisions behind working systems visible. Help viewers understand a real problem, see why a question matters, and keep something useful for their next build.",
   "audience": "Business owners, decision makers, curious learners and experienced builders who want to use AI well and understand their own role. Explain terms in context; let evidence carry the depth. This is not a beginner-only series.",
@@ -22,6 +22,7 @@
     {"question": "What must remain true when cost, load, ownership or the model changes?", "why": "A successful demo does not establish a sustainable service.", "payoff": "Set quality, cost, access and recovery limits with named owners.", "save": "Acceptance tests, cost assumptions, monitoring, rollback and handover."}
   ],
   "season": [
+    {"title": "First short: a yes has a boundary", "decision": "Bind approval to the exact action and version, then check that binding at execution. A changed proposal requires a fresh review.", "save": "90-second words, exact clicks, synthetic refusal receipt, companion infographic and five-minute expansion notes.", "status": "Authored draft; recording and review still required", "template_id": "approval-refund-90"},
     {"title": "Understand the people and the finish", "decision": "Define the assistant's task, audience, owner and proof before opening a portal.", "save": "Discovery brief and acceptance evidence outline for the whole season.", "status": "Planned"},
     {"title": "Buy, build, or fix the process?", "decision": "Compare the smallest credible options for the same approved-policy task.", "save": "Option record and baseline worksheet, linked back to the discovery brief.", "status": "Authored draft", "template_id": "buy-build-process"},
     {"title": "Same question, different employee", "decision": "Decide which sources each role may use and what a correct refusal looks like.", "save": "Source register, access matrix and repeatable negative tests.", "status": "Planned"},
@@ -35,7 +36,8 @@
     {"title": "Five minutes with one memorable decision", "detail": "Open on my face: a tension, discovery question, useful step, failure, saved artifact and takeaway. Rehearse to about five minutes. Divide long workflows into connected episodes instead of rushing clicks."},
     {"title": "Clear, warm and occasionally witty", "detail": "Use plain language, short analogies and humor about real assumptions. Let predictions meet observable results. Cut dead time, keep evidence readable, and never edit a failure into apparent success."},
     {"title": "Use the equipment already here", "detail": "Nikon with kit lens, Blue microphone and strong light; exact models remain unconfirmed. Start eye-level, soften the light to one side, and test audio. Confirm models before prescribing settings or buying gear."},
-    {"title": "Make the screen teach", "detail": "Use clean windows, readable crops and captions. One decision per shot; text alongside color; people distinct from software; simulations labeled. Inspect a pilot for audio, privacy and mobile readability."}
+    {"title": "Make the screen teach", "detail": "Use clean windows, readable crops and captions. One decision per shot; text alongside color; people distinct from software; simulations labeled. Inspect a pilot for audio, privacy and mobile readability."},
+    {"title": "First recording: one visible boundary in 90 seconds", "detail": "Open Recording set, follow the saved cue card and capture the synthetic refusal. The console runs locally with no payment adapter. Keep the limitations visible, leave all readiness checks unchecked until verified, and add only an actual recorded transcript after filming."}
   ],
   "roles": [
     {"title": "Khalid: meaning, judgment and delivery", "detail": "Confirm the audience and honest claims. Explain tradeoffs, make decisions, rehearse clicks, record voice and face, and approve the evidence and edit."},
@@ -44,10 +46,10 @@
   ],
   "continuity": [
     {"title": "Preserve the direction deliberately", "detail": "This versioned playbook lives in committed source. Private episodes expire 365 days after creation; editing does not renew them. Download reviewed shooting packs and transcripts for deliberate long-term custody."},
-    {"title": "A connected season, not completed work", "detail": "Three linked templates are authored drafts; other episodes are planned. None proves a recording, client outcome or deployment. Review older drafts against the current method before filming."},
+    {"title": "A connected season, not completed work", "detail": "Four linked templates are authored drafts, including the first 90-second recording package; other episodes are planned. None proves a recording, client outcome or deployment. Review older drafts against the current method before filming."},
     {"title": "Keep the wider architecture tracks", "detail": "Future tracks: cloud, tenant isolation, platforms, data, security, integration and modernization. An EMR teaching build would use synthetic data and jurisdiction-specific review; a video does not establish compliance."},
-    {"title": "Resolve the open items honestly", "detail": "At this version, PR #21 awaits AWS sign-in for backend release. Foundry needs an approved sandbox, budget and rehearsal. The channel name is unresolved; Shams Blueprint was rejected. Handle availability is unverified."},
+    {"title": "Resolve the open items honestly", "detail": "Check current deployment evidence in the Video Studio report. Foundry still needs an approved sandbox, budget and rehearsal. Exact camera and microphone models require confirmation. The channel name is unresolved; Shams Blueprint was rejected. Handle availability is unverified."},
     {"title": "Let the same idea travel", "detail": "A useful video can yield a LinkedIn observation and free site companion tied to the same artifact. Prepare them deliberately. The current cadence lives in docs/site/LINKEDIN_2036_SERIES.md, not in this playbook."},
-    {"title": "Preparation is not publication", "detail": "This studio does not record, transcribe automatically, deploy, schedule or publish. Existing LinkedIn scheduling is separate and unchanged. Mark readiness or recording only after the human work happens."}
+    {"title": "Preparation is not publication", "detail": "This studio does not record, transcribe automatically, deploy, schedule or publish. LinkedIn publishing has a separate workflow and editorial schedule. Mark readiness or recording only after the human work happens."}
   ]
 }

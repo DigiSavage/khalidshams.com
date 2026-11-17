@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "width": 1200,
+  "height": 1500,
+  "items": [
+    {
+      "slug": "2036-change-one-assumption",
+      "post": "content/posts/2026-11-18-2036-change-one-assumption.md",
+      "asset": "content/images/2036-change-one-assumption.png",
+      "alt": "A four-step change-impact flow: preserve the accepted outcome, identify the broken dependency, recheck data access and authority, then rerun affected tests with a named owner. Test it by removing the preferred model. Replacement does not establish equivalence.",
+      "layout": "flow",
+      "sha256": "1135dcb1f8c4bcad9f4b18f3ef78e8851c7801b1dd9efef221869932e8e625da",
+      "spec_sha256": "fdd906b5e5b5f9952eaa59c6ad27a9cb4a5680ff45c41d79d56e6b04757ba59f",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "small-models-big-boundaries",
+      "post": "content/posts/2026-11-19-small-models-big-boundaries.md",
+      "asset": "content/images/small-models-big-boundaries.png",
+      "alt": "Model-routing decision: choose a smaller route only if it passes the task-specific acceptance test. Otherwise escalate for a suitable model or human review, or stop. Both routes require typed inputs, validated outputs, failure behavior and permission enforcement. Compare quality, latency and full delivery cost.",
+      "layout": "fork",
+      "sha256": "43bbb0e2c5483cebabfed89ce93d81b2e26985346ed8008ee8aca99e45580fcd",
+      "spec_sha256": "c6cea827ff0c8d25f5ca354e05215b71e731cb4bfd76cdb7b0a27a3c354b9875",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "2036-hand-over-the-proof",
+      "post": "content/posts/2026-11-20-2036-hand-over-the-proof.md",
+      "asset": "content/images/2036-hand-over-the-proof.png",
+      "alt": "Handover matrix with three cases. Allowed: inspect the intended business state and keep inputs plus receipt. Refused: verify no forbidden change and keep the reason and boundary. Recovered: verify a reconciled final state and keep recovery steps and timings. Have another person reproduce them; record the questions they need to ask.",
+      "layout": "matrix",
+      "sha256": "52ea76fa18f9eb0044d3f02816042052e36c1ef3bcda590be45df68d375496dc",
+      "spec_sha256": "17412ae9149840e557275c7630d1fbf8adaaafbbf580de38773158c2306665ea",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "draw-the-finish-line-before-the-flow",
+      "post": "content/posts/2026-11-23-draw-the-finish-line-before-the-flow.md",
+      "asset": "content/images/draw-the-finish-line-before-the-flow.png",
+      "alt": "Reverse planning from an accepted outcome to evidence, state and authority, then component contracts. First define the result and who accepts it; identify the completion record; define permitted changes and recovery; give each capability inputs, outputs and tests. Ask a colleague to distinguish actual completion from a plausible output.",
+      "layout": "flow",
+      "sha256": "6461008bae9a07c58e855bffb2068f929b58f4b0ff05bf636535be41690b5095",
+      "spec_sha256": "797c2c48dbedaa37c4e5326aafb26fca11182aa25b0c6b64c73cd46c8b4f8cf6",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "the-pilot-that-never-ends",
+      "post": "content/posts/2026-11-24-the-pilot-that-never-ends.md",
+      "asset": "content/images/the-pilot-that-never-ends.png",
+      "alt": "Pilot exit decision tree. Before building, agree on fixed cases, quality and cost thresholds, an accountable owner and a review date. If evidence passes, decide the next bounded production investment and operating conditions. If not, stop or revise with a new hypothesis and date. A clear no is a valid result.",
+      "layout": "fork",
+      "sha256": "2c05894d7f6911afc17a5487bbc194087a92d82dc4a4f587de3a7875d572c9f5",
+      "spec_sha256": "a8d8530a6d3b6ea59fd6b6fe16f90cec80d5fe0fbb17696aec26b6d7d7acb69a",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "the-fallback-needs-a-smaller-promise",
+      "post": "content/posts/2026-11-25-the-fallback-needs-a-smaller-promise.md",
+      "asset": "content/images/the-fallback-needs-a-smaller-promise.png",
+      "alt": "Degraded-mode decision: when an approved source is unavailable, keep identity and authority checks. Continue only with bounded work supported by available evidence, marking limitations and routing unresolved parts. Stop actions lacking evidence or authority. Test by removing the retrieval source; availability does not grant new permission.",
+      "layout": "fork",
+      "sha256": "43015825a4b86536f05265cfd96297d254c9deca494dbe3867ae3ebaf8294f44",
+      "spec_sha256": "983dab879c812b2e00ee36086ef32c2b9446da26fd7eb898eff7f63c72243915",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "a-deletion-has-more-than-one-address",
+      "post": "content/posts/2026-11-26-a-deletion-has-more-than-one-address.md",
+      "asset": "content/images/a-deletion-has-more-than-one-address.png",
+      "alt": "Deletion coverage matrix: source follows the deletion policy; indexes and caches are invalidated and queried again; exports require an owner and retention disposition; backups require expiry and restore controls to prevent reintroduction. Delete a synthetic record and check every documented copy. Legal retention and physical backup removal can differ.",
+      "layout": "matrix",
+      "sha256": "5614f89003d3a680725e504baed7c1204ef0e2425b7aa532cdf22e864cbc85fd",
+      "spec_sha256": "0ef516c9d900ab0d862657f5cb9816140668231f98509be48901fd5e4dc26ae6",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "a-dashboard-can-disagree-politely",
+      "post": "content/posts/2026-11-27-a-dashboard-can-disagree-politely.md",
+      "asset": "content/images/a-dashboard-can-disagree-politely.png",
+      "alt": "Metric agreement checklist: define the time basis, transaction status, currency conversion rule, owner and version before comparing revenue charts. Trace one row through both definitions to explain disagreements. A technically valid query does not establish a shared business meaning.",
+      "layout": "matrix",
+      "sha256": "e85967400883780f3adc3cd21f1b77adbbfa7fd350311856e38f8d321683e0fc",
+      "spec_sha256": "2c03605109e455ab89fffe53137892419567cff804751dd9c83d8dcb651c1eb5",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "the-cache-remembers-the-old-permission",
+      "post": "content/posts/2026-11-30-the-cache-remembers-the-old-permission.md",
+      "asset": "content/images/the-cache-remembers-the-old-permission.png",
+      "alt": "Cache authorization fork: evaluate the caller’s current permission before serving a result. An eligible entry must match tenant and relevant caller, source and policy scope. Deny access if permission is no longer valid. Test by warming the cache, revoking access and making the same request again; tenant separation alone is insufficient.",
+      "layout": "fork",
+      "sha256": "bc426eeb73ec939955cacdee948e80dd1e4a7d948f199c6318e2e8afb365c807",
+      "spec_sha256": "2b3e48e27b5d75574089f6294d7020e706ce28d3fd19d40cd20427be0a65ed9a",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "what-building-on-aws-taught-me-about-boring",
+      "post": "content/posts/2026-12-01-what-building-on-aws-taught-me-about-boring.md",
+      "asset": "content/images/what-building-on-aws-taught-me-about-boring.png",
+      "alt": "Recovery checklist: restore a synthetic record with a known expected result, rebuild identity/configuration/access dependencies, name the recovery owner, then verify the usable outcome. A stored backup alone is not evidence that the service has recovered. A rehearsal covers only the cases exercised.",
+      "layout": "stack",
+      "sha256": "d72d7214e794ee1d1b9704867e6a27e97141514bb7f9b7905e943466bcd6a467",
+      "spec_sha256": "83fd49b5d5ea908b94a4200d0be20583aa0b75f60f0a5b33e7326b67c5b86373",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "version-the-question-behind-the-metric",
+      "post": "content/posts/2026-12-02-version-the-question-behind-the-metric.md",
+      "asset": "content/images/version-the-question-behind-the-metric.png",
+      "alt": "Versioned metric contract covering business meaning, included population, period and currency rules, and owner plus effective date. Change a definition in a test copy and verify consumers detect the version change before comparing periods. Historical restatement or reconciliation may be needed.",
+      "layout": "matrix",
+      "sha256": "9a698fd94c3b7479fda8e4fcfa8c3c96d7eb65023635cc5473e205003c999c2b",
+      "spec_sha256": "428fd88a18233a969d3da94b39e8ed19c014f66d806246f8e86a5e7691c41311",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "the-slide-nobody-wants-to-see",
+      "post": "content/posts/2026-12-03-the-slide-nobody-wants-to-see.md",
+      "asset": "content/images/the-slide-nobody-wants-to-see.png",
+      "alt": "Illustrative dependency map places a business workflow in the center, connected to data, identity, vendor and operations. Each dependency needs an owner: sources and shared stores; service accounts and permissions; supplier service and exit path; deployment, restore and escalation. Trace one real workflow to find undocumented coupling.",
+      "layout": "map",
+      "sha256": "6b1cd7dc67fac9dec9f26ec322b77efac96ccdbabdf35035e766ab395cae2e83",
+      "spec_sha256": "b61f797548d6110a5d61c16ee6657d0b18a857ab3fb9a5c6ebff949adf0d5320",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "the-queue-is-part-of-the-product",
+      "post": "content/posts/2026-12-04-the-queue-is-part-of-the-product.md",
+      "asset": "content/images/the-queue-is-part-of-the-product.png",
+      "alt": "Queue lifecycle: at arrival assign identity, deadline and stable work ID; while waiting expose age, capacity, expiry and escalation; to finish, recheck authority and execute, review and confirm the outcome. The deadline includes waiting as well as execution. Hold a test dependency unavailable, restore it, and inspect resumed, expired and held tasks.",
+      "layout": "timeline",
+      "sha256": "95488e65af3f138d0008fd63d28d73fd228883f9c0dae6d0df81c68abfdf8feb",
+      "spec_sha256": "56adf41e81d1ae2b9bec475d1bfffd1b977a4060031cff21052a4f8eeecf81d6",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "rent-the-capability-keep-the-exit",
+      "post": "content/posts/2026-12-07-rent-the-capability-keep-the-exit.md",
+      "asset": "content/images/rent-the-capability-keep-the-exit.png",
+      "alt": "Build-or-buy portability decision: test whether another provider can reproduce the required outcome using exported data, identity mappings and acceptance cases. A rehearsed exit retains the export format and replacement plan. An unproven exit records proprietary behavior and migration gaps. An export button alone does not prove portability.",
+      "layout": "fork",
+      "sha256": "2dec4df22e9279020a8f4cbd8e994b97f7d23f20c96ea0539fb78ebeb92cf9d5",
+      "spec_sha256": "4a5c299df9b1790a5739b870ea315fc158bf248abddf584e00eda7f12bf5cdaf",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "why-did-it-do-that",
+      "post": "content/posts/2026-12-08-why-did-it-do-that.md",
+      "asset": "content/images/why-did-it-do-that.png",
+      "alt": "Inspectable decision trail: pin context and policy versions; record the selected route and explicit decision signals; preserve validated action arguments, authority and result; redact sensitive fields and apply access and retention rules. Replay a synthetic case and compare observable behavior. Traces do not prove hidden internal model reasoning.",
+      "layout": "flow",
+      "sha256": "3ca0ec004e57d1e66a8c9aaf5e2aff0f5d0927a5af04b1fb2f732f8a8cf30a02",
+      "spec_sha256": "e3305205d1b9c7f80fc2b2cf1fc786304deb078e908c6bd69c8210da0bf09753",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "a-rollback-cannot-unsend-an-email",
+      "post": "content/posts/2026-12-09-a-rollback-cannot-unsend-an-email.md",
+      "asset": "content/images/a-rollback-cannot-unsend-an-email.png",
+      "alt": "Recovery timeline distinguishes before, after and recovery. Before an external action, draft, validate and authorize. After uncertainty, inspect the destination receipt before retrying. Recover by rolling back safe local state or performing a deliberate compensating action. Restoring code does not undo an email or other external business effect.",
+      "layout": "timeline",
+      "sha256": "a401a61f8f0a521e79c49cd16eb349b9d6c8e93d1bc1b39909d1b68631be7df8",
+      "spec_sha256": "04275fe9ba60620113e0711852069c655638631fe682393fe3e1cc8e6b913ed3",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "boring-is-a-feature",
+      "post": "content/posts/2026-12-10-boring-is-a-feature.md",
+      "asset": "content/images/boring-is-a-feature.png",
+      "alt": "Four foundations of an operable platform: a repeatable release path, an explicit owner for each layer, recovery including dependencies and verification, and bounded exceptions with reasons and review dates. Ask a new engineer to trace a release and restore; treat undocumented steps as work to remove.",
+      "layout": "stack",
+      "sha256": "38d78a6dceaa5f0402f8297185285f56526631362abb8a980d61d2a15a4e2712",
+      "spec_sha256": "93770ebd965b695937ff5f0b7c5b507ec4f04a80c4cf5fb8c5341e2877cc2ddf",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "give-the-easy-work-a-smaller-machine",
+      "post": "content/posts/2026-12-11-give-the-easy-work-a-smaller-machine.md",
+      "asset": "content/images/give-the-easy-work-a-smaller-machine.png",
+      "alt": "Evidence-based model routing: evaluate a smaller route against the same cases, authority and acceptance rule. If it passes, measure total cost including retries and correction. Otherwise use an approved escalation or decline path. Cost per accepted outcome divides full delivery cost by accepted work; no model-specific savings are claimed.",
+      "layout": "fork",
+      "sha256": "e6b7d0d1182845fd9aaf85066c05a2eb5921cdd99379ab21ac754d1095af4934",
+      "spec_sha256": "9de583f420af50f557e8f649b0fbf04cd1fd4bcd5ee4eb4061554be49bdc5a70",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "let-uncertainty-choose-the-next-action",
+      "post": "content/posts/2026-12-14-let-uncertainty-choose-the-next-action.md",
+      "asset": "content/images/let-uncertainty-choose-the-next-action.png",
+      "alt": "Decision policy matrix: missing context leads to a focused question; conflicting approved sources go to an accountable owner with both sources preserved; denied access leads to refusal without restricted content; a permitted action still requires validation and a result receipt. Test all four conditions. Confidence cannot grant authority or establish that a source is current.",
+      "layout": "matrix",
+      "sha256": "56056e14d3bf5f79019ce835158c81bcb8437fa8bed20078e42e6a94280c99de",
+      "spec_sha256": "bac57284df233431d05e038863283f7f4c521b3a86f866508a5d1cac2fa2ee22",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "what-i-m-carrying-into-next-year",
+      "post": "content/posts/2026-12-15-what-i-m-carrying-into-next-year.md",
+      "asset": "content/images/what-i-m-carrying-into-next-year.png",
+      "alt": "Reusable architecture practices: write scope, ownership and exceptions; identify the exact human judgment; test state, permissions and failure behavior; preserve decision records and acceptance cases. Locate all four for one workflow. A checklist prepares evidence but is not certification.",
+      "layout": "flow",
+      "sha256": "943d7146fa402ba1039686057941bf343c93a36aa4c0e0ea925def760aeca0f7",
+      "spec_sha256": "ceb1e541f1b8a54b4272b6f089be625a7bda93c887683db46121c3815b043574",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "a-small-release-needs-a-small-blast-radius",
+      "post": "content/posts/2026-12-16-a-small-release-needs-a-small-blast-radius.md",
+      "asset": "content/images/a-small-release-needs-a-small-blast-radius.png",
+      "alt": "Release-control decision: bound affected tenants, operations, authority and time; tag results by version and name stop thresholds plus an operator. If consequences cannot be identified, reduce scope and test recovery first. Revoke a test flag while work is active, then reconcile completed effects; a flag cannot undo them.",
+      "layout": "fork",
+      "sha256": "c3fac30ef1fa171dcb5d231d18f13f7d061099fff7b8f5c67f47e51e6ea555d8",
+      "spec_sha256": "73c89eb040d763d1a17078fb2726139d0b7f6771b6fb71bdd1fb91e4d9648287",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "read-the-invoice-before-the-architecture-review",
+      "post": "content/posts/2026-12-17-read-the-invoice-before-the-architecture-review.md",
+      "asset": "content/images/read-the-invoice-before-the-architecture-review.png",
+      "alt": "Cloud cost-to-ownership matrix: compute maps to workloads and tier owners, storage to data and retention owners, network to flows and service owners, shared services to consumers and cost owners. Investigate one unexplained charge before deciding whether to keep, tune or retire it. A high cost can be justified.",
+      "layout": "matrix",
+      "sha256": "fe9035640bf5404a6337a8ffc9c4f88f419ad210a44c77112f4657de262e560e",
+      "spec_sha256": "6a895c35b8f814e299e0ba9242c6fd616b182d43c092e97c87d91d04f98ff8e5",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "save-the-reason-then-reuse-the-component",
+      "post": "content/posts/2026-12-18-save-the-reason-then-reuse-the-component.md",
+      "asset": "content/images/save-the-reason-then-reuse-the-component.png",
+      "alt": "Reusable component package: preserve its input/output contract and permitted effects, the reason and assumptions behind the design, allowed/refused/recovery tests, then validate identity and data policy in the new context. Test that old permission does not follow a component into another environment.",
+      "layout": "flow",
+      "sha256": "72df9e189d3252334131230e83e377571de739f3acf8e33b6d205f1a95ec66ba",
+      "spec_sha256": "29f7a3dea4f2171c7963f53cf2494fb6cfa277cf1fb248191faac85409aee220",
+      "source": "content/infographics/specs.json"
+    },
+    {
+      "slug": "a-yes-has-a-boundary-recording",
+      "post": null,
+      "asset": "content/images/a-yes-has-a-boundary-recording.png",
+      "alt": "Synthetic approval-boundary demonstration. A reviewed refund proposal for $500 is version 1. Changing the amount to $5,000 produces version 2. Approval remains bound to version 1, so a write attempt is refused with PAYLOAD_CHANGED and zero synthetic writes. The changed proposal needs new review. No payment or live cloud transaction occurs.",
+      "layout": "approval",
+      "sha256": "0fdabdf55a953dfab18d54652c40cbfe6b45157c60118ad3fe629a341e5d4e69",
+      "spec_sha256": "257a0b2aa6f650764a2a136ddcc7cb9e83abd2c448b55b190702e70b09bc27ff",
+      "source": "content/infographics/specs.json"
+    }
+  ],
+  "inputs": {
+    "renderer": {
+      "path": "tools/linkedin_infographics.py",
+      "sha256": "5a53f64d974d1a427c2f07509ca4cba9422a55cfff4c778b48b252e0d83ea9bd"
+    },
+    "fonts": {
+      "tools/fonts/IBMPlexMono-Medium.ttf": "0bede3debdea8488bbb927f8f0650d915073209734a67fe8cd5a3320b572511c",
+      "tools/fonts/IBMPlexSans-Medium.ttf": "331c8639d7598b2cde62a911a71db195e30cb655cd6bdf2e324a7e984955f907",
+      "tools/fonts/IBMPlexSans-Regular.ttf": "975dcda37d80f038dcd143c22e33ca2d97a0cc5a929aace1c749153b0fe1afa5",
+      "tools/fonts/IBMPlexSans-SemiBold.ttf": "a20caf8286023a6a7a85e40b1d2a4ae9fc3e3b1f9eda8f4c542dd4986af67bb1",
+      "tools/fonts/IBMPlexSerif-Medium.ttf": "6b5bfe2b755d256b2bd7ff2be78f1df1931f4a3aad3c6e413284410dfe5b91f7"
+    }
+  }
+}

@@ -33,9 +33,9 @@ Create an episode explicitly. In **The decision**, name the task, owner and obse
 
 In **Evidence**, check sources and distinguish proposed, simulated and observed results. In **Get ready**, rehearse the actual screen sequence, inspect the frame and audio, and check the saved artifact. Use the rehearsal view to test timing and flow. Keep recorded words in **Transcript**, separately from the draft script. Carry the verified artifact and unanswered question into the next episode.
 
-The eight-part first season is connected planning. Only build/buy/process, exact approval and the first Foundry checkpoint have linked authored shooting drafts. All remaining entries are planned, and every episode still requires its own evidence and rehearsal. Draft status never means recorded, deployed or ready to publish.
+The eight-part first season is connected planning. Build/buy/process, exact approval and the first Foundry checkpoint have linked five-minute authored shooting drafts. The November 17 package adds a separate 90-second approval clip with a deterministic private recording set. All remaining entries are planned, and every episode still requires its own evidence and rehearsal. Draft status never means recorded, deployed or ready to publish.
 
-For cross-channel work, retain the same argument and evidence in an optional LinkedIn observation and free site companion. `docs/site/LINKEDIN_2036_SERIES.md` is authoritative for actual scheduling: the base Tuesday/Thursday cadence and the bounded five-post week through November 20. Do not duplicate its calendar in the runtime playbook or change schedules as part of video preparation.
+For cross-channel work, retain the same argument and evidence in an optional LinkedIn observation and free site companion. `docs/site/LINKEDIN_2036_SERIES.md` is authoritative for actual scheduling: the current publishing cadence and its review dates. Do not duplicate its calendar in the runtime playbook or change schedules as part of video preparation.
 
 ## Preservation and limits
 
@@ -50,3 +50,13 @@ The template content and playbook are authored source in a public repository. Ke
 The studio implementation is on `codex/video-studio` in [PR #21](https://github.com/DigiSavage/khalidshams.com/pull/21). The backend was deployed and verified on October 28, 2026, after restoring the site's AWS session. Publication is already authorized. Static deployment and authenticated owner acceptance are recorded with that PR. See the dated release entry in `VIDEO_STUDIO_REPORT.md`; source code and isolated test results alone do not establish production acceptance.
 
 The Foundry demonstration remains pending an approved sandbox, budget and portal rehearsal. No model output, recording, real client result or completed deployment is implied by its storyboard. See `docs/site/VIDEO_STUDIO_REPORT.md` for the implementation and validation record; add the method-view verification there before release.
+
+## First short recording package · 17 November 2026
+
+The first short is **A $500 approval cannot authorize a $5,000 action.** It has six 15-second beats, exact spoken words and control labels, framing and edit instructions, division of work and artifacts to retain. It is an authored draft. All preparation checks start false and the recorded transcript starts empty. Five-minute expansion notes preserve the longer teaching route.
+
+The private **04 · Recording set** view provides a working local model. Use **Reset rehearsal → Draft $500 refund → Approve $500 refund → Change amount to $5,000 → Attempt write → Inspect receipt**. The expected receipt is `REFUSED`, `PAYLOAD_CHANGED`, zero synthetic writes and no money moved. It compares exact approval payload and proposal version; an explicit fresh approval can authorize a simulated write, and consuming that approval prevents reusing it.
+
+The model has no network or payment adapter and makes no production security claim. Server authorization, identity, expiry, revocation, concurrency and recovery remain separate implementation requirements. Hiding the browser tab resets the model and masks the studio until owner access is checked. It does not erase the saved episode.
+
+The recording set uses the selected short's editable cue card when available, otherwise the authored template. The companion public PNG is `/images/a-yes-has-a-boundary-recording.png`. Capture only the synthetic stage; keep private cues, browser chrome and account details out of the take. The source package and isolated tests do not mean that Khalid has recorded or published the video.

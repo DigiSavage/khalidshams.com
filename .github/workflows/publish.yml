@@ -1,5 +1,5 @@
 # Weekday wakeups at 08:00 America/Phoenix; GitHub start times are best-effort.
-# content/linkedin_schedule.json bounds the extra M/W/F slots to four weeks.
+# content/linkedin_schedule.json records historical campaigns and ongoing cadence.
 name: Publish to LinkedIn
 
 on:
@@ -11,7 +11,11 @@ on:
       - "scripts/publish_linkedin.py"
       - "content/linkedin_schedule.json"
       - "content/posts/**"
+      - "content/images/**"
+      - "content/infographics/**"
+      - "tools/linkedin_infographics.py"
       - "tests/linkedin/**"
+      - "tests/infographics/**"
   workflow_dispatch:
     inputs:
       dry_run:
@@ -38,8 +42,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Check publisher and actual four-week queue
+      - name: Check publisher, infographic integrity, and approved queue
         run: python -m unittest discover -s tests/linkedin -v
+      - name: Check diagram layout and source contracts
+        run: |
+          python -m pip install 'Pillow==12.3.0'
+          python -m unittest discover -s tests/infographics -v
 
   publish:
     needs: validate
