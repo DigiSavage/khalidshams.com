@@ -43,6 +43,8 @@ Use the site's paper, ink and cobalt palette, gold only for costs and coral for 
 
 The manifest in `content/infographics/manifest.json` connects each post to its image and meaningful alt text. New notes set `visual_required: true`, so their publishing path must not silently degrade to text if the reviewed asset is missing or its upload fails. The renderer must derive neither claims nor success metrics from a title alone. Review actual image output, including text wrapping, before enabling publication.
 
+The infographic rollout begins with the November 17 post, before its scheduled publication. Twenty-four prepared posts through December 18 have required graphics; the separate recording companion remains an unscheduled asset. The video itself remains unrecorded.
+
 Past publication receipts remain immutable evidence. Preparing an improved asset for a future post does not alter earlier LinkedIn posts.
 
 ## Video and voice

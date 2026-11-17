@@ -2,6 +2,35 @@
   "schema_version": 1,
   "items": [
     {
+      "slug": "the-cost-of-seeing-everything",
+      "post": "content/posts/2026-11-17-the-cost-of-seeing-everything.md",
+      "title": "Budget the logs.\nKeep the evidence.",
+      "subtitle": "Start with detection needs. Preserve the evidence your obligations require.",
+      "category": "Detection economics",
+      "layout": "flow",
+      "test": "Trace one detection to its source. Explain the cost and the consequence of losing that evidence.",
+      "boundary": "No detection does not mean no value. Audit, investigation and retention duties still apply.",
+      "alt": "Detection-first log budget: name the event and response owner, map the source fields and timing with audit obligations, generate a safe test event to verify detection coverage, then choose the storage tier, retention period and accountable owner. Trace one detection to its source and explain the cost and consequence of losing that evidence. Logs without a detection may still be required for audit, investigation or retention obligations.",
+      "items": [
+        {
+          "title": "Name the detection",
+          "detail": "Define the event and who will respond."
+        },
+        {
+          "title": "Map the required source",
+          "detail": "Specify fields, timing and audit obligations."
+        },
+        {
+          "title": "Test the coverage",
+          "detail": "Generate a safe event. Verify the alert."
+        },
+        {
+          "title": "Set retention + cost",
+          "detail": "Choose tier, period and accountable owner."
+        }
+      ]
+    },
+    {
       "slug": "2036-change-one-assumption",
       "post": "content/posts/2026-11-18-2036-change-one-assumption.md",
       "title": "Change the assumption.\nTrace the consequence.",
