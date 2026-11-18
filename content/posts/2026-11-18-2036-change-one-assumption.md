@@ -1,13 +1,14 @@
 ---
 title: "Change one assumption on purpose"
 date: 2026-11-18
-status: approved
+status: published
 visual_required: true
 tag: architecture
 summary: "Test an architectural decision by changing the condition that justified it."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7528836757258285056/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-18T08:09:23-07:00
 ---
 
 “Future-proof” is easy to write in a proposal.
