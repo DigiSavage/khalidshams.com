@@ -1,11 +1,12 @@
 ---
 title: "Small models, big boundaries"
 date: 2026-11-19
-status: approved
+status: published
 visual_required: true
 tag: agentic-ai
 summary: "A model swap belongs inside a tested task boundary, with explicit validation and escalation."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7529199177285808128/
+linkedin_published_at: 2026-11-19T08:09:30-07:00
 ---
 
 The model can get smaller. The boundary should not get vague.
