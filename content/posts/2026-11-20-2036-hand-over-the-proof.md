@@ -1,13 +1,14 @@
 ---
 title: "Hand over the proof"
 date: 2026-11-20
-status: approved
+status: published
 visual_required: true
 tag: architecture
 summary: "Let another person reproduce one permitted result, one refusal and one recovery path."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7529561488240549888/
 series: 2036
 linkedin_schedule: 2036
+linkedin_published_at: 2026-11-20T08:09:12-07:00
 ---
 
 For the final exercise in “2036, built in the open,” give someone else the design.
