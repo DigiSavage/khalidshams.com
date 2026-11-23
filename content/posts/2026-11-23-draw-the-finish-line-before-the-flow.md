@@ -1,11 +1,12 @@
 ---
 title: "Draw the finish line before the flow"
 date: 2026-11-23
-status: approved
+status: published
 tag: architecture
 summary: "Work backward from an accepted business outcome to the records, authority and contracts that make it possible."
-linkedin_url:
+linkedin_url: https://www.linkedin.com/feed/update/urn:li:share:7530648636045684736/
 visual_required: true
+linkedin_published_at: 2026-11-23T08:09:08-07:00
 ---
 
 The easiest box to draw is often the least useful place to start.
