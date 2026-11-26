@@ -433,13 +433,23 @@ def build():
 """, encoding="utf-8")
 
     # ---- sitemap + robots
-    urls = ([f"{SITE}/", f"{SITE}/illustrated/", f"{SITE}/learn/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}{enterprise_build.ROUTE}", f"{SITE}/method/", f"{SITE}{engagement_build.ROUTE}", f"{SITE}/playbooks/", f"{SITE}/contact/"]
+    urls = ([f"{SITE}/", f"{SITE}/illustrated/", f"{SITE}/learn/", f"{SITE}/learn/agent-concepts/", f"{SITE}/learn/atlas/", f"{SITE}/learn/atlas/how-models-are-made/", f"{SITE}/architect/", f"{SITE}{enterprise_build.ROUTE}", f"{SITE}/method/", f"{SITE}{engagement_build.ROUTE}", f"{SITE}/playbooks/", f"{SITE}/contact/"]
             + [f"{SITE}/learn/paths/{x['id']}/" for x in learn_build.load()[1]["paths"]] + [f"{SITE}/learn/ideas/{x['id']}/" for x in learn_build.load()[0]["ideas"]] + [pb.abs_url for pb in load_playbooks()]
             + [f"{SITE}/tools/"] + [f"{SITE}/tools/{t['slug']}/" for t in TOOLS]
             + [f"{SITE}/writing/"] + [p.abs_url for p in live])
     (DIST / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
         "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n", encoding="utf-8")
+    # ---- nine concepts, one connected build
+    concepts_body = fill(tpl("agent-concepts.html"), MASTHEAD=masthead, FOOTER=footer)
+    concepts_body = concepts_body.replace("{{PAGENAV}}", learn_build.page_nav(concepts_body))
+    concepts_dir = DIST / "learn" / "agent-concepts"
+    concepts_dir.mkdir(parents=True, exist_ok=True)
+    (concepts_dir / "index.html").write_text(page(concepts_body,
+        title="Nine concepts, one build · Learn AI · Khalid Shams",
+        description="Explore harness, memory and state, RAG, MCP, skills, guardrails, evals, A2A and multi-agent systems in one connected architecture. Choose a concept to see where it fits.",
+        canonical=f"{SITE}/learn/agent-concepts/"), encoding="utf-8")
+
     # ---- method page
     mp = fill(tpl("method.html"), MASTHEAD=masthead, FOOTER=footer,
               DELIVERY_OVERVIEW=delivery_build.overview(), HUMAN_COORDINATION=delivery_build.human_coordination())
@@ -550,6 +560,7 @@ def build():
             [("/tools/", DIST / "tools" / "index.html")] + [(f"/tools/{t['slug']}/", DIST / "tools" / t["slug"] / "index.html") for t in TOOLS] + \
             [("/writing/", DIST / "writing" / "index.html"), ("/privacy/", DIST / "privacy" / "index.html")]
     pages.append(("/illustrated/", DIST / "illustrated" / "index.html"))
+    pages.append(("/learn/agent-concepts/", concepts_dir / "index.html"))
     pages.append(("/contact/", DIST / "contact/index.html"))
     pages.append((enterprise_build.ROUTE, enterprise_dir / "index.html"))
     pages.append((engagement_build.ROUTE, engagement_dir / 'index.html'))

@@ -1,0 +1,53 @@
+{{MASTHEAD}}
+<div class="wrap">
+  <div class="hero">
+    <p class="eyebrow">Learn AI · interactive architecture</p>
+    <h1>Nine concepts. <em>One build.</em></h1>
+    <p class="lede">Where do RAG, MCP, memory and guardrails actually belong? Choose a concept and follow its connections through the same system. I use this map to explain what each part does, who controls an action, and which parts a particular build needs.</p>
+    <div class="cta"><a class="btn solid" href="#explore">Explore the build</a><a class="btn" href="/learn/">Back to Learn AI</a></div>
+  </div>
+</div>
+{{PAGENAV}}
+
+<div class="band" id="explore"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">The connected map</p>
+    <div>
+      <h2 id="follow-the-connections">Follow the connections.</h2>
+      <p class="intro">Use the Focus dropdown to highlight a concept. The whole build stays visible, so you can see where that concept fits and what it depends on.</p>
+    </div>
+  </div>
+  <div class="agent-concepts-layout">
+    <div class="agent-concepts-frame-wrap">
+      <iframe id="agent-concepts-frame" class="agent-concepts-frame" src="/agent-concepts/" title="Nine concepts, one build: interactive architecture with a concept dropdown" height="1100"></iframe>
+      <p class="ln-note"><a href="/agent-concepts/">Open the interactive on its own</a></p>
+    </div>
+    <aside class="agent-concepts-guide" aria-labelledby="try-the-map">
+      <p class="sec-label">Try this</p>
+      <h3 id="try-the-map">Three questions I ask.</h3>
+      <ol>
+        <li><strong>Who controls the next step?</strong><p>Choose Harness. The model proposes; the application coordinates tools and enforces execution limits.</p></li>
+        <li><strong>Where does the evidence enter?</strong><p>Choose RAG. Retrieval brings relevant evidence into the model's context. The generated answer still needs to be checked against its sources.</p></li>
+        <li><strong>How do the systems connect?</strong><p>Choose MCP, then A2A. MCP can expose tools and other capabilities. A2A can exchange tasks between agent services. Each is a separate architecture choice.</p></li>
+      </ol>
+      <p>Start with the simplest build that meets the need. This map shows the relationships; a project may only need some of these parts.</p>
+    </aside>
+  </div>
+</section></div></div>
+
+<div class="band" id="keep-building"><div class="wrap"><section>
+  <div class="sec-head">
+    <p class="sec-label">Keep building</p>
+    <div>
+      <h2 id="put-the-map-to-work">Put the map to work.</h2>
+      <p class="intro">Follow a request in the atlas, inspect the agentic loop, or choose an enterprise architecture and test its boundaries.</p>
+      <div class="cta"><a class="btn solid" href="/learn/atlas/">Follow one request</a><a class="btn" href="/learn/#loop">The agentic loop</a><a class="btn" href="/architect/agent-studio/">Design an enterprise agent</a></div>
+      <p class="agent-concepts-sources">Technical references: <a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/retrieval-augmented-generation">RAG</a> · <a href="https://modelcontextprotocol.io/docs/learn/architecture">MCP architecture</a> · <a href="https://a2a-protocol.org/latest/topics/a2a-and-mcp/">A2A and MCP</a> · <a href="https://agentskills.io/home">Agent Skills</a></p>
+    </div>
+  </div>
+</section></div></div>
+
+<div class="band"><div class="wrap">
+{{FOOTER}}
+</div></div>
+<script src="/agent-concepts-embed.js" defer></script>
